@@ -1,5 +1,7 @@
 # Ember-deploy
 
+An Ember-CLI Addon for `Lightning Fast Deployments of Ember-CLI Apps`
+
 This project includes the necessary commands for 'Lightning Fast Deployments of
 Ember-CLI Apps'. The whole workflow is heavily inspired by Luke Melia's talk
 about [Lightning Fast Deployment(s) of Rails-backed Javascript Apps](https://www.youtube.com/watch?v=QZVYP3cPcWQ).
