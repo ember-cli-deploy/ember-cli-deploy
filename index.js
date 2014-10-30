@@ -1,5 +1,13 @@
-'use strict';
+var commands = require('./lib/commands');
 
-module.exports = {
-  name: 'ember-deploy'
-};
+function Deploy() {
+  this.name = "ember-deploy"
+  return this;
+}
+
+Deploy.prototype.includedCommands = function() {
+  return commands;
+}
+
+module.exports = Deploy;
+
