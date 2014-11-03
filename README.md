@@ -21,6 +21,15 @@ A deployment consists of multiple steps:
 3. Upload your bootstrap index.html to a key-value store.
 4. Activate the uploaded index.html as the default revision your users will get served from your backend.
 
+## Installation
+
+Simply run
+
+```
+npm install ember-deploy --save-dev
+```
+
+and the new commands will be available in your ember-cli app!
 
 ## Commands
 
