@@ -2,11 +2,7 @@ var ConfigurationReader = require('../../../utilities/configuration-reader');
 var expect = require('chai').expect;
 var path = require('path');
 
-describe('configuration-reader', function() {
-  it('should be testable', function() {
-    expect(ConfigurationReader).to.exist;
-  });
-
+describe('ConfigurationReader', function() {
   describe('environment settings', function() {
     it('knows about its passed _environment', function() {
       var config = new ConfigurationReader({
