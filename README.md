@@ -118,3 +118,8 @@ end
 
 The nice thing about this is that you can deploy your app to production, test it out by passing an index_key parameter with the revision you want to test and activate when you feel confident that everything is working as expected.
 
+### Developing
+
+Clone the repo and run `npm install`. To run tests,
+
+    npm test

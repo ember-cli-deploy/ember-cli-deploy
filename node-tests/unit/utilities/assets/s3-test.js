@@ -22,6 +22,14 @@ var stubConfig = {
     "bucket": "<your-bucket-name>"
   }
 };
+var stubConfigWithPrefix = {
+  "assets": {
+    "accessKeyId": "<your-access-key-goes-here>",
+    "secretAccessKey": "<your-secret-access-key-goes-here>",
+    "bucket": "<your-bucket-name>",
+    "prefix": "release/"
+  }
+};
 
 describe('S3Adapter', function() {
   beforeEach(function() {
@@ -56,6 +64,28 @@ describe('S3Adapter', function() {
       s3Adapter.upload();
 
       expect(s3Adapter.client.uploadParams).to.eql(expected);
+    });
+    it("allows the prefix to be customized", function() {
+      var s3AdapterCustomPrefix = new S3Adapter({
+        ui: new MockUI(),
+        s3: new MockS3(),
+        config: stubConfigWithPrefix
+      });
+
+      var expected = {
+        localDir: 'tmp/assets-sync',
+        s3Params: {
+          Bucket: '<your-bucket-name>',
+          Prefix: 'release/',
+          ContentEncoding: 'gzip',
+          CacheControl: 'max-age=63072000, public',
+          Expires: new Date('2030')
+        }
+      };
+
+      s3AdapterCustomPrefix.upload();
+
+      expect(s3AdapterCustomPrefix.client.uploadParams).to.eql(expected);
     });
     it('rejects when the upload encounters an error', function() {
       var promise = s3Adapter.upload();
