@@ -48,7 +48,7 @@ module.exports = AssetAdapter.extend({
       localDir: 'tmp/assets-sync',
       s3Params: {
         Bucket: this.config.assets.bucket,
-        Prefix: 'assets/',
+        Prefix: this.config.assets.prefix || 'assets/',
         ContentEncoding: 'gzip',
         CacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
         Expires: EXPIRE_IN_2030
