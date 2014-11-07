@@ -40,6 +40,8 @@ module.exports = AssetAdapter.extend({
       uploader.on('end', _this.logUploadSuccess.bind(_this, resolve));
 
       uploader.on('fileUploadStart', _this.logFileUpload.bind(_this));
+
+      uploader.on('fileUploadEnd', _this.logFileUploadEnd.bind(_this, resolve));
     });
   },
 
@@ -61,6 +63,15 @@ module.exports = AssetAdapter.extend({
     if (fileNameMatches) {
       this.ui.writeLine('Uploading: ' + green(fileNameMatches[1]));
     }
+    this.fileUploadPending = true;
+  },
+
+  logFileUploadEnd: function(resolve, localFilePath, _s3Key) {
+    this.fileUploadPending = false;
+    if (this.s3ThinksWeAreFinished) {
+      this.printEndMessage();
+      resolve();
+    }
   },
 
   logUploadError: function(reject, error) {
@@ -69,8 +80,18 @@ module.exports = AssetAdapter.extend({
   },
 
   logUploadSuccess: function(resolve) {
+    if (this.fileUploadPending) {
+      // s3 screws up some times when only uploading one image
+      this.s3ThinksWeAreFinished = true;
+    }
+    else {
+      this.printEndMessage();
+      resolve();
+    }
+  },
+
+  printEndMessage: function() {
     this.ui.writeLine('Assets upload successful. Done uploading.');
     this.ui.pleasantProgress.stop();
-    resolve();
   }
 });
