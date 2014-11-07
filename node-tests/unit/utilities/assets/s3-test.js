@@ -27,7 +27,7 @@ var stubConfigWithPrefix = {
     "accessKeyId": "<your-access-key-goes-here>",
     "secretAccessKey": "<your-secret-access-key-goes-here>",
     "bucket": "<your-bucket-name>",
-    "prefix": "release/"
+    "prefix": "release/assets/"
   }
 };
 
@@ -53,9 +53,9 @@ describe('S3Adapter', function() {
       var expected = {
         localDir: 'tmp/assets-sync',
         s3Params: {
+          ACL: 'public-read',
           Bucket: '<your-bucket-name>',
           Prefix: 'assets/',
-          ContentEncoding: 'gzip',
           CacheControl: 'max-age=63072000, public',
           Expires: new Date('2030')
         }
@@ -63,8 +63,15 @@ describe('S3Adapter', function() {
 
       s3Adapter.upload();
 
-      expect(s3Adapter.client.uploadParams).to.eql(expected);
+      var params = s3Adapter.client.uploadParams;
+      var actual = {
+        localDir: params.localDir,
+        s3Params: params.s3Params
+      };
+
+      expect(actual).to.eql(expected);
     });
+
     it("allows the prefix to be customized", function() {
       var s3AdapterCustomPrefix = new S3Adapter({
         ui: new MockUI(),
@@ -75,9 +82,9 @@ describe('S3Adapter', function() {
       var expected = {
         localDir: 'tmp/assets-sync',
         s3Params: {
+          ACL: 'public-read',
           Bucket: '<your-bucket-name>',
-          Prefix: 'release/',
-          ContentEncoding: 'gzip',
+          Prefix: 'release/assets/',
           CacheControl: 'max-age=63072000, public',
           Expires: new Date('2030')
         }
@@ -85,8 +92,15 @@ describe('S3Adapter', function() {
 
       s3AdapterCustomPrefix.upload();
 
-      expect(s3AdapterCustomPrefix.client.uploadParams).to.eql(expected);
+      var params = s3AdapterCustomPrefix.client.uploadParams;
+      var actual = {
+        localDir: params.localDir,
+        s3Params: params.s3Params
+      };
+
+      expect(actual).to.eql(expected);
     });
+
     it('rejects when the upload encounters an error', function() {
       var promise = s3Adapter.upload();
       s3Adapter.s3.eventEmitter.emit('error', { stack: 'test error stack' });

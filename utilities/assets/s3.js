@@ -49,13 +49,22 @@ module.exports = AssetAdapter.extend({
     return {
       localDir: 'tmp/assets-sync',
       s3Params: {
+        ACL: 'public-read',
         Bucket: this.config.assets.bucket,
         Prefix: this.config.assets.prefix || 'assets/',
-        ContentEncoding: 'gzip',
         CacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
         Expires: EXPIRE_IN_2030
-      }
+      },
+      getS3Params: this.getS3Params
     }
+  },
+
+  getS3Params: function(localFile, stat, callback) {
+    var ext = localFile.replace(/.*[\.\/\\]/, '').toLowerCase();
+    var isGzippedContent = ['js', 'css'].indexOf(ext) != -1;
+    var additionalParams = isGzippedContent ? { ContentEncoding: 'gzip' } : {};
+
+    callback(null, additionalParams);
   },
 
   logFileUpload: function(fullPath, _) {
