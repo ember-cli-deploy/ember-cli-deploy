@@ -27,7 +27,8 @@ module.exports = AssetAdapter.extend({
     var _this  = this;
 
     if (!this.ui) {
-      return Promise.reject(new SilentError('You have to pass a UI to an adapter.'));
+      var message = 'You have to pass a UI to an adapter.';
+      return Promise.reject(new SilentError(message));
     }
 
     this.ui.pleasantProgress.start(green('Uploading assets'), green('.'));
@@ -51,7 +52,7 @@ module.exports = AssetAdapter.extend({
       s3Params: {
         ACL: 'public-read',
         Bucket: this.config.assets.bucket,
-        Prefix: this.config.assets.prefix || 'assets/',
+        Prefix: this.config.assets.prefix || '',
         CacheControl: 'max-age='+TWO_YEAR_CACHE_PERIOD_IN_SEC+', public',
         Expires: EXPIRE_IN_2030
       },
