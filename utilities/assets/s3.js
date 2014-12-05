@@ -1,4 +1,4 @@
-var AssetAdapter = require('./adapter');
+var AssetAdapter = require('../adapter');
 var Promise      = require('ember-cli/lib/ext/promise');
 var SilentError  = require('ember-cli/lib/errors/silent');
 var chalk        = require('chalk');
