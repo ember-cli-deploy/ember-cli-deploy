@@ -48,12 +48,15 @@ var uploadWithRevisionKey = function(key) {
   return redisAdapter.upload(DOCUMENT_TO_SAVE, key);
 };
 
-var fillUpManifest = function(uploadCount) {
+var fillUpManifest = function(uploadCount, revisionsList) {
   var promises = [];
 
   for (var i = 0; i < uploadCount; i++) {
     var newRevisionKey = REVISION_KEY.replace(REVISION_KEY.charAt(0), i);
-    promises.push(uploadWithRevisionKey(MANIFEST+':'+newRevisionKey));
+    var newUploadKey   = MANIFEST+':'+newRevisionKey;
+
+    promises.push(uploadWithRevisionKey(newUploadKey));
+    if (Array.isArray(revisionsList)) { revisionsList.push(newUploadKey); }
   }
 
   return RSVP.all(promises)
@@ -116,6 +119,59 @@ describe('RedisAdapter', function() {
         .then(function(values) {
           return expect(values.length).to.eq(MANIFEST_SIZE);
         });
+    });
+  });
+
+  describe('list/activate', function() {
+    var uploadsDone;
+    var revisionsList;
+
+    beforeEach(function() {
+      revisionsList = [];
+      uploadsDone = upload
+        .then(fillUpManifest.bind(null, MANIFEST_SIZE, revisionsList));
+    });
+
+    describe('#list', function() {
+      it('lists all uploads stored in manifest', function() {
+        return uploadsDone
+          .then(function() {
+            return redisAdapter.list();
+          })
+          .then(function(uploads) {
+            return revisionsList.forEach(function(upload) {
+              expect(uploads).to.contain(upload);
+            });
+          });
+          ;
+      });
+    });
+
+    describe('#activate', function() {
+      it('sets <manifest>:current when key is included in manifest', function() {
+        var revisionToActivate;
+
+        return uploadsDone
+          .then(function() {
+            revisionToActivate = revisionsList[0];
+            return redisAdapter.activate(revisionToActivate);
+          })
+          .then(function() {
+            return redisClient.get(MANIFEST+':current');
+          })
+          .then(function(result) {
+            return expect(result).to.eq(revisionToActivate);
+          });
+      });
+
+      it('rejects when key is not included in manifest', function() {
+        var activation = uploadsDone
+          .then(function() {
+            return redisAdapter.activate('not-in-manifest');
+          });
+
+        return expect(activation).to.be.rejected;
+      });
     });
   });
 });
