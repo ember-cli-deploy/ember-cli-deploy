@@ -13,3 +13,6 @@ install:
 
 script:
   - npm test
+
+services:
+  - redis-server
