@@ -1,3 +1,4 @@
+var CoreObject     = require('core-object');
 var chai           = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 var redis          = require('then-redis');
@@ -18,6 +19,23 @@ var REDIS_CONNECTION_OPTIONS = {
 };
 
 var redisClient = redis.createClient(REDIS_CONNECTION_OPTIONS);
+var revisionsList = [];
+var mockShaTaggingAdapter = new CoreObject({
+  tagCount: 0,
+
+  mockTag: UPLOAD_KEY,
+
+  createTag: function() {
+    var tag = this.tagCount < 1 ? this.mockTag : this.mockTag+this.tagCount;
+    revisionsList.push(tag);
+    this.tagCount++;
+    return tag;
+  },
+
+  reset: function() {
+    this.tagCount = 0;
+  }
+});
 
 var redisAdapter;
 var upload;
@@ -44,22 +62,18 @@ var cleanUpRedis = function(done) {
     .then(done.bind(null, null));
 };
 
-var uploadWithRevisionKey = function(key) {
-  return redisAdapter.upload(DOCUMENT_TO_SAVE, key);
+var uploadWithRevisionKey = function() {
+  return redisAdapter.upload(DOCUMENT_TO_SAVE);
 };
 
 var fillUpManifest = function(uploadCount, revisionsList) {
   var promises = [];
 
   for (var i = 0; i < uploadCount; i++) {
-    var newRevisionKey = REVISION_KEY.replace(REVISION_KEY.charAt(0), i);
-    var newUploadKey   = MANIFEST+':'+newRevisionKey;
-
-    promises.push(uploadWithRevisionKey(newUploadKey));
-    if (Array.isArray(revisionsList)) { revisionsList.push(newUploadKey); }
+    promises.push(uploadWithRevisionKey());
   }
 
-  return RSVP.all(promises)
+  return RSVP.all(promises);
 };
 
 describe('RedisAdapter', function() {
@@ -67,13 +81,16 @@ describe('RedisAdapter', function() {
     redisAdapter = new RedisAdapter({
       config: REDIS_CONNECTION_OPTIONS,
       manifest: MANIFEST,
-      manifestSize: MANIFEST_SIZE
+      manifestSize: MANIFEST_SIZE,
+      taggingAdapter: mockShaTaggingAdapter
     });
 
-    upload = uploadWithRevisionKey(UPLOAD_KEY);
+    upload = uploadWithRevisionKey();
   });
 
   afterEach(function(done) {
+    mockShaTaggingAdapter.reset();
+    revisionsList = [];
     cleanUpRedis(done);
   });
 
@@ -95,7 +112,8 @@ describe('RedisAdapter', function() {
     it('rejects when passed key is already in manifest', function() {
       return upload
         .then(function() {
-          var second = redisAdapter.upload(DOCUMENT_TO_SAVE, UPLOAD_KEY);
+          mockShaTaggingAdapter.reset();
+          var second = redisAdapter.upload(DOCUMENT_TO_SAVE);
           return expect(second).to.be.rejected;
         });
     });
@@ -124,12 +142,10 @@ describe('RedisAdapter', function() {
 
   describe('list/activate', function() {
     var uploadsDone;
-    var revisionsList;
 
     beforeEach(function() {
-      revisionsList = [];
       uploadsDone = upload
-        .then(fillUpManifest.bind(null, MANIFEST_SIZE, revisionsList));
+        .then(fillUpManifest.bind(null, MANIFEST_SIZE - 1, revisionsList));
     });
 
     describe('#list', function() {
@@ -148,7 +164,7 @@ describe('RedisAdapter', function() {
     });
 
     describe('#activate', function() {
-      it('sets <manifest>:current when key is included in manifest', function() {
+      it('sets <manifest>:current when key is in manifest', function() {
         var revisionToActivate;
 
         return uploadsDone
@@ -171,6 +187,22 @@ describe('RedisAdapter', function() {
           });
 
         return expect(activation).to.be.rejected;
+      });
+    });
+
+    describe('#current', function() {
+      it('returns revision that set <manifest>:current', function() {
+        return uploadsDone
+          .then(function() {
+            revisionToActivate = revisionsList[0];
+            return redisAdapter.activate(revisionToActivate);
+          })
+          .then(function() {
+            return redisAdapter.current();
+          })
+          .then(function(result) {
+            return expect(result).to.eq(revisionToActivate);
+          });
       });
     });
   });
