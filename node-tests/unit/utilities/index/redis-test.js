@@ -258,7 +258,7 @@ describe('RedisAdapter', function() {
       });
     });
 
-    describe('#current', function() {
+    describe('#_current', function() {
       it('returns revision that set <manifest>:current', function() {
         return uploadsDone
           .then(function() {
