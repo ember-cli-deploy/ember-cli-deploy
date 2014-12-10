@@ -1,6 +1,8 @@
 var CoreObject     = require('core-object');
 var chai           = require('chai');
 var chaiAsPromised = require('chai-as-promised');
+var MockUI         = require('ember-cli/tests/helpers/mock-ui');
+var SilentError    = require('ember-cli/lib/errors/silent');
 var redis          = require('then-redis');
 var RSVP           = require('rsvp');
 var RedisAdapter   = require('../../../../utilities/index/redis');
@@ -76,13 +78,18 @@ var fillUpManifest = function(uploadCount, revisionsList) {
   return RSVP.all(promises);
 };
 
+var resetUI = function(adapter) {
+  adapter.ui.output = '';
+};
+
 describe('RedisAdapter', function() {
   beforeEach(function() {
     redisAdapter = new RedisAdapter({
       config: REDIS_CONNECTION_OPTIONS,
       manifest: MANIFEST,
       manifestSize: MANIFEST_SIZE,
-      taggingAdapter: mockShaTaggingAdapter
+      taggingAdapter: mockShaTaggingAdapter,
+      ui: new MockUI()
     });
 
     upload = uploadWithRevisionKey();
@@ -109,12 +116,11 @@ describe('RedisAdapter', function() {
       return expect(upload).to.become(UPLOAD_KEY);
     });
 
-    it('rejects when passed key is already in manifest', function() {
+    it('prints a success message when upload succeeds', function() {
       return upload
         .then(function() {
-          mockShaTaggingAdapter.reset();
-          var second = redisAdapter.upload(DOCUMENT_TO_SAVE);
-          return expect(second).to.be.rejected;
+          var output = redisAdapter.ui.output;
+          return expect(output).to.contain('Upload successful');
         });
     });
 
@@ -138,6 +144,28 @@ describe('RedisAdapter', function() {
           return expect(values.length).to.eq(MANIFEST_SIZE);
         });
     });
+
+    describe('upload failure', function() {
+      var second;
+
+      beforeEach(function() {
+        second = upload
+          .then(function() {
+            mockShaTaggingAdapter.reset();
+
+            return redisAdapter.upload(DOCUMENT_TO_SAVE);
+          });
+      });
+
+      it('rejects when passed key is already in manifest', function() {
+        return expect(second).to.be.rejected;
+      });
+
+      it('rejects with a SilentError ember-cli can handle', function() {
+        var errorMessage = /Upload\ failed!/;
+        return expect(second).to.be.rejectedWith(SilentError, errorMessage);
+      });
+    });
   });
 
   describe('list/activate', function() {
@@ -152,41 +180,81 @@ describe('RedisAdapter', function() {
       it('lists all uploads stored in manifest', function() {
         return uploadsDone
           .then(function() {
+            resetUI(redisAdapter);
             return redisAdapter.list();
           })
-          .then(function(uploads) {
+          .then(function() {
+            var uploads = redisAdapter.ui.output;
             return revisionsList.forEach(function(upload) {
               expect(uploads).to.contain(upload);
             });
           });
-          ;
+      });
+
+      it('prints out a formatted list of uploaded revisions', function() {
+        return uploadsDone
+          .then(function() {
+            resetUI(redisAdapter);
+
+            return redisAdapter.list();
+          })
+          .then(function() {
+            var list = 'uploaded revisions';
+            return expect(redisAdapter.ui.output).to.contain(list);
+          });
       });
     });
 
     describe('#activate', function() {
-      it('sets <manifest>:current when key is in manifest', function() {
+      var activation;
+
+      describe('successfull activation', function() {
         var revisionToActivate;
 
-        return uploadsDone
-          .then(function() {
-            revisionToActivate = revisionsList[0];
-            return redisAdapter.activate(revisionToActivate);
-          })
-          .then(function() {
-            return redisClient.get(MANIFEST+':current');
-          })
-          .then(function(result) {
-            return expect(result).to.eq(revisionToActivate);
-          });
+        beforeEach(function() {
+          activation = uploadsDone
+            .then(function() {
+              resetUI(redisAdapter);
+              revisionToActivate = revisionsList[0];
+              return redisAdapter.activate(revisionToActivate);
+            });
+        });
+
+        it('sets <manifest>:current when key is in manifest', function() {
+          return activation
+            .then(function() {
+              return redisClient.get(MANIFEST+':current');
+            })
+            .then(function(result) {
+              return expect(result).to.eq(revisionToActivate);
+            });
+        });
+
+        it('prints a success message when activation succeeds', function() {
+          return activation
+            .then(function() {
+              var successMessage = 'Activation successful!';
+              return expect(redisAdapter.ui.output).to.contain(successMessage);
+            });
+        });
       });
 
-      it('rejects when key is not included in manifest', function() {
-        var activation = uploadsDone
+      it('rejects when no revision is passed', function() {
+        activation = uploadsDone
+          .then(function() {
+            return redisAdapter.activate();
+          });
+
+        return expect(activation).to.be.rejectedWith(SilentError, /Error!/);
+      });
+
+      it('rejects with SilentError when key is not in manifest', function() {
+        activation = uploadsDone
           .then(function() {
             return redisAdapter.activate('not-in-manifest');
           });
 
-        return expect(activation).to.be.rejected;
+        return expect(activation).to.be.rejectedWith(SilentError, /Error!/);
       });
     });
 
@@ -198,7 +266,7 @@ describe('RedisAdapter', function() {
             return redisAdapter.activate(revisionToActivate);
           })
           .then(function() {
-            return redisAdapter.current();
+            return redisAdapter._current();
           })
           .then(function(result) {
             return expect(result).to.eq(revisionToActivate);
