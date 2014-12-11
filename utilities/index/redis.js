@@ -32,10 +32,11 @@ module.exports = Adapter.extend({
     })
     .then(function(results) {
       var revisions = results.revisions;
-      var current = results.current;
+      var current   = results.current;
+      var message   = this._revisionListMessage(revisions, current);
 
-      message = this._revisionListMessage(revisions, current);
       this._printSuccessMessage(message);
+
       return message;
     }.bind(this));
   },
@@ -49,7 +50,7 @@ module.exports = Adapter.extend({
     var that      = this;
 
     return new RSVP.Promise(function(resolve, reject) {
-      that.list()
+      that._list()
         .then(function(uploads) {
           return uploads.indexOf(revisionKey) > -1 ? resolve() : reject();
         })
@@ -175,13 +176,13 @@ module.exports = Adapter.extend({
   },
 
   _revisionListMessage: function(revisions, currentRevision) {
-    var manifestSize = this.manifestSize;
+    var manifestSize  = this.manifestSize;
     var headline      = '\nLast '+ manifestSize + ' uploaded revisions:\n\n';
+    var footer        = '\n\n# => - current revision';
     var revisionsList = revisions.reduce(function(prev, curr) {
       var prefix = (curr === currentRevision) ? '| => ' : '|    ';
       return prev + prefix + chalk.green(curr) + '\n';
     }, '');
-    var footer = '\n\n# => - current revision';
 
     return headline + revisionsList + footer;
   }
