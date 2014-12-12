@@ -6,13 +6,15 @@ This project includes the necessary commands for 'Lightning Fast Deployments of
 Ember-CLI Apps'. The whole workflow is heavily inspired by Luke Melia's talk
 about [Lightning Fast Deployment(s) of Rails-backed Javascript Apps](https://www.youtube.com/watch?v=QZVYP3cPcWQ).
 
-## Workflow
+`ember-deploy` aims to be the go-to-solution for deploying all Ember-CLI apps thus it also supports other types of deployments that differ from the one Luke suggests. Please see this README's subsection about `custom adapters` on how to get started with your own deployment strategy with `ember-deploy`.
+
+## Lightning-Approach Workflow (default)
 
 __Please watch Luke's Talk before using this project!__
 
-The TL;DR of the talk is that you want to serve your bootstrap index.html that Ember-CLI builds for you from a Key-Value store via your Backend and serve the rest of your assets from a static file hoster like for example [S3](https://aws.amazon.com/de/s3/). This is a sketch of what this Addon gives you ripped out of Luke's talk slides:
+The TL;DR of the talk is that you want to serve your bootstrap index.html that Ember-CLI builds for you from a Key-Value store via your Backend and serve the rest of your assets from a static file hoster like for example [S3](https://aws.amazon.com/de/s3/). This is a sketch of what this Addon gives you out of the box:
 
-![Workflow](https://dl.dropboxusercontent.com/s/d92gi00hzesov0z/Bildschirmfoto%202014-10-30%20um%2021.02.19.png?dl=0)
+![Workflow](https://dl.dropboxusercontent.com/s/tun9kbr4eyrcama/ember-deploy.png?dl=0)
 
 A deployment consists of multiple steps:
 
@@ -47,11 +49,24 @@ You can pass `--environment <some-environment>` to every command. If you don't p
 
 `ember-deploy` expects a `deploy.json` file in the root of your Ember-CLI app directory. In this file you tell `ember-deploy` about the necessary credentials for your file hoster and for your key-value store. An Example could look like this:
 
-```json
+```js
 {
   "development": {
     "store": {
+      "type": "redis", // the default store is 'redis'
       "host": "localhost",
+      "port": 6379
+    },
+    "assets": {
+    "type": "s3", // default asset-adapter is 's3'
+      "accessKeyId": "<your-access-key-goes-here>",
+      "secretAccessKey": "<your-secret-access-key-goes-here>",
+      "bucket": "<your-bucket-name>"
+    }
+  },
+  "production": {
+    "store": {
+      "host": "staging-redis.example.com",
       "port": 6379
     },
     "assets": {
@@ -61,9 +76,9 @@ You can pass `--environment <some-environment>` to every command. If you don't p
     }
   },
 
-  "staging": {
+   "production": {
     "store": {
-      "host": "staging-redis.example.com",
+      "host": "production-redis.example.com",
       "port": 6379
     },
     "assets": {
@@ -85,16 +100,9 @@ This is an example of how one would use this addon to deploy an ember-cli app:
 * `ember deploy:list --environment production` (this will print out a list of revisions)
 * `ember deploy:activate --revision ember-deploy:44f2f92 --environment production `
 
-## Asset uploads
+## S3-Asset uploads
 
 `ember-deploy` sets the correct cache headers for you. Currently these are hard coded to a two year cache period. Assets are also gzipped before uploading to S3. This should be enough to cache aggressively and you should not run into problems due to ember-cli's fingerprinting support. I will try to add more configuration options for caching in the near future.
-
-## Tooling
-`ember-deploy` is pretty opinionated right now. It only supports [redis](http://redis.io/) as its key-value store and expects you to use [S3](https://aws.amazon.com/de/s3/) for hosting your assets.
-
-Internally `ember-deploy` uses my [deployinator](https://github.com/LevelbossMike/deployinator) project to upload to a key-value store. Deployinator is built around the idea of adapters which should make it easy to add other key-value stores if you have the need for them. 
-
-S3 as a hosting provider is built into `ember-deploy` itself but this also should be changed to some kind of adapter in the near future. Unfortunately right now you will need to use S3.
 
 ### Example Sinatra app
 
@@ -118,7 +126,101 @@ end
 
 The nice thing about this is that you can deploy your app to production, test it out by passing an index_key parameter with the revision you want to test and activate when you feel confident that everything is working as expected.
 
-### Developing
+## Custom Adapters
+
+`ember-deploy` is built around the idea of adapters for the bootstrap-index- and the assets-uploads. `ember-deploy` comes bundled with the `redis`- and the `s3`-adapters that give you the deployment approach Luke talks about in his talk out of the box.
+
+Because `ember-deploy` is built with adapters in mind you can write your own adapters for your project specific use cases.
+
+Custom Adapters can be integrated via custom [Ember-CLI-Addons](http://www.ember-cli.com/#developing-addons-and-blueprints). For `ember-deploy` to integrate your custom adapter addons you have to define your addon-type as `ember-deploy-addon`. Here's a quick example of how you could structure your addon to add custom adapters.
+
+```js
+//index.js in your custom addon
+
+var SuperAwesomeCustomIndexAdapter = require('./lib/index-adapter');
+
+function EmberDeploySuperAwesome() {
+  this.name = 'ember-deploy-super-awesome';
+  this.type = 'ember-deploy-addon';
+  
+  // ember-deploy will merge ember-deploy-addon's adapters property
+  this.adapters = {
+    index: {
+      'super-awesome': SuperAwesomeCustomIndexAdapter
+    },
+    assets: {
+      // you can add multiple adapters in one ember-deploy-addon
+    }
+  };
+}
+
+module.exports = EmberDeploySuperAwesome;
+```
+
+Because `ember-deploy` will simply merge an `ember-deploy-addon`'s adapters property into its own bundled adapter-registry you could in theory bundle a complete new approach for deploying in one addon (just add an index- and an asset-adapter). 
+
+After adding your custom ember-deploy-addon to your project as an ember-cli-addon you can then use your custom adapters in ember-deploy's deploy.json:
+
+```js
+{
+  "development": {
+    "store": {
+      "type": "super-awesome",
+      // .. whatever additional config your adapter needs
+    },
+    "assets": {
+      "accessKeyId": "<your-access-key-goes-here>",
+      "secretAccessKey": "<your-secret-access-key-goes-here>",
+      "bucket": "<your-bucket-name>"
+    }
+  },
+  //...
+}
+```
+
+### Index-Adapters
+
+`index-adapters` take care of publishing bootstrap-index html that ember-cli builds for you. If you don't want to use `redis` as a key-value store for your index.html files if you are using the Lightning approach from Luke Melia's talk you could for example create a `cassandra`-adapter to use [Apacha Cassandra](http://cassandra.apache.org/) instead.
+
+Index adapters have to implement the following methods for `ember-deploy` to be able to use them:
+
+####`upload([bootstrapIndexHTML])`
+
+  __Parameters__
+  
+  _bootstrapIndexHTML_
+  
+  `upload` will get passed the content of `dist/index.html` that gets build from ember-cli. Feel free to do whatever you need to do with its file content. 
+  
+  This method has to return a `RSVP.Promise`.
+  
+####`activate([revisionToActivate])`
+
+__Parameters__
+
+_revisionToActivate_
+
+`activate` takes a revision you pass to it and activates it in the key-value store. The `redis`-adapter for example takes the passed revision-key and sets it as the value of the `<project.name>:current`-key in redis. Of course you can do whatever you want in this method. If you decide that you don't need a notion of activating revisions it is recommended that you nevertheless return a useful message to the user in this method.
+
+This method has to return a `RSVP.Promise`.
+
+####`list`
+
+`list` lists all uploaded revisions you have deployed and that you want the user to be able to preview or to rollback to. Of course you can do whatever you want in this method. If you decide that you don't need a notion of listing revisions it is recommended that you nevertheless return a useful message to the user in this method.
+
+This method has to return a `RSVP.Promise`.
+
+### Asset-Adapters
+
+`asset-adapters` take care of publishing your project assets. In the default use case (Luke Melia's lightning approach) your assets will be published to a static asset server like AWS S3. If you want to use some other static asset server service or you want to do something entirely different you can write your own `asset-adapter`. Asset-Adapters have to implement the following method for ember-deploy know what to do:
+
+####upload
+
+Ember deploy will gzip your `js` and `css` assets and copy these gzipped assets and all other assets from ember-cli's `dist`-folder to the `tmp/assets-sync`-directory. You can do whatever you want in an `asset-adapter`'s `upload`-method but most likely you will upload these assets to some kind of static-asset server with the `upload`-method.
+
+This method has to return a `RSVP.Promise`
+
+### Contributing
 
 Clone the repo and run `npm install`. To run tests,
 
