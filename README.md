@@ -64,7 +64,8 @@ You can pass `--environment <some-environment>` to every command. If you don't p
       "bucket": "<your-bucket-name>"
     }
   },
-  "production": {
+  
+  "staging": {
     "store": {
       "host": "staging-redis.example.com",
       "port": 6379
