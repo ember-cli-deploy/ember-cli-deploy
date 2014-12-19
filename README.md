@@ -10,7 +10,7 @@ about [Lightning Fast Deployment(s) of Rails-backed Javascript Apps](https://www
 
 You can also have a look on how to use this ember-cli-addon in the following video of a talk about `ember-deploy` I gave at [Ember.js-Munich](http://www.meetup.com/Ember-js-Munich/) (demo starts around 7 minutes into the video).
 
-[![ember-deploy talk](http://img.youtube.com/vi/Ro2_I5vtTIg/0.jpg)](https://www.youtube.com/watch?v=Ro2_I5vtTIg)
+<a href="https://www.youtube.com/watch?v=Ro2_I5vtTIg" target="_blank">![ember-deploy talk](http://img.youtube.com/vi/Ro2_I5vtTIg/0.jpg)</a>
 
 ## Lightning-Approach Workflow (default)
 
