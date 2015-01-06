@@ -31,6 +31,7 @@
     "ember-cli-qunit": "0.1.2",
     "ember-data": "1.0.0-beta.11",
     "ember-export-application-global": "^1.0.0",
+    "execSync": "^1.0.2",
     "express": "^4.8.5",
     "glob": "^4.0.5",
     "mocha": "^2.0.1",
@@ -47,13 +48,10 @@
     "broccoli-gzip": "^0.2.0",
     "chalk": "^0.5.1",
     "core-object": "0.0.2",
-    "gitty": "^2.1.7",
     "lodash-node": "^2.4.1",
     "mkdirp": "^0.5.0",
     "ncp": "^1.0.1",
     "rimraf": "^2.2.8",
-    "rsvp": "^3.0.14",
-    "s3": "^4.3.1",
-    "then-redis": "^0.3.12"
+    "rsvp": "^3.0.14"
   }
 }
