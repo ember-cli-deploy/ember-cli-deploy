@@ -6,7 +6,7 @@ module.exports = CoreObject.extend({
     var adapterRegistry = new AdapterRegistry({
       project: this.project
     });
-    var adapterName     = this.type || 's3';
+    var adapterName     = this.type;
     var Adapter         = adapterRegistry.lookup('assets', adapterName);
 
     this.adapter = new Adapter({
