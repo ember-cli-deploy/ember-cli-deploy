@@ -31,8 +31,8 @@
     "ember-cli-qunit": "0.1.2",
     "ember-data": "1.0.0-beta.11",
     "ember-export-application-global": "^1.0.0",
+    "execSync": "^1.0.2",
     "express": "^4.8.5",
-    "git-wrapper": "^0.1.1",
     "glob": "^4.0.5",
     "mocha": "^2.0.1",
     "sinon": "^1.12.1"
