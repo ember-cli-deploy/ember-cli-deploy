@@ -3,7 +3,9 @@ var AdapterRegistry = require('./adapter-registry');
 
 module.exports = CoreObject.extend({
   init: function() {
-    var adapterRegistry = new AdapterRegistry();
+    var adapterRegistry = new AdapterRegistry({
+      project: this.project
+    });
     var adapterName     = this.type || 's3';
     var Adapter         = adapterRegistry.lookup('assets', adapterName);
 
