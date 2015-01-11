@@ -1,7 +1,6 @@
 var CoreObject     = require('core-object');
 var UnknownAdapter = require('./assets/unknown');
-var S3Adapter      = require('./assets/s3');
-var RedisAdapter   = require('./index/redis');
+var ShaAdapter     = require('./tagging/sha');
 var merge          = require('lodash-node/modern/objects/merge');
 
 module.exports = CoreObject.extend({
@@ -23,11 +22,13 @@ module.exports = CoreObject.extend({
 
   adapters: {
     index: {
-      "redis": RedisAdapter
     },
 
     assets: {
-      "s3": S3Adapter
+    },
+
+    tagging: {
+      "sha": ShaAdapter
     }
   },
 

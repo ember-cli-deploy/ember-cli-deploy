@@ -12,21 +12,6 @@ You can also have a look on how to use this ember-cli-addon in the following vid
 
 <a href="https://www.youtube.com/watch?v=Ro2_I5vtTIg" target="_blank">![ember-deploy talk](http://img.youtube.com/vi/Ro2_I5vtTIg/0.jpg)</a>
 
-## Lightning-Approach Workflow (default)
-
-__Please watch Luke's Talk before using this project!__
-
-The TL;DR of the talk is that you want to serve your bootstrap index.html that Ember-CLI builds for you from a Key-Value store via your Backend and serve the rest of your assets from a static file hoster like for example [S3](https://aws.amazon.com/de/s3/). This is a sketch of what this Addon gives you out of the box:
-
-![Workflow](https://dl.dropboxusercontent.com/s/tun9kbr4eyrcama/ember-deploy.png?dl=0)
-
-A deployment consists of multiple steps:
-
-1. Build your assets for production via `ember build --environment production`
-2. Upload assets to S3.
-3. Upload your bootstrap index.html to a key-value store.
-4. Activate the uploaded index.html as the default revision your users will get served from your backend.
-
 ## Installation
 
 Simply run
@@ -48,6 +33,31 @@ This Ember-CLI Addon adds multiple deployment related tasks to your Ember-CLI Ap
 * `ember deploy` This commands builds your ember application, uploads it to your file hoster and uploads it to your key value store in one step.
 
 You can pass `--environment <some-environment>` to every command. If you don't pass an environment explicitly `ember-deploy` will use the `development`-environment.
+
+## Lightning-Approach Workflow
+
+`ember-deploy` is built around the idea of adapters for custom deployment strategies but for most people the approach Luke suggest in his talk will be a perfect fit.
+
+To use the Lightning-Approach workflow from Luke's talk you will also need to install the redis- and s3-adapters for `ember-deploy`:
+
+```
+npm install ember-deploy-redis ember-deploy-s3 --save-dev
+```
+
+__Please watch Luke's Talk before using this project!__
+
+The TL;DR of the talk is that you want to serve your bootstrap index.html that Ember-CLI builds for you from a Key-Value store via your Backend and serve the rest of your assets from a static file hoster like for example [S3](https://aws.amazon.com/de/s3/). This is a sketch of what this Addon gives you out of the box:
+
+![Workflow](https://dl.dropboxusercontent.com/s/tun9kbr4eyrcama/ember-deploy.png?dl=0)
+
+A deployment consists of multiple steps:
+
+1. Build your assets for production via `ember build --environment production`
+2. Upload assets to S3.
+3. Upload your bootstrap index.html to a key-value store.
+4. Activate the uploaded index.html as the default revision your users will get served from your backend.
+
+If you don't install the redis- and s3-adapters you will need to use a custom adapter you or the community have written. Please have a look at the Custom-Adapters section of this README for further information. In essence your custom adapters will implement the same steps as for the Lightning-Approach but you can customize the different steps as you see fit.
 
 ## Config file
 
@@ -107,11 +117,11 @@ This is an example of how one would use this addon to deploy an ember-cli app:
 
 ## S3-Asset uploads
 
-`ember-deploy` sets the correct cache headers for you. Currently these are hard coded to a two year cache period. Assets are also gzipped before uploading to S3. This should be enough to cache aggressively and you should not run into problems due to ember-cli's fingerprinting support. I will try to add more configuration options for caching in the near future.
+`ember-deploy-s3` sets the correct cache headers for you. Currently these are hard coded to a two year cache period. Assets are also gzipped before uploading to S3. This should be enough to cache aggressively and you should not run into problems due to ember-cli's fingerprinting support. I will try to add more configuration options for caching in the near future.
 
 ### Example Sinatra app
 
-This is a small sinatra application that can be used to serve an Ember-CLI application deployed with the help of `ember-deploy`. 
+This is a small sinatra application that can be used to serve an Ember-CLI application deployed with the help of `ember-deploy` and `ember-deploy-redis`. 
 
 ```ruby
 require 'sinatra'  
@@ -133,11 +143,15 @@ The nice thing about this is that you can deploy your app to production, test it
 
 ## Custom Adapters
 
-`ember-deploy` is built around the idea of adapters for the bootstrap-index- and the assets-uploads. `ember-deploy` comes bundled with the `redis`- and the `s3`-adapters that give you the deployment approach Luke talks about in his talk out of the box.
+`ember-deploy` is built around the idea of adapters for the bootstrap-index- and the assets-uploads. For `ember-deploy` to give you the deployment approach Luke talks about in his talk you will for example need to install the `ember-deploy-redis` and `ember-deploy-s3` adapters via npm.
 
 Because `ember-deploy` is built with adapters in mind you can write your own adapters for your project specific use cases.
 
-Custom Adapters can be integrated via custom [Ember-CLI-Addons](http://www.ember-cli.com/#developing-addons-and-blueprints). For `ember-deploy` to integrate your custom adapter addons you have to define your addon-type as `ember-deploy-addon`. Here's a quick example of how you could structure your addon to add custom adapters.
+Custom Adapters can be integrated via custom [Ember-CLI-Addons](http://www.ember-cli.com/#developing-addons-and-blueprints). For `ember-deploy` to integrate your custom adapter addons you have to define your addon-type as an `ember-deploy-addon`.
+
+You can have a look at [ember-deploy-s3](https://github.com/LevelbossMike/ember-deploy-s3) and [ember-deploy-redis](https://github.com/LevelbossMike/ember-deploy-redis) to get an idea how one would implement 'real-world'-adapters.
+
+For the sake of clarity here's a quick example of how you will structure your addon to add custom adapters.
 
 ```js
 //index.js in your custom addon
@@ -154,6 +168,10 @@ function EmberDeploySuperAwesome() {
       'super-awesome': SuperAwesomeCustomIndexAdapter
     },
     assets: {
+      // you can add multiple adapters in one ember-deploy-addon
+    },
+    
+    tagging: {
       // you can add multiple adapters in one ember-deploy-addon
     }
   };
@@ -217,13 +235,23 @@ This method has to return a `RSVP.Promise`.
 
 ### Asset-Adapters
 
-`asset-adapters` take care of publishing your project assets. In the default use case (Luke Melia's lightning approach) your assets will be published to a static asset server like AWS S3. If you want to use some other static asset server service or you want to do something entirely different you can write your own `asset-adapter`. Asset-Adapters have to implement the following method for ember-deploy know what to do:
+`asset-adapters` take care of publishing your project assets. In the default use case (Luke Melia's lightning approach) your assets will be published to a static asset server like AWS S3. If you want to use some other static asset server service or you want to do something entirely different you can write your own `asset-adapter`. Asset-Adapters have to implement the following method for ember-deploy to know what to do:
 
-####upload
+####`upload`
 
 Ember deploy will gzip your `js` and `css` assets and copy these gzipped assets and all other assets from ember-cli's `dist`-folder to the `tmp/assets-sync`-directory. You can do whatever you want in an `asset-adapter`'s `upload`-method but most likely you will upload these assets to some kind of static-asset server with the `upload`-method.
 
-This method has to return a `RSVP.Promise`
+This method has to return a `RSVP.Promise`.
+
+### Tagging-Adapters
+
+`tagging-adapters` take care of tagging revisions when uploading revisions via the `deploy-index`-command. `ember-deploy` comes bundled with the `sha`-tagging-adapter that will tag your revisions according to the current git-sha.
+
+Tagging Adapters need to implement the following method for ember-deploy to know what to do:
+
+####`createTag`
+
+This method has to return a `String`.
 
 ### Contributing
 

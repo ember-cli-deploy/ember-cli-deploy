@@ -21,6 +21,7 @@ describe('AdapterRegistry', function() {
       }
     };
   });
+
   describe('lookup', function() {
     it('looks up adapters by type and name', function() {
       var adapterRegistry = new AdapterRegistry({
