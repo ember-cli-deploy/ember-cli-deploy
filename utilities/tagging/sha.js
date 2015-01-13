@@ -1,17 +1,16 @@
 var CoreObject = require('core-object');
-var git        = require('gitty');
+var execSync = require('execSync');
 
 module.exports = CoreObject.extend({
   createTag: function() {
-    var command              = new git.Command('./', 'rev-parse', [], 'HEAD');
-    var executeSynchronously = true;
+    var commandResult = execSync.exec("git rev-parse HEAD").stdout;
 
-    command.exec(this._generateKey.bind(this), executeSynchronously);
+    this._generateKey(commandResult);
 
     return this.revisionKey;
   },
 
-  _generateKey: function(_error, sha, _stderr) {
+  _generateKey: function(sha) {
     this.revisionKey = this.manifest+':'+sha.slice(0,7);
   }
 });
