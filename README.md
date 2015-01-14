@@ -94,7 +94,8 @@ If you don't install the redis- and s3-adapters you will need to use a custom ad
    "production": {
     "store": {
       "host": "production-redis.example.com",
-      "port": 6379
+      "port": 6379,
+      "password": "<your-redis-secret>"
     },
     "assets": {
       "accessKeyId": "<your-access-key-goes-here>",
