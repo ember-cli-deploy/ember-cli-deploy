@@ -1,5 +1,5 @@
 var expect            = require('chai').expect;
-var git               = require('gitty');
+var execSync          = require('execSync');
 var sinon             = require('sinon');
 var ShaTaggingAdapter = require('../../../../utilities/tagging/sha');
 
@@ -16,8 +16,8 @@ describe('ShaTaggingAdapter', function() {
   beforeEach(function() {
     sandbox = sinon.sandbox.create();
     sandbox
-      .stub(git.Command.prototype, 'exec')
-      .yields('error', GIT_SHA, 'stderr');
+      .stub(execSync, 'exec')
+      .returns({stdout: GIT_SHA});
   });
 
   afterEach(function() {
