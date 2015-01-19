@@ -142,6 +142,10 @@ end
 
 The nice thing about this is that you can deploy your app to production, test it out by passing an index_key parameter with the revision you want to test and activate when you feel confident that everything is working as expected.
 
+### Example nodejs app
+
+[Nodejs example with one click deploy!](https://github.com/philipheinser/ember-lightning)
+
 ## Custom Adapters
 
 `ember-deploy` is built around the idea of adapters for the bootstrap-index- and the assets-uploads. For `ember-deploy` to give you the deployment approach Luke talks about in his talk you will for example need to install the `ember-deploy-redis` and `ember-deploy-s3` adapters via npm.
