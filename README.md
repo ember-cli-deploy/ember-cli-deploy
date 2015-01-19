@@ -34,6 +34,8 @@ This Ember-CLI Addon adds multiple deployment related tasks to your Ember-CLI Ap
 
 You can pass `--environment <some-environment>` to every command. If you don't pass an environment explicitly `ember-deploy` will use the `development`-environment.
 
+You can pass `--deploy-config-file <path/to/deploy-config.(js|json)>` to every command. If you don't pass a deploy-config-file explicitly `deploy.json` will be read.
+
 ## Lightning-Approach Workflow
 
 `ember-deploy` is built around the idea of adapters for custom deployment strategies but for most people the approach Luke suggest in his talk will be a perfect fit.
@@ -61,7 +63,7 @@ If you don't install the redis- and s3-adapters you will need to use a custom ad
 
 ## Config file
 
-`ember-deploy` expects a `deploy.json` file in the root of your Ember-CLI app directory. In this file you tell `ember-deploy` about the necessary credentials for your file hoster and for your key-value store. An Example could look like this:
+By default, `ember-deploy` expects a `deploy.json` file in the root of your Ember-CLI app directory. In this file you tell `ember-deploy` about the necessary credentials for your file hoster and for your key-value store. An example could look like this:
 
 ```js
 {
@@ -111,6 +113,18 @@ If you don't install the redis- and s3-adapters you will need to use a custom ad
 
 You have to have an entry for every environment you want to use in this file.
 
+If you would prefer to use a .js file for your configuration, that is also supported.
+Specify the path to the file using `--deploy-config-file=path/to/deploy.js`. You may want to
+do this so that you can access secrets from environment variables. For example:
+
+```js
+module.exports = {
+  //...
+  "secretAccessKey": process.env['AWS_ACCESS_KEY'],
+  //...
+};
+```
+
 ## How to use
 
 This is an example of how one would use this addon to deploy an ember-cli app:
@@ -125,22 +139,22 @@ This is an example of how one would use this addon to deploy an ember-cli app:
 
 ### Example Sinatra app
 
-This is a small sinatra application that can be used to serve an Ember-CLI application deployed with the help of `ember-deploy` and `ember-deploy-redis`. 
+This is a small sinatra application that can be used to serve an Ember-CLI application deployed with the help of `ember-deploy` and `ember-deploy-redis`.
 
 ```ruby
-require 'sinatra'  
+require 'sinatra'
 require 'redis'
 
-def bootstrap_index(index_key)  
+def bootstrap_index(index_key)
   redis = Redis.new
   index_key ||= redis.get('<your-project-name>:current')
   redis.get(index_key)
 end
 
-get '/' do  
+get '/' do
   content_type 'text/html'
   bootstrap_index(params[:index_key])
-end  
+end
 ```
 
 The nice thing about this is that you can deploy your app to production, test it out by passing an index_key parameter with the revision you want to test and activate when you feel confident that everything is working as expected.
@@ -171,7 +185,7 @@ var SuperAwesomeCustomIndexAdapter = require('./lib/index-adapter');
 function EmberDeploySuperAwesome() {
   this.name = 'ember-deploy-super-awesome';
   this.type = 'ember-deploy-addon';
-  
+
   // ember-deploy will merge ember-deploy-addon's adapters property
   this.adapters = {
     index: {
@@ -180,7 +194,7 @@ function EmberDeploySuperAwesome() {
     assets: {
       // you can add multiple adapters in one ember-deploy-addon
     },
-    
+
     tagging: {
       // you can add multiple adapters in one ember-deploy-addon
     }
@@ -190,7 +204,7 @@ function EmberDeploySuperAwesome() {
 module.exports = EmberDeploySuperAwesome;
 ```
 
-Because `ember-deploy` will simply merge an `ember-deploy-addon`'s adapters property into its own bundled adapter-registry you could in theory bundle a complete new approach for deploying in one addon (just add an index- and an asset-adapter). 
+Because `ember-deploy` will simply merge an `ember-deploy-addon`'s adapters property into its own bundled adapter-registry you could in theory bundle a complete new approach for deploying in one addon (just add an index- and an asset-adapter).
 
 After adding your custom ember-deploy-addon to your project as an ember-cli-addon you can then use your custom adapters in ember-deploy's deploy.json:
 
@@ -227,13 +241,13 @@ Index adapters have to implement the following methods for `ember-deploy` to be 
 ####`upload([bootstrapIndexHTML])`
 
   __Parameters__
-  
+
   _bootstrapIndexHTML_
-  
-  `upload` will get passed the content of `dist/index.html` that gets build from ember-cli. Feel free to do whatever you need to do with its file content. 
-  
+
+  `upload` will get passed the content of `dist/index.html` that gets build from ember-cli. Feel free to do whatever you need to do with its file content.
+
   This method has to return a `RSVP.Promise`.
-  
+
 ####`activate([revisionToActivate])`
 
 __Parameters__
