@@ -202,6 +202,12 @@ After adding your custom ember-deploy-addon to your project as an ember-cli-addo
 }
 ```
 
+### Existing Custom Adapters
+The following adapters have already been developed:
+* [ember-deploy-redis](https://github.com/LevelbossMike/ember-deploy-redis), index-adapter for [Redis](http://redis.io)
+* [ember-deploy-s3](https://github.com/LevelbossMike/ember-deploy-s3), assets-adapter for AWS [s3](aws.amazon.com/s3/)
+* [ember-deploy-azure](https://github.com/duizendnegen/ember-deploy-azure), index-adapter and assets-adapter for Azure Tables & Blob Storage respectively
+
 ### Index-Adapters
 
 `index-adapters` take care of publishing bootstrap-index html that ember-cli builds for you. If you don't want to use `redis` as a key-value store for your index.html files if you are using the Lightning approach from Luke Melia's talk you could for example create a `cassandra`-adapter to use [Apacha Cassandra](http://cassandra.apache.org/) instead.
