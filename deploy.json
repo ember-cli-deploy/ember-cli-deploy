@@ -12,6 +12,7 @@
   },
 
   "staging": {
+    "buildEnv": "staging",
     "store": {
       "host": "staging-redis.firstiwaslike.com",
       "port": 6379

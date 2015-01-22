@@ -81,6 +81,7 @@ If you don't install the redis- and s3-adapters you will need to use a custom ad
   },
 
   "staging": {
+    "buildEnv": "staging", // Override the environment passed to the ember asset build. Defaults to 'production'
     "store": {
       "host": "staging-redis.example.com",
       "port": 6379
