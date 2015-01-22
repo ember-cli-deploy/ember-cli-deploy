@@ -144,6 +144,8 @@ The nice thing about this is that you can deploy your app to production, test it
 
 ### Example nodejs app
 
+This app does the same as the *Sinatra app* from before, it supports the same index_key query param. It should help you to get up and running in seconds and dont worry about server code. You also need to deploy your ember app with `ember-deploy` and `ember-deploy-redis`.
+
 [Nodejs example with one click deploy!](https://github.com/philipheinser/ember-lightning)
 
 ## Custom Adapters
