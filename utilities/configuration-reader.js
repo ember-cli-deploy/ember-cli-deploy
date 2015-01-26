@@ -16,6 +16,7 @@ function ConfigurationReader(options) {
 
   this.store = this._config[this._environment].store;
   this.assets = this._config[this._environment].assets;
+  this.buildEnv = this._config[this._environment].buildEnv || 'production';
 }
 
 module.exports = ConfigurationReader;
