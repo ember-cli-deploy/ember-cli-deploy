@@ -74,6 +74,7 @@ If you don't install the redis- and s3-adapters you will need to use a custom ad
     "assets": {
     "type": "s3", // default asset-adapter is 's3'
       "gzip": false, // if undefined or set to true, files are gziped
+      "gzipExtensions": ["js", "css", "svg"], // if undefined, js, css & svg files are gziped
       "accessKeyId": "<your-access-key-goes-here>",
       "secretAccessKey": "<your-secret-access-key-goes-here>",
       "bucket": "<your-bucket-name>"
