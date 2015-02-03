@@ -1,9 +1,9 @@
 var CoreObject = require('core-object');
-var execSync = require('execSync');
+var exec = require('child_process').execSync || require('execSync').exec;
 
 module.exports = CoreObject.extend({
   createTag: function() {
-    var commandResult = execSync.exec("git rev-parse HEAD").stdout;
+    var commandResult = exec("git rev-parse HEAD").stdout;
 
     this._generateKey(commandResult);
 
