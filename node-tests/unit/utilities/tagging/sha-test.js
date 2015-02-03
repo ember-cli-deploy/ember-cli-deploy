@@ -1,5 +1,4 @@
 var expect            = require('chai').expect;
-var exec              = require('child_process').execSync || require('execSync').exec;
 var sinon             = require('sinon');
 var ShaTaggingAdapter = require('../../../../utilities/tagging/sha');
 
@@ -15,9 +14,16 @@ describe('ShaTaggingAdapter', function() {
 
   beforeEach(function() {
     sandbox = sinon.sandbox.create();
-    sandbox
-      .stub(exec, 'exec')
-      .returns({stdout: GIT_SHA});
+    if (require('child_process').execSync) {
+      sandbox
+        .stub(require('child_process'), 'execSync')
+        .returns(GIT_SHA);
+    } else {
+      // Node 0.10
+      sandbox
+        .stub(require('execSync'), 'exec')
+        .returns({stdout: GIT_SHA});
+    }
   });
 
   afterEach(function() {
