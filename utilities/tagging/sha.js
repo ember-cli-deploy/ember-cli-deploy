@@ -1,10 +1,13 @@
 var CoreObject = require('core-object');
-var execSync = require('execSync');
 
 module.exports = CoreObject.extend({
   createTag: function() {
-    var commandResult = execSync.exec("git rev-parse HEAD").stdout;
-
+    var commandResult;
+    if (require('child_process').execSync) {
+      commandResult = require('child_process').execSync("git rev-parse HEAD");
+    } else {
+      commandResult = require('execSync').exec("git rev-parse HEAD").stdout;
+    }
     this._generateKey(commandResult);
 
     return this.revisionKey;

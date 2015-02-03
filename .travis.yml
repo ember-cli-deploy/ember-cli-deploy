@@ -3,6 +3,10 @@ language: node_js
 
 sudo: false
 
+node_js:
+  - "0.10.36"
+  - "0.11"
+
 cache:
   directories:
     - node_modules
