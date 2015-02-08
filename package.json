@@ -1,7 +1,7 @@
 {
   "name": "ember-deploy",
   "description": "An Ember-CLI Addon for `Lightning Fast Deployments of Ember-CLI Apps`",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "directories": {
     "doc": "doc",
     "test": "tests"
