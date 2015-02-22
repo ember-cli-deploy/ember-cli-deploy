@@ -78,7 +78,8 @@ If you don't install the redis- and s3-adapters you will need to use a custom ad
       "accessKeyId": "<your-access-key-goes-here>",
       "secretAccessKey": "<your-secret-access-key-goes-here>",
       "bucket": "<your-bucket-name>"
-    }
+    },
+    "tagging": "sha" // the default tagging-adapter is 'sha' (uses git rev-parse HEAD).
   },
 
   "staging": {
