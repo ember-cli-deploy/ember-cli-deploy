@@ -20,8 +20,21 @@ describe('ConfigurationReader', function() {
   });
 
   describe('configuration settings', function() {
-    it('reads a passed config-file if one is passed', function() {
+    it('reads a passed json deploy-config-file if one is passed', function() {
       var configPath        = './node-tests/fixtures/deploy.json';
+      var root              = process.cwd();
+      var fixtureConfigPath = path.join(root, configPath);
+      var expectedConfig    = require(fixtureConfigPath);
+
+      var config = new ConfigurationReader({
+        configFile: configPath
+      });
+
+      expect(config._config).to.equal(expectedConfig);
+    });
+
+    it('reads a passed js deploy-config-file if one is passed', function() {
+      var configPath        = './node-tests/fixtures/deploy.js';
       var root              = process.cwd();
       var fixtureConfigPath = path.join(root, configPath);
       var expectedConfig    = require(fixtureConfigPath);
