@@ -1,8 +1,5 @@
-// reader = new EnvironmentReader(environment)
-// reader.store.host
-// reader.store.port
-
 var path = require('path');
+var Config = require('../lib/models/config');
 
 function ConfigurationReader(options) {
   var root              = process.cwd();
@@ -13,10 +10,10 @@ function ConfigurationReader(options) {
   this._deployConfig = this._options.configFile || defaultConfigPath;
 
   this._config = require(path.join(root, this._deployConfig));
-
-  this.store = this._config[this._environment].store;
-  this.assets = this._config[this._environment].assets;
-  this.buildEnv = this._config[this._environment].buildEnv || 'production';
+  this.config = new Config({
+    project: this.project,
+    rawConfig: this._config[this._environment]
+  });
 }
 
 module.exports = ConfigurationReader;
