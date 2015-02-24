@@ -80,7 +80,8 @@ By default, `ember-deploy` expects a `deploy.json` file in the root of your Embe
       "accessKeyId": "<your-access-key-goes-here>",
       "secretAccessKey": "<your-secret-access-key-goes-here>",
       "bucket": "<your-bucket-name>"
-    }
+    },
+    "tagging": "sha" // the default tagging-adapter is 'sha' (uses git rev-parse HEAD).
   },
 
   "staging": {
@@ -231,6 +232,8 @@ The following adapters have already been developed:
 * [ember-deploy-s3](https://github.com/LevelbossMike/ember-deploy-s3), assets-adapter for AWS [S3](http://aws.amazon.com/s3/)
 * [ember-deploy-s3-index](https://github.com/Kerry350/ember-deploy-s3-index), index-adapter for AWS [S3](http://aws.amazon.com/s3/)
 * [ember-deploy-azure](https://github.com/duizendnegen/ember-deploy-azure), index-adapter and assets-adapter for Azure Tables & Blob Storage respectively
+* [ember-deploy-tagging-index-sha](https://github.com/jamesfid/ember-deploy-tagging-index-sha), tagging-adapter to use `dist/index.html`'s SHA representation as opposed to the default tagging-adapter's usage of `git rev-parse HEAD`.
+
 
 ### Index-Adapters
 
