@@ -67,9 +67,9 @@ describe('ConfigurationReader', function() {
 
         var config = new ConfigurationReader({
           environment: ENV
-        });
+        }).config;
 
-        expect(config.store).to.deep.equal(expected);
+        expect(config.get('store')).to.deep.equal(expected);
       });
     });
   });
@@ -85,9 +85,9 @@ describe('ConfigurationReader', function() {
 
         var config = new ConfigurationReader({
           environment: ENV
-        });
+        }).config;
 
-        expect(config.assets).to.deep.equal(expected);
+        expect(config.get('assets')).to.deep.equal(expected);
       });
     });
   })
