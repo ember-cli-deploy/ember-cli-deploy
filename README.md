@@ -71,7 +71,8 @@ By default, `ember-deploy` expects a `deploy.json` file in the root of your Embe
     "store": {
       "type": "redis", // the default store is 'redis'
       "host": "localhost",
-      "port": 6379
+      "port": 6379,
+      "force": false // when true, override the current version even if the same tag is already registered
     },
     "assets": {
     "type": "s3", // default asset-adapter is 's3'
