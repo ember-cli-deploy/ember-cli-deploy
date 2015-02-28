@@ -34,7 +34,7 @@ This Ember-CLI Addon adds multiple deployment related tasks to your Ember-CLI Ap
 
 You can pass `--environment <some-environment>` to every command. If you don't pass an environment explicitly `ember-deploy` will use the `development`-environment.
 
-You can pass `--deploy-config-file <path/to/deploy-config.(js|json)>` to every command. If you don't pass a deploy-config-file explicitly `deploy.json` will be read.
+You can pass `--deploy-config-file <path/to/deploy-config.js>` to every command. If you don't pass a deploy-config-file explicitly `config/deploy.js` will be read.
 
 ## Lightning-Approach Workflow
 
@@ -63,10 +63,10 @@ If you don't install the redis- and s3-adapters you will need to use a custom ad
 
 ## Config file
 
-By default, `ember-deploy` expects a `deploy.json` file in the root of your Ember-CLI app directory. In this file you tell `ember-deploy` about the necessary credentials for your file hoster and for your key-value store. An example could look like this:
+By default, `ember-deploy` expects a `deploy.js` file in the `config/` directory of your Ember-CLI project root. In this file you tell `ember-deploy` about the necessary credentials for your file hoster and for your key-value store. An example could look like this:
 
 ```js
-{
+module.exports = {
   "development": {
     "store": {
       "type": "redis", // the default store is 'redis'
@@ -78,7 +78,7 @@ By default, `ember-deploy` expects a `deploy.json` file in the root of your Embe
       "gzip": false, // if undefined or set to true, files are gziped
       "gzipExtensions": ["js", "css", "svg"], // if undefined, js, css & svg files are gziped
       "accessKeyId": "<your-access-key-goes-here>",
-      "secretAccessKey": "<your-secret-access-key-goes-here>",
+      "secretAccessKey": process.env['AWS_ACCESS_KEY'],
       "bucket": "<your-bucket-name>"
     }
   },
@@ -91,7 +91,7 @@ By default, `ember-deploy` expects a `deploy.json` file in the root of your Embe
     },
     "assets": {
       "accessKeyId": "<your-access-key-goes-here>",
-      "secretAccessKey": "<your-secret-access-key-goes-here>",
+      "secretAccessKey": process.env['AWS_ACCESS_KEY'],
       "bucket": "<your-bucket-name>"
     }
   },
@@ -104,26 +104,14 @@ By default, `ember-deploy` expects a `deploy.json` file in the root of your Embe
     },
     "assets": {
       "accessKeyId": "<your-access-key-goes-here>",
-      "secretAccessKey": "<your-secret-access-key-goes-here>",
+      "secretAccessKey": process.env['AWS_ACCESS_KEY'],
       "bucket": "<your-bucket-name>"
     }
   }
 }
 ```
 
-You have to have an entry for every environment you want to use in this file.
-
-If you would prefer to use a .js file for your configuration, that is also supported.
-Specify the path to the file using `--deploy-config-file=path/to/deploy.js`. You may want to
-do this so that you can access secrets from environment variables. For example:
-
-```js
-module.exports = {
-  //...
-  "secretAccessKey": process.env['AWS_ACCESS_KEY'],
-  //...
-};
-```
+You must have an entry for every environment you want to use in this file.
 
 ## How to use
 
