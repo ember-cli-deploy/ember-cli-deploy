@@ -1,4 +1,4 @@
-{
+module.exports = {
   "development": {
     "store": {
       "host": "localhost",
