@@ -1,3 +1,4 @@
+var path     = require('path');
 var commands = require('./lib/commands');
 
 function Deploy() {
@@ -8,6 +9,10 @@ function Deploy() {
 Deploy.prototype.includedCommands = function() {
   return commands;
 }
+
+Deploy.prototype.blueprintsPath = function() {
+  return path.join(__dirname, 'blueprints');
+},
 
 module.exports = Deploy;
 
