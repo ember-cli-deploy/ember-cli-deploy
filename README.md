@@ -121,6 +121,43 @@ This is an example of how one would use this addon to deploy an ember-cli app:
 * `ember deploy:list --environment production` (this will print out a list of revisions)
 * `ember deploy:activate --revision ember-deploy:44f2f92 --environment production `
 
+## Fingerprinting Options / Staging environments
+
+`ember-cli` comes with [fingerprinting
+support](http://www.ember-cli.com/#fingerprinting-and-cdn-urls) built-in. In
+most production scenarios you will need to provide a `prepend`-property to your
+app's fingerprint-property (to reference your CDN served assets correctly).
+
+```javascript
+// Brocfile.js
+var app = new EmberApp({
+  fingerprint: {
+    prepend: 'https://subdomain.cloudfront.net/'
+  }
+});
+```
+
+`ember-cli` will only create a production like build for the
+`production`-environment by default. If you want to support multiple
+'production-like' environments you need to configure minification for these
+environments manually. You can do someting like this:
+
+```javascript
+// Brocfile.js
+var env = EmberApp.env();
+var isProductionLikeBuild = ['production', 'staging'].indexOf(env) > -1;
+
+var app = new EmberApp({
+  fingerprint: {
+    prepend: 'https://subdomain.cloudfront.net/'
+  },
+
+  minifyAssets: { enabled: isProductionLikeBuild },
+
+  minifyJS: { enabled: isProductionLikeBuild }
+});
+```
+
 ## S3-Asset uploads
 
 `ember-deploy-s3` sets the correct cache headers for you. Currently these are hard coded to a two year cache period. Assets are also gzipped before uploading to S3. This should be enough to cache aggressively and you should not run into problems due to ember-cli's fingerprinting support. I will try to add more configuration options for caching in the near future.
