@@ -5,7 +5,7 @@ var merge          = require('lodash-node/modern/objects/merge');
 
 module.exports = CoreObject.extend({
   init: function() {
-    if (!this.project) { return };
+    if (!this.project) { return; }
 
     this.project.addons.forEach(this._mergeDeployAdapters.bind(this));
   },

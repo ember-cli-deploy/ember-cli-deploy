@@ -2,7 +2,7 @@ var path     = require('path');
 var commands = require('./lib/commands');
 
 function Deploy() {
-  this.name = "ember-deploy"
+  this.name = "ember-cli-deploy"
   return this;
 }
 

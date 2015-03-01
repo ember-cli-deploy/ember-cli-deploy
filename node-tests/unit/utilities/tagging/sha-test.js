@@ -32,7 +32,7 @@ describe('ShaTaggingAdapter', function() {
 
   describe('#createTag', function() {
     it('returns a tag based on current git-sha and manifestName', function() {
-      var manifestName   = 'ember-deploy';
+      var manifestName   = 'ember-cli-deploy';
       var expectedTag    = manifestName+':'+GIT_SHA_SHORTENED;
       var revisionTagger = new ShaTaggingAdapter({
         manifest: manifestName
