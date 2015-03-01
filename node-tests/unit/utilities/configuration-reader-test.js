@@ -1,4 +1,4 @@
-var ConfigurationReader = require('../../../utilities/configuration-reader');
+var ConfigurationReader = require('../../../lib/utilities/configuration-reader');
 var expect = require('chai').expect;
 var path = require('path');
 var MockUI = require('ember-cli/tests/helpers/mock-ui');

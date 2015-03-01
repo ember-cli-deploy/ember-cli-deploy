@@ -1,6 +1,6 @@
 var chai           = require('chai');
 var chaiAsPromised = require('chai-as-promised');
-var UnknownAdapter = require('../../../../utilities/assets/unknown');
+var UnknownAdapter = require('../../../../lib/utilities/assets/unknown');
 
 chai.use(chaiAsPromised);
 

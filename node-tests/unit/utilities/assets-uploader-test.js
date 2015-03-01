@@ -1,5 +1,5 @@
-var UnknownAdapter = require('../../../utilities/assets/unknown');
-var AssetsUploader = require('../../../utilities/assets-uploader');
+var UnknownAdapter = require('../../../lib/utilities/assets/unknown');
+var AssetsUploader = require('../../../lib/utilities/assets-uploader');
 var expect         = require('chai').expect;
 
 describe('AssetsUploader', function() {

@@ -1,6 +1,6 @@
 var expect            = require('chai').expect;
 var sinon             = require('sinon');
-var ShaTaggingAdapter = require('../../../../utilities/tagging/sha');
+var ShaTaggingAdapter = require('../../../../lib/utilities/tagging/sha');
 
 var getShortShaVersion = function(sha) {
   return sha.slice(0,7);
