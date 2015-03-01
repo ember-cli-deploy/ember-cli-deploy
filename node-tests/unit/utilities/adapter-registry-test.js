@@ -1,7 +1,7 @@
 /* jshint expr:true */
-var Adapter         = require('../../../utilities/adapter');
-var AdapterRegistry = require('../../../utilities/adapter-registry');
-var UnknownAdapter  = require('../../../utilities/assets/unknown');
+var Adapter         = require('../../../lib/utilities/adapter');
+var AdapterRegistry = require('../../../lib/utilities/adapter-registry');
+var UnknownAdapter  = require('../../../lib/utilities/assets/unknown');
 var expect          = require('chai').expect;
 
 var MockRedisAdapter = Adapter.extend();
