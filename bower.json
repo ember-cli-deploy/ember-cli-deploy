@@ -1,5 +1,5 @@
 {
-  "name": "ember-deploy",
+  "name": "ember-cli-deploy",
   "dependencies": {
     "handlebars": "~1.3.0",
     "jquery": "^1.11.1",

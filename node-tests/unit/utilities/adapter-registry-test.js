@@ -1,6 +1,6 @@
+/* jshint expr:true */
 var Adapter         = require('../../../utilities/adapter');
 var AdapterRegistry = require('../../../utilities/adapter-registry');
-var CoreObject      = require('core-object');
 var UnknownAdapter  = require('../../../utilities/assets/unknown');
 var expect          = require('chai').expect;
 
@@ -37,7 +37,7 @@ describe('AdapterRegistry', function() {
       var adapterRegistry = new AdapterRegistry();
 
       expect(adapterRegistry.lookup('index', 'trolol')).to.eq(UnknownAdapter);
-    })
+    });
   });
 
   describe('adapters can be added via addons', function() {
