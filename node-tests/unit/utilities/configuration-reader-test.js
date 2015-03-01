@@ -6,17 +6,19 @@ var EOL    = require('os').EOL;
 var chalk  = require('chalk');
 
 describe('ConfigurationReader', function() {
-  var ui;
+  var ui, project;
 
   beforeEach(function() {
     ui = new MockUI();
+    project = { name: function(){ return 'foo'; }}
   });
 
   describe('environment settings', function() {
     it('knows about its passed _environment', function() {
       var config = new ConfigurationReader({
         environment: 'staging',
-        ui: ui
+        ui: ui,
+        project: project
       });
 
       expect(config._environment).to.equal('staging');
@@ -24,7 +26,8 @@ describe('ConfigurationReader', function() {
 
     it('`development` is default when no environment is passed', function() {
       var config = new ConfigurationReader({
-        ui: ui
+        ui: ui,
+        project: project
       });
 
       expect(config._environment).to.equal('development');
@@ -40,7 +43,8 @@ describe('ConfigurationReader', function() {
 
       var config = new ConfigurationReader({
         configFile: configPath,
-        ui: ui
+        ui: ui,
+        project: project
       });
 
       expect(ui.output).to.include('DEPRECATION: Using a .json file for deployment configuration is deprecated. Please use a .js file instead');
@@ -55,7 +59,8 @@ describe('ConfigurationReader', function() {
 
       var config = new ConfigurationReader({
         configFile: configPath,
-        ui: ui
+        ui: ui,
+        project: project
       });
 
       expect(config._config).to.equal(expectedConfig);
@@ -66,7 +71,8 @@ describe('ConfigurationReader', function() {
       var expectedConfig = require(path.join(root, './config/deploy.js'));
 
       var config = new ConfigurationReader({
-        ui: ui
+        ui: ui,
+        project: project
       });
 
       expect(config._config).to.equal(expectedConfig)
@@ -79,7 +85,8 @@ describe('ConfigurationReader', function() {
       expect(function() {
         var config = new ConfigurationReader({
           configFile: configPath,
-          ui: ui
+          ui: ui,
+          project: project
         });
       }).to.throw('Cannot load configuration file \'' + path.join(root, configPath) + '\'. Note that the default location of the ember-cli-deploy config file is now \'config/deploy.js\'');
     });
@@ -96,7 +103,8 @@ describe('ConfigurationReader', function() {
 
         var config = new ConfigurationReader({
           environment: ENV,
-          ui: ui
+          ui: ui,
+          project: project
         }).config;
 
         expect(config.get('store')).to.deep.equal(expected);
@@ -115,7 +123,8 @@ describe('ConfigurationReader', function() {
 
         var config = new ConfigurationReader({
           environment: ENV,
-          ui: ui
+          ui: ui,
+          project: project
         }).config;
 
         expect(config.get('assets')).to.deep.equal(expected);
