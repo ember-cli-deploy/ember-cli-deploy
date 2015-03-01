@@ -1,4 +1,4 @@
-# ember-cli-deploy [![Build Status](https://travis-ci.org/ember-cli/ember-cli-deploy.svg?branch=master)](https://travis-ci.org/ember-cli/ember-cli-deploy) [![Code Climate](https://codeclimate.com/github/LevelbossMike/ember-deploy/badges/gpa.svg)](https://codeclimate.com/github/LevelbossMike/ember-deploy)
+# ember-cli-deploy [![Build Status](https://travis-ci.org/ember-cli/ember-cli-deploy.svg?branch=master)](https://travis-ci.org/ember-cli/ember-cli-deploy) [![Code Climate](https://codeclimate.com/github/ember-cli/ember-cli-deploy/badges/gpa.svg)](https://codeclimate.com/github/ember-cli/ember-cli-deploy)
 
 An Ember-CLI Addon for `Lightning Fast Deployments of Ember-CLI Apps`
 
