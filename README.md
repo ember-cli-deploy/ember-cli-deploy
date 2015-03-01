@@ -14,7 +14,23 @@ ember install:addon ember-cli-deploy
 
 ## Configuration
 
+Configuration is supplied to ember-cli-deploy via a configuration file.  By default, this file should be called `deploy.js` and should be located in the `config` directory in the root of your Ember CLI project.
+
+Alternatively, you can specify a different file location by passing the `deploy-config-file` option to the `ember deploy` command.
+
+An example of the configuration file is as follows:
+
+```javascript
+// config/deploy.js
+module.exports = {
+}
+```
+
 ## Commands
+
+ember-cli-deploy adds the following deployment commands to Ember CLI:
+
+- `ember deploy` Initiates the deployment pipeline, invoking any registered ember-cli-deploy plugins at the defined hook points
 
 ## Deployment lifecycle
 
