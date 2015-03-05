@@ -90,7 +90,7 @@ module.exports = {
       host: 'staging-redis.example.com",
       port: 6379
     },
-    assets": {
+    assets: {
       accessKeyId: '<your-access-key-goes-here>',
       secretAccessKey: process.env['AWS_ACCESS_KEY'],
       bucket: '<your-bucket-name>'
