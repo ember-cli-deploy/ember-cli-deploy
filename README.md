@@ -87,7 +87,7 @@ module.exports = {
   staging: {
     buildEnv: 'staging', // Override the environment passed to the ember asset build. Defaults to 'production'
     store: {
-      host: 'staging-redis.example.com",
+      host: 'staging-redis.example.com',
       port: 6379
     },
     assets: {
