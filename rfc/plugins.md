@@ -201,6 +201,8 @@ S3Plugin = {
 }
 ```
 
+This task would run as `ember deploy s3-plugin:doctor`.
+
 Is this worth providing or should we just let plugin authors do this
 themselves in their ember-cli-addons?
 
