@@ -17,7 +17,7 @@ if (hasDeprecatedConfig()) {
 
     console.log(red('For more information on how to migrate from ') + grey('achambers/ember-cli-deploy') + red(' to ') + grey('ember-cli/ember-cli-deploy') + red(', please go to:\n\n'));
 
-    console.log(red('https://github.com/ember-cli/ember-cli-deploy/MIGRATION_STEPS.md'));
+    console.log(red('https://github.com/ember-cli/ember-cli-deploy/blob/master/MIGRATION_STEPS.md'));
 
     console.log(red('\n===========================================================================\n'));
 }
