@@ -1,5 +1,14 @@
 # ember-cli-deploy Changelog
 
+### 0.4.1 (March 13, 2015)
+
+This release mainly revolves round fixing a bug around `child_process` and `execSync` compatability among the nodejs versions and platforms.
+
+#### Community Contributions
+
+- [#93](https://github.com/ember-cli/ember-cli-deploy/pull/93) [BUGFIX] execSync compat issue #92 [@joebartels](https://github.com/joebartels)
+- [#100](https://github.com/ember-cli/ember-cli-deploy/pull/100) [DOCS] Update config around production-like environments [@Soliah](https://github.com/Soliah)
+
 ### 0.4.0 (March 07, 2015)
 
 This release marks the merge of `achambers/ember-cli-deploy`, `LevelBossMike/ember-deploy` and `tedconf/ember-cli-front-end-builds` into the official `ember-cli-deploy`
