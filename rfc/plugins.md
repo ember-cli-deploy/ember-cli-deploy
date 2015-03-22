@@ -1,15 +1,21 @@
-# Plugins
+# Plugins for ember-cli-deploy
+
+This document describes the API related to for plugins in the next
+version of ember-cli-deploy.
+
+### Overview of plugins
 
 A plugin is an ember-cli addon that hooks into the ember-cli-deploy
 pipeline in order to add functionality to a deploy. Example addon
 functionality would be uploading assets to S3, writing the index.html to
 Redis, or notifying a Slack channel a deploy has completed.
 
-Plugins should focus on doing a specific task. Most Ember developers
-with common deployment targets will compose and combine multiple plugins
-to fine tune their deployment process. Developers with very custom needs
-might create a single private plugin that implements all aspects of their
-deployment process within the structure provided by ember-cli-deploy.
+In general, OSS plugins should focus on doing a specific task. Most
+Ember developers with common deployment targets will compose multiple
+plugins to fine tune their deployment process. Developers with very
+custom needs might create a single private plugin that implements all
+aspects of their deployment process within the structure provided by
+ember-cli-deploy.
 
 Because plugins are implemented via addons, they may be included via
 node_module dependencies or via in-repo-addons.
