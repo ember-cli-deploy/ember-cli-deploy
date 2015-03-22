@@ -11,7 +11,7 @@ describe('DeployTask', function() {
     var hooks = [
       'willDeploy',
       'build',
-      'update',
+      'upload',
       'activate',
       'didDeploy'
     ];
@@ -32,7 +32,7 @@ describe('DeployTask', function() {
         type: 'ember-deploy-addon',
         name: 'Deployment-Plugin',
         hooks: {
-          update: function(html) {
+          upload: function(html) {
             indexHTML = html;
           },
 
@@ -57,18 +57,26 @@ describe('DeployTask', function() {
       expect(deployTask.deploymentHooks.didDeploy.length).to.be.gt(0);
     });
 
-    it('can execute deployment- hooks registered from installed `ember-cli-deploy`-addons', function() {
-      deployTask.executeDeploymentHook('didDeploy');
+    context('#executeDeploymentHook', function() {
+      it('can execute deployment-hooks registered from installed `ember-cli-deploy`-addons', function() {
+        deployTask.executeDeploymentHook('didDeploy');
 
-      expect(hookCalled).to.be.ok;
-    });
+        expect(hookCalled).to.be.ok;
+      });
 
-    it('can pass context to the called hooks', function() {
-      var newIndexHTML = '<h2>Welcome to Ember.js</h2>'
+      it('can pass context to the called hooks', function() {
+        var newIndexHTML = '<h2>Welcome to Ember.js</h2>'
 
-      deployTask.executeDeploymentHook('update', newIndexHTML);
+        deployTask.executeDeploymentHook('upload', newIndexHTML);
 
-      expect(indexHTML).to.eql(newIndexHTML);
+        expect(indexHTML).to.eql(newIndexHTML);
+      });
+
+      it('returns a promise', function() {
+        var promise = deployTask.executeDeploymentHook('didDeploy');
+
+        expect(promise.then).to.be.ok;
+      });
     });
   });
 });
