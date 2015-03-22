@@ -37,8 +37,9 @@ Plugins are ember-cli addons. They will also have the keyword
 ```
 
 By default, any plugin that is installed will be loaded, similar to
-ember-cli addons. In future versions, we may add a configuration option
-to disable this automatic use of plugins, to allow more flexibility.
+ember-cli addons. The plugin order is determined by how ember-cli orders
+addons (based on `before:`/`after:` properties). To override this, see
+Advanced Plugin Configuration and Ordering below.
 
 ### Plugins are provided by ember-cli addons
 
@@ -49,8 +50,9 @@ ember-cli-deploy. For example:
 ```javascript
 module.exports = {
   name: 'ember-cli-deploy-example-plugin',
-  createDeployPlugin: function(){
+  createDeployPlugin: function(options){
     return {
+      name: options.name,
       willDeploy: function:(deployment){
         // do something during the willDeploy phase of the pipeline
       },
@@ -70,6 +72,10 @@ creation of the plugin object to make any contextual decisions necessary.
 Finally, it is agnostic with respect to the type of object the plugin is.
 It may be a POJO, a subclass of CoreObject, or maybe an ES6 class.
 
+The `options` argument passed to `createDeployPlugin` will have a `name`
+property. Usually, the `name` will be the plugin name sans the `ember-cli-deploy-`
+prefix, unless a name has been specified as described in Advanced Plugin
+Configuration below.
 
 ### The `deployment` object
 
@@ -163,4 +169,32 @@ discoverVersions: --> should return a promise resolving to an array of version o
                       `revision`:    (String) reference of version in SCM
                       `creator`:     (String) email address of developer who deployed the version
                       `description`: (String) summary of the version
+
 ```
+
+### Advanced Plugin Configuration
+
+As mentioned above, by default, all plugins from installed addons will be loaded, and
+ordered based on ember-cli's order of the addons. Developers may have advanced use cases
+for specifying the order of plugins, disabling plugins, or configuring a single plugin to
+be configured and used twice.
+
+If you want to opt-into this configuration, you can set the `plugins` property in your `config/deploy.js` file at either the top-level (for global configuration), or under an environment (for per-environment configuration).
+
+```
+plugins: ["s3-assets", "s3-index", "notify-slack"]
+```
+
+Any plugins not included in the list will not have their hooks executed.
+
+To include a plugin twice, alias it using a colon.
+
+```
+plugins: ["s3-assets:foo-assets", "s3-assets:bar-assets", "s3-index", "notify-slack"]
+```
+
+The name specified after the colon will be passed as the `name` property
+of the `options` argument to the addon's `createDeployPlugin` method. Plugins
+should use their name to retrieve configuration values. In this example,
+the foo-assets instance of the s3-assets plugin could have different configuration
+than the bar-assets instance does.
