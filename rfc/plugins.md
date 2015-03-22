@@ -132,6 +132,10 @@ build --------> builds app assets, documentation, etc.
            /-- willUpload   confirm remote servers(S3, Redis, Azure, etc.)
           /
 upload -------> puts the assets somewhere(S3, Redis, Azure, Rackspace, etc.)
+          |     Note: a plugin that implements upload of the HTML file and
+          |           wants to support version activation should set
+          |           `currentVersion` on the `deployment` object to the ID
+          |           of the newly deployed version.
           \
            \-- didUpload    notify APIs (slack, pusher, etc.), warm cache
 
@@ -140,6 +144,10 @@ upload -------> puts the assets somewhere(S3, Redis, Azure, Rackspace, etc.)
 activate -------> make a new version live (clear cache, swap Redis values, etc.)
           \
            \-- didActivate    notify APIs, warm cache
+
+  Note: when hooks in the activate series of hooks are called, the plugin can assume the
+        presence of a `currentVersion` property on the deployment object, that is set to
+        the ID of the version to be activated.
 
 didDeploy: --> runs at the end of a full deployment operation.
 ```
