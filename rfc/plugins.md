@@ -117,28 +117,42 @@ module.exports = {
 
 ### Hooks
 
+These hooks (part of a typical deployment process) are available for plugins to implement:
+
 ```
-    willDeploy: --> runs before anything happens. good opportunity for plugins to validate
-                    configuration or other preconditions
+willDeploy: --> runs before anything happens. good opportunity for plugins to validate
+                configuration or other preconditions
 
-               /-- willBuild    confirm environment
-              /
-    build --------> builds app assets, documentation, etc.
-              \
-               \-- didBuild     manipulate index.html, validate assets
+           /-- willBuild    confirm environment
+          /
+build --------> builds app assets, documentation, etc.
+          \
+           \-- didBuild     manipulate index.html, validate assets
 
-               /-- willUpload   confirm remote servers(S3, Redis, Azure, etc.)
-              /
-    upload -------> puts the assets somewhere(S3, Redis, Azure, Rackspace, etc.)
-              \
-               \-- didUpload    notify APIs (slack, pusher, etc.), warm cache
+           /-- willUpload   confirm remote servers(S3, Redis, Azure, etc.)
+          /
+upload -------> puts the assets somewhere(S3, Redis, Azure, Rackspace, etc.)
+          \
+           \-- didUpload    notify APIs (slack, pusher, etc.), warm cache
 
-               /-- willActivate   create backup of assets, notify APIs, uninstall earlier versions
-              /
-    activate -------> make a new version live (clear cache, swap Redis values, etc.)
-              \
-               \-- didActivate    notify APIs, warm cache
+           /-- willActivate   create backup of assets, notify APIs, uninstall earlier versions
+          /
+activate -------> make a new version live (clear cache, swap Redis values, etc.)
+          \
+           \-- didActivate    notify APIs, warm cache
 
-    didDeploy: --> runs at the end of a full deployment operation.
+didDeploy: --> runs at the end of a full deployment operation.
 ```
 
+In addition, there are a few more specialized hooks that plugins may implement:
+
+```
+discoverVersions: --> should return a promise resolving to an array of version objects. Each
+                      version object _must_ have an `id` property. Each version _may_ have one
+                      or more of the following properties:
+
+                      `timestamp`:   (Date) when the version was created
+                      `revision`:    (String) reference of version in SCM
+                      `creator`:     (String) email address of developer who deployed the version
+                      `description`: (String) summary of the version
+```
