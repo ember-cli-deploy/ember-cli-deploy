@@ -1,6 +1,6 @@
 # Plugins for ember-cli-deploy
 
-This document describes the API related to for plugins in the next
+This document describes the API related to plugins in the next
 version of ember-cli-deploy.
 
 ### Overview of plugins
