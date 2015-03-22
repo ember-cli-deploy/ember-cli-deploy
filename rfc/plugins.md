@@ -117,27 +117,27 @@ module.exports = {
 ### Hooks
 
 ```
-willDeploy: --> runs before anything happens. good opportunity for plugins to validate
-                configuration or other preconditions
+    willDeploy: --> runs before anything happens. good opportunity for plugins to validate
+                    configuration or other preconditions
 
-           /-- willBuild    confirm environment
-          /
-build --------> builds app assets, documentation, etc.
-          \
-           \-- didBuild     manipulate index.html, validate assets
+               /-- willBuild    confirm environment
+              /
+    build --------> builds app assets, documentation, etc.
+              \
+               \-- didBuild     manipulate index.html, validate assets
 
-           /-- willUpload   confirm remote servers(S3, Redis, Azure, etc.)
-          /
-upload -------> puts the assets somewhere(S3, Redis, Azure, Rackspace, etc.)
-          \
-           \-- didUpload    notify APIs (slack, pusher, etc.), warm cache
+               /-- willUpload   confirm remote servers(S3, Redis, Azure, etc.)
+              /
+    upload -------> puts the assets somewhere(S3, Redis, Azure, Rackspace, etc.)
+              \
+               \-- didUpload    notify APIs (slack, pusher, etc.), warm cache
 
-           /-- willActivate   create backup of assets, notify APIs, uninstall earlier versions
-          /
-activate -------> make a new version live (clear cache, swap Redis values, etc.)
-          \
-           \-- didActivate    notify APIs, warm cache
+               /-- willActivate   create backup of assets, notify APIs, uninstall earlier versions
+              /
+    activate -------> make a new version live (clear cache, swap Redis values, etc.)
+              \
+               \-- didActivate    notify APIs, warm cache
 
-didDeploy: --> runs at the end of a full deployment operation.
+    didDeploy: --> runs at the end of a full deployment operation.
 ```
 
