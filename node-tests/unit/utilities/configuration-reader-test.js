@@ -90,6 +90,19 @@ describe('ConfigurationReader', function() {
         });
       }).to.throw('Cannot load configuration file \'' + path.join(root, configPath) + '\'. Note that the default location of the ember-cli-deploy config file is now \'config/deploy.js\'');
     });
+
+    it('raises an error if a config doesn\'t exist for the current environment', function() {
+      var configPath = './node-tests/fixtures/config/deploy.js';
+
+      expect(function() {
+        new ConfigurationReader({
+          configFile: configPath,
+          ui: ui,
+          project: project,
+          environment: 'non-existent-env'
+        });
+      }).to.throw(/You are using the `non-existent-env` environment/);
+    });
   });
 
   describe('store settings', function() {
