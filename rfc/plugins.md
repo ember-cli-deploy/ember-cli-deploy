@@ -113,6 +113,7 @@ module.exports = {
     }
   }
 };
+```
 
 ### Hooks
 
