@@ -1,6 +1,7 @@
 /* jshint expr:true */
 var DeployTask = require('../../../lib/utilities/deploy-task');
 var expect = require('chai').expect;
+var RSVP = require('rsvp');
 
 var deployTask;
 var hookCalled;
@@ -76,6 +77,51 @@ describe('DeployTask', function() {
         var promise = deployTask.executeDeploymentHook('didDeploy');
 
         expect(promise.then).to.be.ok;
+      });
+
+      it("allows hooks to work with the task's deployment object", function(done) {
+        var deployment = {
+          data: {
+            started: false,
+            success: false
+          }
+        };
+
+        var deploymentAddon = {
+          type: 'ember-deploy-addon',
+          name: 'Deployment-Plugin',
+          hooks: {
+            willDeploy: function() {
+              this.deployment.data.started = true;
+              return RSVP.resolve();
+            },
+
+            didDeploy: function() {
+              this.deployment.data.success = true;
+              return RSVP.resolve();
+            }
+          }
+        };
+
+        var project = {
+          addons: [deploymentAddon]
+        }
+
+        deployTask = new DeployTask({
+          project:project,
+          deployment: deployment,
+          run: function() {
+            return this.executeDeploymentHook('willDeploy')
+              .then(this.executeDeploymentHook('didDeploy'));
+          }
+        });
+
+        deployTask.run()
+          .then(function() {
+            expect(deployment.data.started).to.be.ok;
+            expect(deployment.data.success).to.be.ok;
+            done();
+          });
       });
     });
   });
