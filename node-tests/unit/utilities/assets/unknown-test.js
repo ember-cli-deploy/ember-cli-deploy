@@ -6,29 +6,19 @@ chai.use(chaiAsPromised);
 
 var expect = chai.expect;
 
+var methodTest = function(adapter, method) {
+  return function() {
+    it('rejects to print out an error message', function() {
+      expect(adapter[method]()).to.be.rejected;
+    });
+  };
+}
+
 describe('UnknownAdapter', function() {
-  describe('#upload', function() {
-    it('rejects to print out an error message', function(){
-      unknown = new UnknownAdapter();
-      expect(unknown.upload()).to.be.rejected;
-    });
-  });
-  describe('#activate', function() {
-    it('rejects to print out an error message', function(){
-      unknown = new UnknownAdapter();
-      expect(unknown.activate()).to.be.rejected;
-    });
-  });
-  describe('#list', function() {
-    it('rejects to print out an error message', function(){
-      unknown = new UnknownAdapter();
-      expect(unknown.list()).to.be.rejected;
-    });
-  });
-  describe('#createTag', function() {
-    it('rejects to print out an error message', function(){
-      unknown = new UnknownAdapter();
-      expect(unknown.createTag()).to.be.rejected;
-    });
-  });
+  var adapter = new UnknownAdapter();
+
+  describe('#upload', methodTest(adapter, "upload"));
+  describe('#activate', methodTest(adapter, "activate"));
+  describe('#list', methodTest(adapter, "list"));
+  describe('#createTag', methodTest(adapter, "createTag"));
 });
