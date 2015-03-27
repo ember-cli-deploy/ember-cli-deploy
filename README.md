@@ -187,7 +187,8 @@ require 'redis'
 
 def bootstrap_index(index_key)
   redis = Redis.new
-  index_key ||= redis.get('<your-project-name>:current')
+  index_key &&= "<your-project-name>:#{index_key}"
+  index_key ||= redis.get("<your-project-name>:current")
   redis.get(index_key)
 end
 
