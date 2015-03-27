@@ -12,5 +12,23 @@ describe('UnknownAdapter', function() {
       unknown = new UnknownAdapter();
       expect(unknown.upload()).to.be.rejected;
     });
-  })
+  });
+  describe('#activate', function() {
+    it('rejects to print out an error message', function(){
+      unknown = new UnknownAdapter();
+      expect(unknown.activate()).to.be.rejected;
+    });
+  });
+  describe('#list', function() {
+    it('rejects to print out an error message', function(){
+      unknown = new UnknownAdapter();
+      expect(unknown.list()).to.be.rejected;
+    });
+  });
+  describe('#createTag', function() {
+    it('rejects to print out an error message', function(){
+      unknown = new UnknownAdapter();
+      expect(unknown.createTag()).to.be.rejected;
+    });
+  });
 });
