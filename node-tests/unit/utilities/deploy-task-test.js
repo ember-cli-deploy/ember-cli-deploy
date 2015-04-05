@@ -14,7 +14,8 @@ describe('DeployTask', function() {
       'build',
       'upload',
       'activate',
-      'didDeploy'
+      'didDeploy',
+      'discoverVersions'
     ];
 
     deployTask = new DeployTask();
