@@ -1,3 +1,10 @@
 # Ember CLI Deploy - Documentation
 
-Help!
+## Contributing
+
+## Developing
+
+```sh
+bundle install
+bundle exec jekyll serve --watch --baseurl ''
+```
