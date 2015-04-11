@@ -13,10 +13,8 @@ description:      'A deployment pipeline for Ember CLI apps'
 url:              https://github.com/ember-cli/ember-cli-deploy
 baseurl:          /
 
-paginate:         5
-
 # Custom vars
-version:          2.1.0
+version:          0.4.1
 
 github:
   repo:           https://github.com/ember-cli/ember-cli-deploy
