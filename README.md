@@ -6,7 +6,7 @@ This project includes the necessary commands for 'Lightning Fast Deployments of
 Ember-CLI Apps'. The whole workflow is heavily inspired by Luke Melia's talk
 about [Lightning Fast Deployment(s) of Rails-backed Javascript Apps](https://www.youtube.com/watch?v=QZVYP3cPcWQ).
 
-`ember-cli-deploy` aims to be the go-to-solution for deploying all Ember-CLI apps thus it also supports other types of deployments that differ from the one Luke suggests. Please see this README's subsection about `custom adapters` on how to get started with your own deployment strategy with `ember-cli-deploy`.
+`ember-cli-deploy` aims to be the go-to-solution for deploying all Ember-CLI apps thus it also supports other types of deployments that differ from the one Luke suggests. Please see this README's subsection about [custom adapters](#custom-adapters) on how to get started with your own deployment strategy with `ember-cli-deploy`.
 
 You can also have a look on how to use this ember-cli-addon in the following video of a talk about `ember-cli-deploy` I gave at [Ember.js-Munich](http://www.meetup.com/Ember-js-Munich/) (demo starts around 7 minutes into the video).
 
