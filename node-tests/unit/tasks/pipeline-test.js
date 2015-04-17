@@ -8,6 +8,7 @@ describe('PipelineTask', function() {
   var mockConfig    = {};
   var mockAppConfig = {};
   var mockUi        = {};
+  var mockAnalytics = {};
 
   describe('creating a new instance', function() {
     it ('raises an error if project is not provided', function() {
@@ -56,12 +57,14 @@ describe('PipelineTask', function() {
         project: mockProject,
         config: mockConfig,
         appConfig: mockAppConfig,
-        ui: mockUi
+        ui: mockUi,
+        analytics: mockAnalytics
       });
 
       var context = task._context;
 
       expect(context.ui).to.equal(mockUi);
+      expect(context.analytics).to.equal(mockAnalytics);
       expect(context.config).to.equal(mockConfig);
       expect(context.appConfig).to.equal(mockAppConfig);
       expect(context.data).to.eql({});
@@ -91,6 +94,7 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
+        analytics: mockAnalytics,
         config: mockConfig,
         appConfig: mockAppConfig
       });
@@ -122,6 +126,7 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
+        analytics: mockAnalytics,
         config: mockConfig,
         appConfig: mockAppConfig
       });
@@ -151,6 +156,7 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
+        analytics: mockAnalytics,
         config: mockConfig,
         appConfig: mockAppConfig
       });
@@ -188,6 +194,7 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
+        analytics: mockAnalytics,
         config: mockConfig,
         appConfig: mockAppConfig
       });
@@ -195,6 +202,7 @@ describe('PipelineTask', function() {
       task.run()
         .then(function() {
           expect(ctx.ui).to.equal(mockUi);
+          expect(ctx.analytics).to.equal(mockAnalytics);
           expect(ctx.config).to.equal(mockConfig);
           expect(ctx.appConfig).to.equal(mockAppConfig);
           expect(ctx.data).to.eql({});
@@ -235,6 +243,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
+          analytics: mockAnalytics,
           config: mockConfig,
           appConfig: mockAppConfig
         });
@@ -280,6 +289,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
+          analytics: mockAnalytics,
           config: mockConfig,
           appConfig: mockAppConfig
         });
