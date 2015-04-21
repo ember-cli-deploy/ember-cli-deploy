@@ -2,6 +2,10 @@ module.exports = function(environment) {
   var ENV = {};
 
   if (environment === 'development') {
+    ENV.build = {
+      buildEnv: 'development'
+    };
+
     ENV.store = {
       host: 'localhost',
       port: 6379
