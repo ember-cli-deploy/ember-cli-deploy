@@ -1,6 +1,6 @@
 var Promise      = require('ember-cli/lib/ext/promise');
 var PipelineTask = require('../../../lib/tasks/pipeline');
-var expect       = require('chai').expect;
+var expect       = require('../../helpers/expect');
 var assert       = require('chai').assert;
 
 describe('PipelineTask', function() {
@@ -18,27 +18,6 @@ describe('PipelineTask', function() {
       expect(fn).to.throw('No project passed to pipeline task');
     });
 
-    it ('raises an error if deploy config is not provided', function() {
-      var fn = function() {
-        new PipelineTask({
-          project: mockProject
-        });
-      };
-
-      expect(fn).to.throw('No deploy config passed to pipeline task');
-    });
-
-    it ('raises an error if app config is not provided', function() {
-      var fn = function() {
-        new PipelineTask({
-          project: mockProject,
-          config: mockConfig
-        });
-      };
-
-      expect(fn).to.throw('No app config passed to pipeline task');
-    });
-
     it ('raises an error if ui is not provided', function() {
       var fn = function() {
         new PipelineTask({
@@ -51,248 +30,136 @@ describe('PipelineTask', function() {
       expect(fn).to.throw('No ui passed to pipeline task');
     });
 
-    it ('creates the deployment context object', function() {
-      var task = new PipelineTask({
-        project: mockProject,
-        config: mockConfig,
-        appConfig: mockAppConfig,
-        ui: mockUi
-      });
-
-      var context = task._context;
-
-      expect(context.ui).to.equal(mockUi);
-      expect(context.config).to.equal(mockConfig);
-      expect(context.appConfig).to.equal(mockAppConfig);
-      expect(context.data).to.eql({});
-    });
-
-    it('registers  addons with correct keywords that create the deploy plugin', function() {
-      var project = {
-        addons: [
-          {
-            name: 'ember-cli-deploy-test-plugin',
-            pkg: {
-              keywords: [
-                'ember-cli-deploy-plugin'
-              ]
-            },
-            createDeployPlugin: function() {
-              return {
-                willDeploy: function() {},
-                upload: function() {},
-                didDeploy: function() {}
-              };
+    describe('registering addons with the pipeline', function() {
+      it('registers addons with ember-cli-deploy-plugin keyword', function() {
+        var project = {
+          name: function() {return 'test-project';},
+          addons: [
+            {
+              name: 'ember-cli-deploy-test-plugin',
+              pkg: {
+                keywords: [
+                  'ember-cli-deploy-plugin'
+                ]
+              },
+              createDeployPlugin: function() {
+                return {
+                  willDeploy: function() {},
+                  upload: function() {}
+                };
+              }
             }
-          }
-        ]
-      };
+          ]
+        };
 
-      var task = new PipelineTask({
-        project: project,
-        ui: mockUi,
-        config: mockConfig,
-        appConfig: mockAppConfig
+        var task = new PipelineTask({
+          project: project,
+          ui: mockUi,
+          deployEnvironment: 'development',
+          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          hooks: ['willDeploy', 'upload']
+        });
+
+        var registeredHooks = task._pipeline._pipelineHooks;
+
+        expect(registeredHooks.willDeploy[0]).to.be.a('function');
+        expect(registeredHooks.upload[0]).to.be.a('function');
       });
 
-      var registeredHooks = task._deploymentHooks;
-
-      expect(registeredHooks.willDeploy[0]).to.be.a('function');
-      expect(registeredHooks.upload[0]).to.be.a('function');
-      expect(registeredHooks.didDeploy[0]).to.be.a('function');
-    });
-
-    it('does not register addons missing the correct keywords', function() {
-      var project = {
-        addons: [
-          {
-            name: 'ember-cli-deploy-test-plugin',
-            pkg: {
-              keywords: [ ]
-            },
-            createDeployPlugin: function() {
-              return {
-                willDeploy: function() {}
-              };
+      it('does not register addons missing the ember-cli-deploy-plugin keyword', function() {
+        var project = {
+          name: function() {return 'test-project';},
+          addons: [
+            {
+              name: 'ember-cli-deploy-test-plugin',
+              pkg: {
+                keywords: [
+                  'some-other-plugin'
+                ]
+              },
+              createDeployPlugin: function() {
+                return {
+                  willDeploy: function() {},
+                  upload: function() {}
+                };
+              }
             }
-          }
-        ]
-      };
+          ]
+        };
 
-      var task = new PipelineTask({
-        project: project,
-        ui: mockUi,
-        config: mockConfig,
-        appConfig: mockAppConfig
+        var task = new PipelineTask({
+          project: project,
+          ui: mockUi,
+          deployEnvironment: 'development',
+          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          hooks: ['willDeploy', 'upload']
+        });
+
+        var registeredHooks = task._pipeline._pipelineHooks;
+
+        expect(registeredHooks.willDeploy[0]).to.be.undefined;
       });
 
-      var registeredHooks = task._deploymentHooks;
-
-      expect(registeredHooks.willDeploy[0]).to.be.undefined;
-    });
-
-    it('does not register addons that don\'t implement the createDeployPlugin function', function() {
-      var project = {
-        addons: [
-          {
-            name: 'ember-cli-deploy-test-plugin',
-            pkg: {
-              keywords: [ ]
-            },
-            someOtherFunction: function() {
-              return {
-                willDeploy: function() {}
-              };
+      it('does not register addons that don\'t implement the createDeployPlugin function', function() {
+        var project = {
+          name: function() {return 'test-project';},
+          addons: [
+            {
+              name: 'ember-cli-deploy-test-plugin',
+              pkg: {
+                keywords: [ ]
+              },
+              someOtherFunction: function() {
+                return {
+                  willDeploy: function() {}
+                };
+              }
             }
-          }
-        ]
-      };
+          ]
+        };
 
-      var task = new PipelineTask({
-        project: project,
-        ui: mockUi,
-        config: mockConfig,
-        appConfig: mockAppConfig
+        var task = new PipelineTask({
+          project: project,
+          ui: mockUi,
+          deployEnvironment: 'development',
+          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          hooks: ['willDeploy', 'upload']
+        });
+
+        var registeredHooks = task._pipeline._pipelineHooks;
+
+        expect(registeredHooks.willDeploy[0]).to.be.undefined;
       });
-
-      var registeredHooks = task._deploymentHooks;
-
-      expect(registeredHooks.willDeploy[0]).to.be.undefined;
     });
   });
 
-  describe('running the pipeline task', function() {
-    it ('runs the hook function, passing in the deployment context', function(done) {
-      var ctx;
+  describe('executing the pipeline task', function() {
+    it ('executes the pipeline, passing in the deployment context', function() {
+      var pipelineExecuted = false;
+
       var project = {
-        addons: [
-          {
-            name: 'ember-cli-deploy-test-plugin',
-            pkg: {
-              keywords: [
-                'ember-cli-deploy-plugin'
-              ]
-            },
-            createDeployPlugin: function() {
-              return {
-                willDeploy: function(context) {
-                  ctx = context;
-                  return Promise.resolve();
-                }
-              };
-            }
-          }
-        ]
+        name: function() {return 'test-project';},
+        addons: [ ]
       };
 
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
-        config: mockConfig,
-        appConfig: mockAppConfig
+        deployEnvironment: 'development',
+        deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+        hooks: ['willDeploy', 'upload'],
+        pipeline: {
+          execute: function() {
+            pipelineExecuted = true;
+            return Promise.resolve();
+          }
+        }
       });
 
-      task.run()
+      return expect(task.run()).to.be.fulfilled
         .then(function() {
-          expect(ctx.ui).to.equal(mockUi);
-          expect(ctx.config).to.equal(mockConfig);
-          expect(ctx.appConfig).to.equal(mockAppConfig);
-          expect(ctx.data).to.eql({});
-          done();
-        })
-        .catch(function() {
-          done(arguments[0]);
+          expect(pipelineExecuted).to.be.true;
         });
-    });
-
-    describe('running all deploy hooks', function() {
-      it ('runs functions for all hooks', function(done) {
-        var functionsRun = 0;
-        var fn = function() { functionsRun += 1;}
-
-        var project = {
-          addons: [
-            {
-              name: 'ember-cli-deploy-test-plugin',
-              pkg: {
-                keywords: [
-                  'ember-cli-deploy-plugin'
-                ]
-              },
-              createDeployPlugin: function() {
-                return {
-                  willDeploy: fn,
-                  build: fn,
-                  upload: fn,
-                  activate: fn,
-                  didDeploy: fn,
-                };
-              }
-            }
-          ]
-        };
-
-        var task = new PipelineTask({
-          project: project,
-          ui: mockUi,
-          config: mockConfig,
-          appConfig: mockAppConfig
-        });
-
-        task.run()
-          .then(function() {
-            expect(functionsRun).to.equal(5);
-            done();
-          })
-          .catch(function() {
-            done(arguments[0]);
-          });
-      });
-    });
-
-    describe('running specific deploy hooks', function() {
-      it ('runs only the functions specified', function(done) {
-        var functionsRun = 0;
-        var fn = function() { functionsRun += 1;}
-
-        var project = {
-          addons: [
-            {
-              name: 'ember-cli-deploy-test-plugin',
-              pkg: {
-                keywords: [
-                  'ember-cli-deploy-plugin'
-                ]
-              },
-              createDeployPlugin: function() {
-                return {
-                  willDeploy: fn,
-                  build: fn,
-                  upload: fn,
-                  activate: fn,
-                  didDeploy: fn,
-                };
-              }
-            }
-          ]
-        };
-
-        var task = new PipelineTask({
-          project: project,
-          ui: mockUi,
-          config: mockConfig,
-          appConfig: mockAppConfig
-        });
-
-        task.run(['build', 'activate', 'didDeploy'])
-          .then(function() {
-            expect(functionsRun).to.equal(3);
-            done();
-          })
-          .catch(function() {
-            done(arguments[0]);
-          });
-      });
     });
   });
 });
