@@ -38,7 +38,7 @@ describe ('Pipeline', function() {
 
   describe ('#execute', function() {
     it ('runs the registered functions', function() {
-      var subject = new Pipeline(['hook1', 'hook2']);
+      var subject = new Pipeline(['hook1', 'hook2'], {ui: {write: function() {}}});
       var hooksRun = [];
 
       subject.register('hook1', function() {
@@ -58,7 +58,7 @@ describe ('Pipeline', function() {
     });
 
     it('passes the default context object when one isn\'t provided', function() {
-      var subject = new Pipeline(['hook1']);
+      var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
       var data = null;
 
       subject.register('hook1', function(context) {
@@ -72,7 +72,7 @@ describe ('Pipeline', function() {
     });
 
     it('passes the provided context object to hooks when provided', function() {
-      var subject = new Pipeline(['hook1']);
+      var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
       var data = null;
 
       subject.register('hook1', function(context) {
@@ -86,7 +86,7 @@ describe ('Pipeline', function() {
     });
 
     it('merges the return value (object) of each hook into the context', function() {
-      var subject = new Pipeline(['hook1']);
+      var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
       var finalContext = null;
 
       subject.register('hook1', function(context) {
@@ -105,7 +105,7 @@ describe ('Pipeline', function() {
     });
 
     it('merges the return value (promise) of each hook into the context', function() {
-      var subject = new Pipeline(['hook1']);
+      var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
       var finalContext = null;
 
       subject.register('hook1', function(context) {
