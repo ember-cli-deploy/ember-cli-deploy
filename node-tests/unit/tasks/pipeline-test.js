@@ -34,6 +34,7 @@ describe('PipelineTask', function() {
       it('registers addons with ember-cli-deploy-plugin keyword', function() {
         var project = {
           name: function() {return 'test-project';},
+          root: process.cwd(),
           addons: [
             {
               name: 'ember-cli-deploy-test-plugin',
@@ -69,6 +70,7 @@ describe('PipelineTask', function() {
       it('does not register addons missing the ember-cli-deploy-plugin keyword', function() {
         var project = {
           name: function() {return 'test-project';},
+          root: process.cwd(),
           addons: [
             {
               name: 'ember-cli-deploy-test-plugin',
@@ -103,6 +105,7 @@ describe('PipelineTask', function() {
       it('does not register addons that don\'t implement the createDeployPlugin function', function() {
         var project = {
           name: function() {return 'test-project';},
+          root: process.cwd(),
           addons: [
             {
               name: 'ember-cli-deploy-test-plugin',
@@ -139,6 +142,7 @@ describe('PipelineTask', function() {
 
       var project = {
         name: function() {return 'test-project';},
+        root: process.cwd(),
         addons: [ ]
       };
 

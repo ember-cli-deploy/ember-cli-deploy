@@ -85,20 +85,6 @@ describe ('Pipeline', function() {
         });
     });
 
-    it('passes in a copy of the context to each hook', function() {
-      var subject = new Pipeline(['hook1']);
-      var context = {name: 'test-context'};
-
-      subject.register('hook1', function(context) {
-        context.name = 'changed';
-      });
-
-      return expect(subject.execute(context)).to.be.fulfilled
-        .then(function() {
-          expect(context.name).to.equal('test-context');
-        });
-    });
-
     it('merges the return value (object) of each hook into the context', function() {
       var subject = new Pipeline(['hook1']);
       var finalContext = null;
