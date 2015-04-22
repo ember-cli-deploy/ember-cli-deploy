@@ -46,7 +46,7 @@ To use the Lightning-Approach workflow from Luke's talk you will also need to in
 npm install ember-deploy-redis ember-deploy-s3 --save-dev
 ```
 
-__Please watch Luke's Talk before using this project!__
+[__Please watch Luke's Talk before using this project!__](https://www.youtube.com/watch?v=QZVYP3cPcWQ)
 
 The TL;DR of the talk is that you want to serve your bootstrap index.html that Ember-CLI builds for you from a Key-Value store via your Backend and serve the rest of your assets from a static file hoster like for example [S3](https://aws.amazon.com/de/s3/). This is a sketch of what this Addon gives you out of the box:
 
