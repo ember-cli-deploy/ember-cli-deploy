@@ -30,6 +30,28 @@ describe('PipelineTask', function() {
       expect(fn).to.throw('No ui passed to pipeline task');
     });
 
+    describe('setting environment variables from .env', function() {
+      it('sets the process.env vars if a .env file exists for deploy environment', function() {
+        var project = {
+          name: function() {return 'test-project';},
+          root: process.cwd(),
+          addons: []
+        };
+
+        assert.isUndefined(process.env.ENVTEST);
+
+        var task = new PipelineTask({
+          project: project,
+          ui: mockUi,
+          deployEnvironment: 'development',
+          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          hooks: ['willDeploy', 'upload']
+        });
+
+        assert.equal(process.env.ENVTEST, 'SUCCESS');
+      });
+    });
+
     describe('registering addons with the pipeline', function() {
       it('registers addons with ember-cli-deploy-plugin keyword', function() {
         var project = {
