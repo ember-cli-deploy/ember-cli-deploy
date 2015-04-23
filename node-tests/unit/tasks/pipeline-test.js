@@ -7,7 +7,7 @@ describe('PipelineTask', function() {
   var mockProject   = {addons: []};
   var mockConfig    = {};
   var mockAppConfig = {};
-  var mockUi        = {};
+  var mockUi        = { write: function() {} };
 
   describe('creating a new instance', function() {
     it ('raises an error if project is not provided', function() {
@@ -67,6 +67,7 @@ describe('PipelineTask', function() {
               },
               createDeployPlugin: function() {
                 return {
+                  name: 'test-plugin',
                   willDeploy: function() {},
                   upload: function() {}
                 };
@@ -85,8 +86,10 @@ describe('PipelineTask', function() {
 
         var registeredHooks = task._pipeline._pipelineHooks;
 
-        expect(registeredHooks.willDeploy[0]).to.be.a('function');
-        expect(registeredHooks.upload[0]).to.be.a('function');
+        expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
+        expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+        expect(registeredHooks.upload[0].name).to.eq('test-plugin');
+        expect(registeredHooks.upload[0].fn).to.be.a('function');
       });
 
       it('does not register addons missing the ember-cli-deploy-plugin keyword', function() {

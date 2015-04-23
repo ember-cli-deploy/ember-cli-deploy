@@ -16,17 +16,22 @@ describe ('Pipeline', function() {
 
   describe ('#register', function() {
     it ('registers functions for defined hooks', function() {
-      var subject = new Pipeline(['willDeploy']);
+      var subject = new Pipeline(['willDeploy'], {
+        ui: {write: function() {}}
+      });
       var fn      = function() {};
 
       subject.register('willDeploy', fn);
 
       expect(subject._pipelineHooks.willDeploy.length).to.eq(1)
-      expect(subject._pipelineHooks.willDeploy[0]).to.eql(fn);
+      expect(subject._pipelineHooks.willDeploy[0].name).to.eq('anonymous function');
+      expect(subject._pipelineHooks.willDeploy[0].fn).to.eql(fn);
     });
 
     it ('doesn\'t register functions for hooks not defined', function() {
-      var subject = new Pipeline(['willDeploy']);
+      var subject = new Pipeline(['willDeploy'], {
+        ui: {write: function() {}}
+      });
       var fn      = function() {};
 
       subject.register('build', fn);
