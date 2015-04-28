@@ -35,4 +35,31 @@ Deploy.prototype.blueprintsPath = function() {
   return path.join(__dirname, 'blueprints');
 };
 
+Deploy.prototype.included = function(app) {
+  var buildEnv   = this._deployEnvSetByDeployCommand();
+  var root       = app.project.root;
+  var configPath = path.join(root, 'config', 'deploy');
+  var config;
+  var fingerprint;
+
+  if (buildEnv) {
+    config = require(configPath)(buildEnv);
+
+    if (config.fingerprint === false) {
+      app.options.fingerprint = {enabled: false};
+    } else {
+      fingerprint = config.fingerprint || {};
+      app.options.fingerprint = app.options.fingerprint || {};
+
+      for (var option in fingerprint) {
+        app.options.fingerprint[option] = fingerprint[option];
+      }
+    }
+  }
+};
+
+Deploy.prototype._deployEnvSetByDeployCommand = function() {
+  return process.env.DEPLOY_ENVIRONMENT;
+}
+
 module.exports = Deploy;

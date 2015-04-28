@@ -38,6 +38,11 @@
     "ember-addon",
     "ember-cli-deploy"
   ],
+  "ember-addon": {
+    "configPath": "tests/dummy/config",
+    "defaultBlueprint": "deploy-config",
+    "before": "broccoli-asset-rev"
+  },
   "dependencies": {
     "broccoli": "^0.13.2",
     "broccoli-gzip": "^0.2.0",
