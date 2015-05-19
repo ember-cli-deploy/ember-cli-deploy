@@ -22,9 +22,9 @@ describe('Config', function() {
   });
 
   describe('buildEnv', function(){
-    it('defaults to production', function() {
+    it('defaults to staging', function() {
       var config = createConfig('tomster', {});
-      expect(config.get('buildEnv')).to.eq('production');
+      expect(config.get('buildEnv')).to.eq('staging');
     });
     it('allows configuration', function() {
       var config = createConfig('tomster', { buildEnv: 'chocula' });
