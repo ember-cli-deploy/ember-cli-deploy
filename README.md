@@ -68,7 +68,7 @@ By default, `ember-cli-deploy` expects a `deploy.js` file in the `config/` direc
 ```js
 module.exports = {
   development: {
-    buildEnv: 'development', // Override the environment passed to the ember asset build. Defaults to 'production'
+    buildEnv: 'development', // Override the environment passed to the ember asset build. Defaults to 'staging'
     store: {
       type: 'redis', // the default store is 'redis'
       host: 'localhost',
@@ -85,7 +85,6 @@ module.exports = {
   },
 
   staging: {
-    buildEnv: 'staging', // Override the environment passed to the ember asset build. Defaults to 'production'
     store: {
       host: 'staging-redis.example.com',
       port: 6379
@@ -98,6 +97,7 @@ module.exports = {
   },
 
    production: {
+    buildEnv: 'production', // Override the environment passed to the ember asset build. Defaults to 'staging'
     store: {
       host: 'production-redis.example.com',
       port: 6379,
