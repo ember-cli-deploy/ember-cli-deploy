@@ -78,6 +78,7 @@ module.exports = {
       type: 's3', // default asset-adapter is 's3'
       gzip: false, // if undefined or set to true, files are gziped
       gzipExtensions: ['js', 'css', 'svg'], // if undefined, js, css & svg files are gziped
+      exclude: ['.DS_Store', '*-test.js'], // defaults to empty array
       accessKeyId: '<your-access-key-goes-here>',
       secretAccessKey: process.env['AWS_ACCESS_KEY'],
       bucket: '<your-bucket-name>'

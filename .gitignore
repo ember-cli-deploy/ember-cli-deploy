@@ -19,3 +19,4 @@ deploy_test.json
 .DS_Store
 NERD_tree_2
 *.tgz
+/tmp-delete-excluded-test
