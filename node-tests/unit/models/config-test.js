@@ -87,6 +87,17 @@ describe('Config', function() {
     });
   });
 
+  describe('assets.exclude', function(){
+    it('defaults to empty array', function() {
+      var config = createConfig('tomster', {});
+      expect(config.get('assets.exclude')).to.deep.equal([]);
+    });
+    it('allows configuration', function() {
+      var config = createConfig('tomster', { assets: { exclude: ['.DS_Store'] } });
+      expect(config.get('assets.exclude')).to.deep.equal(['.DS_Store']);
+    });
+  });
+
   describe('tagging', function(){
     it('defaults to sha', function() {
       var config = createConfig('tomster', {});
