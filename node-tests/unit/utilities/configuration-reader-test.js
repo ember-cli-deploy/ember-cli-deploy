@@ -35,27 +35,28 @@ describe('ConfigurationReader', function() {
   });
 
   describe('configuration settings', function() {
-    it('reads a passed json deploy-config-file if one is passed', function() {
+    it('throws an error when  passed a json deploy-config-file', function() {
       var configPath        = './node-tests/fixtures/config/deploy.json';
       var root              = process.cwd();
       var fixtureConfigPath = path.join(root, configPath);
       var expectedConfig    = require(fixtureConfigPath);
 
-      var config = new ConfigurationReader({
-        configFile: configPath,
-        ui: ui,
-        project: project
-      });
+      var fn = function() {
+        new ConfigurationReader({
+          configFile: configPath,
+          ui: ui,
+          project: project
+        });
+      }
 
-      expect(ui.output).to.include('DEPRECATION: Using a .json file for deployment configuration is deprecated. Please use a .js file instead');
-      expect(config._config).to.equal(expectedConfig);
+      expect(fn).to.throw('Cannot load configuration file');
     });
 
     it('reads a passed js deploy-config-file if one is passed', function() {
       var configPath        = './node-tests/fixtures/config/deploy.js';
       var root              = process.cwd();
       var fixtureConfigPath = path.join(root, configPath);
-      var expectedConfig    = require(fixtureConfigPath);
+      var expectedConfig    = require(fixtureConfigPath)('development');
 
       var config = new ConfigurationReader({
         configFile: configPath,
@@ -63,45 +64,47 @@ describe('ConfigurationReader', function() {
         project: project
       });
 
-      expect(config._config).to.equal(expectedConfig);
+      expect(config._config).to.eql(expectedConfig);
     });
 
     it('uses `./config/deploy.js` as default when no config is passed', function() {
       var root           = process.cwd();
-      var expectedConfig = require(path.join(root, './config/deploy.js'));
+      var expectedConfig = require(path.join(root, './config/deploy.js'))('development');
 
       var config = new ConfigurationReader({
         ui: ui,
         project: project
       });
 
-      expect(config._config).to.equal(expectedConfig)
+      expect(config._config).to.eql(expectedConfig)
     });
 
     it('raises an error in the case of a passed deploy-config-file that doesn\'t exist', function() {
       var configPath        = './node-tests/fixtures/config/does-not-exist.js';
       var root              = process.cwd();
-
-      expect(function() {
-        var config = new ConfigurationReader({
+      var fn = function() {
+        new ConfigurationReader({
           configFile: configPath,
           ui: ui,
           project: project
         });
-      }).to.throw('Cannot load configuration file \'' + path.join(root, configPath) + '\'. Note that the default location of the ember-cli-deploy config file is now \'config/deploy.js\'');
+      };
+
+      expect(fn).to.throw('Cannot load configuration file \'' + path.join(root, configPath) + '\'. Note that the default location of the ember-cli-deploy config file is now \'config/deploy.js\'');
     });
 
     it('raises an error if a config doesn\'t exist for the current environment', function() {
       var configPath = './node-tests/fixtures/config/deploy.js';
-
-      expect(function() {
+      var fn = function() {
         new ConfigurationReader({
           configFile: configPath,
           ui: ui,
           project: project,
           environment: 'non-existent-env'
         });
-      }).to.throw(/You are using the `non-existent-env` environment/);
+      };
+
+      expect(fn).to.throw(/You are using the `non-existent-env` environment/);
     });
   });
 
@@ -111,11 +114,11 @@ describe('ConfigurationReader', function() {
       var root    = process.cwd();
       var cfgFile = require(path.join(root, './node-tests/fixtures/config/deploy.js'));
 
-      ENVs.forEach(function(ENV) {
-        var expected = cfgFile[ENV].store;
+      ENVs.forEach(function(env) {
+        var expected = cfgFile(env).store;
 
         var config = new ConfigurationReader({
-          environment: ENV,
+          environment: env,
           ui: ui,
           project: project
         }).config;
@@ -131,11 +134,11 @@ describe('ConfigurationReader', function() {
       var root    = process.cwd();
       var cfgFile = require(path.join(root, './node-tests/fixtures/config/deploy.js'));
 
-      ENVs.forEach(function(ENV) {
-        var expected = cfgFile[ENV].assets;
+      ENVs.forEach(function(env) {
+        var expected = cfgFile(env).assets;
 
         var config = new ConfigurationReader({
-          environment: ENV,
+          environment: env,
           ui: ui,
           project: project
         }).config;
