@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 module.exports = {
   //development: {
     //store: {
