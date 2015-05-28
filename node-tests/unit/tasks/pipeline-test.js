@@ -9,7 +9,7 @@ describe('PipelineTask', function() {
   var mockAppConfig = {};
   var mockUi        = { write: function() {} };
 
-  describe('creating a new instance', function() {
+  describe('creating and setting up a new instance', function() {
     it ('raises an error if project is not provided', function() {
       var fn = function() {
         new PipelineTask({});
@@ -83,13 +83,14 @@ describe('PipelineTask', function() {
           deployConfigPath: 'node-tests/fixtures/config/deploy.js',
           hooks: ['willDeploy', 'upload']
         });
+        return task.setup().then(function(){
+          var registeredHooks = task._pipeline._pipelineHooks;
 
-        var registeredHooks = task._pipeline._pipelineHooks;
-
-        expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
-        expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
-        expect(registeredHooks.upload[0].name).to.eq('test-plugin');
-        expect(registeredHooks.upload[0].fn).to.be.a('function');
+          expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
+          expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+          expect(registeredHooks.upload[0].name).to.eq('test-plugin');
+          expect(registeredHooks.upload[0].fn).to.be.a('function');
+        });
       });
 
       it('does not register addons missing the ember-cli-deploy-plugin keyword', function() {
@@ -157,6 +158,63 @@ describe('PipelineTask', function() {
         var registeredHooks = task._pipeline._pipelineHooks;
 
         expect(registeredHooks.willDeploy[0]).to.be.undefined;
+      });
+
+      it('registers configured addons only, if addons configuration is present', function () {
+        var project = {
+          name: function() {return 'test-project';},
+          root: process.cwd(),
+          addons: [
+            {
+              name: 'ember-cli-deploy-foo-plugin',
+              pkg: {
+                keywords: [
+                  'ember-cli-deploy-plugin'
+                ]
+              },
+              createDeployPlugin: function() {
+                return {
+                  name: 'foo-plugin',
+                  willDeploy: function() {},
+                  upload: function() {}
+                };
+              }
+            },
+            {
+              name: 'ember-cli-deploy-bar-plugin',
+              pkg: {
+                keywords: [
+                  'ember-cli-deploy-plugin'
+                ]
+              },
+              createDeployPlugin: function() {
+                return {
+                  name: 'bar-plugin',
+                  willDeploy: function() {},
+                  upload: function() {}
+                };
+              }
+            }
+          ]
+        };
+
+        var task = new PipelineTask({
+          project: project,
+          ui: mockUi,
+          deployEnvironment: 'development',
+          deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test.js',
+          hooks: ['willDeploy', 'upload']
+        });
+        return task.setup().then(function(){
+          var registeredHooks = task._pipeline._pipelineHooks;
+
+          expect(registeredHooks.willDeploy.length).to.equal(1);
+          expect(registeredHooks.willDeploy[0].name).to.eq('foo-plugin');
+          expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+          expect(registeredHooks.upload.length).to.equal(1);
+          expect(registeredHooks.upload[0].name).to.eq('foo-plugin');
+          expect(registeredHooks.upload[0].fn).to.be.a('function');
+        });
       });
     });
   });
