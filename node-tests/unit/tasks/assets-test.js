@@ -25,17 +25,16 @@ describe('AssetsTask', function() {
   });
   describe('#uploadAssets', function(){
     it('receives a POJO config object (which is a bad idea and we should change this API)', function() {
-      var root = process.cwd();
       var task = new AssetsTask({
         ui: ui,
         AssetsUploader: MockAssetsUploader,
         project: project
       });
-      var configFile = require(path.join(root, './config/deploy.js'));
-      task.uploadAssets('development', 'config/deploy.js');
-      expect(mockAssetsUploaderConfig.assets).to.be.exist;
-      expect(mockAssetsUploaderConfig.assets.bucket).to.equal('<your-bucket-name>');
-      expect(mockAssetsUploaderConfig.assets.type).to.equal('s3');
+      task.uploadAssets('development', 'config/deploy.js').then(function(){
+        expect(mockAssetsUploaderConfig.assets).to.be.exist;
+        expect(mockAssetsUploaderConfig.assets.bucket).to.equal('<your-bucket-name>');
+        expect(mockAssetsUploaderConfig.assets.type).to.equal('s3');
+      });
     });
   });
   describe('#deleteExcluded', function () {
