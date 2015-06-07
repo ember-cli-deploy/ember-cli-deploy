@@ -5,12 +5,13 @@ var expect   = require('../../helpers/expect');
 
 describe ('Pipeline', function() {
   describe ('initialization', function() {
-    it ('initializes the given list of hooks', function() {
+    it ('initializes the given list of hooks plus the `didFail`-hook', function() {
       var subject = new Pipeline(['willDeploy', 'didDeploy']);
 
-      expect(Object.keys(subject._pipelineHooks).length).to.eq(2);
+      expect(Object.keys(subject._pipelineHooks).length).to.eq(3);
       expect(subject._pipelineHooks.willDeploy).to.eql([]);
       expect(subject._pipelineHooks.didDeploy).to.eql([]);
+      expect(subject._pipelineHooks.didFail).to.eql([]);
     });
   });
 
@@ -59,6 +60,34 @@ describe ('Pipeline', function() {
           expect(hooksRun.length).to.eq(2);
           expect(hooksRun[0]).to.eq('1');
           expect(hooksRun[1]).to.eq('2');
+        });
+    });
+
+    it('executes the `didFail`-hook as soon as one of the deployment hooks rejects', function() {
+      var subject = new Pipeline(['hook1', 'hook2'], {ui: {write: function() {}}});
+      var hooksRun = [];
+
+      subject.register('hook1', function() {
+        hooksRun.push('hook1');
+      });
+
+      subject.register('hook2', function() {
+        return Promise.reject();
+      });
+
+      subject.register('hook3', function() {
+        hooksRun.push('3');
+      });
+
+      subject.register('didFail', function() {
+        hooksRun.push('didFail');
+      });
+
+      return expect(subject.execute()).to.be.rejected
+        .then(function() {
+          expect(hooksRun.length).to.eq(2);
+          expect(hooksRun[0]).to.eq('hook1');
+          expect(hooksRun[1]).to.eq('didFail');
         });
     });
 
