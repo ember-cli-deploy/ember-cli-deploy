@@ -1,5 +1,28 @@
 # ember-cli-deploy Changelog
 
+### 0.4.2 (June 14, 2015)
+
+This release fixes asset upload issues with io.js, adds the possibility for
+index adapters to support multiple files and adds a configuration option to
+exclude asset files from deployment.
+
+#### Community Contributions
+
+- [#140](https://github.com/ember-cli/ember-cli-deploy/pull/140) Link to ember-deploy-couchbase. [@waltznetworks](https://github.com/waltznetworks)
+- [#113](https://github.com/ember-cli/ember-cli-deploy/pull/113) Provide better error support for missing environment config [@achambers](https://github.com/achambers)
+- [#115](https://github.com/ember-cli/ember-cli-deploy/pull/115) Changed package to be able to run tests on windows. [@Twinkletoes](https://github.com/Twinkletoes)
+- [#119](https://github.com/ember-cli/ember-cli-deploy/pull/119) Stub active, list, createTag UnknownAdapter methods [@waltznetworks](https://github.com/waltznetworks)
+- [#120](https://github.com/ember-cli/ember-cli-deploy/pull/120) [DOCUMENTATION] Make Sinatra example a bit more secure [@elucid](https://github.com/elucid)
+- [#124](https://github.com/ember-cli/ember-cli-deploy/pull/124) Index Adapter support for multiple files [@Ahalogy](https://github.com/Ahalogy)
+- [#128](https://github.com/ember-cli/ember-cli-deploy/pull/128) Link to custom adapters section for quick ref [@jayphelps](https://github.com/jayphelps)
+- [#129](https://github.com/ember-cli/ember-cli-deploy/pull/129) Make a callout easily actionable [@jorgedavila25](https://github.com/jorgedavila25)
+- [#141](https://github.com/ember-cli/ember-cli-deploy/pull/141) Add configuration option to exclude asset files from being deployed. [@yapplabs](https://github.com/yapplabs)
+- [#142](https://github.com/ember-cli/ember-cli-deploy/pull/142) Test against stable node versions [@yapplabs](https://github.com/yapplabs)
+- [#144](https://github.com/ember-cli/ember-cli-deploy/pull/144) Resolve JSHint error on deploy.js blueprint [@blimmer](https://github.com/blimmer)
+- [#146](https://github.com/ember-cli/ember-cli-deploy/pull/146) Make io.js work [@trym](https://github.com/trym)
+
+Thank you to all who took the time to contribute!
+
 ### 0.4.1 (March 13, 2015)
 
 This release mainly revolves round fixing a bug around `child_process` and `execSync` compatability among the nodejs versions and platforms.
