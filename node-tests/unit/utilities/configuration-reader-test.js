@@ -143,5 +143,26 @@ describe('ConfigurationReader', function() {
         expect(config.get('assets')).to.deep.equal(expected);
       });
     });
+  });
+
+  describe('materialized settings', function() {
+    it('proxies the materialized settings for the passed environment', function() {
+      var ENVs    = ['development', 'staging'];
+      var root    = process.cwd();
+      var cfgFile = require(path.join(root, './node-tests/fixtures/config-with-defaults/deploy.js'));
+
+      ENVs.forEach(function(ENV) {
+        var expected = cfgFile[ENV];
+
+        var config = new ConfigurationReader({
+          environment: ENV,
+          ui: ui,
+          project: project
+        }).config;
+
+        expect(config._materialize()).to.deep.equal(expected);
+      });
+    });
   })
+
 });

@@ -2,7 +2,7 @@ module.exports = {
   "development": {
     "store": {
       "host": "localhost",
-      "port": 6379
+      "port": 63790
     },
     "assets": {
       "accessKeyId": "<your-access-key-goes-here>",
@@ -21,7 +21,8 @@ module.exports = {
       "accessKeyId": "<your-access-key-goes-here>",
       "secretAccessKey": "<your-secret-access-key-goes-here>",
       "bucket": "<your-bucket-name>",
-      "prefix": "<optional-remote-prefix>"
+      "prefix": "<optional-remote-prefix>",
+      "gzipExtensions": ["js", "css", "svg", "json"]
     }
   }
 }
