@@ -8,9 +8,9 @@ about [Lightning Fast Deployment(s) of Rails-backed Javascript Apps](https://www
 
 `ember-cli-deploy` aims to be the go-to-solution for deploying all Ember-CLI apps thus it also supports other types of deployments that differ from the one Luke suggests. Please see this README's subsection about [custom adapters](#custom-adapters) on how to get started with your own deployment strategy with `ember-cli-deploy`.
 
-You can also have a look on how to use this ember-cli-addon in the following video of a talk about `ember-cli-deploy` I gave at [Ember.js-Munich](http://www.meetup.com/Ember-js-Munich/) (demo starts around 7 minutes into the video).
+You can also have a look on how to use this ember-cli addon in the following video of a talk about `ember-cli-deploy` [Ben Limmer](https://github.com/blimmer) gave at [Ember.js-Denver](http://www.meetup.com/Ember-js-Denver/).
 
-<a href="https://www.youtube.com/watch?v=Ro2_I5vtTIg" target="_blank">![ember-deploy talk](http://img.youtube.com/vi/Ro2_I5vtTIg/0.jpg)</a>
+<a href="https://www.youtube.com/watch?v=MT0LKcVh6Rw&t=1m55s" target="_blank">![ember-deploy talk](http://i.imgur.com/dOGvXty.png)</a>
 
 ## Installation
 
