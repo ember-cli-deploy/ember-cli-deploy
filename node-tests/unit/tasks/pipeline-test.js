@@ -222,6 +222,7 @@ describe('PipelineTask', function() {
   describe('executing the pipeline task', function() {
     it ('executes the pipeline, passing in the deployment context', function() {
       var pipelineExecuted = false;
+      var deployment;
 
       var project = {
         name: function() {return 'test-project';},
@@ -234,10 +235,12 @@ describe('PipelineTask', function() {
         ui: mockUi,
         deployEnvironment: 'development',
         deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+        commandLineArgs: {revision: '123abc'},
         hooks: ['willDeploy', 'upload'],
         pipeline: {
-          execute: function() {
+          execute: function(context) {
             pipelineExecuted = true;
+            deployment = context.deployment;
             return Promise.resolve();
           }
         }
@@ -246,6 +249,10 @@ describe('PipelineTask', function() {
       return expect(task.run()).to.be.fulfilled
         .then(function() {
           expect(pipelineExecuted).to.be.true;
+          expect(deployment.ui).to.eq(mockUi);
+          expect(deployment.project).to.eq(project);
+          expect(deployment.config.build.buildEnv).to.eq('development');
+          expect(deployment.commandLineArgs.revision).to.eq('123abc');
         });
     });
   });
