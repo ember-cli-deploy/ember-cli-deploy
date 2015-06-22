@@ -111,19 +111,18 @@ rejected are treated as unrecoverable errors.
 ### Configuration
 
 By convention, plugin configuration should be kept in `config/deploy.js` and scoped by
-the plugin's name. e.g. for an `ember-cli-deploy-example` plugin, the configuration would
-go in:
+the plugin's name. e.g. for an `ember-cli-deploy-example` plugin, the configuration might look like:
 
 ```javascript
 // config/deploy.js
-module.exports = {
-  production: {
+module.exports = return function(environment) {
+  return {
     "example": {
-      bucket: "my-app-production",
+      bucket: "my-app-" + environment,
       awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
       awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
     }
-  }
+  };
 };
 ```
 
@@ -204,3 +203,119 @@ of the `options` argument to the addon's `createDeployPlugin` method. Plugins
 should use their name to retrieve configuration values. In this example,
 the foo-assets instance of the s3-assets plugin could have different configuration
 than the bar-assets instance does.
+
+### Another take on configuration
+
+Convention-over-configuration is of utmost importance. For golden path use cases, including the packages and doing unavoidable configuration (e.g. credentials and connection info) should be all it takes. Of course, it should be possible to wire together plugins in ways beside the golden path, too.
+
+Here's how we should accomplish this.
+
+Goals:
+
+1) A great out-of-the-box app developer experience for common deployment scenarios.
+2) An API for app developers to define deployment pipeline configuration synchronously or asynchronously.
+3) An API for plugin developers to provide static default configuration values.
+4) An API for plugin developers to provide default configuration values that are derived at run-time from the data produced by plugin running prior to it in the pipeline.
+5) An API for plugin developers to allow ap developers to interact with plugin settings via command line flags. 
+6) An API for app developers to specify configuration of a plugin to use data produced by a plugin running prior to it in the pipeline.
+
+Approach:
+
+* App developers use `config/deploy.js` to return a function that receives the build environment as a string and returns either a config object or a Promise that fulfills with a config object. The config object has properties corresponding to the name of the plugin (e.g. for ember-cli-deploy-redis, the property is “redis”). Supports goal No. 2 above. (This is implemented in the 0.5.0 WIP already.)  
+
+Examples:
+
+```js
+// deploy.js (sync)
+module.export function(environment){
+  var ENV = {
+    redis: {
+      url: process.env.REDIS_URL
+    }
+  }
+  return ENV;
+};
+
+// deploy.js (async)
+module.export function(environment){
+  var ENV = {
+    redis: {
+    }
+  }
+  return someAsyncDataRetrieval(environment).then(function(data){
+    ENV.redis = data.redisUrl;
+    return ENV;
+  } 
+};
+```
+
+* Plugin developers can implement a `configure` hook that runs at the beginning of pipeline execution (because “configure” is the first step of the pipeline). This hook has read/write access to the config object. It can specify default configuration values, as well as throw an Error in the case that a required configuration property was not provided. Supports goal No. 3 above. (This is implemented in the 0.5.0 WIP already, although we should provide plugins with helper to define defaults and enforce required properties more expressively and more consistently with other plugins.)
+
+Example:
+
+```js
+// some-ember-cli-deploy-plugin/index.js
+module.exports = {
+  name: 'ember-cli-deploy-myplugin',
+
+  createDeployPlugin: function(options) {
+    return {
+      name: options.name,
+      configure: function(context) {
+        var deployment = context.deployment;
+        var config = deployment.config[this.name] = deployment.config[this.name] || {};
+        config.filePattern = config.filePattern || “**/*.html”; // provide default
+        
+      },
+      // ...
+  }
+};
+```
+
+* Plugin developers can also use `configure` hook specify a default configuration property as a function, which will be called at run-time, when a plugin wishes to read and use the configuration value. The function will receive the context and must return a value or throw an Error. The context would allow access to data added to pipeline by previous plugins, as well as flags set on command line. Supports goal No. 4 and No. 5 above. (This is not yet implemented.)
+ 
+Example:
+
+```js
+// some-ember-cli-deploy-plugin/index.js
+module.exports = {
+  name: 'ember-cli-deploy-myplugin',
+
+  createDeployPlugin: function(options) {
+    return {
+      name: options.name,
+      configure: function(context) {
+        var deployment = context.deployment;
+        var config = deployment.config[this.name] = deployment.config[this.name] || {};
+        config.revision = config.revision || function(context){
+          return context.deployment.revision;
+        };
+        // we could also provide a helper for this, e.g.
+        // config.revision = config.revision || fromPipelineData(context, “revision”);
+        config.shouldActivate = config.shouldActivate || function(context){
+         return !!context.flags.activate; // set via `--activate on command line
+       };
+      },
+      // ...
+  }
+};
+```
+
+* App developers can also use this `function`-style configuration in `config/deploy.js` in order to wire together plugins. The function will receive the context and must return a value or throw an Error. Supports goal No. 6 above. (No additional implementation would be necessary if the above were implemented.)
+
+Example:
+
+```js
+// deploy.js
+module.export function(environment){
+  var ENV = {
+    redis: {
+      revisionKey: function(context) { return context.deployment.tag; },
+      forceUpdate: function(context) { return context.flags.force; }
+    }
+  }
+  return ENV;
+};
+```
+
+These approaches all combine to achieve goal No. 1 above.
