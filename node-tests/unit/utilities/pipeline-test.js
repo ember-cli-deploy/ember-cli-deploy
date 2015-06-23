@@ -157,4 +157,14 @@ describe ('Pipeline', function() {
         });
     });
   });
+
+  describe('#hookNames', function() {
+    it('returns the names of the registered hooks', function() {
+      var subject = new Pipeline(['hook1', 'hook2']);
+
+      var result = subject.hookNames();
+
+      expect(result).to.have.members(['hook1', 'hook2', 'didFail']);
+    });
+  });
 });
