@@ -216,6 +216,57 @@ describe('PipelineTask', function() {
           expect(registeredHooks.upload[0].fn).to.be.a('function');
         });
       });
+      it('registers dependent plugin addons of a plugin pack addon designated by the ember-cli-deploy-plugin-pack keyword', function() {
+        var project = {
+          name: function() {return 'test-project';},
+          root: process.cwd(),
+          addons: [
+            {
+              name: 'ember-cli-deploy-test-plugin-pack',
+              pkg: {
+                keywords: [
+                  'ember-cli-deploy-plugin-pack'
+                ]
+              },
+              addons: [
+                {
+                  name: 'ember-cli-deploy-test-plugin',
+                  pkg: {
+                    keywords: [
+                      'ember-cli-deploy-plugin'
+                    ]
+                  },
+                  createDeployPlugin: function() {
+                    return {
+                      name: 'test-plugin',
+                      willDeploy: function() {},
+                      upload: function() {}
+                    };
+                  }
+                }
+              ]
+            }
+          ]
+        };
+
+        var task = new PipelineTask({
+          project: project,
+          ui: mockUi,
+          deployEnvironment: 'development',
+          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          hooks: ['willDeploy', 'upload']
+        });
+        return task.setup().then(function(){
+          var registeredHooks = task._pipeline._pipelineHooks;
+
+          expect(registeredHooks.willDeploy.length).to.eq(1);
+          expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
+          expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+          expect(registeredHooks.upload.length).to.eq(1);
+          expect(registeredHooks.upload[0].name).to.eq('test-plugin');
+          expect(registeredHooks.upload[0].fn).to.be.a('function');
+        });
+      });
     });
   });
 
