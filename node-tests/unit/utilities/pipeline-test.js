@@ -63,7 +63,7 @@ describe ('Pipeline', function() {
         });
     });
 
-    it('executes the `didFail`-hook as soon as one of the deployment hooks rejects', function() {
+    it('executes the `didFail`-hook as soon as one of the pipeline hooks rejects', function() {
       var subject = new Pipeline(['hook1', 'hook2'], {ui: {write: function() {}}});
       var hooksRun = [];
 
