@@ -1,6 +1,7 @@
 module.exports = {
   "development": {
     "buildEnv": "production",
+    "buildPath": "tmp/deploy-dist/",
     "indexFiles": null,
     "manifestPrefix": "foo",
     "tagging": "sha",
@@ -23,6 +24,7 @@ module.exports = {
 
   "staging": {
     "buildEnv": "staging",
+    "buildPath": "tmp/deploy-dist/",
     "indexFiles": null,
     "manifestPrefix": "foo",
     "tagging": "sha",
