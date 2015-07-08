@@ -302,6 +302,7 @@ describe('PipelineTask', function() {
           expect(pipelineExecuted).to.be.true;
           expect(deployment.ui).to.eq(mockUi);
           expect(deployment.project).to.eq(project);
+          expect(deployment.deployEnvironment).to.eq('development');
           expect(deployment.config.build.buildEnv).to.eq('development');
           expect(deployment.commandLineArgs.revision).to.eq('123abc');
         });
