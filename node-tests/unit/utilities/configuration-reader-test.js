@@ -156,16 +156,16 @@ describe('ConfigurationReader', function() {
       var root    = process.cwd();
       var cfgFile = require(path.join(root, './node-tests/fixtures/config-with-defaults/deploy.js'));
 
-      ENVs.forEach(function(ENV) {
+      return Promise.map(ENVs, function(ENV) {
         var expected = cfgFile[ENV];
 
-        var config = new ConfigurationReader({
+        return new ConfigurationReader({
           environment: ENV,
           ui: ui,
           project: project
-        }).config;
-
-        expect(config._materialize()).to.deep.equal(expected);
+        }).read().then(function(config){
+          expect(config._materialize()).to.deep.equal(expected);
+        });
       });
     });
   })

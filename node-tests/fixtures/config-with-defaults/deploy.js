@@ -8,7 +8,7 @@ module.exports = {
     "store": {
       "host": "localhost",
       "manifestSize": 10,
-      "port": 63790,
+      "port": 6379,
       "type": "redis"
     },
     "assets": {
@@ -41,7 +41,7 @@ module.exports = {
       "exclude": [],
       "gzip": true,
       "prefix": "<optional-remote-prefix>",
-      "gzipExtensions": ["js", "css", "svg", "json"],
+      "gzipExtensions": ["js", "css", "svg"],
       "type": "s3"
     }
   }
