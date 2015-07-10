@@ -192,6 +192,8 @@ plugins: ["s3-assets", "s3-index", "notify-slack"]
 
 Any plugins not included in the list will not have their hooks executed.
 
+#### Aliasing plugins (probably post-0.5.0)
+
 To include a plugin twice, alias it using a colon.
 
 ```
@@ -216,12 +218,12 @@ Goals:
 2) An API for app developers to define deployment pipeline configuration synchronously or asynchronously.
 3) An API for plugin developers to provide static default configuration values.
 4) An API for plugin developers to provide default configuration values that are derived at run-time from the data produced by plugin running prior to it in the pipeline.
-5) An API for plugin developers to allow ap developers to interact with plugin settings via command line flags. 
+5) An API for plugin developers to allow ap developers to interact with plugin settings via command line flags.
 6) An API for app developers to specify configuration of a plugin to use data produced by a plugin running prior to it in the pipeline.
 
 Approach:
 
-* App developers use `config/deploy.js` to return a function that receives the build environment as a string and returns either a config object or a Promise that fulfills with a config object. The config object has properties corresponding to the name of the plugin (e.g. for ember-cli-deploy-redis, the property is “redis”). Supports goal No. 2 above. (This is implemented in the 0.5.0 WIP already.)  
+* App developers use `config/deploy.js` to return a function that receives the build environment as a string and returns either a config object or a Promise that fulfills with a config object. The config object has properties corresponding to the name of the plugin (e.g. for ember-cli-deploy-redis, the property is “redis”). Supports goal No. 2 above. (This is implemented in the 0.5.0 WIP already.)
 
 Examples:
 
@@ -245,7 +247,7 @@ module.export function(environment){
   return someAsyncDataRetrieval(environment).then(function(data){
     ENV.redis = data.redisUrl;
     return ENV;
-  } 
+  }
 };
 ```
 
@@ -265,7 +267,7 @@ module.exports = {
         var deployment = context.deployment;
         var config = deployment.config[this.name] = deployment.config[this.name] || {};
         config.filePattern = config.filePattern || “**/*.html”; // provide default
-        
+
       },
       // ...
   }
@@ -273,7 +275,7 @@ module.exports = {
 ```
 
 * Plugin developers can also use `configure` hook specify a default configuration property as a function, which will be called at run-time, when a plugin wishes to read and use the configuration value. The function will receive the context and must return a value or throw an Error. The context would allow access to data added to pipeline by previous plugins, as well as flags set on command line. Supports goal No. 4 and No. 5 above. (This is not yet implemented.)
- 
+
 Example:
 
 ```js
@@ -319,3 +321,16 @@ module.export function(environment){
 ```
 
 These approaches all combine to achieve goal No. 1 above.
+
+### Plugins packs
+
+A "plugin pack" is an ember-cli addon with the keyword
+"ember-cli-deploy-plugin-pack" and one or more dependent
+addons that are ember-cli-deploy-plugins.
+
+Note that the plugin pack’s dependent addons should be listed as
+dependencies in the pack’s package.json, not as devDependencies.
+
+Plugin packs may also implement a config/deploy.js blueprint that
+is auto-executed upon `ember install` of the pack to make
+configuration easy for end-developers.
