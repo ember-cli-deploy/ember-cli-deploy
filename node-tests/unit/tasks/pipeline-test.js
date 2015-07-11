@@ -271,7 +271,7 @@ describe('PipelineTask', function() {
   describe('executing the pipeline task', function() {
     it ('executes the pipeline, passing in the deployment context', function() {
       var pipelineExecuted = false;
-      var deployment;
+      var pipelineContext;
 
       var project = {
         name: function() {return 'test-project';},
@@ -289,7 +289,7 @@ describe('PipelineTask', function() {
         pipeline: {
           execute: function(context) {
             pipelineExecuted = true;
-            deployment = context.deployment;
+            pipelineContext = context;
             return Promise.resolve();
           }
         }
@@ -298,11 +298,11 @@ describe('PipelineTask', function() {
       return expect(task.run()).to.be.fulfilled
         .then(function() {
           expect(pipelineExecuted).to.be.true;
-          expect(deployment.ui).to.eq(mockUi);
-          expect(deployment.project).to.eq(project);
-          expect(deployment.deployEnvironment).to.eq('development');
-          expect(deployment.config.build.buildEnv).to.eq('development');
-          expect(deployment.commandLineArgs.revision).to.eq('123abc');
+          expect(pipelineContext.ui).to.eq(mockUi);
+          expect(pipelineContext.project).to.eq(project);
+          expect(pipelineContext.deployEnvironment).to.eq('development');
+          expect(pipelineContext.config.build.buildEnv).to.eq('development');
+          expect(pipelineContext.commandLineArgs.revision).to.eq('123abc');
         });
     });
   });

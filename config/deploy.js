@@ -2,6 +2,9 @@ module.exports = function(environment) {
   var ENV = {};
 
   if (environment === 'development') {
+    ENV.build = {
+      environment: 'development'
+    };
     ENV.store = {
       host: 'localhost',
       port: 6379
@@ -15,7 +18,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV.buildEnv = 'staging';
+    ENV.build = {
+      environment: 'production'
+    };
 
     ENV.store = {
       host: 'staging-redis.firstiwaslike.com',

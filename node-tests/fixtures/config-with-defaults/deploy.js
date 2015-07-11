@@ -1,6 +1,8 @@
 module.exports = {
   "development": {
-    "buildEnv": "production",
+    "build": {
+      "environment": "development"
+    },
     "buildPath": "tmp/deploy-dist/",
     "indexFiles": null,
     "manifestPrefix": "foo",
@@ -23,7 +25,9 @@ module.exports = {
   },
 
   "staging": {
-    "buildEnv": "staging",
+    "build": {
+      "environment": "production"
+    },
     "buildPath": "tmp/deploy-dist/",
     "indexFiles": null,
     "manifestPrefix": "foo",

@@ -43,7 +43,7 @@ describe ('Pipeline', function() {
   });
 
   describe ('#execute', function() {
-    it ('runs the registered functions', function() {
+    it('runs the registered functions', function() {
       var subject = new Pipeline(['hook1', 'hook2'], {ui: {write: function() {}}});
       var hooksRun = [];
 
@@ -54,7 +54,6 @@ describe ('Pipeline', function() {
       subject.register('hook2', function() {
         hooksRun.push('2');
       });
-
       return expect(subject.execute()).to.be.fulfilled
         .then(function() {
           expect(hooksRun.length).to.eq(2);

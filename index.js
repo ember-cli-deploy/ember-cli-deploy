@@ -36,14 +36,14 @@ Deploy.prototype.blueprintsPath = function() {
 };
 
 Deploy.prototype.included = function(app) {
-  var buildEnv   = this._deployEnvSetByDeployCommand();
+  var deployEnv  = this._deployEnvSetByDeployCommand();
   var root       = app.project.root;
   var configPath = path.join(root, 'config', 'deploy');
   var config;
   var fingerprint;
 
-  if (buildEnv) {
-    config = require(configPath)(buildEnv);
+  if (deployEnv) {
+    config = require(configPath)(deployEnv);
 
     if (config.fingerprint === false) {
       app.options.fingerprint = {enabled: false};

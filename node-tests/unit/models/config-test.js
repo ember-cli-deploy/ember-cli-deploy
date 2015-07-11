@@ -24,11 +24,11 @@ describe('Config', function() {
   describe('buildEnv', function(){
     it('defaults to production', function() {
       var config = createConfig('tomster', {});
-      expect(config.get('buildEnv')).to.eq('production');
+      expect(config.get('build.environment')).to.eq('production');
     });
     it('allows configuration', function() {
-      var config = createConfig('tomster', { buildEnv: 'chocula' });
-      expect(config.get('buildEnv')).to.eq('chocula');
+      var config = createConfig('tomster', { build: { environment: 'chocula' } });
+      expect(config.get('build.environment')).to.eq('chocula');
     });
   });
 
