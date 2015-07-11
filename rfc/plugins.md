@@ -92,7 +92,6 @@ of properties that may be of use to a plugin:
 Property | file | info
 --- | --- | ---
 `ui` | - | The ember-cli UI object that can be used to write to stdout.
-`appConfig` | `config/environment.js` | The application configuration.
 `config` | stored in `config/deploy.js` | The configuration portion of `config/deploy.js` for the active environment
 `data` | - | Runtime information about the current operation. Plugins can set properties on this object for later use by themselves or another plugin.
 

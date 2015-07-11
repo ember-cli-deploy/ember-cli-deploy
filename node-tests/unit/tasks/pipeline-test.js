@@ -6,7 +6,6 @@ var assert       = require('chai').assert;
 describe('PipelineTask', function() {
   var mockProject   = {addons: []};
   var mockConfig    = {};
-  var mockAppConfig = {};
   var mockUi        = { write: function() {} };
 
   describe('creating and setting up a new instance', function() {
@@ -22,8 +21,7 @@ describe('PipelineTask', function() {
       var fn = function() {
         new PipelineTask({
           project: mockProject,
-          config: mockConfig,
-          appConfig: mockAppConfig
+          config: mockConfig
         });
       };
 
