@@ -91,7 +91,7 @@ describe('ConfigurationReader', function() {
       }).read().then(function(){
         expect(false).to.equal(true);
       }, function(err){
-        expect(err.message).to.equal('Cannot load configuration file \'' + path.join(root, configPath) + '\'. Note that the default location of the ember-cli-deploy config file is now \'config/deploy.js\'');
+        expect(err.message).to.equal('Cannot load configuration file \'' + path.join(root, configPath) + '\'. Note that the default location of the ember-cli-deploy config file is now \''+ path.join('config', 'deploy.js')+'\'');
       });
     });
 
