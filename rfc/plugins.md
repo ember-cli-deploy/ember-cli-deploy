@@ -83,16 +83,15 @@ property. Usually, the `name` will be the plugin name sans the `ember-cli-deploy
 prefix, unless a name has been specified as described in Advanced Plugin
 Configuration below.
 
-### The `deployment` object
+### The `context` object
 
-For each high-level ember-cli-deploy operation, a `deployment` object is created.
+For each high-level ember-cli-deploy operation, a `context` object is created.
 This object is passed to each hook that is invoked on the plugins. It has a number
 of properties that may be of use to a plugin:
 
 Property | file | info
 --- | --- | ---
 `ui` | - | The ember-cli UI object that can be used to write to stdout.
-`appConfig` | `config/environment.js` | The application configuration.
 `config` | stored in `config/deploy.js` | The configuration portion of `config/deploy.js` for the active environment
 `data` | - | Runtime information about the current operation. Plugins can set properties on this object for later use by themselves or another plugin.
 
