@@ -12,6 +12,12 @@ tagline:          'Deploy pipeline for Ember apps'
 description:      'A deployment pipeline for Ember CLI apps'
 url:              https://github.com/ember-cli/ember-cli-deploy
 baseurl:          /ember-cli-deploy
+destination:      jekyll-tmp/
+exclude:
+  - node_modules
+  - bower_components
+  - tmp
+
 
 # Custom vars
 version:          0.4.1
@@ -19,3 +25,9 @@ version:          0.4.1
 github:
   repo:           https://github.com/ember-cli/ember-cli-deploy
 
+defaults:
+  -
+    scope:
+      path: "docs"
+    values:
+      layout: "docs"

@@ -3,13 +3,17 @@
 
   {% include head.html %}
 
-  <body class='theme-base-08'>
+  <body>
 
-    {% include sidebar.html %}
+    {% include header.html %} 
 
-    <div class="content container">
-      {{ content }}
+    <div class="Wrapper">
+      <div class="Content">
+        {{ content }}
+      </div>
     </div>
+    
+    {% include footer.html %} 
 
   </body>
 </html>

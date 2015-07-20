@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Acceptance testing &middot; Ember CLI Deploy
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    
+  
+    
+  
+
+
+<header class="Header">
+  <nav class='Header__nav'>
+    <ul class='Header__nav-list'>
+      <li class='Header__nav-item'>
+        <a href='/' class="Header__nav-item-link ">Home</a>
+      </li>
+      <li class='Header__nav-item'>
+        <a href='/docs/v0.5.x' class="Header__nav-item-link active">Docs</a>
+      </li>
+      <li class='Header__nav-item'>
+        <a href='/plugins' class="Header__nav-item-link">Plugins</a>
+      </li>
+      <li class='Header__nav-item'>
+        <a href="https://github.com/ember-cli/ember-cli-deploy" class='Header__nav-item-link' target="_blank">GitHub</a>
+      </li>
+    </ul>
+  </nav>
+  <a class="Header__logo" href="/">
+    <span class='Header__logo-minor'>Ember CLI</span><br>
+    <span class='Header__logo-major'>Deploy</span>
+  </a>
+</header>
+ 
+
+    <div class="Wrapper">
+      <div class="Content">
+        
+
+<div class="Side-panel">
+
+  <select class="Mobile-nav" onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs...</option>
+    
+      
+
+
+  
+  <optgroup label='Getting started'>
+
+<option value="/docs/v0.5.x/">Overview</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/installation/">Installation</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/quickstart/">Quickstart</option>
+
+
+    
+      
+
+
+  
+    </optgroup>
+  
+  <optgroup label='Writing your server'>
+
+<option value="/docs/v0.5.x/defining-routes/">Defining routes</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/seeding-your-database/">Seeding your database</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/acceptance-testing/">Acceptance testing</option>
+
+
+    
+      
+
+
+  
+    </optgroup>
+  
+  <optgroup label='API reference'>
+
+<option value="/docs/v0.5.x/server-configuration/">Server configuration</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/routes/">Routes</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/shorthands/">Shorthands</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/database/">Database</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/factories/">Factories</option>
+
+  </optgroup>
+
+
+    
+  </select>
+
+  <ul class="Desktop-nav">
+    
+      
+        <li class='Desktop-nav__section'>Getting started</li>
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/">
+    Overview
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/installation/">
+    Installation
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/quickstart/">
+    Quickstart
+  </a>
+</li>
+
+      
+    
+      
+        <li class='Desktop-nav__section'>Writing your server</li>
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/defining-routes/">
+    Defining routes
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/seeding-your-database/">
+    Seeding your database
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item active" href="/docs/v0.5.x/acceptance-testing/">
+    Acceptance testing
+  </a>
+</li>
+
+      
+    
+      
+        <li class='Desktop-nav__section'>API reference</li>
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/server-configuration/">
+    Server configuration
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/routes/">
+    Routes
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/shorthands/">
+    Shorthands
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/database/">
+    Database
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/factories/">
+    Factories
+  </a>
+</li>
+
+      
+    
+  </ul>
+</div>
+
+
+<div class="Center-panel">
+  <div class="Docs-page">
+    <div class='Docs-page__header'>
+      <div class="Docs-page__version">
+        <select onchange="if (this.value) window.location.href=this.value">
+          
+            <option value="/docs/v0.5.x" selected >v0.5.x</option>
+          
+        </select>
+      </div>
+      <h1 class='Docs-page__title'>Acceptance testing</h1>
+    </div>
+
+    <div class='Docs-page__content'>
+      <p>Acceptance testing your Ember app typically involves verifying some user behavior. For example, you may want to test that the user can view the photos on your app&#39;s index route.</p>
+
+<p>Many of these tests rely on a given server state. In other words, you want to test that the user can view ten photos, <em>given ten photo resources exist on the server</em> when the user boots the app. This is where factories come in.</p>
+
+<p>Factories let you define the initial server state directly in your tests:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;I can view the photos&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">server</span><span class="p">.</span><span class="nx">createList</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+  <span class="nx">visit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+
+  <span class="nx">andThen</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">equal</span><span class="p">(</span> <span class="nx">find</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">,</span> <span class="mi">10</span> <span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>server.createList</code> looks up the <code>photo</code> factory (the file <code>/app/mirage/factories/photo.js</code>), and generates 10 database records from it, using the attributes generated by the factory. This way, Mirage&#39;s database is populated when the Ember app boots and makes an AJAX request to fetch the photos data.</p>
+
+<p>Note that Mirage&#39;s server is restarted after each test. This means the database will start out empty at the beginning of each test.</p>
+
+<h2>Overriding factory attributes</h2>
+
+<p>The purpose of factories is to put code that&#39;s highly relevant to a test as close to that test as possible. In the example above, we wanted to verify that the user would see ten photos, given those photos existed on the server. So, the <code>server.createList(&#39;photo&#39;, 10)</code> call was directly in the test.</p>
+
+<p>Say we wanted to test that when the user visits a details route for a photo titled &quot;Sunset over Hyrule,&quot; they would see that title in an <code>&lt;h1&gt;</code> tag. One way to accomplish this would be to update the photo factory itself:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// app/mirage/factories/photo.js</span>
+<span class="kr">import</span> <span class="nx">Mirage</span> <span class="nx">from</span> <span class="s1">&#39;ember-cli-mirage&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Mirage</span><span class="p">.</span><span class="nx">Factory</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Sunset over Hyrule&#39;</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The problem with this approach is that the desired change is very specific to this test. Suppose another test wanted to verify photos with different titles were displayed. Changing the factory to suit that case would break this test.</p>
+
+<p>For this reason, <code>create</code> and <code>createList</code> allow you to override specific attributes that your factory has defined. This lets us keep relevant code near our tests, without making them brittle.</p>
+
+<p>To override attributes, simply pass in an object as the last argument to <code>create</code> or <code>createList</code> with the attributes you want to override. Here&#39;s what this may look like for the photos example.</p>
+
+<p>First, let&#39;s make our factory more generic:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// app/mirage/factories/photo.js</span>
+<span class="kr">import</span> <span class="nx">Mirage</span> <span class="nx">from</span> <span class="s1">&#39;ember-cli-mirage&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Mirage</span><span class="p">.</span><span class="nx">Factory</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">title</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="err">`</span><span class="nx">Photo</span> <span class="nx">$</span><span class="p">{</span><span class="nx">i</span><span class="p">}</span><span class="err">`</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Photo 1, Photo 2 etc.</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Now, we can write our tests, overriding the factory-generated attributes where appropriate:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;I can view the photos&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">server</span><span class="p">.</span><span class="nx">createList</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+
+  <span class="nx">visit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+
+  <span class="nx">andThen</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">equal</span><span class="p">(</span> <span class="nx">find</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">,</span> <span class="mi">10</span> <span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">test</span><span class="p">(</span><span class="s2">&quot;I see the photo&#39;s title on a detail route&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">photo</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Sunset over Hyrule&#39;</span><span class="p">});</span>
+
+  <span class="nx">visit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">photo</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+  <span class="nx">andThen</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">equal</span><span class="p">(</span> <span class="nx">find</span><span class="p">(</span><span class="s1">&#39;h1:contains(Sunset over Hyrule&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">,</span> <span class="mi">1</span> <span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>We override <code>title</code> in the second test since it&#39;s relevant there, but we stick with the factory-generated defaults for the first test.</p>
+
+<h2>Relationships</h2>
+
+<p><aside class='Docs-page__aside'>
+  <p><a href="https://github.com/samselikoff/ember-cli-mirage/issues/28">Factory relationships</a> will simplify these scenarios.</p>
+</aside></p>
+
+<p>You can use attribute overrides to set up related database records in your tests. Let&#39;s say we want to write a test given that a user with 10 photos exists on the server.</p>
+
+<p>We could set up the relationship like this:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">test</span><span class="p">(</span><span class="s2">&quot;I see the photo&#39;s title on a detail route&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">server</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+  <span class="nx">server</span><span class="p">.</span><span class="nx">createList</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">{</span><span class="nx">user_id</span><span class="o">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
+
+  <span class="c1">// write your test</span>
+</code></pre></div>
+<p>Now any route that requests this user and their photos will retrieve all the data.</p>
+
+<h2>Fixtures in acceptance tests</h2>
+
+<p>Mirage recommends that you use factories in testing, as they make your tests more intention-revealing. If you&#39;d like to load your fixture files during testing, simply delete your <code>/mirage/factories</code> directory.</p>
+
+<hr>
+
+<p>You should now know enough to mock out your JSON API and test your app using Mirage! Check out the next section for a detailed reference on all of Mirage&#39;s features.</p>
+
+    </div>
+
+    
+
+<div class='Docs-page-nav'>
+  
+    
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+      
+      
+        
+  
+         <a class="Docs-page-nav__link u-first" href="/docs/v0.5.x/seeding-your-database/">< Seeding your database</a>
+      
+  
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+      
+      
+        
+  
+         <a class="Docs-page-nav__link u-last" href="/docs/v0.5.x/server-configuration/">Server configuration ></a>
+      
+  
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+</div>
+
+  </div>
+</div>
+
+      </div>
+    </div>
+    
+    <footer class="Footer">
+  <div class="Container Grid Grid--gutters Grid--full med-Grid--fit">
+    <div class="Grid-cell">
+      <p>We <3 our <a href="https://github.com/ember-cli/ember-cli-deploy/graphs/contributors">contributors</a>.</p>
+    </div>
+    <div class="Grid-cell">
+      <div class="Github-stars">
+        <iframe src="https://ghbtns.com/github-btn.html?user=ember-cli&repo=ember-cli-deploy&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+      </div>
+    </div>
+  </div> 
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js"></script>
+<script>
+  /* global anchors */
+  // anchors.options = {
+  //   placement: 'left',
+  //   visible: 'always'
+  // };
+  anchors.add('h2:not(.Home-page__feature-heading)');
+</script>
+ 
+
+  </body>
+</html>

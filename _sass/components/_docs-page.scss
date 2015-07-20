@@ -1,0 +1,54 @@
+.Docs-page {
+  @include white-panel;
+  margin-bottom: 40px;
+
+  @include above($breakpoint) {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+
+  h2 {
+    font-size: 17px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  &__version {
+    text-align: right;
+    font-size: 14px;
+    color: #999;
+    float: right;
+    margin-left: 20px;
+    margin-top: 10px;
+    select {
+      font-size: 16px;
+    }
+  }
+  &__title {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  &__content {
+  }
+
+  &__aside {
+    float: right;
+    color: #999;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-left: 40px;
+    font-size: 0.8em;
+    max-width: 180px;
+
+    @include below($breakpoint) {
+      display: none;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+}

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Database &middot; Ember CLI Deploy
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    
+  
+    
+  
+
+
+<header class="Header">
+  <nav class='Header__nav'>
+    <ul class='Header__nav-list'>
+      <li class='Header__nav-item'>
+        <a href='/' class="Header__nav-item-link ">Home</a>
+      </li>
+      <li class='Header__nav-item'>
+        <a href='/docs/v0.5.x' class="Header__nav-item-link active">Docs</a>
+      </li>
+      <li class='Header__nav-item'>
+        <a href='/plugins' class="Header__nav-item-link">Plugins</a>
+      </li>
+      <li class='Header__nav-item'>
+        <a href="https://github.com/ember-cli/ember-cli-deploy" class='Header__nav-item-link' target="_blank">GitHub</a>
+      </li>
+    </ul>
+  </nav>
+  <a class="Header__logo" href="/">
+    <span class='Header__logo-minor'>Ember CLI</span><br>
+    <span class='Header__logo-major'>Deploy</span>
+  </a>
+</header>
+ 
+
+    <div class="Wrapper">
+      <div class="Content">
+        
+
+<div class="Side-panel">
+
+  <select class="Mobile-nav" onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs...</option>
+    
+      
+
+
+  
+  <optgroup label='Getting started'>
+
+<option value="/docs/v0.5.x/">Overview</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/installation/">Installation</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/quickstart/">Quickstart</option>
+
+
+    
+      
+
+
+  
+    </optgroup>
+  
+  <optgroup label='Writing your server'>
+
+<option value="/docs/v0.5.x/defining-routes/">Defining routes</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/seeding-your-database/">Seeding your database</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/acceptance-testing/">Acceptance testing</option>
+
+
+    
+      
+
+
+  
+    </optgroup>
+  
+  <optgroup label='API reference'>
+
+<option value="/docs/v0.5.x/server-configuration/">Server configuration</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/routes/">Routes</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/shorthands/">Shorthands</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/database/">Database</option>
+
+
+    
+      
+
+
+<option value="/docs/v0.5.x/factories/">Factories</option>
+
+  </optgroup>
+
+
+    
+  </select>
+
+  <ul class="Desktop-nav">
+    
+      
+        <li class='Desktop-nav__section'>Getting started</li>
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/">
+    Overview
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/installation/">
+    Installation
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/quickstart/">
+    Quickstart
+  </a>
+</li>
+
+      
+    
+      
+        <li class='Desktop-nav__section'>Writing your server</li>
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/defining-routes/">
+    Defining routes
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/seeding-your-database/">
+    Seeding your database
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/acceptance-testing/">
+    Acceptance testing
+  </a>
+</li>
+
+      
+    
+      
+        <li class='Desktop-nav__section'>API reference</li>
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/server-configuration/">
+    Server configuration
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/routes/">
+    Routes
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/shorthands/">
+    Shorthands
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item active" href="/docs/v0.5.x/database/">
+    Database
+  </a>
+</li>
+
+      
+    
+      
+      
+        
+
+<li>
+  <a class="Desktop-nav__item " href="/docs/v0.5.x/factories/">
+    Factories
+  </a>
+</li>
+
+      
+    
+  </ul>
+</div>
+
+
+<div class="Center-panel">
+  <div class="Docs-page">
+    <div class='Docs-page__header'>
+      <div class="Docs-page__version">
+        <select onchange="if (this.value) window.location.href=this.value">
+          
+            <option value="/docs/v0.5.x" selected >v0.5.x</option>
+          
+        </select>
+      </div>
+      <h1 class='Docs-page__title'>Database</h1>
+    </div>
+
+    <div class='Docs-page__content'>
+      <p>Your Mirage server has a database which you can interact with in your route handlers. You retrieve or modify data from the database, then return what you want for that route.</p>
+
+<p>Here are the database methods available to you from within your route definitions.</p>
+
+<p><a name="createCollection" href="#createCollection">#</a> db.<b>createCollection</b>(<i>name</i>)</p>
+
+<p>Add an empty collection named <em>name</em> to your database. Typically you won&#39;t need to do this yourself, since collections are automatically created for any factories and fixtures you&#39;ve defined.</p>
+
+<p><a name="collection" href="#collection">#</a> db.<b>collection</b></p>
+
+<p>Returns the <em>collection</em> attached to the database object.</p>
+
+<p>For example if you had the following data file named <code>/app/mirage/fixtures/contacts.js</code></p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="k">default</span> <span class="p">[</span>
+  <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zelda&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Link&#39;</span><span class="p">}</span>
+<span class="p">];</span>
+</code></pre></div>
+<p>then <code>db.contacts</code> would return this array.</p>
+
+<p><a name="insert" href="#insert">#</a> db.collection.<b>insert</b>(<i>data</i>)</p>
+
+<p>Inserts <em>data</em> into the collection. <em>data</em> can be a single object or an array of objects. Returns the inserted record.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Insert a single record</span>
+<span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Link&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">173</span><span class="p">});</span>
+<span class="nx">link</span><span class="p">;</span>  <span class="c1">// {id: 1, name: &#39;Link&#39;, age: 137}</span>
+
+<span class="c1">// Insert an array</span>
+<span class="kd">var</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">insert</span><span class="p">([</span>
+  <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zelda&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">142</span><span class="p">},</span>
+  <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Epona&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">:</span> <span class="mi">58</span><span class="p">},</span>
+<span class="p">]);</span>
+<span class="nx">users</span><span class="p">;</span>  <span class="c1">// [{id: 2, name: &#39;Zelda&#39;, age: 142}, {id: 3, name: &#39;Epona&#39;, age: 58}]</span>
+</code></pre></div>
+<p><a name="find" href="#find">#</a> db.collection.<b>find</b>(<i>ids</i>)</p>
+
+<p>Returns a single record from the <em>collection</em> if <em>ids</em> is a single id, or an array of records if <em>ids</em> is an array of ids. Note each <em>id</em> can be an int or a string, but integer ids as strings (e.g. the string &quot;1&quot;) will be treated as integers.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* </span>
+<span class="cm">  Given users = [{id: 1, name: &#39;Link&#39;}, {id: 2, name: &#39;Zelda&#39;}]</span>
+<span class="cm">*/</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// {id: 1, name: &#39;Link&#39;}</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span> <span class="c1">// [{id: 1, name: &#39;Link&#39;}, {id: 2, name: &#39;Zelda&#39;}]</span>
+</code></pre></div>
+<p><a name="where" href="#where">#</a> db.collection.<b>where</b>(<i>query</i>)</p>
+
+<p>Returns an array of models from <em>collection</em> that match the key-value pairs in the <em>query</em> object. Note that a string comparison is used. <em>query</em> is a POJO.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* </span>
+<span class="cm">  Given users = [{id: 1, name: &#39;Link&#39;}, {id: 2, name: &#39;Zelda&#39;}]</span>
+<span class="cm">*/</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">where</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zelda&#39;</span><span class="p">});</span> <span class="c1">// [{id: 2, name: &#39;Link&#39;}]</span>
+</code></pre></div>
+<p><a name="update" href="#update">#</a> db.collection.<b>update</b>(<i>attrs</i>) or db.collection.<b>update</b>(<i>target</i>, <i>attrs</i>)</p>
+
+<p>Updates one or more records in <em>collection</em>. </p>
+
+<p>If <em>attrs</em> is the only arg present, updates all records in the collection according to the key-value pairs in <em>attrs</em>.</p>
+
+<p>If <em>target</em> is present, restricts updates to those that match <em>target</em>. If <em>target</em> is a number or string, finds a single record whose id is <em>target</em> to update. If <em>target</em> is a POJO, queries <em>collection</em> for records that match the key-value pairs in <em>target</em>, and updates their <em>attrs</em>.</p>
+
+<p>Returns the updated record or records.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* </span>
+<span class="cm">  Given users = [</span>
+<span class="cm">    {id: 1, name: &#39;Link&#39;},</span>
+<span class="cm">    {id: 2, name: &#39;Zelda&#39;}</span>
+<span class="cm">  ]</span>
+<span class="cm">*/</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Ganon&#39;</span><span class="p">});</span> <span class="c1">// db.users = [{id: 1, name: &#39;Ganon&#39;}, {id: 2, name: &#39;Ganon&#39;}]</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Young Link&#39;</span><span class="p">});</span> <span class="c1">// db.users = [{id: 1, name: &#39;Young Link&#39;}, {id: 2, name: &#39;Zelda&#39;}]</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Link&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Epona&#39;</span><span class="p">});</span> <span class="c1">// db.users = [{id: 1, name: &#39;Epona&#39;}, {id: 2, name: &#39;Zelda&#39;}]</span>
+</code></pre></div>
+<p><a name="remove" href="#remove">#</a> db.collection.<b>remove</b>(<i>target</i>)</p>
+
+<p>Removes one or more records in <em>collection</em>.</p>
+
+<p>If <em>target</em> is undefined, removes all records. If <em>target</em> is a number or string, removes a single record using <em>target</em> as id. If <em>target</em> is a POJO, queries <em>collection</em> for records that match the key-value pairs in <em>target</em>, and removes them from the collection.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* </span>
+<span class="cm">  Given users = [</span>
+<span class="cm">    {id: 1, name: &#39;Link&#39;},</span>
+<span class="cm">    {id: 2, name: &#39;Zelda&#39;}</span>
+<span class="cm">  ]</span>
+<span class="cm">*/</span>
+
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span> <span class="c1">// db.users = []</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// db.users = [{id: 2, name: &#39;Zelda&#39;}]</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Zelda&#39;</span><span class="p">});</span> <span class="c1">// db.users = [{id: 1, name: &#39;Link&#39;}]</span>
+</code></pre></div>
+    </div>
+
+    
+
+<div class='Docs-page-nav'>
+  
+    
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+      
+      
+        
+  
+         <a class="Docs-page-nav__link u-first" href="/docs/v0.5.x/shorthands/">< Shorthands</a>
+      
+  
+    
+  
+  
+    
+    
+    
+  
+  
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+  
+    
+    
+    
+      
+      
+      
+        
+  
+         <a class="Docs-page-nav__link u-last" href="/docs/v0.5.x/factories/">Factories ></a>
+      
+  
+    
+  
+  
+    
+</div>
+
+  </div>
+</div>
+
+      </div>
+    </div>
+    
+    <footer class="Footer">
+  <div class="Container Grid Grid--gutters Grid--full med-Grid--fit">
+    <div class="Grid-cell">
+      <p>We <3 our <a href="https://github.com/ember-cli/ember-cli-deploy/graphs/contributors">contributors</a>.</p>
+    </div>
+    <div class="Grid-cell">
+      <div class="Github-stars">
+        <iframe src="https://ghbtns.com/github-btn.html?user=ember-cli&repo=ember-cli-deploy&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+      </div>
+    </div>
+  </div> 
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js"></script>
+<script>
+  /* global anchors */
+  // anchors.options = {
+  //   placement: 'left',
+  //   visible: 'always'
+  // };
+  anchors.add('h2:not(.Home-page__feature-heading)');
+</script>
+ 
+
+  </body>
+</html>

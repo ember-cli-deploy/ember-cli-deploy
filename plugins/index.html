@@ -1,0 +1,12 @@
+---
+layout: default
+title: Plugins
+---
+
+{% for version in site.data.navs %}
+  {% if forloop.first %}
+    {% assign latest = version[0] %}
+  {% endif %}
+{% endfor %}
+
+<h1>Here are the plugins</h1>

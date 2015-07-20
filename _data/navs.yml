@@ -1,0 +1,18 @@
+v0.5.x:
+  - section: Getting started
+    label: Overview
+    path: ''
+  - label: Installation
+  - label: Quickstart
+
+  - section: Writing your server
+    label: Defining routes
+  - label: Seeding your database
+  - label: Acceptance testing
+
+  - section: API reference
+    label: Server configuration
+  - label: Routes
+  - label: Shorthands
+  - label: Database
+  - label: Factories

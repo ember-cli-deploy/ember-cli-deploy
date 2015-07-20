@@ -1,0 +1,27 @@
+.Footer {
+  background-color: whitesmoke;
+  border-top: 1px solid #ddd;
+  padding: 1.5em 0;
+  color: #888;
+  font-size: 14px;
+  margin-top: 4em;
+
+  @include below($small-breakpoint) {
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    // color: $footer-link-color;
+    // border-color: rgba(#B4BEC7, 0.3);
+    @include transition(all, 0.15s);
+
+    &:hover {
+      // color: lighten($footer-text-color, 10%);
+      border-color: #B4BEC7;
+    }
+  }
+}

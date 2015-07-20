@@ -3,7 +3,35 @@
 ---
 
 @import 'variables';
-@import 'mixins';
+
+@import 'mixins/flexbox';
+@import 'mixins/animations';
+@import 'mixins/white-panel';
+@import 'mixins/others';
+
+@import 'animations/shimmer';
 
 @import 'base';
-@import 'sidebar';
+@import 'utilities';
+
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/wrapper';
+@import 'layout/content';
+@import 'layout/side-panel';
+@import 'layout/center-panel';
+@import 'layout/container';
+@import 'layout/footer';
+
+@import 'components/home-page';
+@import 'components/page';
+@import 'components/table';
+@import 'components/browser';
+@import 'components/docs-page';
+@import 'components/docs-page-nav';
+@import 'components/github-stars';
+@import 'components/desktop-nav';
+@import 'components/mobile-nav';
+@import 'components/subtle-hr';
+@import 'components/about';
+@import 'components/anchor-link';

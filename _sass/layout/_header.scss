@@ -1,0 +1,116 @@
+$header-height: 70px;
+.Header {
+  background: $orange;
+  width: 100%;
+  z-index: 100;
+  
+  @include above($small-breakpoint) {
+    height: $header-height;
+  }
+
+  @include above($breakpoint) {
+  }
+
+  &__logo {
+    background-color: $orange;
+    color: white;
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.7em;
+    line-height: 1.1;
+    border: none;
+    @include above($small-breakpoint) {
+      line-height: 0.8;
+      display: inline;
+      text-align: left;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+  &__logo-minor {
+    font-size: 20px;
+    @include above($breakpoint) {
+      font-size: 20px;
+    }
+  }
+  &__logo-major {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 28px;
+    @include above($breakpoint) {
+      font-size: 30px;
+    }
+
+    @include above($breakpoint) {
+      position: absolute;
+      @include background-clip(text);
+    }
+  }
+  &__nav {
+    display: block;
+    @include above($small-breakpoint) {
+      float: right;
+      width: 70%;
+    }
+  }
+  &__nav-list {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    display: table;
+    width: 100%;
+    overflow: hidden;
+
+    @include above($small-breakpoint) {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+  }
+  &__nav-item {
+    display: table-cell;
+    width: 25%;
+    text-align: center; 
+
+    @include above($small-breakpoint) {
+      display: inline-block;
+      width: auto;
+    }
+  }
+  &__nav-item-link {
+    background: darken($orange, 20%);
+    border: none;
+    color: white;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 100%;
+
+    @include above($small-breakpoint) {
+      padding: 3px 10px;
+      width: auto;
+    }
+
+    &:focus {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      background-color: darken($sidebar-main, 8%);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    &.active {
+      color: white;
+      background-color: $orange;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    }
+  }
+}
