@@ -6,10 +6,28 @@ title: Home
 <div class="Home-page">
   <h1 class='Home-page__tagline'><div class="Container">Sound architecture and a plugin ecosystem to help you deploy your app</div></h1>
 
-  <div class="Container">
-    <h1>Use Plugins</h1>
-  </div>
+  <section class='Home-page__section'>
+    <div class='Container'>
+      <h1 class='Home-page__section-title'>A Deploy Pipeline</h1>
+      <p class='Home-page__section-content'>
+        Build, upload, activate - conventions that make your deploy logic maintainable and reusable.
+      </p>
+    </div>
+  </section>
+
+  <section class='Home-page__section'>
+    <div class='Container'>
+      <h1 class='Home-page__section-title'>Plugins for Every Task</h1>
+      <p class='Home-page__section-content'>
+        11 deploy hooks lay the base for a vibrant plugin ecosystem. You'll find plugins that talk to S3, notify Slack and more.
+      </p>
+      <p class='Home-page__section-content'>
+        Assemble them to create a perfect deployment process for your app.
+      </p>
+    </div>
+  </section>
 </div>
+
 <!-- {% for version in site.data.navs %}
   {% if forloop.first %}
     {% assign latest = version[0] %}

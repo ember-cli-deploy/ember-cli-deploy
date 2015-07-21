@@ -6,7 +6,7 @@
   &__tagline {
     @include linear-gradient($orange, #E67C00);
     padding-top: 30px;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     margin-top: 0;
     font-size: 36px;
     color: white;
@@ -21,6 +21,18 @@
     //   line-height: 1.1;
     //   margin-top: 0.8em;
     // }
+  }
+  &__section {
+    padding-top: 2em;
+    text-align: center;
+    color: #4a4e56;
+  }
+  &__section-title {
+    font-size: 1.25em;
+    font-weight: normal;
+  }
+  &__section-content {
+    line-height: 1.75
   }
 }
 // .Home-page {
