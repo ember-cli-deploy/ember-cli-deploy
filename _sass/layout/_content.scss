@@ -7,8 +7,8 @@
   @include flex-direction(column);
   
   @include above($breakpoint) {
-    @include flex-direction(row);
-    @include flex;
-    max-width: 960px;
+    // @include flex-direction(row);
+    // @include flex;
+    // max-width: 960px;
   }
 }

@@ -1,32 +1,43 @@
-$header-height: 70px;
+// $header-height: 50px;
 .Header {
   background: $orange;
+  color: white;
   width: 100%;
   z-index: 100;
+  line-height: 1;
   
   @include above($small-breakpoint) {
-    height: $header-height;
+    // background: white;
+    // color: #444;
+
+    // height: $header-height;
+    // padding-top: 1em;
+    // padding-left: 1em;
   }
 
   @include above($breakpoint) {
   }
 
   &__logo {
-    background-color: $orange;
-    color: white;
+    // background-color: $orange;
+    color: inherit;
     font-size: 24px;
     display: block;
     text-align: center;
     padding-top: 0.5em;
     padding-bottom: 0.7em;
-    line-height: 1.1;
+    // line-height: 1.1;
     border: none;
     @include above($small-breakpoint) {
-      line-height: 0.8;
-      display: inline;
+      margin-top: 4px;
+      padding-left: 15px;
       text-align: left;
-      padding-top: 7px;
-      padding-bottom: 7px;
+      float: left;
+      // line-height: 1;
+      // display: inline;
+      // text-align: left;
+      // // padding-top: 7px;
+      // // padding-left: 7px;
     }
 
     &:hover,
@@ -34,18 +45,43 @@ $header-height: 70px;
       text-decoration: none;
     }
   }
-  &__logo-minor {
-    font-size: 20px;
+  &__container {
     @include above($breakpoint) {
-      font-size: 20px;
+      max-width: 960px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &__logo-minor {
+    font-size: 15px;
+    padding: 1px 2px;
+    font-weight: normal;
+    border: 1px solid;
+    border-radius: 4px;
+    display: inline-block;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-family: monospace;
+    // display: block;
+    @include above($small-breakpoint) {
+      font-size: 12px;
+      vertical-align: middle;
+      line-height: 16px;
+      // display: inline;
+      // font-size: 20px;
     }
   }
   &__logo-major {
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    // text-transform: uppercase;
+    // letter-spacing: 2px;
+    display: block;
     font-size: 28px;
-    @include above($breakpoint) {
-      font-size: 30px;
+    margin-top: 4px;
+    @include above($small-breakpoint) {
+      display: inline;
+      font-size: 20px;
     }
 
     @include above($breakpoint) {
@@ -86,17 +122,20 @@ $header-height: 70px;
   &__nav-item-link {
     background: darken($orange, 20%);
     border: none;
-    color: white;
+    color: rgba(255,255,255,0.80);
     display: inline-block;
     float: left;
     font-size: 14px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-top: 15px;
     width: 100%;
 
     @include above($small-breakpoint) {
-      padding: 3px 10px;
+      padding: 25px 17px;
       width: auto;
+      background: inherit;
+      color: inherit;
+      font-weight: 500;
     }
 
     &:focus {
@@ -104,13 +143,12 @@ $header-height: 70px;
     }
     &:hover {
       text-decoration: none;
-      background-color: darken($sidebar-main, 8%);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      color: inherit;
     }
     &.active {
-      color: white;
-      background-color: $orange;
-      text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+      color: inherit;
+      // background-color: $orange;
+      background: inherit;
     }
   }
 }

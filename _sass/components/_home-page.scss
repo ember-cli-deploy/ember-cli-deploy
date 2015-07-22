@@ -15,24 +15,50 @@
     // margin-top: 1.2em;
     line-height: 1.2;
 
-    // @include above($small-breakpoint) {
-    //   text-align: left;
-    //   font-size: 66px;
-    //   line-height: 1.1;
-    //   margin-top: 0.8em;
-    // }
+    @include above($small-breakpoint) {
+      // text-align: left;
+      padding: 60px 40px 90px;
+      font-size: 46px;
+      line-height: 1.25;
+      // font-weight: 100;
+      // margin-top: 0.8em;
+    }
   }
   &__section {
     padding-top: 2em;
     text-align: center;
     color: #4a4e56;
+
+    @include above($small-breakpoint) {
+      padding-top: 4em;
+    }
   }
   &__section-title {
     font-size: 1.25em;
     font-weight: normal;
   }
   &__section-content {
-    line-height: 1.75
+    line-height: 1.75;
+    @include above($small-breakpoint) {
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &__button {
+    padding: 0.7em 1.6em;
+    font-size: 17px;
+    background-color: transparent;
+    color: $orange;
+    border: 1px solid $orange;
+    border-radius: 6px;
+    cursor: pointer;
+    @include transition(all, 0.1s);
+
+    &:hover {
+      background-color: $orange;
+      color: white;
+    }
   }
 }
 // .Home-page {

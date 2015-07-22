@@ -5,24 +5,26 @@
 {% endfor %}
 
 <header class="Header">
-  <nav class='Header__nav'>
-    <ul class='Header__nav-list'>
-      <li class='Header__nav-item'>
-        <a href='{{ site.baseurl }}/' class="Header__nav-item-link {% if page.url == '/' %}active{% endif %}">Home</a>
-      </li>
-      <li class='Header__nav-item'>
-        <a href='{{ site.baseurl }}/docs/{{latest}}' class="Header__nav-item-link{% if page.url contains '/docs' %} active{% endif %}">Docs</a>
-      </li>
-      <li class='Header__nav-item'>
-        <a href='{{ site.baseurl }}/plugins' class="Header__nav-item-link{% if page.url contains '/plugins' %} active{% endif %}">Plugins</a>
-      </li>
-      <li class='Header__nav-item'>
-        <a href="{{ site.url }}" class='Header__nav-item-link' target="_blank">GitHub</a>
-      </li>
-    </ul>
-  </nav>
-  <a class="Header__logo" href="{{ site.baseurl }}/">
-    <span class='Header__logo-minor'>Ember CLI</span><br>
-    <span class='Header__logo-major'>Deploy</span>
-  </a>
+  <div class="Header__container">
+    <nav class='Header__nav'>
+      <ul class='Header__nav-list'>
+        <li class='Header__nav-item'>
+          <a href='{{ site.baseurl }}/' class="Header__nav-item-link {% if page.url == '/' %}active{% endif %}">Home</a>
+        </li>
+        <li class='Header__nav-item'>
+          <a href='{{ site.baseurl }}/docs/{{latest}}' class="Header__nav-item-link{% if page.url contains '/docs' %} active{% endif %}">Docs</a>
+        </li>
+        <li class='Header__nav-item'>
+          <a href='{{ site.baseurl }}/plugins' class="Header__nav-item-link{% if page.url contains '/plugins' %} active{% endif %}">Plugins</a>
+        </li>
+        <li class='Header__nav-item'>
+          <a href="{{ site.url }}" class='Header__nav-item-link' target="_blank">GitHub</a>
+        </li>
+      </ul>
+    </nav>
+    <a class="Header__logo" href="{{ site.baseurl }}/">
+      <span class='Header__logo-minor'>Ember CLI</span>
+      <span class='Header__logo-major'>Deploy</span>
+    </a>
+  </div>
 </header>

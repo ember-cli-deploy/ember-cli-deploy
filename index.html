@@ -3,6 +3,12 @@ layout: default
 title: Home
 ---
 
+{% for version in site.data.navs %}
+  {% if forloop.first %}
+    {% assign latest = version[0] %}
+  {% endif %}
+{% endfor %}
+
 <div class="Home-page">
   <h1 class='Home-page__tagline'><div class="Container">Sound architecture and a plugin ecosystem to help you deploy your app</div></h1>
 
@@ -19,13 +25,42 @@ title: Home
     <div class='Container'>
       <h1 class='Home-page__section-title'>Plugins for Every Task</h1>
       <p class='Home-page__section-content'>
-        11 deploy hooks lay the base for a vibrant plugin ecosystem. You'll find plugins that talk to S3, notify Slack and more.
+        11 deploy hooks lay the base for a vibrant plugin ecosystem. You'll find plugins that upload to S3, notify Slack and more.
       </p>
       <p class='Home-page__section-content'>
         Assemble them to create a perfect deployment process for your app.
       </p>
     </div>
   </section>
+
+  <section class='Home-page__section'>
+    <div class='Container'>
+      <h1 class='Home-page__section-title'>One-Line Deploys</h1>
+      <p class='Home-page__section-content'>
+        With a configured pipeline, deploy your app with one command.
+      </p>
+      <p class='Home-page__section-content'>
+        The magic of conventions, for the last piece of your development process.
+      </p>
+    </div>
+  </section>
+
+  <div class="Container">
+    <div class="Browser">
+      <div class="Browser__window">
+        <pre class="Browser__body"><code class="Browser__code"><span class="prompt">$ </span>ember deploy production</code>
+        </pre>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="u-text-center">
+    <a href='/docs/{{latest}}' class="Home-page__button">
+      Get started
+    </a>
+  </div>
 </div>
 
 <!-- {% for version in site.data.navs %}
