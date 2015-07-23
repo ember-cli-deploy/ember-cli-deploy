@@ -15,9 +15,6 @@
       display: block;
     }
 
-    @include above($small-breakpoint) {
-      width: 65%;
-    }
   }
 
   &__body {

@@ -1,6 +1,12 @@
 .u-text-center {
   text-align: center;
 }
+.u-margin-bottom {
+  margin-bottom: 1em;
+}
+.u-padding-bottom {
+  padding-bottom: 1em;
+}
 .u-hidden-sm {
   @include below($small-breakpoint) {
     display: none !important;

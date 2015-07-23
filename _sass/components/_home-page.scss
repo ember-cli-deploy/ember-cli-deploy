@@ -17,33 +17,164 @@
 
     @include above($small-breakpoint) {
       // text-align: left;
-      padding: 60px 40px 90px;
+      padding-top: 60px;
+      padding-bottom: 90px;
+      // width: 60%;
       font-size: 46px;
       line-height: 1.25;
       // font-weight: 100;
       // margin-top: 0.8em;
     }
   }
-  &__section {
-    padding-top: 2em;
-    text-align: center;
-    color: #4a4e56;
-
+  &__tagline-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
     @include above($small-breakpoint) {
-      padding-top: 4em;
-    }
-  }
-  &__section-title {
-    font-size: 1.25em;
-    font-weight: normal;
-  }
-  &__section-content {
-    line-height: 1.75;
-    @include above($small-breakpoint) {
-      max-width: 300px;
+      width: 70%;
+      max-width: 650px;
       margin-left: auto;
       margin-right: auto;
     }
+  }
+  &__section {
+    @include flexbox;
+    @include flex-direction(column);
+    padding: 2em 1em;
+    text-align: center;
+    color: #4a4e56;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    @include above($small-breakpoint) {
+      @include flex-direction(row);
+      text-align: left;
+      padding-top: 4em;
+    }
+  }
+  &__section-copy {
+    @include flex(1);
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    @include above($small-breakpoint) {
+      // margin-top: 4em;
+    }
+  }
+  &__section-copy-wrapper {
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include above($small-breakpoint) {
+      max-width: none;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  //     margin-left: auto;
+  //     margin-right: 0;
+
+  //     .Home-page__section:nth-child(odd) & {
+  //       margin-left: 0;
+  //       margin-right: auto;
+  //     }
+  //   }
+  }
+  &__section-graphic {
+    @include flex(1);
+
+    @include flexbox;
+    // @include flex-direction(column);
+    @include justify-content(center);
+
+    @include above($small-breakpoint) {
+      // @include align-items(center);
+      height: 270px;
+      // margin: 4em;
+      // @include align-items(flex-start);
+
+      .Home-page__section:nth-child(odd) & {
+        // @include align-items(flex-end);
+        @include order(-1);
+      }
+    }
+  }
+  &__section-graphic-wrapper {
+    width: 80%;
+
+    @include above($small-breakpoint) {
+      @include flex(0 1 80%);
+
+      @include flexbox;
+      // @include flex-direction(column);
+      @include justify-content(center);
+      @include align-items(center);
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      // padding: 5em 3em;
+      // height: auto;
+
+      width: 100%;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+  }
+  &__section-image {
+    @include flex(0 0 1);
+    max-width: 100%;
+    opacity: 0.7;
+    height: 65px;
+
+    // border: 2px solid #999;
+    // border-radius: 4px;
+    // padding: 4em;
+
+    @include above($small-breakpoint) {
+      // height: 75px;
+      // border: 2px solid #ccc;
+      // border-radius: 4px;
+      // padding: 5em 3em;
+      // height: auto;
+      // padding-left: 4em;
+
+      .Home-page__section:nth-child(odd) & {
+        // padding-left: 0;
+        // padding-right: 4em;
+      }
+    }
+  }
+  &__section-title {
+    font-size: 1.4em;
+    font-weight: normal;
+  }
+  &__section-content {
+    line-height: 1.45;
+    color: rgb(127, 131, 133);
+    font-size: 17px;
+    // max-width: 300px;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+  &__terminal {
+    // padding-left: 4em;
+
+    @include above($small-breakpoint) {
+      height: 200px;
+
+      .Browser__body {
+        height: 180px;
+      }
+    }
+    // max-width: 500px;
+
+    // padding-top: 1em;
+    // padding-bottom: 1em;
+    // margin-left: auto;
+    // margin-right: auto;
+
+    // @include above($small-breakpoint) {
+    //   padding-top: 2em;
+    //   padding-bottom: 2em;
+    // }
   }
   &__button {
     padding: 0.7em 1.6em;

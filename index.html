@@ -10,49 +10,71 @@ title: Home
 {% endfor %}
 
 <div class="Home-page">
-  <h1 class='Home-page__tagline'><div class="Container">Sound architecture and a plugin ecosystem to help you deploy your app</div></h1>
+  <h1 class='Home-page__tagline'>
+    <div class="Home-page__tagline-container">Sound architecture and a plugin ecosystem to help you deploy your <strong>Ember</strong> app</div>
+  </h1>
 
   <section class='Home-page__section'>
-    <div class='Container'>
-      <h1 class='Home-page__section-title'>A Deploy Pipeline</h1>
-      <p class='Home-page__section-content'>
-        Build, upload, activate - conventions that make your deploy logic maintainable and reusable.
-      </p>
-    </div>
-  </section>
-
-  <section class='Home-page__section'>
-    <div class='Container'>
-      <h1 class='Home-page__section-title'>Plugins for Every Task</h1>
-      <p class='Home-page__section-content'>
-        11 deploy hooks lay the base for a vibrant plugin ecosystem. You'll find plugins that upload to S3, notify Slack and more.
-      </p>
-      <p class='Home-page__section-content'>
-        Assemble them to create a perfect deployment process for your app.
-      </p>
-    </div>
-  </section>
-
-  <section class='Home-page__section'>
-    <div class='Container'>
-      <h1 class='Home-page__section-title'>One-Line Deploys</h1>
-      <p class='Home-page__section-content'>
-        With a configured pipeline, deploy your app with one command.
-      </p>
-      <p class='Home-page__section-content'>
-        The magic of conventions, for the last piece of your development process.
-      </p>
-    </div>
-  </section>
-
-  <div class="Container">
-    <div class="Browser">
-      <div class="Browser__window">
-        <pre class="Browser__body"><code class="Browser__code"><span class="prompt">$ </span>ember deploy production</code>
-        </pre>
+    <div class='Home-page__section-copy'>
+      <div class="Home-page__section-copy-wrapper">
+        <h1 class='Home-page__section-title'>A Deploy Pipeline</h1>
+        <p class='Home-page__section-content'>
+          Build, upload, activate - conventions that make your deploy logic maintainable and reusable.
+        </p>
       </div>
     </div>
-  </div>
+    <div class="Home-page__section-graphic">
+      <div class="Home-page__section-graphic-wrapper">
+        <img class='Home-page__section-image' src="/public/images/deploy.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class='Home-page__section'>
+    <div class='Home-page__section-copy'>
+      <div class="Home-page__section-copy-wrapper">
+        <h1 class='Home-page__section-title'>Plugins for Every Task</h1>
+        <p class='Home-page__section-content'>
+          11 deploy hooks lay the base for a vibrant plugin ecosystem. You'll find plugins that upload to S3, notify Slack and more.
+        </p>
+        <p class='Home-page__section-content'>
+          Assemble them to create a perfect deployment process for your app.
+        </p>
+      </div>
+    </div>
+    <div class="Home-page__section-graphic">
+      <div class="Home-page__section-graphic-wrapper">
+        <img class='Home-page__section-image' src="/public/images/plugins.png" alt="">
+      </div> 
+    </div>
+  </section>
+
+  <section class='Home-page__section'>
+    <div class='Home-page__section-copy'>
+      <div class="Home-page__section-copy-wrapper">
+        <h1 class='Home-page__section-title'>One-Line Deploys</h1>
+        <p class='Home-page__section-content'>
+          With a configured pipeline, deploy your app with one command.
+        </p>
+        <p class='Home-page__section-content'>
+          The magic of conventions, for the last piece of your development process.
+        </p>
+      </div>
+    </div>
+    <div class="Home-page__section-graphic">
+      <div class="Home-page__section-graphic-wrapper">
+        <div class="Home-page__terminal">
+          <div class="Browser">
+            <div class="Browser__window">
+              <pre class="Browser__body"><code class="Browser__code"><span class="prompt">$ </span>ember deploy production</code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <hr>
 

@@ -9,13 +9,13 @@
     <nav class='Header__nav'>
       <ul class='Header__nav-list'>
         <li class='Header__nav-item'>
-          <a href='{{ site.baseurl }}/' class="Header__nav-item-link {% if page.url == '/' %}active{% endif %}">Home</a>
-        </li>
-        <li class='Header__nav-item'>
           <a href='{{ site.baseurl }}/docs/{{latest}}' class="Header__nav-item-link{% if page.url contains '/docs' %} active{% endif %}">Docs</a>
         </li>
         <li class='Header__nav-item'>
           <a href='{{ site.baseurl }}/plugins' class="Header__nav-item-link{% if page.url contains '/plugins' %} active{% endif %}">Plugins</a>
+        </li>
+        <li class='Header__nav-item'>
+          <a href='{{ site.baseurl }}/support' class="Header__nav-item-link{% if page.url contains '/support' %} active{% endif %}">Support</a>
         </li>
         <li class='Header__nav-item'>
           <a href="{{ site.url }}" class='Header__nav-item-link' target="_blank">GitHub</a>
