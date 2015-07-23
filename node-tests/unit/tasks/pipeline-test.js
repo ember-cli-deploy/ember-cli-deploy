@@ -41,7 +41,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
-          deployEnvironment: 'development',
+          deployTarget: 'development',
           deployConfigPath: 'node-tests/fixtures/config/deploy.js',
           hooks: ['willDeploy', 'upload']
         });
@@ -77,7 +77,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
-          deployEnvironment: 'development',
+          deployTarget: 'development',
           deployConfigPath: 'node-tests/fixtures/config/deploy.js',
           hooks: ['willDeploy', 'upload']
         });
@@ -116,7 +116,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
-          deployEnvironment: 'development',
+          deployTarget: 'development',
           deployConfigPath: 'node-tests/fixtures/config/deploy.js',
           hooks: ['willDeploy', 'upload']
         });
@@ -148,7 +148,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
-          deployEnvironment: 'development',
+          deployTarget: 'development',
           deployConfigPath: 'node-tests/fixtures/config/deploy.js',
           hooks: ['willDeploy', 'upload']
         });
@@ -199,7 +199,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
-          deployEnvironment: 'development',
+          deployTarget: 'development',
           deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test.js',
           hooks: ['willDeploy', 'upload']
         });
@@ -250,7 +250,7 @@ describe('PipelineTask', function() {
         var task = new PipelineTask({
           project: project,
           ui: mockUi,
-          deployEnvironment: 'development',
+          deployTarget: 'development',
           deployConfigPath: 'node-tests/fixtures/config/deploy.js',
           hooks: ['willDeploy', 'upload']
         });
@@ -282,9 +282,9 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
-        deployEnvironment: 'development',
+        deployTarget: 'development',
         deployConfigPath: 'node-tests/fixtures/config/deploy.js',
-        commandLineArgs: {revision: '123abc'},
+        commandOptions: {revision: '123abc'},
         hooks: ['willDeploy', 'upload'],
         pipeline: {
           execute: function(context) {
@@ -300,9 +300,9 @@ describe('PipelineTask', function() {
           expect(pipelineExecuted).to.be.true;
           expect(pipelineContext.ui).to.eq(mockUi);
           expect(pipelineContext.project).to.eq(project);
-          expect(pipelineContext.deployEnvironment).to.eq('development');
+          expect(pipelineContext.deployTarget).to.eq('development');
           expect(pipelineContext.config.build.buildEnv).to.eq('development');
-          expect(pipelineContext.commandLineArgs.revision).to.eq('123abc');
+          expect(pipelineContext.commandOptions.revision).to.eq('123abc');
         });
     });
   });
