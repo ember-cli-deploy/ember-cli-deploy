@@ -1,7 +1,9 @@
 .Github-stars {
-  text-align: left;
+  width: 100px;
+  margin: 0 auto;
+  overflow: hidden;
   
-  @include above($breakpoint) {
-    text-align: right;
+  @include above($small-breakpoint) {
+    float: right;
   }
 }

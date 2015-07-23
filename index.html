@@ -30,7 +30,9 @@ title: Home
     </div>
   </section>
 
-  <section class='Home-page__section'>
+  <hr class='Home-page__divider'>
+
+  <section class='Home-page__section Home-page__section--flipped'>
     <div class='Home-page__section-copy'>
       <div class="Home-page__section-copy-wrapper">
         <h1 class='Home-page__section-title'>Plugins for Every Task</h1>
@@ -49,12 +51,14 @@ title: Home
     </div>
   </section>
 
+  <hr class='Home-page__divider'>
+
   <section class='Home-page__section'>
     <div class='Home-page__section-copy'>
       <div class="Home-page__section-copy-wrapper">
         <h1 class='Home-page__section-title'>One-Line Deploys</h1>
         <p class='Home-page__section-content'>
-          With a configured pipeline, deploy your app with one command.
+          A configured pipeline lets you deploy your app with a single command.
         </p>
         <p class='Home-page__section-content'>
           The magic of conventions, for the last piece of your development process.
@@ -62,23 +66,20 @@ title: Home
       </div>
     </div>
     <div class="Home-page__section-graphic">
-      <div class="Home-page__section-graphic-wrapper">
-        <div class="Home-page__terminal">
-          <div class="Browser">
-            <div class="Browser__window">
-              <pre class="Browser__body"><code class="Browser__code"><span class="prompt">$ </span>ember deploy production</code>
-              </pre>
-            </div>
+      <div class="Home-page__terminal">
+        <div class="Browser">
+          <div class="Browser__window">
+            <pre class="Browser__body"><code class="Browser__code"><span class="prompt">$ </span>ember deploy production</code>
+            </pre>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <hr class='Home-page__divider'>
 
-  <hr>
-
-  <div class="u-text-center">
+  <div class="u-text-center u-margin-top-lg">
     <a href='/docs/{{latest}}' class="Home-page__button">
       Get started
     </a>
