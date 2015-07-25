@@ -3,8 +3,8 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  @include flexbox;
-  @include flex-direction(column);
+  // @include flexbox;
+  // @include flex-direction(column);
   
   @include above($breakpoint) {
     // @include flex-direction(row);

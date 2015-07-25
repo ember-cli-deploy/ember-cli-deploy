@@ -10,8 +10,6 @@
     padding-right: 2rem;
   }
   @include above(960px) {
-    padding-left:  2rem;
-    padding-right: 2rem;
     max-width: 960px;
   }
 }

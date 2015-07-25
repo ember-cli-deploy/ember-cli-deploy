@@ -4,7 +4,7 @@
   }
 }
 .Side-panel {
-  padding: 2rem 0;
+  padding-bottom: 2rem;
   color: $sidebar-text;
   text-align: left;
 
@@ -12,7 +12,6 @@
     @include flex(0 0 32%);
     padding-top: 0;
     padding-right: 50px;
-    // padding: 0 20px;
   }
 
 }

@@ -28,6 +28,13 @@ github:
 defaults:
   -
     scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
       path: "docs"
     values:
       layout: "docs"
+      page_header: Documentation
