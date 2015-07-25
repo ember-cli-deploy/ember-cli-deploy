@@ -1,5 +1,4 @@
 .Docs-page {
-  @include white-panel;
   margin-bottom: 40px;
 
   @include above($breakpoint) {
@@ -15,14 +14,24 @@
   }
 
   &__version {
-    text-align: right;
-    font-size: 14px;
-    color: #999;
-    float: right;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin-bottom: 10px;
+
+    @include above($breakpoint) {
+    //   // text-align: right;
+      color: $sidebar-text-subtle;
+    //   margin-bottom: 0.2em;
+    //   border-bottom: 1px solid rgba($sidebar-text-subtle, 0.2);
+    //   font-size: 18px;
+      margin-top: 4em;
+    }
     select {
       font-size: 16px;
+      width: 40%;
+      margin-left: 10px;
+
+      // @include above($breakpoint) {
+      //   float: right;
+      // }
     }
   }
   &__title {

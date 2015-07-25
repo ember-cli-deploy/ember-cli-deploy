@@ -1,13 +1,18 @@
 .Page {
-  background-color: white;
-  padding: 30px;
-  margin-bottom: 40px;
-  border-radius: 4px;
-  width: 100%;
 
-  h1 {
-    margin: 0;
-    color: #383A3D;
+  &__header {
+    border-bottom: 1px solid #999;
+    box-shadow: 3px 0 8px 2px rgba(0,0,0,.2);
+
+    @include above($breakpoint) {
+      margin-bottom: 2em;
+    }
+  }
+  &__title {
+    color: #555;
+    color: $orange;
     font-size: 36px;
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
   }
 }

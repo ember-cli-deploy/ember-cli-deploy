@@ -30,7 +30,6 @@
   &__content {
     @include above($breakpoint) {
       @include flex();
-      @include white-panel;
     }
   }
 

@@ -17,15 +17,16 @@ $yellow: #FFCD00;
 // $orange: #EF5636;
 $orange: #D8563A;
 $blue: #337ab7;
+$bright-orange: #E67C00;
 
 $main-color: $dark-blue;
-$highlight-color: $red;
+$highlight-color: $orange;
 
 $link-color: $orange;
 $link-active: $highlight-color;
-$sidebar-text: #fff;
+$sidebar-text: #333;
 $sidebar-main: $main-color;
-$sidebar-link: rgba(white, 0.9);
-$sidebar-text-subtle: #7E8AA3;
+$sidebar-link: #999;
+$sidebar-text-subtle: #999;
 $sidebar-text-inverse: $sidebar-text;
 $sidebar-text-inverse-subtle: rgba($sidebar-text, 0.5);

@@ -5,39 +5,20 @@
   width: 100%;
   z-index: 100;
   line-height: 1;
-  
-  @include above($small-breakpoint) {
-    // background: white;
-    // color: #444;
-
-    // height: $header-height;
-    // padding-top: 1em;
-    // padding-left: 1em;
-  }
-
-  @include above($breakpoint) {
-  }
 
   &__logo {
-    // background-color: $orange;
     color: inherit;
     font-size: 24px;
     display: block;
     text-align: center;
     padding-top: 0.5em;
     padding-bottom: 0.7em;
-    // line-height: 1.1;
     border: none;
     @include above($small-breakpoint) {
       margin-top: 4px;
       padding-left: 15px;
       text-align: left;
       float: left;
-      // line-height: 1;
-      // display: inline;
-      // text-align: left;
-      // // padding-top: 7px;
-      // // padding-left: 7px;
     }
 
     &:hover,
@@ -64,30 +45,22 @@
     opacity: 0.8;
     text-transform: uppercase;
     font-family: monospace;
-    // display: block;
+
     @include above($small-breakpoint) {
       font-size: 12px;
       vertical-align: middle;
       line-height: 16px;
-      // display: inline;
-      // font-size: 20px;
     }
   }
   &__logo-major {
-    // text-transform: uppercase;
-    // letter-spacing: 2px;
     display: block;
     font-size: 28px;
     margin-top: 4px;
+
     @include above($small-breakpoint) {
       display: inline;
       font-size: 20px;
     }
-
-    // @include above($breakpoint) {
-    //   position: absolute;
-    //   @include background-clip(text);
-    // }
   }
   &__nav {
     display: block;
@@ -106,8 +79,9 @@
 
     @include above($small-breakpoint) {
       text-align: right;
-      display: inline-block;
+      width: auto;
       margin-bottom: 0;
+      float: right;
     }
   }
   &__nav-item {
@@ -116,20 +90,22 @@
     text-align: center; 
 
     @include above($small-breakpoint) {
-      display: inline-block;
+      display: block;
       width: auto;
+      float: left;
     }
   }
   &__nav-item-link {
     background: darken($orange, 20%);
     border: none;
     color: rgba(255,255,255,0.80);
-    display: inline-block;
+    display: block;
     float: left;
     font-size: 14px;
     padding-bottom: 15px;
     padding-top: 15px;
     width: 100%;
+    opacity: 0.8;
 
     @include above($small-breakpoint) {
       padding: 25px 17px;
@@ -147,12 +123,17 @@
     }
     &:hover {
       text-decoration: none;
-      color: inherit;
+      opacity: 1;
     }
     &.active {
-      color: inherit;
-      // background-color: $orange;
-      background: inherit;
+      opacity: 1;
+      background: $orange;
+      color: white;
+
+      @include above($small-breakpoint) {
+        background-color: white;
+        color: $orange;
+      }
     }
   }
 }
