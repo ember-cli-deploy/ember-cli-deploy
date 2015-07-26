@@ -12,36 +12,42 @@
     margin-bottom: 20px;
     color: #333;
   }
-
   &__version {
     margin-bottom: 10px;
 
     @include above($breakpoint) {
-    //   // text-align: right;
       color: $sidebar-text-subtle;
-    //   margin-bottom: 0.2em;
-    //   border-bottom: 1px solid rgba($sidebar-text-subtle, 0.2);
-    //   font-size: 18px;
       margin-top: 4em;
     }
     select {
       font-size: 16px;
       width: 40%;
       margin-left: 10px;
-
-      // @include above($breakpoint) {
-      //   float: right;
-      // }
     }
   }
   &__title {
     margin-top: 0;
     margin-bottom: 15px;
   }
+  &__improve-link {
+    opacity: 0.5;
+    font-size: 13px;
+    margin-top: 8px;
+    padding-left: 25px;
+    float: right;
+    border-bottom: none;
+    color: #333;
 
-  &__content {
+    img {
+      height: 11px;
+      padding-right: 3px
+    }
+    &:hover,
+    &:focus {
+      color: $link-color;
+      opacity: 1;
+    }
   }
-
   &__aside {
     float: right;
     color: #999;
