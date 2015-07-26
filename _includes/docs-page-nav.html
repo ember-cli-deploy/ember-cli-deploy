@@ -1,4 +1,5 @@
 {% assign links = site.data.navs[page.version] %}
+{% capture currentUrl %}{{ site.baseurl}}{{page.url}}{% endcapture %}
 
 <div class='Docs-page-nav'>
   {% for link in links %}
@@ -6,7 +7,7 @@
 
     {% capture path %}{{ site.baseurl}}/docs/{{ page.version }}/{% if link.path %}{{ link.path }}{% else %}{{ link.label | slugify }}/{% endif %}{% endcapture %}
     
-    {% if page.url == path %}
+    {% if currentUrl == path %}
       {% assign prev_i = forloop.index0 | minus: 1 %}
       {% assign prev_link = links[prev_i] %}
 
@@ -29,7 +30,7 @@
 
     {% capture path %}{{ site.baseurl}}/docs/{{ page.version }}/{% if link.path %}{{ link.path }}{% else %}{{ link.label | slugify }}/{% endif %}{% endcapture %}
 
-    {% if page.url == path %}
+    {% if currentUrl == path %}
       {% assign next_i = forloop.index0 | plus: 1 %}
       {% assign next_link = links[next_i] %}
 
