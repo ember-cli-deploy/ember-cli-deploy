@@ -3,7 +3,8 @@
   margin-bottom: 10px;
   @include flexbox;
 
-  &__link {
+  &__prev-link,
+  &__next-link {
     color: $orange;
     font-weight: 700;
     padding: 5px 11px;
@@ -20,5 +21,11 @@
       border-color: $orange;
     }
 
+  }
+  &__prev-link {
+    margin-right: auto;
+  }
+  &__next-link {
+    margin-left: auto;
   }
 }

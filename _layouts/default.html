@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+---
+layout: base
+---
 
-  {% include head.html %}
+<div class='Page__header'>
+  <div class="Container">
+    <h1 class='Page__title'>{{page.page_header}}</h1>
+  </div>
+</div>
 
-  <body>
-
-    {% include header.html %} 
-
-    <div class="Wrapper">
-      <div class="Content">
-        {{ content }}
-      </div>
-    </div>
-    
-    {% include footer.html %} 
-
-  </body>
-</html>
+<div class="Container">
+  {{content}}
+</div>

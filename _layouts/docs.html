@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 ---
 
 {% assign links = site.data.navs[page.version] %}
@@ -13,7 +13,7 @@ layout: page
         {% endif %}
         {% if link.path %}
           {% include desktop-nav-link.html path=link.path label=link.label %}
-        {% else %}
+        {% elsif link.label %}
           {% include desktop-nav-link.html label=link.label %}
         {% endif %}
       {% endfor %}

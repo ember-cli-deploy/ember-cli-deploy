@@ -6,7 +6,11 @@
   {% endunless %}
   <optgroup label='{{link.section}}'>
 {% endif %}
-<option value="{{path}}">{{link.label}}</option>
+
+{% if link.label %}
+  <option value="{{path}}">{{link.label}}</option>
+{% endif %}
+
 {% if forloop.last %}
   </optgroup>
 {% endif %}

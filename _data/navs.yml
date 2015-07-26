@@ -1,18 +1,24 @@
-v0.5.x:
+v0.4.x:
   - section: Getting started
-    label: Overview
+  - label: Overview
     path: ''
   - label: Installation
-  - label: Quickstart
+  - label: Commands
+  - label: Lightening approach workflow
+  - label: Configuration
+  - label: How to use
+  - label: Fingerprinting options and staging environments
 
-  - section: Writing your server
-    label: Defining routes
-  - label: Seeding your database
-  - label: Acceptance testing
+  - section: S3 asset uploads
+  - label: Overview
+    path: 's3-asset-uploads-overview/'
+  - label: Example Sinatra app
+  - label: Example Node app
 
-  - section: API reference
-    label: Server configuration
-  - label: Routes
-  - label: Shorthands
-  - label: Database
-  - label: Factories
+  - section: Custom adapters
+  - label: Overview
+    path: 'custom-adapters-overview/'
+  - label: Existing custom adapters
+  - label: Index adapters
+  - label: Asset adapters
+  - label: Tagging adapters
