@@ -321,7 +321,7 @@ module.export function(environment){
 
 These approaches all combine to achieve goal No. 1 above.
 
-### Plugins packs
+### Plugin packs
 
 A "plugin pack" is an ember-cli addon with the keyword
 "ember-cli-deploy-plugin-pack" and one or more dependent
