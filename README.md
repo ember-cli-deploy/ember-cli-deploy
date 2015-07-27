@@ -127,7 +127,7 @@ This is an example of how one would use this addon to deploy an ember-cli app:
 ## Fingerprinting Options / Staging environments
 
 `ember-cli` comes with [fingerprinting
-support](http://www.ember-cli.com/#fingerprinting-and-cdn-urls) built-in. In
+support](http://www.ember-cli.com/user-guide/#fingerprinting-and-cdn-urls) built-in. In
 most production scenarios you will need to provide a `prepend`-property to your
 app's fingerprint-property (to reference your CDN served assets correctly).
 
