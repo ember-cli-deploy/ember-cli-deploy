@@ -3,7 +3,7 @@ title: Fingerprinting
 ---
 
 `ember-cli` comes with [fingerprinting
-support](http://www.ember-cli.com/#fingerprinting-and-cdn-urls) built-in. In
+support](http://www.ember-cli.com/user-guide/#fingerprinting-and-cdn-urls) built-in. In
 most production scenarios you will need to provide a `prepend`-property to your
 app's fingerprint-property (to reference your CDN served assets correctly).
 
