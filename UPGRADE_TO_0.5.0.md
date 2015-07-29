@@ -6,8 +6,6 @@ The pipeline approach in 0.5.0 requires some modifications to ember-cli-deploy p
 
 - Add the following dependencies: `ember-cli-deploy-build` and `ember-cli-deploy-revision-key`
 - Change your config/deploy.js to return a function instead of an object, for each `environment` setting:
-    - `ENV.store = %INDEX_ADAPTER_NAME%` (for example 'redis')
-    - `ENV.assets = %ASSETS_ADAPTER_NAME%` (for example ('s3')
     - `ENV["%INDEX_ADAPTER_NAME%"] = { /* plugin config goes here */ }`
     - `ENV["%ASSETS_ADAPTER_NAME%"] = { /* plugin config goes here */ }`
 
