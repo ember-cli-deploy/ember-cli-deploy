@@ -13,7 +13,7 @@ Once inside Slack, visit the *#ember-cli-deploy* channel. A core team member or 
 
 ## Github
 
-Our main Github repository is [ember-cli/ember-clideploy](https://github.com/ember-cli/ember-cli-deploy). Feel free to [open an issue](https://github.com/ember-cli/ember-cli-deploy/issues/new) if you find a bug or have a technical question.
+Our main Github repository is [ember-cli/ember-cli-deploy](https://github.com/ember-cli/ember-cli-deploy). Feel free to [open an issue](https://github.com/ember-cli/ember-cli-deploy/issues/new) if you find a bug or have a technical question.
 
 
 # Core team
@@ -50,4 +50,8 @@ SHOW MORE
 - [Deploying Ember CLI Apps](http://blog.firstiwaslike.com/deploying-ember-cli-apps/)
 - [Deploying an Ember CLI Application to Amazon S3](http://kerrygallagher.co.uk/deploying-an-ember-cli-application-to-amazon-s3/) by Kerry Gallagher
 - [Deploying an Ember CLI Application through SSH](http://treyhunner.com/2015/03/deploying-an-ember-cli-application-via-ssh/) by Trey Hunner
+
+**Examples**
+
+- [Ember deploy demo](https://github.com/ghedamat/ember-deploy-demo)
 
