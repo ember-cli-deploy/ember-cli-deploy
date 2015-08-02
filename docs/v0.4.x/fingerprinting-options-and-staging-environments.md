@@ -8,7 +8,7 @@ most production scenarios you will need to provide a `prepend`-property to your
 app's fingerprint-property (to reference your CDN served assets correctly).
 
 ```javascript
-// Brocfile.js
+// ember-cli-build.js
 var app = new EmberApp({
   fingerprint: {
     prepend: 'https://subdomain.cloudfront.net/'
@@ -22,7 +22,7 @@ var app = new EmberApp({
 environments manually. You can do someting like this:
 
 ```javascript
-// Brocfile.js
+// ember-cli-build.js
 var env = EmberApp.env();
 var isProductionLikeBuild = ['production', 'staging'].indexOf(env) > -1;
 
