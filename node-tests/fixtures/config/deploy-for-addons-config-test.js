@@ -1,5 +1,5 @@
 module.exports = function(environment) {
   return {
-    plugins: ['foo-plugin']
+    plugins: ['foo-plugin', 'test-plugin']
   };
 }
