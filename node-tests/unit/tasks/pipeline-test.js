@@ -306,4 +306,103 @@ describe('PipelineTask', function() {
         });
     });
   });
+
+  describe('plugin aliases are correctly handled', function() {
+    it('passes correct name to single plugin alias', function () {
+      var correctAliasUsed = false;
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: [
+          {
+            name: 'ember-cli-deploy-foo-plugin',
+            pkg: {
+              keywords: [
+                'ember-cli-deploy-plugin'
+              ]
+            },
+            createDeployPlugin: function(options) {
+              correctAliasUsed = (options.name === 'bar-alias');
+            }
+          }
+        ]
+      };
+
+      var task = new PipelineTask({
+        project: project,
+        ui: mockUi,
+        deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-alias.js',
+        pipeline: {
+          hookNames: function () {
+            return [];
+          }
+        }
+      });
+
+      return task.setup().then(function() {
+        expect(correctAliasUsed).to.be.true;
+      });
+    });
+
+    it('passes correct name to multiple instances of the same plugin', function () {
+      var correctAliasUsed = {
+        'foo-plugin': false, // plugin without alias
+        'bar-alias': false, // first alias
+        'doo-alias': false // second alias
+      };
+
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: [
+          {
+            name: 'ember-cli-deploy-foo-plugin',
+            pkg: {
+              keywords: [
+                'ember-cli-deploy-plugin'
+              ]
+            },
+            createDeployPlugin: function(options) {
+              correctAliasUsed[options.name] = true;
+            }
+          }
+        ]
+      };
+
+      var task = new PipelineTask({
+        project: project,
+        ui: mockUi,
+        deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
+        pipeline: {
+          hookNames: function () {
+            return [];
+          }
+        }
+      });
+
+      return task.setup().then(function() {
+        expect(correctAliasUsed['foo-plugin']).to.be.true;
+        expect(correctAliasUsed['bar-alias']).to.be.true;
+        expect(correctAliasUsed['doo-alias']).to.be.true;
+      });
+    });
+
+    it('throws error on non-existent plugin in whitelist and appends them to err.unavailablePlugins', function () {
+      var correctAliasUsed = false;
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd()
+      };
+
+      var task = new PipelineTask({
+        project: project,
+        ui: mockUi,
+        deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
+      });
+
+      return task.setup().then(null, function(err) {
+        assert.equal(Object.keys(err.unavailablePlugins).length, 3);
+      });
+    });
+  });
 });
