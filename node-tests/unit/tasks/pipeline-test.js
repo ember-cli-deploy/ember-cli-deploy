@@ -78,7 +78,7 @@ describe('PipelineTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test.js',
           hooks: ['willDeploy', 'upload']
         });
         return task.setup().then(function(){
@@ -251,7 +251,7 @@ describe('PipelineTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test.js',
           hooks: ['willDeploy', 'upload']
         });
         return task.setup().then(function(){
