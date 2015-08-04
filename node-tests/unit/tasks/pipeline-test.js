@@ -6,7 +6,7 @@ var assert       = require('chai').assert;
 describe('PipelineTask', function() {
   var mockProject   = {addons: []};
   var mockConfig    = {};
-  var mockUi        = { write: function() {} };
+  var mockUi        = { write: function() {},  writeError: function() {} };
 
   describe('creating and setting up a new instance', function() {
     it ('raises an error if project is not provided', function() {
@@ -29,6 +29,9 @@ describe('PipelineTask', function() {
     });
 
     describe('setting environment variables from .env', function() {
+      beforeEach(function(){
+        delete process.env.ENVTEST;
+      });
       it('sets the process.env vars if a .env file exists for deploy environment', function() {
         var project = {
           name: function() {return 'test-project';},
