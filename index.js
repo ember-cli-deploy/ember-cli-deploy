@@ -36,7 +36,7 @@ Deploy.prototype.blueprintsPath = function() {
 };
 
 Deploy.prototype.included = function(app) {
-  var deployEnv  = this._deployEnvSetByDeployCommand();
+  var deployEnv  = this._deployTargetSetByDeployCommand();
   var root       = app.project.root;
   var configPath = path.join(root, 'config', 'deploy');
   var config;
@@ -58,8 +58,8 @@ Deploy.prototype.included = function(app) {
   }
 };
 
-Deploy.prototype._deployEnvSetByDeployCommand = function() {
-  return process.env.DEPLOY_ENVIRONMENT;
+Deploy.prototype._deployTargetSetByDeployCommand = function() {
+  return process.env.DEPLOY_TARGET;
 }
 
 module.exports = Deploy;
