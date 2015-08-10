@@ -1,5 +1,5 @@
 var Promise  = require('ember-cli/lib/ext/promise');
-var Pipeline = require('../../../lib/utilities/pipeline');
+var Pipeline = require('../../../lib/models/pipeline');
 
 var expect   = require('../../helpers/expect');
 
