@@ -191,7 +191,7 @@ plugins: ["s3-assets", "s3-index", "notify-slack"]
 
 Any plugins not included in the list will not have their hooks executed.
 
-#### Aliasing plugins (probably post-0.5.0)
+#### Aliasing plugins
 
 To include a plugin twice, alias it using a colon.
 
