@@ -1,5 +1,5 @@
 ---
-title: Lightening approach workflow
+title: Lightning approach workflow
 ---
 
 `ember-cli-deploy` is built around the idea of adapters for custom deployment strategies but for most people the approach Luke suggest in his talk will be a perfect fit.
