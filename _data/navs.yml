@@ -4,7 +4,7 @@ v0.4.x:
     path: ''
   - label: Installation
   - label: Commands
-  - label: Lightening approach workflow
+  - label: Lightning approach workflow
   - label: Configuration
   - label: How to use
   - label: Fingerprinting options and staging environments
