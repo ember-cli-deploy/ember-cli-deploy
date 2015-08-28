@@ -139,6 +139,12 @@ build --------> builds app assets, documentation, etc.
           \
            \-- didBuild     manipulate index.html, validate assets
 
+           /-- willPrepare  confirm deployment info
+          /
+prepare --------> prepare information about the deploy, eg revisonKey, timestamp, commit message
+          \
+           \-- didPrepare   notify APIS (slack etc)
+
            /-- willUpload   confirm remote servers(S3, Redis, Azure, etc.)
           /
 upload -------> puts the assets somewhere(S3, Redis, Azure, Rackspace, etc.)
