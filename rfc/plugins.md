@@ -130,6 +130,10 @@ module.exports = return function(environment) {
 These hooks (part of a typical deployment process) are available for plugins to implement:
 
 ```
+configure: ---> runs before anything happens
+
+setup: -------> the first hook for every command
+
 willDeploy: --> runs before anything happens. good opportunity for plugins to validate
                 configuration or other preconditions
 
@@ -166,6 +170,8 @@ activate -------> make a new version live (clear cache, swap Redis values, etc.)
         the ID of the version to be activated.
 
 didDeploy: --> runs at the end of a full deployment operation.
+
+teardown: ---> always the last hook being run
 ```
 
 In addition, there are a few more specialized hooks that plugins may implement:
