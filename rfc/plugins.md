@@ -188,6 +188,40 @@ discoverVersions: --> should return a promise resolving to an array of version o
 
 ```
 
+### Hooks by command
+
+Depending on the command you're running the hooks that are called vary
+
+#### `ember deploy`
+```
+- configure
+- setup
+- willDeploy
+- willBuild, build, didBuild,
+- willPrepare, prepare, didPrepare,
+- willUpload, upload, didUpload,
+- willActivate, activate, didActivate, (only if --activate flag is passed)
+- didDeploy,
+- teardown
+```
+
+#### `ember deploy:activate`
+```
+- configure
+- setup
+- willActivate, activate, didActivate
+- teardown
+```
+
+#### `ember deploy:list`
+```
+- configure
+- setup
+- fetchRevisions
+- displayRevisions
+- teardown
+```
+
 ### Advanced Plugin Configuration
 
 As mentioned above, by default, all plugins from installed addons will be loaded, and
