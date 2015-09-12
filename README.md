@@ -1,5 +1,6 @@
 # Ember CLI Deploy
 [![Build Status](https://travis-ci.org/ember-cli/ember-cli-deploy.svg?branch=master)](https://travis-ci.org/ember-cli/ember-cli-deploy) [![Code Climate](https://codeclimate.com/github/ember-cli/ember-cli-deploy/badges/gpa.svg)](https://codeclimate.com/github/ember-cli/ember-cli-deploy)
+[![Dependency Status](https://david-dm.org/ember-cli/ember-cli-deploy.svg)](https://david-dm.org/ember-cli/ember-cli-deploy)
 
 Simple, flexible deployment for your Ember CLI app
 
