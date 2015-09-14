@@ -44,6 +44,9 @@
     "ember-addon",
     "ember-cli-deploy"
   ],
+  "ember-addon": {
+    "after": "ember-cli-dotenv"
+  },
   "dependencies": {
     "broccoli": "^0.13.2",
     "broccoli-gzip": "^0.2.0",
