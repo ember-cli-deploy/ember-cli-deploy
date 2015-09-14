@@ -1,3 +1,15 @@
+v0.5.x:
+  - section: Getting started
+  - label: Overview
+    path: ''
+  - label: Installation
+  - label: Quick start
+
+  - section: Plugins
+  - label: Overview
+    path: 'plugins-overview/'
+  - label: Writing a plugin
+
 v0.4.x:
   - section: Getting started
   - label: Overview

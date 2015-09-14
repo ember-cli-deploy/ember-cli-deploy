@@ -1,18 +1,12 @@
-{% for version in site.data.navs %}
-  {% if forloop.first %}
-    {% assign latest = version[0] %}
-  {% endif %}
-{% endfor %}
-
 <header class="Header">
   <div class="Header__container">
     <nav class='Header__nav'>
       <ul class='Header__nav-list'>
         <li class='Header__nav-item'>
-          <a href='{{ site.baseurl }}/docs/{{latest}}' class="Header__nav-item-link{% if page.url contains '/docs' %} active{% endif %}">Docs</a>
+          <a href='{{ site.baseurl }}/docs/{{site.default_version}}' class="Header__nav-item-link{% if page.url contains '/docs' %} active{% endif %}">Docs</a>
         </li>
         <li class='Header__nav-item'>
-          <a href='{{ site.baseurl }}/plugins' class="Header__nav-item-link{% if page.url contains '/plugins' %} active{% endif %}">Plugins</a>
+          <a href='{{ site.baseurl }}/plugins' class="Header__nav-item-link{% if page.url contains '/plugins/' %} active{% endif %}">Plugins</a>
         </li>
         <li class='Header__nav-item'>
           <a href='{{ site.baseurl }}/resources' class="Header__nav-item-link{% if page.url contains '/resources' %} active{% endif %}">Resources</a>

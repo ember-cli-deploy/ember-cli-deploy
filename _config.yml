@@ -23,6 +23,7 @@ exclude:
 github:
   repo:           https://github.com/ember-cli/ember-cli-deploy
 
+default_version: v0.4.x
 defaults:
   -
     scope:
@@ -41,3 +42,8 @@ defaults:
       path: "docs/v0.4.x"
     values:
       version: "v0.4.x"
+  -
+    scope:
+      path: "docs/v0.5.x"
+    values:
+      version: "v0.5.x"

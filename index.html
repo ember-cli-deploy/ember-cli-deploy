@@ -3,12 +3,6 @@ layout: base
 title: Home
 ---
 
-{% for version in site.data.navs %}
-  {% if forloop.first %}
-    {% assign latest = version[0] %}
-  {% endif %}
-{% endfor %}
-
 <div class="Home-page">
   <div class='Home-page__tagline-container'>
     <h1 class="Home-page__tagline">Simple, flexible deployment for your <img class='Home-page__tagline-logo' src="{{site.baseurl}}/public/images/ember_logo.png" alt=""> app</h1>
@@ -80,7 +74,7 @@ title: Home
   <hr class='Home-page__divider'>
 
   <div class="u-text-center u-margin-top-lg">
-    <a href='{{site.baseurl}}/docs/{{latest}}' class="Home-page__button">
+    <a href='{{site.baseurl}}/docs/{{site.default_version}}' class="Home-page__button">
       Get started
     </a>
   </div>
