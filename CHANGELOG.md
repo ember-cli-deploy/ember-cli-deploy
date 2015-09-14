@@ -1,5 +1,21 @@
 # ember-cli-deploy Changelog
 
+### 0.5.0-beta.2 (June 14, 2015)
+
+#### Community Contributions
+
+- [#189](https://github.com/ember-cli/ember-cli-deploy/pull/189) [DOCUMENTATION] Upgrade instructions for plugin authors (and a bit for end users) [@duizendnegen/feature](https://github.com/duizendnegen/feature)
+- [#196](https://github.com/ember-cli/ember-cli-deploy/pull/196) [BUGFIX] Fix bug where fingerprint options in deploy.js don't work [@achambers](https://github.com/achambers)
+- [#197](https://github.com/ember-cli/ember-cli-deploy/pull/197) Remove unused code and commands deprecated in 0.4.0. [@yapplabs](https://github.com/yapplabs)
+- [#206](https://github.com/ember-cli/ember-cli-deploy/pull/206) Remove modifying fingerprint options on `included` hook [@achambers](https://github.com/achambers)
+- [#207](https://github.com/ember-cli/ember-cli-deploy/pull/207) Add 'prepare' hooks to pipeline [@achambers](https://github.com/achambers)
+- [#208](https://github.com/ember-cli/ember-cli-deploy/pull/208) [DOCUMENTATION] Update RFC with prepare hook [@achambers](https://github.com/achambers)
+- [#210](https://github.com/ember-cli/ember-cli-deploy/pull/210) add setup and teardown hooks to all commands [@ghedamat](https://github.com/ghedamat)
+- [#212](https://github.com/ember-cli/ember-cli-deploy/pull/212) [DOCUMENTATION] Update description of hooks in rfc [@ghedamat](https://github.com/ghedamat)
+- [#213](https://github.com/ember-cli/ember-cli-deploy/pull/213) Change deprecated require 'ember-cli/lib/errors/silent' to 'silent-error' [@dukex](https://github.com/dukex)
+
+Thank you to all who took the time to contribute!
+
 ### 0.4.2 (June 14, 2015)
 
 This release fixes asset upload issues with io.js, adds the possibility for
