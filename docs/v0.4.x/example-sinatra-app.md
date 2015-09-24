@@ -8,16 +8,13 @@ This is a small sinatra application that can be used to serve an Ember-CLI appli
 require 'sinatra'
 require 'redis'
 
-def bootstrap_index(index_key)
-  redis = Redis.new
-  index_key &&= "<your-project-name>:#{index_key}"
-  index_key ||= redis.get("<your-project-name>:current")
-  redis.get(index_key)
-end
-
 get '/' do
   content_type 'text/html'
-  bootstrap_index(params[:index_key])
+  
+  redis = Redis.new
+  index_key = redis.get("<your-project-name>:current")
+  index_key = "<your-project-name>:#{params[:index_key]}" if params[:index_key]
+  redis.get(index_key)
 end
 ```
 
