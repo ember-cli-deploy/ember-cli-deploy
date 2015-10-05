@@ -4,7 +4,7 @@ The pipeline approach in 0.5.0 requires some modifications to ember-cli-deploy p
 
 ## Plugin users
 
-- Add the following dependencies: `ember-cli-deploy-build` and `ember-cli-deploy-revision-key`
+- Add the following dependencies: `ember-cli-deploy-build` and `ember-cli-deploy-revision-data`
 - Change your config/deploy.js to return a function instead of an object, for each `environment` setting:
     - `ENV["%INDEX_ADAPTER_NAME%"] = { /* plugin config goes here */ }`
     - `ENV["%ASSETS_ADAPTER_NAME%"] = { /* plugin config goes here */ }`
@@ -23,11 +23,11 @@ Depending on what type of adapters you're publishing, you'll have to make differ
 7. replace console.log statements to this.log to play nicely with the formatting in ember-cli-deploy
 
 ### For index/store adapters:
-1. instruct your users to install ember-cli-deploy-revision-key (see above)
-2. mind you that the revision key is now under context.revisionKey (provided ember-cli-deploy-revision-key is installed) and it doesn't include your project name yet.
+1. instruct your users to install ember-cli-deploy-revision-data (see above)
+2. mind you that the revision key is now under context.revisionData.revisionKey (provided ember-cli-deploy-revision-data is installed) and it doesn't include your project name yet.
 ```javascript
 _key: function(context) {
-	var revisionKey = context.commandOptions.revision || context.revisionKey.substr(0, 8);
+	var revisionKey = context.commandOptions.revision || context.revisionData.revisionKey.substr(0, 8);
 	return context.project.name() + ':' + revisionKey;
 }
 ```
