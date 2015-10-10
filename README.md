@@ -18,14 +18,16 @@ After installation, choose [deployment adapters](http://ember-cli.github.io/embe
 
 ## Development workflow
 
-Why do this? `ember-cli-deploy` is an addon for deploying apps. It works fine for cases where your ember-cli app and API app are mostly developed in isolation. However, if you develop your apps more closely or rely on your API app to inject session or initial state data into your ember-cli app's index page, the development process can be cumbersome.
+`ember-cli-deploy` is an addon for deploying apps. It works fine for cases where your ember-cli app and API app are mostly developed in isolation. However, there are some cases where using the `--proxy` command line option is inadequate. For example:
+ * authentication happens within your API application
+ * you are progressively updating an app to Ember or developing a hybrid app (i.e. some pages are served by the API application) and you need both applications to work together seamlessly
+ * the API app injects some initial state (e.g. session info or model preloads) into your ember-cli app's index page so that it is available without having to make xhr requests on boot
 
-This workflow simply writes your ember-cli app's index to your index plugin on each build so that your API app can read (and possibly modify it) just like it would in production.
+The development workflow simply writes your ember-cli app's index to your key-value store on each build so that your API app can read (and possibly modify) it just as it would in production.
 
-During app development use `ember server` just to recompile and serve the assets as usual.
-This way the ember app is served by your backend and there's no need to setup CORS or proxies.
+During app development `ember server` is used to recompile and serve the assets as usual while the app index is served by your API app, eliminating the need to setup CORS or proxies.
 
-This strategy can be easily accomplished with some configurations parameters.
+This strategy can be easily accomplished with some `ember-cli-build.js` configuration. Keep in mind that you will need to modify your `fingerprintOptions` in development to prepend your ember-cli server host and port. This way requests for Ember assets still go to ember-cli and not your API application.
 
 The following is an example that pushes the `index.html` to redis on each build:
 
