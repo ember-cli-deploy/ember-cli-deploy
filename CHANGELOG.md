@@ -14,6 +14,28 @@
 - [#212](https://github.com/ember-cli/ember-cli-deploy/pull/212) [DOCUMENTATION] Update description of hooks in rfc [@ghedamat](https://github.com/ghedamat)
 - [#213](https://github.com/ember-cli/ember-cli-deploy/pull/213) Change deprecated require 'ember-cli/lib/errors/silent' to 'silent-error' [@dukex](https://github.com/dukex)
 
+### 0.4.3 (July 12, 2015)
+
+This release fixes problems with the silent-error package used by
+`ember-cli-deploy` internally, brings improvements for the activate task and
+makes it possible to configure the build path that `ember-cli-deploy` uses to
+store files before uploading.
+
+Thanks to everyone who took time to contribute to this release!
+
+#### Community Contributions
+
+- [#156](https://github.com/ember-cli/ember-cli-deploy/pull/156) Fix `_materialize` using wrong this context [@jeffhertzler](https://github.com/jeffhertzler)
+- [#158](https://github.com/ember-cli/ember-cli-deploy/pull/158) added ember-cli-rest-index adapter to list of adapter [@leojh](https://github.com/leojh)
+- [#159](https://github.com/ember-cli/ember-cli-deploy/pull/159) Update video link in README. [@blimmer](https://github.com/blimmer)
+- [#161](https://github.com/ember-cli/ember-cli-deploy/pull/161) Remove leading '+' es from code of conduct [@pangratz](https://github.com/pangratz)
+- [#164](https://github.com/ember-cli/ember-cli-deploy/pull/164) [#151] read manifestPrefix from config [@pavloo](https://github.com/pavloo)
+- [#170](https://github.com/ember-cli/ember-cli-deploy/pull/170) Add ability to configure build paths, defaulting to tmp/deploy-dist/. [@duizendnegen/feature](https://github.com/duizendnegen/feature)
+- [#171](https://github.com/ember-cli/ember-cli-deploy/pull/171) Update ember cli 0.2.7 and fix npm warnings [@ghedamat](https://github.com/ghedamat)
+- [#175](https://github.com/ember-cli/ember-cli-deploy/pull/175) Manifest prefix for activate task. [@juggy](https://github.com/juggy)
+- [#176](https://github.com/ember-cli/ember-cli-deploy/pull/176) Use silent-error NPM Package [@jherdman](https://github.com/jherdman)
+- [#178](https://github.com/ember-cli/ember-cli-deploy/pull/178) Use SilentError to log errors when parsing config. [@ember-cli](https://github.com/ember-cli)
+
 Thank you to all who took the time to contribute!
 
 ### 0.4.2 (June 14, 2015)
