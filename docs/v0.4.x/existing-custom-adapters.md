@@ -10,3 +10,4 @@ The following adapters have already been developed:
   - [ember-deploy-azure](https://github.com/duizendnegen/ember-deploy-azure), index-adapter and assets-adapter for Azure Tables & Blob Storage respectively
   - [ember-deploy-couchbase](https://github.com/waltznetworks/ember-deploy-couchbase), index-adapter for [Couchbase](http://www.couchbase.com)
   - [ember-deploy-rest-index](https://github.com/leojh/ember-deploy-rest-index), index-adapter for REST API backends
+  - [ember-deploy-alioss](https://github.com/he9qi/ember-deploy-alioss), assets-adapter for Aliyun [OSS](http://oss.aliyun.com/)
