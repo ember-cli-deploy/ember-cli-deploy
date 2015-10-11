@@ -11,6 +11,11 @@ v0.5.x:
   - label: Available plugins
   - label: Writing a plugin
 
+  - section: Usage
+  - label: Overview
+    path: 'usage-overview/'
+  - label: Development Workflow
+
 v0.4.x:
   - section: Getting started
   - label: Overview
