@@ -13,6 +13,11 @@ module.exports = {
   },
 
   postBuild: function(result) {
+    if (!this.app) {
+      // You will need ember-cli >= 1.13 to use ember-cli-deploy's postBuild integration.
+      // This is because prior to 1.13, `this.app` is not available in the postBuild hook.
+      return;
+    }
     var options = this.app.options.emberCLIDeploy || {};
 
     var deployTarget = options.runOnPostBuild;
