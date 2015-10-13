@@ -8,7 +8,7 @@ v0.5.x:
   - section: Plugins
   - label: Overview
     path: 'plugins-overview/'
-  - label: Available plugins
+  - label: Plugins
   - label: Writing a plugin
 
   - section: Usage

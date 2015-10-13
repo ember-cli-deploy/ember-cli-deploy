@@ -1,5 +1,5 @@
 ---
-title: Available plugins
+title: Plugins
 ---
 
 The following plugins are maintained by the ember-cli-deploy core team:
@@ -11,7 +11,6 @@ The following plugins are maintained by the ember-cli-deploy core team:
   - [ember-cli-deploy-manifest](https://github.com/ember-cli-deploy/ember-cli-deploy-manifest) - generate a manifest
   - [ember-cli-deploy-redis](https://github.com/ember-cli-deploy/ember-cli-deploy-redis) - upload to redis
   - [ember-cli-deploy-revision-data](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data) - generate data about this deploy revision including a unique revision key based on the current build
-  - [ember-cli-deploy-revision-key](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-key) - create a unique revision key for the build
   - [ember-cli-deploy-s3](https://github.com/ember-cli-deploy/ember-cli-deploy-s3) - upload to s3
   - [ember-cli-deploy-ssh-tunnel](https://github.com/ember-cli-deploy/ember-cli-deploy-ssh-tunnel) - open an ssh tunnel during your deploy
 
