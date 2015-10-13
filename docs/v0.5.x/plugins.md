@@ -21,12 +21,20 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-notify-firebase](https://github.com/minutebase/ember-cli-deploy-notify-firebase) - update a path in Firebase on activation
   - [ember-cli-deploy-sentry](https://github.com/dschmidt/ember-cli-deploy-sentry) - upload javascript sourcemaps to sentry
   - [ember-cli-deploy-slack](https://github.com/ember-cli-deploy/ember-cli-deploy-slack) - send a message to Slack
+  - [ember-cli-deploy-azure-blob](https://github.com/duizendnegen/ember-cli-deploy-azure-blob) - deploy assets to Azure Blob
+  - [ember-cli-deploy-azure-tables](https://github.com/duizendnegen/ember-cli-deploy-azure-tables) - deploy index.html to Azure Tables
 
 For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
+
+### Plugin packs
 
 The following plugin packs are maintained by the ember-cli-deploy core team:
 
  - [ember-cli-deploy-lightning-pack](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack) - implement a "lightning" deployment pattern
+
+The following plugin packs have been developed by community members:
+
+   - [ember-cli-deploy-azure](https://github.com/duizendnegen/ember-cli-deploy-azure) - implement a "lightning" deployment pattern for Azure
 
 For a wide view of the plugin-pack ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin-pack" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin-pack).
 
