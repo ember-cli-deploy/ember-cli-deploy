@@ -26,16 +26,4 @@ The following plugins have been developed by community members:
 
 For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
 
-### Plugin packs
-
-The following plugin packs are maintained by the ember-cli-deploy core team:
-
- - [ember-cli-deploy-lightning-pack](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack) - implement a "lightning" deployment pattern
-
-The following plugin packs have been developed by community members:
-
-   - [ember-cli-deploy-azure](https://github.com/duizendnegen/ember-cli-deploy-azure) - implement a "lightning" deployment pattern for Azure
-
-For a wide view of the plugin-pack ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin-pack" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin-pack).
-
 Note: custom adapters written for ember-cli-deploy 0.4.x **will not work** with 0.5.x. Anyone needing assistance in porting a 0.4.x custom adapter to a 0.5.x plugin can [open an issue on the ember-cli-deploy Github repository](https://github.com/ember-cli/ember-cli-deploy/issues) and we'll be happy to help.

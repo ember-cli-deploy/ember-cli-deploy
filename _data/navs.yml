@@ -9,12 +9,18 @@ v0.5.x:
   - label: Overview
     path: 'plugins-overview/'
   - label: Plugins
+  - label: Plugin Packs
   - label: Writing a plugin
 
   - section: Usage
   - label: Overview
     path: 'usage-overview/'
   - label: Development Workflow
+
+  - section: Deployment Strategies
+  - label: Overview
+    path: 'deployment-strategies-overview'
+  - label: The Lightning Strategy
 
 v0.4.x:
   - section: Getting started
