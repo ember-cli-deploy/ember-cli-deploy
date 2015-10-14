@@ -5,12 +5,25 @@ v0.5.x:
   - label: Installation
   - label: Quick start
 
+  - section: The Deploy Pipeline
+  - label: Overview
+    path: 'pipeline-overview/'
+  - label: Pipeline Hooks
+  - label: The Deployment Context
+    path: 'deployment-context/'
+
   - section: Plugins
   - label: Overview
     path: 'plugins-overview/'
   - label: Plugins
   - label: Plugin Packs
   - label: Writing a plugin
+
+  - section: Configuration
+  - label: Overview
+    path: 'configuration-overview/'
+  - label: Aliasing Plugins
+  - label: dotEnv Support
 
   - section: Usage
   - label: Overview
