@@ -2,11 +2,11 @@
 title: Plugin Packs
 ---
 
-### What is a Plugin Pack?
+## What is a Plugin Pack?
 
 An ember-cli-deploy plugin pack is an ember-cli addon that will auto install a collection of ember-cli-deploy plugins to satisfy a particular deployment strategy, so you don't have to.
 
-### Why use a Plugin Pack?
+## Why use a Plugin Pack?
 
 There are many different [deployment strategies](../deployment-strategies-overview) and setups out there, however we are seeing some common strategies emerging. Plugin packs are designed to encapsulate the logic of these
 deployment strategies and give you all the plugins you need to benefit from a particular deployment strategy.
@@ -26,7 +26,7 @@ of the following plugins:
 To make it easier to get up and running with this deployment strategy, you could instead just install the [ember-cli-deploy-lightning-pack](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack). This pack will install the above plugins automatically
 and provide you with a blueprint `config/deploy.js`.
 
-### How do I use a Plugin Pack?
+## How do I use a Plugin Pack?
 
 A plugin pack is just an ember-cli addon so you just need to install it like you would any addon:
 
@@ -36,7 +36,7 @@ ember install ember-cli-deploy-lightning-pack
 
 From then on, just carry on deploying with [The Lightning Strategy](../the-lightning-strategy).
 
-### Why would I create a Plugin Pack?
+## Why would I create a Plugin Pack?
 
 There are a few reasons why you might want to create your own plugin pack.
 
@@ -51,7 +51,7 @@ Both of these reasons come down to making it as easy as possible to get deployin
 Plugin packs also reduce and centralize maintenance because updating versions of individual plugins happens in the plugin pack's `package.json`. Consuming applications need only update the plugin pack's version in order to get
 the up to date versions of the individual plugins.
 
-### So how do I create a Plugin Pack?
+## So how do I create a Plugin Pack?
 
 It's easy! As mentioned before, a plugin pack is simply an ember-cli addon. All you need to do is this:
 
@@ -70,7 +70,6 @@ Then you want to add the plugin pack keyword to `package.json` like this:
   "ember-addon",
   "ember-cli-deploy-plugin-pack"
 ]
-
 ```
 
 Finally you will need to add the plugins that you would like this plugin pack to install, to the the package.json:
@@ -90,20 +89,20 @@ Then if you would like to be a good citizen of the ember-cli-deploy world, you m
 See the [ember-cli-deploy-lightning-pack blueprint](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack/tree/master/blueprints/lightning-deploy-config) as an example.
 
 
-### Core Plugin Packs
+## Core Plugin Packs
 
 The following plugin packs are maintained by the ember-cli-deploy core team:
 
 - [ember-cli-deploy-lightning-pack](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack)
 
 
-### Community Maintained Plugin Packs
+## Community Maintained Plugin Packs
 
 The following plugin packs are deeloped by community members:
 
 - [ember-pagefront](https://github.com/pagefront/ember-pagefront)
 
 
-### Search for plugin packs
+## Search for plugin packs
 
 For a live list of all current ember-cli-deploy plugin packs this [npm keyword search](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin-pack)
