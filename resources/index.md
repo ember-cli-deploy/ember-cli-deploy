@@ -15,14 +15,17 @@ Once inside Slack, visit the *#ember-cli-deploy* channel. A core team member or 
 
 Our main Github repository is [ember-cli/ember-cli-deploy](https://github.com/ember-cli/ember-cli-deploy). Feel free to [open an issue](https://github.com/ember-cli/ember-cli-deploy/issues/new) if you find a bug or have a technical question.
 
+We have a separate [ember-cli-deploy Github org](https://github.com/ember-cli-deploy) for ember-cli-deploy plugins maintained by the core team.
 
-# Core team
+# Meet the core team
+
+**Aaron Chambers**: [GitHub](https://github.com/achambers), [Twitter](https://twitter.com/grandazz), [aaron] on Slack
 
 **Luke Melia**: [GitHub](https://github.com/lukemelia), [Twitter](https://twitter.com/lukemelia), [lukemelia] on Slack
 
 **Michael Klein**: [GitHub](https://github.com/LevelbossMike), [Twitter](https://twitter.com/levelbossmike), [levelbossmike] on Slack
 
-**Aaron Chambers**: [GitHub](https://github.com/achambers), [Twitter](https://twitter.com/grandazz), [aaron] on Slack
+**Mattia Gheda**: [GitHub](https://github.com/ghedamat), [Twitter](https://twitter.com/ghedamat), [ghedamat] on Slack
 
 **Sam Selikoff**: [GitHub](https://github.com/samselikoff), [Twitter](https://twitter.com/samselikoff), [samselikoff] on Slack
 
@@ -42,8 +45,7 @@ Here are some resources related to this project.
 - [Deploying a Location-Aware EmberJS Application](https://www.youtube.com/watch?v=MT0LKcVh6Rw). Ben Limmer uses ember-cli-deploy and ExpressJS to create a location-aware application.
 - [Ember Munich - Ember Deploy](https://www.youtube.com/watch?v=Ro2_I5vtTIg). @LevelBossMike talks about Ember Deploy, the first incarnation of this library.
 - [Codementor Office Hours - Ember CLI Deploy with LevelBossMike](https://www.youtube.com/watch?v=jE8Kc8c107w). Michael Klein (LevelBossMike) discusses using Ember CLI Deploy it to deploy any type of Ember App.
-SHOW MORE
-
+- [Ember London - Ember CLI Deploy](https://vimeo.com/139125310). Aaron Chamber gives an overview of ember-cli-deploy 0.5.x.
 
 **Articles**
 
