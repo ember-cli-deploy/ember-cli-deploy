@@ -76,6 +76,25 @@ module.exports = {
 
 That's seriously about as difficult as it gets. However, read on for some more advanced info to get the most out of your ember-cli-deploy plugin.
 
+### Configuration naming
+By convention, plugin configuration should be kept in `config/deploy.js` and scoped by
+the plugin's name.
+
+E.g. for an `ember-cli-deploy-example` plugin with `name: 'example'`, the configuration might look like:
+
+```javascript
+// config/deploy.js
+module.exports = return function(environment) {
+  return {
+    "example": {
+      bucket: "my-app-" + environment,
+      awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
+  };
+};
+```
+
 ## The Base Deploy Plugin
 
 There are some common tasks that the majority of plugins need to do like validate configuration and log messages out to the terminal. So we have created
