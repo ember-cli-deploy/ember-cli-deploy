@@ -99,6 +99,8 @@ didDeploy: --> runs at the end of a full deployment operation.
 teardown: ---> always the last hook being run
 ```
 
+### Additional hooks
+
 In addition, there are a few more specialized hooks that plugins may implement:
 
 ```
@@ -114,6 +116,13 @@ discoverVersions: --> should return a promise resolving to an array
                       `description`: (String) summary of the version
 
 ```
+
+### The `didFail` hook
+
+When an hook invocation rejects, the pipeline aborts execution.
+As soon as that happens a special `didFail` hook that is invoked on all the registered plugins.
+
+Plugins can optionally implement the `didFail` hook to handle any cleanup that might be needed in this case.
 
 ### Return values & Async operations in hooks
 
