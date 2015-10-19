@@ -10,7 +10,7 @@ you can use the `plugins: [...]` option in the [configuration](../configuration-
 
 ### Hooks by command
 
-Depending on the command different hooks will be called (in order):
+Depending on the command, different hooks will be called (in order):
 
 #### `ember deploy`
 ```
