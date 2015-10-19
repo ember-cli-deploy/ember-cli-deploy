@@ -2,9 +2,10 @@ var Promise      = require('ember-cli/lib/ext/promise');
 var PipelineTask = require('../../../lib/tasks/pipeline');
 var expect       = require('../../helpers/expect');
 var assert       = require('chai').assert;
+var path         = require('path');
 
 describe('PipelineTask', function() {
-  var mockProject   = {addons: []};
+  var mockProject   = {addons: [], root: process.cwd()};
   var mockConfig    = {};
   var mockUi        = { write: function() {},  writeError: function() {} };
 
@@ -26,6 +27,20 @@ describe('PipelineTask', function() {
       };
 
       expect(fn).to.throw('No ui passed to pipeline task');
+    });
+
+    it('accepts an absolute deployConfigPath', function() {
+      var fn = function () {
+        new PipelineTask({
+          project: mockProject,
+          ui: mockUi,
+          deployTarget: 'development',
+          deployConfigPath: path.join(process.cwd(), 'node-tests/fixtures/config/deploy.js'),
+          hooks: ['willDeploy', 'upload']
+        }).run();
+      };
+
+      assert.doesNotThrow(fn, /Cannot find module/, 'config file could not be read');
     });
 
     describe('setting environment variables from .env', function() {
