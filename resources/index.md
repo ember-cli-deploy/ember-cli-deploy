@@ -29,8 +29,6 @@ We have a separate [ember-cli-deploy Github org](https://github.com/ember-cli-de
 
 **Sam Selikoff**: [GitHub](https://github.com/samselikoff), [Twitter](https://twitter.com/samselikoff), [samselikoff] on Slack
 
-**Ryan Toronto**: [GitHub](https://github.com/ryanto), [ryanto] on Slack
-
 
 # Learning
 
