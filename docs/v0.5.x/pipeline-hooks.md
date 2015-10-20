@@ -8,11 +8,11 @@ Note:
 If multiple plugins implement the same hook they will all be called, if you need to specify the order
 you can use the `plugins: [...]` option in the [configuration](../configuration-overview).
 
-### Hooks by command
+## Hooks by command
 
 Depending on the command, different hooks will be called (in order):
 
-#### `ember deploy`
+### Hooks for `ember deploy`
 ```
 * configure
 * setup
@@ -25,26 +25,7 @@ Depending on the command, different hooks will be called (in order):
 * teardown
 ```
 
-#### `ember deploy:activate`
-```
-* configure
-* setup
-* willActivate, activate, didActivate
-* teardown
-```
-
-#### `ember deploy:list`
-```
-* configure
-* setup
-* fetchRevisions
-* displayRevisions
-* teardown
-```
-
-### Hooks description
-
-These hooks (part of a typical deployment process) are available for plugins to implement:
+#### Detailed description:
 
 ```
 configure: ---> Runs before anything happens
@@ -75,10 +56,33 @@ upload -----------> upload  puts the assets somewhere
            \
             \--- didUpload  notify APIs (slack, pusher, etc.), warm cache
 
-  Note: a plugin that implements upload of the HTML file and
-        wants to support version activation should set
-        `currentVersion` on the `deployment` object to the ID
-        of the newly deployed version.
+            /-- willActivate  create backup of assets,
+           /                  notify APIs, uninstall earlier versions
+          /
+activate ---------> activate  make a new version live
+          \                   (clear cache, swap Redis values, etc.)
+           \
+            \-- didActivate  notify APIs, warm cache
+
+didDeploy: --> runs at the end of a full deployment operation.
+
+teardown: ---> always the last hook being run
+```
+
+### Hooks for `ember deploy:activate`
+```
+* configure
+* setup
+* willActivate, activate, didActivate
+* teardown
+```
+
+#### Detailed description:
+
+```
+configure: ---> Runs before anything happens
+
+setup: -------> The first hook for every command
 
             /-- willActivate  create backup of assets,
            /                  notify APIs, uninstall earlier versions
@@ -88,34 +92,47 @@ activate ---------> activate  make a new version live
            \
             \-- didActivate  notify APIs, warm cache
 
-  Note: when hooks in the activate series of hooks are called,
-        the plugin can assume the presence of a `currentVersion`
-        property on the deployment object, that is set to
-        the ID of the version to be activated.
+teardown: ---> always the last hook being run
+```
 
+### Hooks for `ember deploy:list`
+```
+* configure
+* setup
+* fetchRevisions
+* displayRevisions
+* teardown
+```
 
-didDeploy: --> runs at the end of a full deployment operation.
+#### Detailed description:
+
+```
+configure: ---> Runs before anything happens
+
+setup: -------> The first hook for every command
+
+fetchRevisions: ----> returns an hash (or a promise resolving to one)
+                      that has a `revisions` key and an array of revisions
+                      objects as its value.  i.e. `{revisions: [...]}
+                      Each revision object _must_ have
+                      an `revision` key. Each revision _may_ have one
+                      or more of the following properties:
+
+                      `version`:     (String) reference of version in SCM
+                      `timestamp`:   (Date) when the version was created
+                      `deployer`:    (String) name/email address of
+                                     developer who deployed the version
+                      `active`:      (Boolean) is the revision activated?
+                      `description`: (String) summary of the revision
+
+displayRevisions: --> looks up the `revisions` key in the `context`
+                      and uses the information to
+                      display the list of revisions.
 
 teardown: ---> always the last hook being run
 ```
 
-### Additional hooks
-
-In addition, there are a few more specialized hooks that plugins may implement:
-
-```
-discoverVersions: --> should return a promise resolving to an array
-                      of version objects. Each version object _must_ have
-                      an `id` property. Each version _may_ have one
-                      or more of the following properties:
-
-                      `timestamp`:   (Date) when the version was created
-                      `revision`:    (String) reference of version in SCM
-                      `creator`:     (String) email address of developer
-                                     who deployed the version
-                      `description`: (String) summary of the version
-
-```
+See [ember-cli-deploy-display-revisions](https://github.com/ember-cli-deploy/ember-cli-deploy-display-revisions) for a detailed example.
 
 ### The `didFail` hook
 
