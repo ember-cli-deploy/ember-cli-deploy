@@ -2,27 +2,38 @@
 title: Deployment Strategies Overview
 ---
 
-Before starting to use ember-cli-deploy you need to decide what you want your deployment strategy to be.
+ember-cli-deploy is great at allowing you to compose plugins to implement a quick and maintainable deployment pipeline. What it is not great at
+is guessing how you would like to deploy your application, where you'd like to deploy it, whether you'd like to gzip your assets or whether you'd
+like to notify your team members on slack after a successful deploy.
 
-* Are you going to deploy the ember app every time you deploy your backend?
-* Are you going to deploy frontend and backend independently?
-* Will the backend serve your index.html and assets or only one or neither?
+Just like you need to have an idea of what functionality you would like your ember application to have before you install ember-cli addons, you also
+need to have a good idea of how you would like your deployment to work before you instal ember-cli-deploy and it's plugins.
 
-All these approaches have pros and cons that vary depending on your app.
+Almost every single project will require a build to begin with, but after this it's hard for ember-cli-deploy to guess what is needed.
 
-A popular approach that spearheaded the original ember-cli-deploy project is the [lighting strategy](../the-lightning-strategy) but with the [plugin system](../plugins-overview) you now have all the freedom you need.
+Do you want to:
+
+* upload your assets to a different place than your index.html?
+* push your index.html to redis S3?
+* deploy your whole application to a SaaS platform like Firebase hosting?
+* gzip your assets before uploading them?
+* notify your team members of a successful deploy
+
+These things (and more) are the sorts of things that you need to have thought about before being able to successully deploy your application.
+
+Because ember-cli-deploy simply provides you with a deployment pipeline it is up to you to decide what your deployment strategy will look like
+therefore which plugins you will need to install to implement that stratgey.
+
+We are well aware that this level of detail of the deployment environment may not be something everyone has thought about in detail so this section is
+going to attempt to suggest things to think about when coming up with a deployment strategy that makes sense for you.
 
 
-## What is a deployment strategy?
+## Popular Deployment Strategies
 
-Any deploy process needs to do a few things
+Over time different deployment strategy patterns emerge as smart ways of deploying an ember application. We want to make it as easy as possible
+for you to get up and deploying so we are putting together a list of popular deployment strategies that you can employ. This list is a living document
+and will grow as we discover new and intersting ways that people are deploying their ember applications with ember-cli-deploy.
 
-1. build your project files
-2. store the compiled assets somewhere (s3/cloudfront or similar, your own application server, a 3rd party platform)
-3. optionally prefix the assets (fingerprinting) so that you don't have to worry about cache invalidation
-4. assets gzip for performance boost
-5. store and serve the ember-cli `index.html` that points to the created assets
-6. notify your team chat of a successful build/deploy **optional**
-7. store different *releases* and easily switch between them**optional**
+The list of deployment strategies is as follows:
 
-Lots of [plugins](../plugins) are already available and by simply composing them you'll be able to build your own deploy strategy, for the most common strategies [plugin packs](../plugin-packs) are already available to get you up and running in no time!
+* [The Lightning Strategy](../the-lightning-strategy)
