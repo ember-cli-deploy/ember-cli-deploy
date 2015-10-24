@@ -43,7 +43,7 @@ Here are some resources related to this project.
 - [Deploying a Location-Aware EmberJS Application](https://www.youtube.com/watch?v=MT0LKcVh6Rw). Ben Limmer uses ember-cli-deploy and ExpressJS to create a location-aware application.
 - [Ember Munich - Ember Deploy](https://www.youtube.com/watch?v=Ro2_I5vtTIg). @LevelBossMike talks about Ember Deploy, the first incarnation of this library.
 - [Codementor Office Hours - Ember CLI Deploy with LevelBossMike](https://www.youtube.com/watch?v=jE8Kc8c107w). Michael Klein (LevelBossMike) discusses using Ember CLI Deploy it to deploy any type of Ember App.
-- [Ember London - Ember CLI Deploy](https://vimeo.com/139125310). Aaron Chamber gives an overview of ember-cli-deploy 0.5.x.
+- [Ember London - Ember CLI Deploy](https://vimeo.com/139125310). Aaron Chambers gives an overview of ember-cli-deploy 0.5.x.
 
 **Articles**
 
