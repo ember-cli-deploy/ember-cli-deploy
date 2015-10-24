@@ -7,18 +7,25 @@
   line-height: 1;
 
   &__logo {
-    color: inherit;
-    font-size: 24px;
+    text-indent: -3000em;
+    background-image: url(../images/ember-cli-deploy-logo.png);
+    background-size: (297px/3) (150px/3);
+    width: (297px/3);
+    height: (150px/3);
     display: block;
-    text-align: center;
-    padding-top: 0.5em;
-    padding-bottom: 0.7em;
+    padding: 0;
     border: none;
     @include above($small-breakpoint) {
-      margin-top: 4px;
-      padding-left: 15px;
+      margin-top: 6px;
+      margin-left: 15px;
       text-align: left;
       float: left;
+    }
+    @include below($small-breakpoint) {
+      margin: 6px;
+      background-size: (297px/5) (150px/5);
+      width: (297px/5);
+      height: (150px/5);
     }
 
     &:hover,
@@ -87,7 +94,7 @@
   &__nav-item {
     display: table-cell;
     width: 25%;
-    text-align: center; 
+    text-align: center;
 
     @include above($small-breakpoint) {
       display: block;
