@@ -58,22 +58,24 @@ module.exports = function(defaults) {
 in config/deploy.js you can define a custom pipeline for your deploy env.
 
 ```js
-if (deployTarget === 'development-postbuild') {
-  ENV.plugins = ['redis']; // only use the redis pluging
-  ENV.build = {
-    environment: 'development'
-  };
+  if (deployTarget === 'development-postbuild') {
+    ENV.plugins = ['redis']; // only use the redis pluging
 
-  ENV.redis = {
-    keyPrefix: 'edd-cli',
-    revisionKey: '__development__',
-    allowOverwrite: true,
-    type: 'redis', // this can be omitted because it is the default
-    host: 'localhost',
-    port: 6379,
-    distDir: function(context) {
-      return context.commandOptions.buildDir;
-    }
-  };
-}
+    ENV.build = {
+      environment: 'development'
+    };
+
+    ENV.redis = {
+      keyPrefix: 'edd-cli',
+      revisionKey: '__development__',
+      allowOverwrite: true,
+      host: 'localhost', // this can be omitted because it is the default
+      port: 6379, // this can be omitted because it is the default
+      distDir: function(context) {
+        return context.commandOptions.buildDir;
+      }
+    };
+  }
 ```
+
+see [ember-deploy-demo](https://github.com/ghedamat/ember-deploy-demo/blob/master/edd-cli/config/deploy.js#L4-L21) for a full example.
