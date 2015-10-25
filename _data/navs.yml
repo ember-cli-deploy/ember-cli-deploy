@@ -24,6 +24,7 @@ v0.5.x:
     path: 'configuration-overview/'
   - label: Aliasing Plugins
   - label: dotEnv Support
+  - label: Fingerprinting
 
   - section: Usage
   - label: Overview
