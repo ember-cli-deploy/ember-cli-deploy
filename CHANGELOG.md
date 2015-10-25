@@ -1,5 +1,12 @@
 # ember-cli-deploy Changelog
 
+## [0.5.0-beta.4](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.0-beta.4) (2015-10-24)
+[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.0-beta.3...0.5.0-beta.4)
+
+**Merged pull requests:**
+
+- Add a `--verbose` option to commands, make default output quiet, and … [\#266](https://github.com/ember-cli/ember-cli-deploy/pull/266) ([lukemelia](https://github.com/lukemelia))
+
 ## [0.5.0-beta.3](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.0-beta.3) (2015-10-22)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.0-beta.2...0.5.0-beta.3)
 
