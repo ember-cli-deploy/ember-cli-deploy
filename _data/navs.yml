@@ -33,12 +33,12 @@ v0.5.x:
 
   - section: Deployment Strategies
   - label: Overview
-    path: 'deployment-strategies-overview'
+    path: 'deployment-strategies-overview/'
   - label: The Lightning Strategy
 
   - section: Examples
   - label: Lightning Strategy
-    path: 'lightning-strategy-examples'
+    path: 'lightning-strategy-examples/'
 
 v0.4.x:
   - section: Getting started
