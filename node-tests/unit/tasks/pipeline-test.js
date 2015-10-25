@@ -1,5 +1,6 @@
 var Promise      = require('ember-cli/lib/ext/promise');
 var PipelineTask = require('../../../lib/tasks/pipeline');
+var Pipeline     = require('../../../lib/models/pipeline');
 var expect       = require('../../helpers/expect');
 var assert       = require('chai').assert;
 var path         = require('path');
@@ -7,7 +8,10 @@ var path         = require('path');
 describe('PipelineTask', function() {
   var mockProject   = {addons: [], root: process.cwd()};
   var mockConfig    = {};
-  var mockUi        = { write: function() {},  writeError: function() {} };
+  var mockUi;
+  beforeEach(function(){
+    mockUi = { write: function() {},  writeError: function() {} };
+  });
 
   describe('creating and setting up a new instance', function() {
     it ('raises an error if project is not provided', function() {
@@ -322,6 +326,78 @@ describe('PipelineTask', function() {
           expect(pipelineContext.config.build.buildEnv).to.eq('development');
           expect(pipelineContext.commandOptions.revision).to.eq('123abc');
         });
+    });
+
+    it('executes the pipeline, logging at a verbose level', function() {
+      var logOutput = "";
+      mockUi = {
+        verbose: true,
+        write: function(s) {
+          logOutput = logOutput + s;
+        },
+        writeError: function(s) {
+          logOutput = logOutput + s + "\n";
+        }
+      };
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: [
+          {
+            name: 'ember-cli-deploy-test-plugin',
+            pkg: {
+              keywords: [
+                'ember-cli-deploy-plugin'
+              ]
+            },
+            createDeployPlugin: function() {
+              return {
+                name: 'test-plugin',
+                willDeploy: function() {
+                },
+                upload: function() {}
+              };
+            }
+          }
+        ]
+      };
+
+      var task = new PipelineTask({
+        project: project,
+        ui: mockUi,
+        deployTarget: 'development',
+        deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+        commandOptions: {revision: '123abc'},
+        hooks: ['willDeploy', 'upload'],
+        pipeline: new Pipeline(['willDeploy', 'upload'], {
+          ui: mockUi
+        })
+      });
+
+      return task.setup().then(function(){
+        return expect(task.run()).to.be.fulfilled;
+      }).then(function() {
+        var logLines = logOutput.split("\n");
+        expect(logLines[ 0]).to.eq("\u001b[34mRegistering hook -> willDeploy[test-plugin]");
+        expect(logLines[ 1]).to.eq("\u001b[39m\u001b[34mRegistering hook -> upload[test-plugin]");
+        expect(logLines[ 2]).to.eq("\u001b[39m\u001b[34mRegistering hook -> willDeploy[test-plugin]");
+        expect(logLines[ 3]).to.eq("\u001b[39m\u001b[34mRegistering hook -> upload[test-plugin]");
+        expect(logLines[ 4]).to.eq("\u001b[39m\u001b[34mExecuting pipeline");
+        expect(logLines[ 5]).to.eq("\u001b[39m\u001b[34m|");
+        expect(logLines[ 6]).to.eq("\u001b[39m\u001b[34m+- willDeploy");
+        expect(logLines[ 7]).to.eq("\u001b[39m\u001b[34m|  |");
+        expect(logLines[ 8]).to.eq("\u001b[39m\u001b[34m|  +- test-plugin");
+        expect(logLines[ 9]).to.eq("\u001b[39m\u001b[34m|  |");
+        expect(logLines[10]).to.eq("\u001b[39m\u001b[34m|  +- test-plugin");
+        expect(logLines[11]).to.eq("\u001b[39m\u001b[34m|");
+        expect(logLines[12]).to.eq("\u001b[39m\u001b[34m+- upload");
+        expect(logLines[13]).to.eq("\u001b[39m\u001b[34m|  |");
+        expect(logLines[14]).to.eq("\u001b[39m\u001b[34m|  +- test-plugin");
+        expect(logLines[15]).to.eq("\u001b[39m\u001b[34m|  |");
+        expect(logLines[16]).to.eq("\u001b[39m\u001b[34m|  +- test-plugin");
+        expect(logLines[17]).to.eq("\u001b[39m\u001b[34m|");
+        expect(logLines[18]).to.eq("\u001b[39m\u001b[34mPipeline complete");
+      });
     });
   });
 
