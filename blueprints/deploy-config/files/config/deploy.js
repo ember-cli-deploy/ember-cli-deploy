@@ -1,45 +1,28 @@
 /* jshint node: true */
 
-module.exports = {
-  //development: {
-    //store: {
-      //type: 'redis', // the default store is 'redis'
-      //host: 'localhost',
-      //port: 6379
-    //},
-    //assets: {
-      //type: 's3', // default asset-adapter is 's3'
-      //gzip: false, // if undefined or set to true, files are gziped
-      //gzipExtensions: ['js', 'css', 'svg'], // if undefined, js, css & svg files are gziped
-      //accessKeyId: '<your-access-key-goes-here>',
-      //secretAccessKey: process.env['AWS_ACCESS_KEY'],
-      //bucket: '<your-bucket-name>'
-    //}
-  //},
+module.exports = function(deployTarget) {
+  var ENV = {
+    build: {}
+    // include other plugin configuration that applies to all deploy targets here
+  };
 
-  //staging: {
-    //buildEnv: 'staging', // Override the environment passed to the ember asset build. Defaults to 'production'
-    //store: {
-      //host: 'staging-redis.example.com',
-      //port: 6379
-    //},
-    //assets: {
-      //accessKeyId: '<your-access-key-goes-here>',
-      //secretAccessKey: process.env['AWS_ACCESS_KEY'],
-      //bucket: '<your-bucket-name>'
-    //}
-  //},
+  if (deployTarget === 'development') {
+    ENV.build.environment = 'development';
+    // configure other plugins for development deploy target here
+  }
 
-  //production: {
-    //store: {
-      //host: 'production-redis.example.com',
-      //port: 6379,
-      //password: '<your-redis-secret>'
-    //},
-    //assets: {
-      //accessKeyId: '<your-access-key-goes-here>',
-      //secretAccessKey: process.env['AWS_ACCESS_KEY'],
-      //bucket: '<your-bucket-name>'
-    //}
-  //}
-}
+  if (deployTarget === 'staging') {
+    ENV.build.environment = 'production';
+    // configure other plugins for staging deploy target here
+  }
+
+  if (deployTarget === 'production') {
+    ENV.build.environment = 'production';
+    // configure other plugins for production deploy target here
+  }
+
+  // Note: if you need to build some configuration asynchronously, you can return
+  // a promise that resolves with the ENV object instead of returning the
+  // ENV object synchronously.
+  return ENV;
+};

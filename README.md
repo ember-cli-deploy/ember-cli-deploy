@@ -8,10 +8,9 @@ Simple, flexible deployment for your Ember CLI app
 ```
 npm install ember-cli-deploy --save-dev
 ```
-
 ## Quick start
 
-After installation, choose [deployment adapters](http://ember-cli.github.io/ember-cli-deploy/docs/v0.4.x/existing-custom-adapters/) matching your deployment environment, [configure](http://ember-cli.github.io/ember-cli-deploy/docs/v0.4.x/configuration/) your deployment script appropriately and you're ready to [start deploying](http://ember-cli.github.io/ember-cli-deploy/docs/v0.4.x/how-to-use/).
+After installation, choose [plugins](http://ember-cli.github.io/ember-cli-deploy/docs/v0.5.x/plugins/) matching your deployment environment, [configure](http://ember-cli.github.io/ember-cli-deploy/docs/v0.5.x/configuration/) your deployment script appropriately and you're ready to [start deploying](http://ember-cli.github.io/ember-cli-deploy/docs/v0.5.x/usage/).
 
 ## In-depth documentation
 
