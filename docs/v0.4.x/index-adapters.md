@@ -2,7 +2,7 @@
 title: Index adapters
 ---
 
-`index-adapters` take care of publishing bootstrap-index html that ember-cli builds for you. If you don't want to use `redis` as a key-value store for your index.html files if you are using the Lightning approach from Luke Melia's talk you could for example create a `cassandra`-adapter to use [Apacha Cassandra](http://cassandra.apache.org/) instead.
+`index-adapters` take care of publishing bootstrap-index html that ember-cli builds for you. If you don't want to use `redis` as a key-value store for your index.html files if you are using the Lightning approach from Luke Melia's talk you could for example create a `cassandra`-adapter to use [Apache Cassandra](http://cassandra.apache.org/) instead.
 
 Index adapters have to implement the following methods for `ember-cli-deploy` to be able to use them:
 
