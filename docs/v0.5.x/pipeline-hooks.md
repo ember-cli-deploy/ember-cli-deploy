@@ -38,7 +38,7 @@ willDeploy: --> Good opportunity for plugins to validate
 
            /-- willBuild  confirm environment
           /
-build ---------> prepare  builds app assets, documentation, etc.
+build -----------> build  builds app assets, documentation, etc.
           \
            \--- didBuild  manipulate index.html, validate assets
 
