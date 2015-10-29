@@ -12,7 +12,7 @@ Examples:
 
 ```javascript
 // deploy.js (sync)
-module.export function(environment){
+module.exports = function(environment){
   var ENV = {
   };
 
@@ -27,7 +27,7 @@ module.export function(environment){
 
 ```javascript
 // deploy.js (async)
-module.export function(environment){
+module.exports = function(environment){
   var ENV = {
     redis: {
     }
