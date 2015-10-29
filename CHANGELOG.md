@@ -1,5 +1,18 @@
 # ember-cli-deploy Changelog
 
+## [0.5.0](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.0) (2015-10-29)
+[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.4.3...0.5.0)
+
+[BREAKING] This release is the first in the 0.5.0 series and the first using the new deploy pipeline and plugin architecture.
+
+0.5.0 harnesses the concept of a pipeline that gives users the ability to flexibly compose plugins to satisfy their
+custom deployment needs.
+
+NOTE: 0.5.0 is a major rewrite and shift from the 0.4.x series and hence introduces a number of breaking changes.
+
+For more information on the ember-cli-deploy v0.5.0, how to use it and how to write plugins please see the brand new
+[documentation site](http://ember-cli-deploy.com).
+
 ## [0.5.0-beta.4](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.0-beta.4) (2015-10-24)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.0-beta.3...0.5.0-beta.4)
 
