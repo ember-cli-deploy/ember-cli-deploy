@@ -41,3 +41,7 @@ See [ember-cli-deploy-display-revisions](https://github.com/ember-cli-deploy/emb
 ```
 ember deploy:list production
 ```
+
+### Logging
+
+Each of the commands optionally takes a `--verbose` param that increases the logging level, you'll be able to see the configuration options for each plugin, each hook that is being called and the optional logging that plugins provide.
