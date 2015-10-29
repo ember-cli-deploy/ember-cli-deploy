@@ -41,6 +41,8 @@ v0.5.x:
     path: 'lightning-strategy-examples/'
 
   - section: Upgrading
+  - label: Apps
+    path: 'upgrading-apps/'
   - label: Plugins
     path: 'upgrading-plugins/'
 
