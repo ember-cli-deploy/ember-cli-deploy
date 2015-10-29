@@ -2,6 +2,7 @@ var Promise  = require('ember-cli/lib/ext/promise');
 var Pipeline = require('../../../lib/models/pipeline');
 
 var expect   = require('../../helpers/expect');
+var FakeProgressBar   = require('../../helpers/fake-progress-bar');
 
 describe ('Pipeline', function() {
   describe ('initialization', function() {
@@ -164,6 +165,106 @@ describe ('Pipeline', function() {
       var result = subject.hookNames();
 
       expect(result).to.have.members(['hook1', 'hook2', 'didFail']);
+    });
+  });
+
+  describe('progressBar', function() {
+    it('is initalized if showProgress is true', function() {
+      var ui = {
+        showProgress: true,
+      };
+      var subject = new Pipeline(['hook1'], {
+        ui: ui,
+        progressBarLib: FakeProgressBar
+      });
+
+      subject.execute();
+
+      expect(ui.progressBar).to.be.ok;
+    });
+
+    it('is not used in --verbose mode', function() {
+      var ui = {
+        verbose: true,
+        showProgress: true,
+        write: function() {}
+      };
+      var subject = new Pipeline(['hook1'], {
+        ui: ui,
+        progressBarLib: FakeProgressBar
+      });
+
+      subject.execute();
+
+      expect(ui.progressBar).to.be.falsy;
+    });
+
+    it('calculates the total number of registered hooks functions', function() {
+      var ui = {
+        showProgress: true,
+      };
+      var subject = new Pipeline(['hook1', 'hook2'], {
+        ui: ui,
+        showProgress: true,
+        progressBarLib: FakeProgressBar
+      });
+
+      subject.register('hook1', function() {});
+      subject.register('hook1', function() {});
+      subject.register('hook2', function() {});
+      subject.execute();
+
+      expect(ui.progressBar.total).to.equal(3);
+    });
+
+    it('excludes the configure hooks from the total', function() {
+      var ui = {
+        showProgress: true,
+      };
+      var subject = new Pipeline(['configure', 'hook1'], {
+        ui: ui,
+        showProgress: true,
+        progressBarLib: FakeProgressBar
+      });
+
+      subject.register('hook1', function() {});
+      subject.register('hook1', function() {});
+      subject.register('configure', function() {});
+      subject.execute();
+
+      expect(ui.progressBar.total).to.equal(2);
+    });
+
+    it('ticks during execution', function() {
+      var ui = {
+        showProgress: true,
+      };
+      var subject = new Pipeline(['hook1', 'hook2'], {
+        ui: ui,
+        showProgress: true,
+        progressBarLib: FakeProgressBar
+      });
+
+      var fn1 = {
+        fn: function() {},
+        name: 'fn1'
+      };
+      var fn2 = {
+        fn: function() {},
+        name: 'fn2'
+      };
+
+      subject.register('hook1', fn1);
+      subject.register('hook2', fn2);
+
+      return expect(subject.execute()).to.be.fulfilled
+        .then(function() {
+          expect(ui.progressBar.ticks).to.eql(
+            [{hook: 'hook1', plugin: 'fn1'},
+             {hook: 'hook2', plugin: 'fn2'}
+            ]
+          );
+        });
     });
   });
 });
