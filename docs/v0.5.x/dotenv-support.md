@@ -31,10 +31,10 @@ module.exports = function(deployTarget) {
   var ENV = { };
 
   if (deployTarget === 'staging') {
-    s3: {
+    ENV.s3 = {
       accessKeyId: process.env.AWS_KEY,
       secretAccessKey: process.env.AWS_SECRET
-    }
+    };
   }
 
   return ENV;
