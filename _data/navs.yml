@@ -40,6 +40,10 @@ v0.5.x:
   - label: Lightning Strategy
     path: 'lightning-strategy-examples/'
 
+  - section: Upgrading
+  - label: Plugins
+    path: 'upgrading-plugins/'
+
 v0.4.x:
   - section: Getting started
   - label: Overview
