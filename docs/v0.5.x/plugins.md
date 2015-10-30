@@ -30,4 +30,22 @@ The following plugins have been developed by community members:
 
 For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
 
-Note: custom adapters written for ember-cli-deploy 0.4.x **will not work** with 0.5.x. Anyone needing assistance in porting a 0.4.x custom adapter to a 0.5.x plugin can [open an issue on the ember-cli-deploy Github repository](https://github.com/ember-cli/ember-cli-deploy/issues) and we'll be happy to help.
+## Compatibility
+Custom adapters written for ember-cli-deploy 0.4.x **will not work** with 0.5.x.
+
+In order to help users understand if a plugin is compatible with a given version of ember-cli-deploy a badges system is available.
+
+If you're the author of a plugin please open a PR on the
+[ember-cli-deploy-version-badges](https://github.com/ember-cli-deploy/ember-cli-deploy-version-badges) github repo by following the instructions on the README.
+
+Once your PR is merged you'll be able to put a link to the generated SVG.
+
+example:
+
+[![](https://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/plugins/ember-cli-deploy-s3.svg)](http://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/)
+
+```html
+[![](https://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/plugins/ember-cli-deploy-s3.svg)](http://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/)
+```
+
+Anyone needing assistance in porting a 0.4.x custom adapter to a 0.5.x plugin can [open an issue on the ember-cli-deploy Github repository](https://github.com/ember-cli/ember-cli-deploy/issues) and we'll be happy to help.
