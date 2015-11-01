@@ -47,3 +47,8 @@ The nice thing about this is that you can deploy your app to production, test it
 This app does the same as the *Sinatra app* above, it supports the same index_key query param. It should help you to get up and running in seconds and dont worry about server code. You also need to deploy your ember app with `ember-cli-deploy` and `ember-deploy-redis`.
 
 [Nodejs example with one click deploy!](https://github.com/philipheinser/ember-lightning)
+
+## Azure Tables Server apps
+
+- C#-based, https://gist.github.com/duizendnegen/85b5c4a7b7eef28f0756
+- Node.js-based, [node-ember-cli-deploy-azure-tables](https://github.com/jamesdixon/node-ember-cli-deploy-azure-tables) courtesy of [jamesdixon](https://github.com/jamesdixon/)
