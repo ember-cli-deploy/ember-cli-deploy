@@ -12,6 +12,7 @@ The following plugins are maintained by the ember-cli-deploy core team:
   - [ember-cli-deploy-redis](https://github.com/ember-cli-deploy/ember-cli-deploy-redis) - upload to redis
   - [ember-cli-deploy-revision-data](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data) - generate data about this deploy revision including a unique revision key based on the current build
   - [ember-cli-deploy-s3](https://github.com/ember-cli-deploy/ember-cli-deploy-s3) - upload to s3
+  - [ember-cli-deploy-s3-index](https://github.com/ember-cli-deploy/ember-cli-deploy-s3-index) - deploy index.html to s3
   - [ember-cli-deploy-ssh-tunnel](https://github.com/ember-cli-deploy/ember-cli-deploy-ssh-tunnel) - open an ssh tunnel during your deploy
   - [ember-cli-deploy-slack](https://github.com/ember-cli-deploy/ember-cli-deploy-slack) - send a message to Slack
 
@@ -23,6 +24,7 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-sentry](https://github.com/dschmidt/ember-cli-deploy-sentry) - upload javascript sourcemaps to sentry
   - [ember-cli-deploy-azure-blob](https://github.com/duizendnegen/ember-cli-deploy-azure-blob) - deploy assets to Azure Blob
   - [ember-cli-deploy-azure-tables](https://github.com/duizendnegen/ember-cli-deploy-azure-tables) - deploy index.html to Azure Tables
+  - [ember-cli-deploy-notifications](https://github.com/simplabs/ember-cli-deploy-notifications) - notify external services of successful deploys
 
 For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
 
