@@ -86,7 +86,7 @@ a [base plugin](https://github.com/ember-cli-deploy/ember-cli-deploy-plugin) tha
 To extend the base plugin, first you need to install it:
 
 ```bash
-ember install ember-cli-deploy-plugin
+npm install ember-cli-deploy-plugin --save
 ```
 
 Then you need to extend it like this:
