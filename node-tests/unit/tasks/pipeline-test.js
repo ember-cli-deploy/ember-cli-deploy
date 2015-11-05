@@ -33,6 +33,17 @@ describe('PipelineTask', function() {
       expect(fn).to.throw('No ui passed to pipeline task');
     });
 
+    it('raises an error if deployTarget is not provided', function() {
+      var fn = function() {
+        new PipelineTask({
+          project: mockProject,
+          ui: mockUi
+        });
+      };
+
+      expect(fn).to.throw('You need to provide a deployTarget: `ember deploy production`');
+    });
+
     it('accepts an absolute deployConfigPath', function() {
       var fn = function () {
         new PipelineTask({
@@ -425,6 +436,7 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
+        deployTarget: 'staging',
         deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-alias.js',
         pipeline: {
           hookNames: function () {
@@ -466,6 +478,7 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
+        deployTarget: 'staging',
         deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
         pipeline: {
           hookNames: function () {
@@ -491,6 +504,7 @@ describe('PipelineTask', function() {
       var task = new PipelineTask({
         project: project,
         ui: mockUi,
+        deployTarget: 'production',
         deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
       });
 
