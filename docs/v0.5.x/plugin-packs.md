@@ -106,4 +106,4 @@ The following plugin packs are developed by community members:
 
 ## Search for plugin packs
 
-For a live list of all current ember-cli-deploy plugin packs this [npm keyword search](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin-pack)
+For a live list of all current ember-cli-deploy plugin packs this [npm keyword search](http://npmsearch.com/?q=keywords:ember-cli-deploy-plugin-pack)
