@@ -1,6 +1,6 @@
 ## Overview
 
-The pipeline approach in 0.5.0 requires some modifications to ember-cli-deploy plugins and a few to deploy configuration scripts.
+The pipeline approach in 0.5.x requires some modifications to ember-cli-deploy plugins and a few to deploy configuration scripts.
 
 ## Plugin users
 
@@ -19,7 +19,7 @@ Depending on what type of adapters you're publishing, you'll have to make differ
 3. implement `createDeployPlugin` in index.js and return an extended `ember-cli-deploy-plugin` from there.
 4. listen to hooks to actually upload stuff, most notably upload (index and assets adapter) and activate (index adapter)
 5. instruct your users to update their config (see above)
-6. instruct your users to install ember-cli-deploy-build (see above) (there's discussion of whether to put this in ember-cli-deploy by default for 0.5.0, follow https://github.com/ember-cli/ember-cli-deploy/pull/179)
+6. instruct your users to install ember-cli-deploy-build (see above)
 7. replace console.log statements to this.log to play nicely with the formatting in ember-cli-deploy
 
 ### For index/store adapters:

@@ -1,5 +1,12 @@
 # ember-cli-deploy Changelog
 
+## [0.5.1](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.1) (2015-11-09)
+[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.0...0.5.1)
+
+- Upgrade ember-cli to 1.13.8. [\#296](https://github.com/ember-cli/ember-cli-deploy/pull/296) ([blimmer](https://github.com/blimmer))
+- Require a deploy target to run ember deploy [\#294](https://github.com/ember-cli/ember-cli-deploy/pull/294) ([kiwiupover](https://github.com/kiwiupover))
+- Fix typo in "no plugins" warning \(it's/its\) [\#284](https://github.com/ember-cli/ember-cli-deploy/pull/284) ([pgengler](https://github.com/pgengler))
+
 ## [0.5.0](https://github.com/ember-cli/ember-cli-deploy/tree/v0.5.0) (2015-10-29)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.4.3...v0.5.0)
 
