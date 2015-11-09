@@ -25,6 +25,7 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-azure-blob](https://github.com/duizendnegen/ember-cli-deploy-azure-blob) - deploy assets to Azure Blob
   - [ember-cli-deploy-azure-tables](https://github.com/duizendnegen/ember-cli-deploy-azure-tables) - deploy index.html to Azure Tables
   - [ember-cli-deploy-notifications](https://github.com/simplabs/ember-cli-deploy-notifications) - notify external services of successful deploys
+  - [ember-cli-deploy-hipchat](https://github.com/blimmer/ember-cli-deploy-hipchat) - send a message to HipChat
 
 For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
 
