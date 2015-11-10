@@ -18,14 +18,15 @@ The following plugins are maintained by the ember-cli-deploy core team:
 
 The following plugins have been developed by community members:
 
-  - [ember-cli-deploy-cp](https://github.com/dschmidt/ember-cli-deploy-cp) - deploy file(s) on your filesystem
-  - [ember-cli-deploy-git-tag](https://github.com/minutebase/ember-cli-deploy-git-tag) - tag deploys in git
-  - [ember-cli-deploy-notify-firebase](https://github.com/minutebase/ember-cli-deploy-notify-firebase) - update a path in Firebase on activation
-  - [ember-cli-deploy-sentry](https://github.com/dschmidt/ember-cli-deploy-sentry) - upload javascript sourcemaps to sentry
   - [ember-cli-deploy-azure-blob](https://github.com/duizendnegen/ember-cli-deploy-azure-blob) - deploy assets to Azure Blob
   - [ember-cli-deploy-azure-tables](https://github.com/duizendnegen/ember-cli-deploy-azure-tables) - deploy index.html to Azure Tables
-  - [ember-cli-deploy-notifications](https://github.com/simplabs/ember-cli-deploy-notifications) - notify external services of successful deploys
+  - [ember-cli-deploy-cloudfront](https://github.com/kpfefferle/ember-cli-deploy-cloudfront) - create a CloudFront invalidation
+  - [ember-cli-deploy-cp](https://github.com/dschmidt/ember-cli-deploy-cp) - deploy file(s) on your filesystem
+  - [ember-cli-deploy-git-tag](https://github.com/minutebase/ember-cli-deploy-git-tag) - tag deploys in git
   - [ember-cli-deploy-hipchat](https://github.com/blimmer/ember-cli-deploy-hipchat) - send a message to HipChat
+  - [ember-cli-deploy-notifications](https://github.com/simplabs/ember-cli-deploy-notifications) - notify external services of successful deploys
+  - [ember-cli-deploy-notify-firebase](https://github.com/minutebase/ember-cli-deploy-notify-firebase) - update a path in Firebase on activation
+  - [ember-cli-deploy-sentry](https://github.com/dschmidt/ember-cli-deploy-sentry) - upload javascript sourcemaps to sentry
 
 For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
 
