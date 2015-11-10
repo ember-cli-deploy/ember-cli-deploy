@@ -100,8 +100,9 @@ The following plugin packs are maintained by the ember-cli-deploy core team:
 
 The following plugin packs are developed by community members:
 
-- [ember-pagefront](https://github.com/pagefront/ember-pagefront)
+- [ember-cli-deploy-aws-pack](https://github.com/kpfefferle/ember-cli-deploy-aws-pack)
 - [ember-cli-deploy-azure](https://github.com/duizendnegen/ember-cli-deploy-azure)
+- [ember-pagefront](https://github.com/pagefront/ember-pagefront)
 
 
 ## Search for plugin packs
