@@ -14,8 +14,8 @@ a standardised, flexible deployment pipeline combined with a rich ecosystem of p
 Sure you do. And so does every one else. In fact their deployment scripts probably look a lot like yours. But slightly different. Maybe with a few extra bugs.
 And highly tailored for their use case and deployment setup.
 
-The point of ember-cli-deploy is to have a highly flexible, standardised way to deploy Ember applications that is community supported. It takes away the need for you to worry
-about the maintance of your deployment scripts and lets you focus on the important stuff.
+The point of ember-cli-deploy is to have a highly flexible, standardised way to deploy Ember applications that is community-supported. It takes away the need for you to worry
+about the maintenance of your deployment scripts and lets you focus on the important stuff.
 
 ## How does it work?
 
