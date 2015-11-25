@@ -32,11 +32,9 @@ get '/' do
   content_type 'text/html'
 
   redis = Redis.new
-  index_key = redis.get("<your-project-name>:index:current")
-  if params[:index_key]
-    index_key = "<your-project-name>:index:#{params[:index_key]}"
-  end
-  redis.get(index_key)
+  project = "<your-project-name>"
+  index_key = params[:index_key] || redis.get("#{project}:index:current")
+  redis.get("#{project}:index:#{index_key}")
 end
 ```
 
