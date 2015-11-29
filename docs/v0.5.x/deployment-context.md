@@ -21,6 +21,7 @@ When a hook is invoked its return value is **merged** back into the context Obje
 
 **Example:**
 
+![Example demonstrating context](/public/images/context-example.gif)
 The `ember-cli-deploy-revision-data` plugin uses its `prepare` hook to return an object with this shape:
 `{ revisionData: ... }`.
 
