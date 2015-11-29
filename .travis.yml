@@ -1,0 +1,13 @@
+---
+language: ruby
+rvm:
+- 2.2
+
+sudo: false
+
+branches:
+  only:
+  - gh-pages
+
+script:
+  - bundle exec jekyll build
