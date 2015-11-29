@@ -19,16 +19,62 @@ We have a separate [ember-cli-deploy Github org](https://github.com/ember-cli-de
 
 # Meet the core team
 
-**Aaron Chambers**: [GitHub](https://github.com/achambers), [Twitter](https://twitter.com/grandazz), [aaron] on Slack
-
-**Luke Melia**: [GitHub](https://github.com/lukemelia), [Twitter](https://twitter.com/lukemelia), [lukemelia] on Slack
-
-**Michael Klein**: [GitHub](https://github.com/LevelbossMike), [Twitter](https://twitter.com/levelbossmike), [levelbossmike] on Slack
-
-**Mattia Gheda**: [GitHub](https://github.com/ghedamat), [Twitter](https://twitter.com/ghedamat), [ghedamat] on Slack
-
-**Sam Selikoff**: [GitHub](https://github.com/samselikoff), [Twitter](https://twitter.com/samselikoff), [samselikoff] on Slack
-
+<ul class="core-team">
+  <li>
+    <img src="../public/images/team/achambers.jpg" alt="Aaron Chambers" class="headshot">
+    <div class="name">
+      Aaron Chambers
+    </div>
+    <a href="https://github.com/achambers"><img src="../public/images/github.png" alt="Github" class="social"> achambers</a>
+    <a href="https://twitter.com/grandazz"><img src="../public/images/twitter.png" alt="Twitter" class="social"> grandazz</a>
+    <div><img src="../public/images/slack.png" alt="Slack" class="social"> [aaron]</div>
+  </li>
+  <li>
+    <img src="../public/images/team/lukemelia.jpg" alt="Luke Melia" class="headshot">
+    <div class="name">
+      Luke Melia
+    </div>
+    <a href="https://github.com/lukemelia"><img src="../public/images/github.png" alt="Github" class="social"> lukemelia</a>
+    <a href="https://twitter.com/lukemelia"><img src="../public/images/twitter.png" alt="Twitter" class="social"> lukemelia</a>
+    <div><img src="../public/images/slack.png" alt="Slack" class="social"> [lukemelia]</div>
+  </li>
+  <li>
+    <img src="../public/images/team/ghedamat.jpg" alt="Mattia Gheda" class="headshot">
+    <div class="name">
+      Mattia Gheda
+    </div>
+    <a href="https://github.com/ghedamat"><img src="../public/images/github.png" alt="Github" class="social"> ghedamat</a>
+    <a href="https://twitter.com/ghedamat"><img src="../public/images/twitter.png" alt="Twitter" class="social"> ghedamat</a>
+    <div><img src="../public/images/slack.png" alt="Slack" class="social"> [ghedamat]</div>
+  </li>
+  <li>
+    <img src="../public/images/team/levelbossmike.jpg" alt="Michael Klein" class="headshot">
+    <div class="name">
+      Michael Klein
+    </div>
+    <a href="https://github.com/LevelBossMike"><img src="../public/images/github.png" alt="Github" class="social"> LevelBossMike</a>
+    <a href="https://twitter.com/LevelBossMike"><img src="../public/images/twitter.png" alt="Twitter" class="social"> LevelBossMike</a>
+    <div><img src="../public/images/slack.png" alt="Slack" class="social"> [LevelBossMike]</div>
+  </li>
+  <li>
+    <img src="../public/images/team/duizendnegen.jpg" alt="Pepijn Schoen" class="headshot">
+    <div class="name">
+      Pepijn Schoen
+    </div>
+    <a href="https://github.com/duizendnegen"><img src="../public/images/github.png" alt="Github" class="social"> duizendnegen</a>
+    <a href="https://twitter.com/duizendnegen"><img src="../public/images/twitter.png" alt="Twitter" class="social"> duizendnegen</a>
+    <div><img src="../public/images/slack.png" alt="Slack" class="social"> [duizendnegen]</div>
+  </li>
+  <li>
+    <img src="../public/images/team/samselikoff.jpg" alt="Sam Selikoff" class="headshot">
+    <div class="name">
+      Sam Selikoff
+    </div>
+    <a href="https://github.com/samselikoff"><img src="../public/images/github.png" alt="Github" class="social"> samselikoff</a>
+    <a href="https://twitter.com/samselikoff"><img src="../public/images/twitter.png" alt="Twitter" class="social"> samselikoff</a>
+    <div><img src="../public/images/slack.png" alt="Slack" class="social"> [samselikoff]</div>
+  </li>
+</ul>
 
 # Learning
 
@@ -38,16 +84,18 @@ Here are some resources related to this project.
 
 **Videos**
 
-- [RailsConf 2014 - Lightning Fast Deployment of Your Rails-backed JavaScript app](https://www.youtube.com/watch?v=QZVYP3cPcWQ). The talk that started it all.
-- [EmberConf 2015 - The Art of Ember Deployment](https://www.youtube.com/watch?v=4EDetv_Rw5U). Luke's follow-up talk at EmberConf.
+- [EmberCamp London 2015: ember-cli-deploy in Action](https://www.youtube.com/watch?v=fcSL5poJ1gQ&list=PL4eq2DPpyBbnMrndBpPUFFdYiMLdp8__L&index=8). Aaron Chambers and Luke Melia introduce ember-cli-deploy 0.5.x to the world.
+- [Ember London - Ember CLI Deploy](https://vimeo.com/139125310). Aaron Chambers gives an overview of ember-cli-deploy 0.5.x.
+- [Codementor Office Hours - Ember CLI Deploy with LevelBossMike](https://www.youtube.com/watch?v=jE8Kc8c107w). Michael Klein (LevelBossMike) discusses using Ember CLI Deploy it to deploy any type of Ember App.
+- [EmberConf 2015 - The Art of Ember Deployment](https://www.youtube.com/watch?v=4EDetv_Rw5U). Luke's talk at EmberConf announcing the merging of the projects.
 - [Deploying a Location-Aware EmberJS Application](https://www.youtube.com/watch?v=MT0LKcVh6Rw). Ben Limmer uses ember-cli-deploy and ExpressJS to create a location-aware application.
 - [Ember Munich - Ember Deploy](https://www.youtube.com/watch?v=Ro2_I5vtTIg). @LevelBossMike talks about Ember Deploy, the first incarnation of this library.
-- [Codementor Office Hours - Ember CLI Deploy with LevelBossMike](https://www.youtube.com/watch?v=jE8Kc8c107w). Michael Klein (LevelBossMike) discusses using Ember CLI Deploy it to deploy any type of Ember App.
-- [Ember London - Ember CLI Deploy](https://vimeo.com/139125310). Aaron Chambers gives an overview of ember-cli-deploy 0.5.x.
+- [RailsConf 2014 - Lightning Fast Deployment of Your Rails-backed JavaScript app](https://www.youtube.com/watch?v=QZVYP3cPcWQ). The talk that started it all.
 
 **Articles**
 
-- [Deploying Ember CLI Apps](http://blog.firstiwaslike.com/deploying-ember-cli-apps/)
+- [Deploying Ember to AWS CloudFront using ember-cli-deploy](http://kevin.pfefferle.co/2015/11/01/deploying-ember-to-aws-cloudfront-using-ember-cli-deploy/) by Kevin Pfefferle
+- [Deploying Ember CLI Apps](http://blog.firstiwaslike.com/deploying-ember-cli-apps/) by Michael Klein
 - [Deploying an Ember CLI Application to Amazon S3](http://kerrygallagher.co.uk/deploying-an-ember-cli-application-to-amazon-s3/) by Kerry Gallagher
 - [Deploying an Ember CLI Application through SSH](http://treyhunner.com/2015/03/deploying-an-ember-cli-application-via-ssh/) by Trey Hunner
 
