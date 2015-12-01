@@ -15,7 +15,6 @@ To upgrade an application that used the Lightning Strategy in 0.4.X:
 * add new `dotenv` files `.env.build.environment`
 * add `ember-cli-deploy-revision-data`
 * add `ember-cli-deploy-display-revisions`
-* lock `broccoli-asset-rev` to `2.0.6` (temporary bug)
 
 
 ### Notes:
