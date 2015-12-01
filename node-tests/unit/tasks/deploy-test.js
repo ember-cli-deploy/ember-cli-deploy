@@ -86,6 +86,37 @@ describe('DeployTask', function() {
         });
       });
     });
+
+    describe('setting environment variables from .env', function() {
+      beforeEach(function(){
+        delete process.env.ENVTEST;
+      });
+      it('sets the process.env vars if a .env file exists for deploy environment', function() {
+        var project = {
+          name: function() {return 'test-project';},
+          root: process.cwd(),
+          addons: []
+        };
+
+        assert.isUndefined(process.env.ENVTEST);
+
+        var task = new DeployTask({
+          project: project,
+          ui: mockUi,
+          deployTarget: 'development',
+          deployConfigFile: 'node-tests/fixtures/config/deploy.js',
+          _pipeline: {
+            run: function() {
+              pipelineExecuted = true;
+              return Promise.resolve();
+            }
+          }
+        });
+
+        assert.equal(process.env.ENVTEST, 'SUCCESS');
+      });
+    });
+
   });
 
 });
