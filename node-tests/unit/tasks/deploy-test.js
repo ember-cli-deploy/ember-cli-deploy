@@ -4,9 +4,18 @@ var expect       = require('../../helpers/expect');
 var assert       = require('chai').assert;
 
 describe('DeployTask', function() {
-  var mockProject   = {addons: []};
-  var mockConfig    = {};
-  var mockUi        = { write: function() {},  writeError: function() {} };
+  var mockProject = {addons: []};
+  var mockPostBuildConfig = {
+    pipeline: {
+      activateOnDeploy: true
+    }
+  };
+  var mockDeployConfig = {
+    build: {
+      buildEnv: 'development'
+    }
+  };
+  var mockUi = { write: function() {},  writeError: function() {} };
 
   describe('creating and setting up a new instance', function() {
 
@@ -16,7 +25,7 @@ describe('DeployTask', function() {
           project: mockProject,
           ui: mockUi,
           deployTarget: 'development-postbuild',
-          deployConfigFile: 'node-tests/fixtures/config/deploy-postbuild.js',
+          config: mockPostBuildConfig,
           shouldActivate: true
         });
         expect(deploy.shouldActivate).to.eq(true);
@@ -32,7 +41,7 @@ describe('DeployTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development-postbuild',
-          deployConfigFile: 'node-tests/fixtures/config/deploy-postbuild.js',
+          config: mockPostBuildConfig,
         });
         expect(deploy.shouldActivate).to.eq(true);
       });
@@ -47,7 +56,7 @@ describe('DeployTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development-postbuild',
-          deployConfigFile: 'node-tests/fixtures/config/deploy.js',
+          config: mockDeployConfig,
           commandOptions: {
             activate: true
           }
@@ -71,7 +80,7 @@ describe('DeployTask', function() {
         project: project,
         ui: mockUi,
         deployTarget: 'development',
-        deployConfigFile: 'node-tests/fixtures/config/deploy.js',
+        config: mockDeployConfig,
         _pipeline: {
           run: function() {
             pipelineExecuted = true;
@@ -86,6 +95,13 @@ describe('DeployTask', function() {
         });
       });
     });
+
+    describe('setting environment variables from .env', function() {
+      beforeEach(function(){
+        delete process.env.ENVTEST;
+      });
+    });
+
   });
 
 });

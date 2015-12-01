@@ -37,50 +37,24 @@ describe('PipelineTask', function() {
       var fn = function() {
         new PipelineTask({
           project: mockProject,
-          ui: mockUi
+          ui: mockUi,
+          config: mockConfig
         });
       };
 
       expect(fn).to.throw('You need to provide a deployTarget: `ember deploy production`');
     });
 
-    it('accepts an absolute deployConfigPath', function() {
-      var fn = function () {
+    it('raises an error if config is not provided', function() {
+      var fn = function() {
         new PipelineTask({
           project: mockProject,
           ui: mockUi,
-          deployTarget: 'development',
-          deployConfigPath: path.join(process.cwd(), 'node-tests/fixtures/config/deploy.js'),
-          hooks: ['willDeploy', 'upload']
-        }).run();
+          deployTarget: 'development'
+        });
       };
 
-      assert.doesNotThrow(fn, /Cannot find module/, 'config file could not be read');
-    });
-
-    describe('setting environment variables from .env', function() {
-      beforeEach(function(){
-        delete process.env.ENVTEST;
-      });
-      it('sets the process.env vars if a .env file exists for deploy environment', function() {
-        var project = {
-          name: function() {return 'test-project';},
-          root: process.cwd(),
-          addons: []
-        };
-
-        assert.isUndefined(process.env.ENVTEST);
-
-        var task = new PipelineTask({
-          project: project,
-          ui: mockUi,
-          deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
-          hooks: ['willDeploy', 'upload']
-        });
-
-        assert.equal(process.env.ENVTEST, 'SUCCESS');
-      });
+      expect(fn).to.throw('No config passed to pipeline task');
     });
 
     describe('registering addons with the pipeline', function() {
@@ -111,17 +85,16 @@ describe('PipelineTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          config: mockConfig,
           hooks: ['willDeploy', 'upload']
         });
-        return task.setup().then(function(){
-          var registeredHooks = task._pipeline._pipelineHooks;
+        task.setup();
+        var registeredHooks = task._pipeline._pipelineHooks;
 
-          expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
-          expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
-          expect(registeredHooks.upload[0].name).to.eq('test-plugin');
-          expect(registeredHooks.upload[0].fn).to.be.a('function');
-        });
+        expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
+        expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+        expect(registeredHooks.upload[0].name).to.eq('test-plugin');
+        expect(registeredHooks.upload[0].fn).to.be.a('function');
       });
 
       it('does not register addons missing the ember-cli-deploy-plugin keyword', function() {
@@ -150,7 +123,7 @@ describe('PipelineTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          config: mockConfig,
           hooks: ['willDeploy', 'upload']
         });
 
@@ -182,7 +155,7 @@ describe('PipelineTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          config: mockConfig,
           hooks: ['willDeploy', 'upload']
         });
 
@@ -233,19 +206,18 @@ describe('PipelineTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test.js',
+          config: { plugins: ['foo-plugin'] },
           hooks: ['willDeploy', 'upload']
         });
-        return task.setup().then(function(){
-          var registeredHooks = task._pipeline._pipelineHooks;
+        task.setup();
+        var registeredHooks = task._pipeline._pipelineHooks;
 
-          expect(registeredHooks.willDeploy.length).to.equal(1);
-          expect(registeredHooks.willDeploy[0].name).to.eq('foo-plugin');
-          expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
-          expect(registeredHooks.upload.length).to.equal(1);
-          expect(registeredHooks.upload[0].name).to.eq('foo-plugin');
-          expect(registeredHooks.upload[0].fn).to.be.a('function');
-        });
+        expect(registeredHooks.willDeploy.length).to.equal(1);
+        expect(registeredHooks.willDeploy[0].name).to.eq('foo-plugin');
+        expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+        expect(registeredHooks.upload.length).to.equal(1);
+        expect(registeredHooks.upload[0].name).to.eq('foo-plugin');
+        expect(registeredHooks.upload[0].fn).to.be.a('function');
       });
       it('registers dependent plugin addons of a plugin pack addon designated by the ember-cli-deploy-plugin-pack keyword', function() {
         var project = {
@@ -284,19 +256,18 @@ describe('PipelineTask', function() {
           project: project,
           ui: mockUi,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+          config: mockConfig,
           hooks: ['willDeploy', 'upload']
         });
-        return task.setup().then(function(){
-          var registeredHooks = task._pipeline._pipelineHooks;
+        task.setup();
+        var registeredHooks = task._pipeline._pipelineHooks;
 
-          expect(registeredHooks.willDeploy.length).to.eq(1);
-          expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
-          expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
-          expect(registeredHooks.upload.length).to.eq(1);
-          expect(registeredHooks.upload[0].name).to.eq('test-plugin');
-          expect(registeredHooks.upload[0].fn).to.be.a('function');
-        });
+        expect(registeredHooks.willDeploy.length).to.eq(1);
+        expect(registeredHooks.willDeploy[0].name).to.eq('test-plugin');
+        expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+        expect(registeredHooks.upload.length).to.eq(1);
+        expect(registeredHooks.upload[0].name).to.eq('test-plugin');
+        expect(registeredHooks.upload[0].fn).to.be.a('function');
       });
     });
   });
@@ -316,7 +287,7 @@ describe('PipelineTask', function() {
         project: project,
         ui: mockUi,
         deployTarget: 'development',
-        deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+        config: { build: { environment: 'development' }},
         commandOptions: {revision: '123abc'},
         hooks: ['willDeploy', 'upload'],
         pipeline: {
@@ -334,7 +305,7 @@ describe('PipelineTask', function() {
           expect(pipelineContext.ui).to.eq(mockUi);
           expect(pipelineContext.project).to.eq(project);
           expect(pipelineContext.deployTarget).to.eq('development');
-          expect(pipelineContext.config.build.buildEnv).to.eq('development');
+          expect(pipelineContext.config.build.environment).to.eq('development');
           expect(pipelineContext.commandOptions.revision).to.eq('123abc');
         });
     });
@@ -377,7 +348,7 @@ describe('PipelineTask', function() {
         project: project,
         ui: mockUi,
         deployTarget: 'development',
-        deployConfigPath: 'node-tests/fixtures/config/deploy.js',
+        config: mockConfig,
         commandOptions: {revision: '123abc'},
         hooks: ['willDeploy', 'upload'],
         pipeline: new Pipeline(['willDeploy', 'upload'], {
@@ -385,9 +356,8 @@ describe('PipelineTask', function() {
         })
       });
 
-      return task.setup().then(function(){
-        return expect(task.run()).to.be.fulfilled;
-      }).then(function() {
+      task.setup();
+      return expect(task.run()).to.be.fulfilled.then(function() {
         var logLines = logOutput.split("\n");
         expect(logLines[ 0]).to.eq("\u001b[34mRegistering hook -> willDeploy[test-plugin]");
         expect(logLines[ 1]).to.eq("\u001b[39m\u001b[34mRegistering hook -> upload[test-plugin]");
@@ -437,7 +407,7 @@ describe('PipelineTask', function() {
         project: project,
         ui: mockUi,
         deployTarget: 'staging',
-        deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-alias.js',
+        config: { plugins: ['foo-plugin:bar-alias'] },
         pipeline: {
           hookNames: function () {
             return [];
@@ -445,9 +415,8 @@ describe('PipelineTask', function() {
         }
       });
 
-      return task.setup().then(function() {
-        expect(correctAliasUsed).to.be.true;
-      });
+      task.setup();
+      expect(correctAliasUsed).to.be.true;
     });
 
     it('passes correct name to multiple instances of the same plugin', function () {
@@ -479,7 +448,7 @@ describe('PipelineTask', function() {
         project: project,
         ui: mockUi,
         deployTarget: 'staging',
-        deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
+        config: { plugins: ['foo-plugin', 'foo-plugin:bar-alias', 'foo-plugin:doo-alias'] },
         pipeline: {
           hookNames: function () {
             return [];
@@ -487,15 +456,13 @@ describe('PipelineTask', function() {
         }
       });
 
-      return task.setup().then(function() {
-        expect(correctAliasUsed['foo-plugin']).to.be.true;
-        expect(correctAliasUsed['bar-alias']).to.be.true;
-        expect(correctAliasUsed['doo-alias']).to.be.true;
-      });
+      task.setup();
+      expect(correctAliasUsed['foo-plugin']).to.be.true;
+      expect(correctAliasUsed['bar-alias']).to.be.true;
+      expect(correctAliasUsed['doo-alias']).to.be.true;
     });
 
     it('throws error on non-existent plugin in whitelist and appends them to err.unavailablePlugins', function () {
-      var correctAliasUsed = false;
       var project = {
         name: function() {return 'test-project';},
         root: process.cwd()
@@ -505,12 +472,16 @@ describe('PipelineTask', function() {
         project: project,
         ui: mockUi,
         deployTarget: 'production',
+        config: { plugins: ['foo-plugin', 'foo-plugin:bar-alias', 'foo-plugin:doo-alias'] },
         deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
       });
 
-      return task.setup().then(null, function(err) {
-        assert.equal(Object.keys(err.unavailablePlugins).length, 3);
-      });
+      try {
+        task.setup();
+        expect(false).to.be.true;
+      } catch(err) {
+        expect(Object.keys(err.unavailablePlugins).length).to.equal(3);
+      }
     });
   });
 });

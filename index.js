@@ -22,19 +22,27 @@ module.exports = {
 
     var deployTarget = options.runOnPostBuild;
     if (deployTarget) {
-      var DeployTask = require('./lib/tasks/deploy');
-      var deploy = new DeployTask({
-        project: this.project,
-        ui: this.ui,
-        deployTarget: deployTarget,
-        deployConfigFile: options.configFile,
-        shouldActivate: options.shouldActivate,
-        commandOptions: {
-          buildDir: result.directory
-        }
-      });
 
-      return deploy.run();
+      var ReadConfigTask = require('../tasks/read-config');
+      var readConfig = new ReadConfigTask({
+        project: this.project,
+        deployTarget: deployTarget,
+        deployConfigFile: options.configFile
+      });
+      return readConfig.run().then(function(config){
+        var DeployTask = require('./lib/tasks/deploy');
+        var deploy = new DeployTask({
+          project: this.project,
+          ui: this.ui,
+          deployTarget: deployTarget,
+          config: config,
+          shouldActivate: options.shouldActivate,
+          commandOptions: {
+            buildDir: result.directory
+          }
+        });
+        return deploy.run();
+      });
     }
   }
 };
