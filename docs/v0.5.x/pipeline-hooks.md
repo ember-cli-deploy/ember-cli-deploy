@@ -57,11 +57,11 @@ upload -----------> upload  puts the assets somewhere
            \
             \--- didUpload  notify APIs (slack, pusher, etc.), warm cache
 
-fetchRevisions ----> returns an hash (or a promise resolving to one)
+fetchRevisions ----> returns a hash (or a promise resolving to one)
                       that has a `revisions` key and an array of revisions
                       objects as its value.  i.e. `{revisions: [...]}
                       Each revision object _must_ have
-                      an `revision` key. Each revision _may_ have one
+                      a `revision` key. Each revision _may_ have one
                       or more of the following properties:
 
                       `version`:     (String) reference of version in SCM
@@ -100,11 +100,11 @@ configure: ---> Runs before anything happens
 
 setup: -------> The first hook for every command
 
-fetchRevisions -->  returns an hash (or a promise resolving to one)
+fetchRevisions -->  returns a hash (or a promise resolving to one)
                     that has a `revisions` key and an array of revisions
                     objects as its value.  i.e. `{revisions: [...]}
                     Each revision object _must_ have
-                    an `revision` key. Each revision _may_ have one
+                    a `revision` key. Each revision _may_ have one
                     or more of the following properties:
 
                     `version`:     (String) reference of version in SCM
@@ -141,11 +141,11 @@ configure: ---> Runs before anything happens
 
 setup: -------> The first hook for every command
 
-fetchRevisions: ----> returns an hash (or a promise resolving to one)
+fetchRevisions: ----> returns a hash (or a promise resolving to one)
                       that has a `revisions` key and an array of revisions
                       objects as its value.  i.e. `{revisions: [...]}
                       Each revision object _must_ have
-                      an `revision` key. Each revision _may_ have one
+                      a `revision` key. Each revision _may_ have one
                       or more of the following properties:
 
                       `version`:     (String) reference of version in SCM
