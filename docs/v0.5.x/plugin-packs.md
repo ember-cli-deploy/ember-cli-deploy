@@ -41,7 +41,7 @@ From then on, just carry on deploying with [The Lightning Strategy](../the-light
 There are a few reasons why you might want to create your own plugin pack.
 
 The first might be that you want to package up your deployment strategy so it's easy for you to implement across multiple ember-cli projects. This would save you the time of having to install all of the
-required plugins in every project. We envision most companies that support multiple Ember apps creating their own plugins for internal use.
+required plugins in every project. We envision most companies that support multiple Ember apps creating their own plugin packs for internal use.
 
 The second reason you might create a plugin pack is to contribute your deployment strategy ideas back to the ember-cli-deploy community. By publishing a plugin pack, you are telling the community that you believe you know of a
 good deployment strategy for ember-cli apps and you are showing them how they can implement that strategy with minimal effort.
@@ -104,6 +104,13 @@ The following plugin packs are developed by community members:
 - [ember-cli-deploy-azure](https://github.com/duizendnegen/ember-cli-deploy-azure)
 - [ember-pagefront](https://github.com/pagefront/ember-pagefront)
 
+## Examples of Internal Company Plugin Packs
+
+The following plugins were created by companies that support multiple Ember apps for their own internal use. They have generously open-sourced them for other people to learn from.
+
+- [ember-cli-deploy-ink-pack](https://github.com/movableink/ember-cli-deploy-ink-pack)
+- [ember-cli-deploy-yapp-pack](https://github.com/yappbox/ember-cli-deploy-yapp-pack)
+- [ember-cli-deploy-zesty-pack](https://github.com/zestyzesty/ember-cli-deploy-zesty-pack)
 
 ## Search for plugin packs
 
