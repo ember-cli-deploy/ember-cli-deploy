@@ -19,9 +19,10 @@ Depending on the command, different hooks will be called (in order):
 * willDeploy
 * willBuild, build, didBuild,
 * willPrepare, prepare, didPrepare,
+* fetchInitialRevisions,
 * willUpload, upload, didUpload,
-* fetchRevisions
-* willActivate, activate, didActivate, (only if --activate flag is passed)
+* willActivate, activate, fetchRevisions, didActivate, (only if --activate flag is passed)
+* fetchRevisions (only if --activate flag is not passed)
 * didDeploy,
 * teardown
 ```
@@ -50,6 +51,20 @@ prepare ----------> prepare  information about the deploy,
            \
             \--- didPrepare  notify APIS (slack etc)
 
+fetchInitialRevisions ---->  returns a `revisionData` hash (or a promise resolving to one)
+                             that has a `initial` key and an array of revisions
+                             objects as its value.  i.e. `{revisionData:{initial:[...]}}`
+                             Each revision object _must_ have
+                             a `revision` key. Each revision _may_ have one
+                             or more of the following properties:
+
+                             `version`:     (String) reference of version in SCM
+                             `timestamp`:   (Date) when the version was created
+                             `deployer`:    (String) name/email address of
+                                            developer who deployed the version
+                             `active`:      (Boolean) is the revision activated?
+                             `description`: (String) summary of the revision
+
            /--- willUpload  confirm remote servers(S3, Redis, Azure, etc.)
           /
 upload -----------> upload  puts the assets somewhere
@@ -57,27 +72,27 @@ upload -----------> upload  puts the assets somewhere
            \
             \--- didUpload  notify APIs (slack, pusher, etc.), warm cache
 
-fetchRevisions ----> returns a hash (or a promise resolving to one)
-                      that has a `revisions` key and an array of revisions
-                      objects as its value.  i.e. `{revisions: [...]}
-                      Each revision object _must_ have
-                      a `revision` key. Each revision _may_ have one
-                      or more of the following properties:
-
-                      `version`:     (String) reference of version in SCM
-                      `timestamp`:   (Date) when the version was created
-                      `deployer`:    (String) name/email address of
-                                     developer who deployed the version
-                      `active`:      (Boolean) is the revision activated?
-                      `description`: (String) summary of the revision
-
             /-- willActivate  create backup of assets,
            /                  notify APIs, uninstall earlier versions
           /
 activate ---------> activate  make a new version live
           \                   (clear cache, swap Redis values, etc.)
            \
-            \-- didActivate  notify APIs, warm cache
+            \-- fetchRevisions  returns a hash (or a promise resolving to one)
+             \                  that has a `revisions` key and an array of revisions
+              \                 objects as its value.  i.e. `{revisions: [...]}
+               \                Each revision object _must_ have
+                \               a `revision` key. Each revision _may_ have one
+                 \              or more of the following properties:
+                  \
+                   \            `version`:     (String) reference of version in SCM
+                    \           `timestamp`:   (Date) when the version was created
+                     \          `deployer`:    (String) name/email address of
+                      \                        developer who deployed the version
+                       \        `active`:      (Boolean) is the revision activated?
+                        \       `description`: (String) summary of the revision              
+                         \
+                          \-- didActivate  notify APIs, warm cache
 
 didDeploy: --> runs at the end of a full deployment operation.
 
@@ -88,8 +103,8 @@ teardown: ---> always the last hook being run
 ```
 * configure
 * setup
-* fetchRevisions
-* willActivate, activate, didActivate
+* fetchInitialRevisions
+* willActivate, activate, fetchRevisions, didActivate
 * teardown
 ```
 
@@ -100,19 +115,19 @@ configure: ---> Runs before anything happens
 
 setup: -------> The first hook for every command
 
-fetchRevisions -->  returns a hash (or a promise resolving to one)
-                    that has a `revisions` key and an array of revisions
-                    objects as its value.  i.e. `{revisions: [...]}
-                    Each revision object _must_ have
-                    a `revision` key. Each revision _may_ have one
-                    or more of the following properties:
+fetchInitialRevisions ---->  returns a `revisionData` hash (or a promise resolving to one)
+                             that has a `initial` key and an array of revisions
+                             objects as its value.  i.e. `{revisionData:{initial:[...]}}`
+                             Each revision object _must_ have
+                             a `revision` key. Each revision _may_ have one
+                             or more of the following properties:
 
-                    `version`:     (String) reference of version in SCM
-                    `timestamp`:   (Date) when the version was created
-                    `deployer`:    (String) name/email address of
-                                   developer who deployed the version
-                    `active`:      (Boolean) is the revision activated?
-                    `description`: (String) summary of the revision
+                             `version`:     (String) reference of version in SCM
+                             `timestamp`:   (Date) when the version was created
+                             `deployer`:    (String) name/email address of
+                                            developer who deployed the version
+                             `active`:      (Boolean) is the revision activated?
+                             `description`: (String) summary of the revision
 
             /-- willActivate  create backup of assets,
            /                  notify APIs, uninstall earlier versions
@@ -120,7 +135,20 @@ fetchRevisions -->  returns a hash (or a promise resolving to one)
 activate ---------> activate  make a new version live
           \                   (clear cache, swap Redis values, etc.)
            \
-            \-- didActivate  notify APIs, warm cache
+            \-- fetchRevisions  returns a hash (or a promise resolving to one)
+             \                  that has a `revisions` key and an array of revisions
+              \                 objects as its value.  i.e. `{revisions: [...]}
+               \                Each revision object _must_ have
+                \               a `revision` key. Each revision _may_ have one
+                 \              or more of the following properties:
+                  \             `version`:     (String) reference of version in SCM
+                   \            `timestamp`:   (Date) when the version was created
+                    \           `deployer`:    (String) name/email address of
+                     \                         developer who deployed the version
+                      \         `active`:      (Boolean) is the revision activated?
+                       \        `description`: (String) summary of the revision    
+                        \
+                         \-- didActivate  notify APIs, warm cache
 
 teardown: ---> always the last hook being run
 ```
