@@ -40,11 +40,17 @@ end
 
 The nice thing about this is that you can deploy your app to production, test it out by passing an index_key parameter with the revision you want to test and activate when you feel confident that everything is working as expected.
 
-## Example Node app (outdated)
+## Example Node apps
 
-This app does the same as the *Sinatra app* above, it supports the same index_key query param. It should help you to get up and running in seconds and dont worry about server code. You also need to deploy your ember app with `ember-cli-deploy` and `ember-deploy-redis`.
+### Using [Koa](http://koajs.com/)
+This app does the same as the *Sinatra app* above, it supports the same index_key query param. It should help you to get up and running in seconds and dont worry about server code. This needs your Ember-CLI app to be deployed with [`ember-cli-deploy-lightning-pack`](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack).
 
-[Nodejs example with one click deploy!](https://github.com/philipheinser/ember-lightning)
+[Nodejs example with one click Heroku deploy!](https://github.com/philipheinser/ember-lightning)
+
+### Using ExpressJS
+This app is very similar to the *Sinatra app* above but also implements a very simple `/revisions` endpoint where you can see all current revisions available to use. It is implemented using [Express](http://expressjs.com/) so should be very easy to follow. This needs your Ember-CLI app to be deployed with [`ember-cli-deploy-lightning-pack`](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack).
+
+[Simple NodeJS example](https://github.com/stonecircle/express-lightning-deploy)
 
 ## Azure Tables Server apps
 
