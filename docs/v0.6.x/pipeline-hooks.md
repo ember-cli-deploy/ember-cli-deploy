@@ -19,16 +19,20 @@ Depending on the command, different hooks will be called (in order):
 * willDeploy
 * willBuild, build, didBuild,
 * willPrepare, prepare, didPrepare,
+* fetchInitialRevisions,
 * willUpload, upload, didUpload,
-* willActivate, activate, didActivate, (only if --activate flag is passed)
-* didDeploy,
+* willActivate, activate, fetchRevisions, didActivate, [1]
+* fetchRevisions [2]
 * teardown
+
+[1] only if --activate flag is passed
+[2] only if --activate flag is not passed
 ```
 
 #### Detailed description:
 
 ```
-configure: ---> Runs before anything happens
+configure: ---> Validate configuration and set defaults
 
 setup: -------> The first hook for every command
 
@@ -49,6 +53,11 @@ prepare ----------> prepare  information about the deploy,
            \
             \--- didPrepare  notify APIS (slack etc)
 
+fetchInitialRevisions -->  returns an object (or a promise resolving to
+                           one) that has an `initialRevisions` property
+                           whose value is an array of revision objects.[1]
+                           i.e. `{ initialRevisions: [...] }`
+
            /--- willUpload  confirm remote servers(S3, Redis, Azure, etc.)
           /
 upload -----------> upload  puts the assets somewhere
@@ -56,43 +65,70 @@ upload -----------> upload  puts the assets somewhere
            \
             \--- didUpload  notify APIs (slack, pusher, etc.), warm cache
 
-            /-- willActivate  create backup of assets,
-           /                  notify APIs, uninstall earlier versions
+            /--- willActivate  create backup of assets,
+           /                   notify APIs, uninstall earlier versions
           /
-activate ---------> activate  make a new version live
-          \                   (clear cache, swap Redis values, etc.)
+activate ----------> activate  make a new version live
+          \                    (clear cache, swap Redis values, etc.)
            \
-            \-- didActivate  notify APIs, warm cache
+            \- fetchRevisions  returns an object (or a promise resolving
+             \                 to one) that has a `revisions` property
+              \                whose value is an array of revision
+               \               objects.[1] i.e. `{ revisions: [...] }`
+                \
+                 \- didActivate  notify APIs, warm cache
 
-didDeploy: --> runs at the end of a full deployment operation.
+didDeploy: ----->  runs at the end of a full deployment operation.
 
-teardown: ---> always the last hook being run
+teardown: ------>  always the last hook being run
+
+[1] For information about the format of a "revision object",
+    see "Revision Objects" below.
 ```
+
 
 ### Hooks for `ember deploy:activate`
 ```
 * configure
 * setup
-* willActivate, activate, didActivate
+* fetchInitialRevisions
+* willActivate
+* activate
+* fetchRevisions
+* didActivate
 * teardown
 ```
 
 #### Detailed description:
 
 ```
-configure: ---> Runs before anything happens
+configure: --------------->  Validate configuration and set defaults
 
-setup: -------> The first hook for every command
+setup: ------------------->  The first hook for every command
 
-            /-- willActivate  create backup of assets,
-           /                  notify APIs, uninstall earlier versions
-          /
-activate ---------> activate  make a new version live
-          \                   (clear cache, swap Redis values, etc.)
-           \
-            \-- didActivate  notify APIs, warm cache
+fetchInitialRevisions ---->  returns an object (or a promise resolving
+                             to one) that has an `initialRevisions`
+                             property whose value is an array of
+                             revision objects.[1]
+                             i.e. `{ initialRevisions: [...] }`
 
-teardown: ---> always the last hook being run
+          /--- willActivate  create backup of assets,
+         /                   notify APIs, uninstall earlier versions
+        /
+activate --------> activate  make a new version live
+        \                    (clear cache, swap Redis values, etc.)
+         \
+          \- fetchRevisions  returns an object (or a promise resolving
+           \                 to one) that has a `revisions` property
+            \                whose value is an array of revision
+             \               objects.[1] i.e. `{ revisions: [...] }`
+              \
+               \- didActivate  notify APIs, warm cache
+
+teardown: ---------------->  always the last hook being run
+
+[1] For information about the format of a "revision object",
+    see "Revision Objects" below.
 ```
 
 ### Hooks for `ember deploy:list`
@@ -107,29 +143,23 @@ teardown: ---> always the last hook being run
 #### Detailed description:
 
 ```
-configure: ---> Runs before anything happens
+configure: --------->  Validate configuration and set defaults
 
-setup: -------> The first hook for every command
+setup: ------------->  The first hook for every command
 
-fetchRevisions: ----> returns an hash (or a promise resolving to one)
-                      that has a `revisions` key and an array of revisions
-                      objects as its value.  i.e. `{revisions: [...]}
-                      Each revision object _must_ have
-                      an `revision` key. Each revision _may_ have one
-                      or more of the following properties:
+fetchRevisions: ---->  returns an object (or a promise resolving to one)
+                       that has a `revisions` property whose value is an
+                       array of revision objects.[1]
+                       i.e. `{ revisions: [...] }`
 
-                      `version`:     (String) reference of version in SCM
-                      `timestamp`:   (Date) when the version was created
-                      `deployer`:    (String) name/email address of
-                                     developer who deployed the version
-                      `active`:      (Boolean) is the revision activated?
-                      `description`: (String) summary of the revision
+displayRevisions: -->  looks up the `revisions` key in the `context`
+                       and uses the information to display the list
+                       of revisions.
 
-displayRevisions: --> looks up the `revisions` key in the `context`
-                      and uses the information to
-                      display the list of revisions.
+teardown: ---------->  always the last hook being run
 
-teardown: ---> always the last hook being run
+[1] For information about the format of a "revision object",
+    see "Revision Objects" below.
 ```
 
 See [ember-cli-deploy-display-revisions](https://github.com/ember-cli-deploy/ember-cli-deploy-display-revisions) for a detailed example.
@@ -155,3 +185,21 @@ If a plugin does not return a promise, then ember-cli-deploy proceeds immediatel
 If a promise from any of the plugins is rejected then the deployment
 pipeline will stop and ember-cli-deploy will exit. Returned promises that are
 rejected are treated as unrecoverable errors.
+
+### Revision Objects
+
+The `fetchInitialRevisions` and `fetchRevisions` hooks described above
+are expected to be an array of "revision objects". A revision
+object is a Javascript object that conforms to the following:
+
+Each revision object _must_ have a string `revision` key.
+Each revision object _may_ have one or more one additional
+properties. The following properties are considered "common"
+and their types should be consistent across plugins:
+
+    `version`:     (String) reference of version in SCM
+    `timestamp`:   (Date) when the revision was created
+    `deployer`:    (String) name/email address of developer
+                            who deployed the version
+    `active`:      (Boolean) is the revision activated?
+    `description`: (String) summary of the revision

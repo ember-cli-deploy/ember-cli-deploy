@@ -1,3 +1,51 @@
+v0.6.x:
+  - section: Getting started
+  - label: Overview
+    path: ''
+  - label: Installation
+  - label: Quick start
+
+  - section: The Deploy Pipeline
+  - label: Overview
+    path: 'pipeline-overview/'
+  - label: Pipeline Hooks
+  - label: The Deployment Context
+    path: 'deployment-context/'
+
+  - section: Plugins
+  - label: Overview
+    path: 'plugins-overview/'
+  - label: Plugins
+  - label: Plugin Packs
+  - label: Writing a plugin
+
+  - section: Configuration
+  - label: Overview
+    path: 'configuration-overview/'
+  - label: Aliasing Plugins
+  - label: dotEnv Support
+  - label: Fingerprinting
+
+  - section: Usage
+  - label: Overview
+    path: 'usage-overview/'
+  - label: Development Workflow
+
+  - section: Deployment Strategies
+  - label: Overview
+    path: 'deployment-strategies-overview/'
+  - label: The Lightning Strategy
+
+  - section: Examples
+  - label: Lightning Strategy
+    path: 'lightning-strategy-examples/'
+
+  - section: Upgrading
+  - label: Apps
+    path: 'upgrading-apps/'
+  - label: Plugins
+    path: 'upgrading-plugins/'
+
 v0.5.x:
   - section: Getting started
   - label: Overview
