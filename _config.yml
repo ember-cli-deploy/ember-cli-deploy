@@ -49,3 +49,8 @@ defaults:
       path: "docs/v0.5.x"
     values:
       version: "v0.5.x"
+  -
+    scope:
+      path: "docs/v0.6.x"
+    values:
+      version: "v0.6.x"
