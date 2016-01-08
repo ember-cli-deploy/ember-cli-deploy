@@ -25,6 +25,7 @@ v0.6.x:
   - label: Aliasing Plugins
   - label: dotEnv Support
   - label: Fingerprinting
+  - label: Default CLI Options
 
   - section: Usage
   - label: Overview
