@@ -6,7 +6,7 @@ Simple, flexible deployment for your Ember CLI app
 ## Installation
 
 ```
-npm install ember-cli-deploy --save-dev
+ember install ember-cli-deploy
 ```
 ## Quick start
 
