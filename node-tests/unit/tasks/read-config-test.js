@@ -2,6 +2,7 @@ var Promise      = require('ember-cli/lib/ext/promise');
 var ReadConfigTask = require('../../../lib/tasks/read-config');
 var expect       = require('../../helpers/expect');
 var assert       = require('chai').assert;
+var path         = require('path');
 
 describe('ReadConfigTask', function() {
   var mockProject = {addons: []};
@@ -50,26 +51,61 @@ describe('ReadConfigTask', function() {
     });
 
     describe('setting environment variables from .env', function() {
+      var project;
+      var customDotEnvVars = [
+        'OVERRIDDEN',
+        'SHARED',
+        'ENVTEST'
+      ];
+
       beforeEach(function(){
-        delete process.env.ENVTEST;
-      });
-      it('sets the process.env vars if a .env file exists for deploy environment', function() {
-        var project = {
+        customDotEnvVars.forEach(function(dotEnvVar) {
+          delete process.env[dotEnvVar];
+        });
+
+        project = {
           name: function() {return 'test-project';},
-          root: process.cwd(),
+          root: path.join(process.cwd(), 'node-tests/fixtures'),
           addons: []
         };
-
+      });
+      it('sets the process.env vars if a .env file exists for deploy environment', function() {
         assert.isUndefined(process.env.ENVTEST);
 
         var task = new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: 'node-tests/fixtures/config/deploy.js'
+          deployConfigPath: 'config/deploy.js'
         });
         task.run();
 
         assert.equal(process.env.ENVTEST, 'SUCCESS');
+      });
+
+      it('sets the process.env vars from main .env file', function() {
+        assert.isUndefined(process.env.SHARED);
+
+        var task = new ReadConfigTask({
+          project: project,
+          deployTarget: 'development',
+          deployConfigPath: 'config/deploy.js'
+        });
+        task.run();
+
+        assert.equal(process.env.SHARED, 'shared-key');
+      });
+
+      it('overrides vars from main .env file if defined in deploy environment .env file', function() {
+        assert.isUndefined(process.env.OVERRIDDEN);
+
+        var task = new ReadConfigTask({
+          project: project,
+          deployTarget: 'development',
+          deployConfigPath: 'config/deploy.js'
+        });
+        task.run();
+
+        assert.equal(process.env.OVERRIDDEN, 'deploy-env-flavor');
       });
     });
 
