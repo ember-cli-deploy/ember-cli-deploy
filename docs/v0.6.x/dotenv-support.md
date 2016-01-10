@@ -6,8 +6,35 @@ It is often common to store sensitive data in environment variables and access t
 
 It is for this reason that ember-cli-deploy supports `.env` files out of the box.
 
-In order to employ this functionality, simply create a file in the root of your project named `.env.deploy.<deploy-target>` where `<deploy-target>` is the target environment you are deploying to.
-Pop your sensitive data into this file and then access them in your `config/deploy.js` via `process.env`
+## Basic Usage
+
+Create a `.env` file at the root of your project. Pop your sensitive data into this file and then access them in your `config/deploy.js` via `process.env`.
+
+```bash
+# /.env
+
+AWS_KEY=123456
+AWS_SECRET=abcdef
+```
+
+Access those environment variables in your `config/deploy.js` as follows:
+
+```javascript
+module.exports = function(deployTarget) {
+  var ENV = {
+    s3: {
+      accessKeyId: process.env.AWS_KEY,
+      secretAccessKey: process.env.AWS_SECRET
+    }
+  };
+
+  return ENV;
+};
+```
+
+## Deploy-Target Specific Variables
+
+For variables that are specific to a particular deployment target, create a file in the root of your project named `.env.deploy.<deploy-target>` where `<deploy-target>` is the target environment you are deploying to. Variables defined in an deploy-target specific file will override those defined in a top-level `.env` file.
 
 So, for example, if you were deploying to your staging environment like so:
 
@@ -20,11 +47,11 @@ You would create a `.env.deploy.staging` file in the root of your project like s
 ```bash
 # /.env.deploy.staging
 
-AWS_KEY=123456
-AWS_SECRET=abcdef
+AWS_KEY=78910
+AWS_SECRET=ghijkl
 ```
 
-You could then access those environment variables in your `config/deploy.js` as follows:
+You then access those environment variables in your `config/deploy.js` as follows:
 
 ```javascript
 module.exports = function(deployTarget) {
@@ -40,3 +67,7 @@ module.exports = function(deployTarget) {
   return ENV;
 };
 ```
+
+## .gitignore
+
+Remember to add all `.env` and `.env.deploy.<deploy-target>` files to your .gitignore file so you don't accidentally expose sensitive information.
