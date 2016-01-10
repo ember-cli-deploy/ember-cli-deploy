@@ -37,6 +37,8 @@ v0.5.x:
   - label: The Lightning Strategy
 
   - section: Examples
+  - label: S3 walkthrough
+    path: 's3-walkthrough/'
   - label: Lightning Strategy
     path: 'lightning-strategy-examples/'
 

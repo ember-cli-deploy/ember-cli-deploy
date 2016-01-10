@@ -1,6 +1,10 @@
+---
+title: S3 walkthrough
+---
+
 On this example, we'll build an ember-cli-deploy configuration from scratch. Step by step, we'll put the pieces together and get the application deployed to S3.
 
-# Installing ember-cli-deploy
+## Installing ember-cli-deploy
 
 First thing is to install ember-cli-deploy proper. It's an Ember addon, so you install it just like any other:
 
@@ -36,7 +40,7 @@ There are several pieces of information above:
 
 So let's get those plugins installed.
 
-# Building the project
+## Building the project
 
 The first plugin we should install is ember-cli-deploy-build:
 
@@ -61,7 +65,7 @@ This time it doesn't complain, but what does it actually do? It simply builds th
 
 This is the first step of the deployment process. Using ember-cli-deploy-build, you can control the build of the files to be deployed. Once this is complete, other plugins will take it from here.
 
-# Uploading to S3
+## Uploading to S3
 
 Install ember-cli-deploy-s3:
 
@@ -123,7 +127,7 @@ Finally, your app should be usable at the web address of the S3 bucket, assuming
 
 However, there are a few things we could do to improve the above.
 
-# What could be better
+## What could be better
 
 At this point, we could just leave it at that and consider the deployment work complete. However we could do better.
 
@@ -133,7 +137,7 @@ Also, S3 doesn't automatically gzip files when serving them over HTTP. It offers
 
 Finally, when you deploy, all files in the app are uploaded. Sometimes an app includes a lots of assets, such as fonts, images, etc... and that can make for a hefty, slow deployment. What if ember-cli-deploy could tell which files already exist at the destination, and only uploaded those that had actually been changed or added?
 
-# Rolling back to a previous version of the app
+## Rolling back to a previous version of the app
 
 So you want to be able to quickly roll back to a previous version of the app. I'll describe a good way to get it done. You are going to need three plugins for this:
 
