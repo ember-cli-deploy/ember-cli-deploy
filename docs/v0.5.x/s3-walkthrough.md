@@ -127,7 +127,7 @@ The file `index.html` is not there because ember-cli-deploy-s3 does not upload i
       }
     }
 
-The setting `filePattern` tells ember-cli-deploy-s3 what files should be uploaded. I have just added `html` to the list of extensions. Try deploying again and you'll see that `index.html` is deployed this time.
+The setting `filePattern` tells ember-cli-deploy-s3 what files should be uploaded. I have just taken the default value and added `html` to the list of extensions. Try deploying again and you'll see that `index.html` is deployed this time.
 
 Finally, your app should be usable at the web address of the S3 bucket, assuming that all configuration on the AWS side is correct (again, outside the scope of this example).
 
