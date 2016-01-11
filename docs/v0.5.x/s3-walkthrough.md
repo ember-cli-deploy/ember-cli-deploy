@@ -105,9 +105,15 @@ Once you have entered the correct configuration values, run the deploy command a
     $ ember deploy production
     version: 1.13.13
 
-If all is good, files should have been uploaded to S3. Check what's in the bucket. I have this:
+If all is good, files should have been uploaded to S3. Check what's in the bucket; it should be similar to this:
 
-![S3 bucket containing the folder 'assets' and the files 'crossdomain.xml' and 'robots.txt'](./bucket-after-s3-upload.png)
+    ├── assets
+    │   ├── your-app-7f8b9fddc5857d711cc51ed2a3a8594d.js
+    │   ├── your-app-d41d8cd98f00b204e9800998ecf8427e.css
+    │   ├── vendor-b630d3abd77d527def683a18b2165a94.js
+    │   └── vendor-d41d8cd98f00b204e9800998ecf8427e.css
+    ├── crossdomain.xml
+    └── robots.txt
 
 So that's our app... except that `index.html` is not there. Where did that go?
 
