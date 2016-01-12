@@ -88,6 +88,7 @@ Finally you will need to add the plugins that you would like this plugin pack to
 Then if you would like to be a good citizen of the ember-cli-deploy world, you might create a blueprint to generate an example `config/deploy.js` for this particular plugin setup.
 See the [ember-cli-deploy-lightning-pack blueprint](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack/tree/master/blueprints/lightning-deploy-config) as an example.
 
+To allow the plugin to provide shared code for use in config, you can require functions from your config/deploy.js. For an example of this, see [ember-cli-deploy-yapp-pack](https://github.com/yappbox/ember-cli-deploy-yapp-pack) and how its [blueprint config file uses code](https://github.com/yappbox/ember-cli-deploy-yapp-pack/blob/master/blueprints/yapp-deploy-config/files/config/deploy.js) that is [provided by its index.js file](https://github.com/yappbox/ember-cli-deploy-yapp-pack/blob/master/index.js#L6-L121).
 
 ## Core Plugin Packs
 
