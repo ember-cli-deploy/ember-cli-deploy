@@ -96,19 +96,21 @@ The following plugin packs are maintained by the ember-cli-deploy core team:
 - [ember-cli-deploy-lightning-pack](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack)
 
 
-## Community Maintained Plugin Packs
+## Community-maintained Plugin Packs
 
 The following plugin packs are developed by community members:
 
 - [ember-cli-deploy-aws-pack](https://github.com/kpfefferle/ember-cli-deploy-aws-pack)
 - [ember-cli-deploy-azure](https://github.com/duizendnegen/ember-cli-deploy-azure)
 - [ember-pagefront](https://github.com/pagefront/ember-pagefront)
+- [ember-cli-deploy-front-end-builds-pack](https://github.com/tedconf/ember-cli-deploy-front-end-builds-pack)
 
 ## Examples of Internal Company Plugin Packs
 
 The following plugins were created by companies that support multiple Ember apps for their own internal use. They have generously open-sourced them for other people to learn from.
 
 - [ember-cli-deploy-ink-pack](https://github.com/movableink/ember-cli-deploy-ink-pack)
+- [ember-cli-deploy-sm-pack](https://github.com/simplymeasured/ember-cli-deploy-sm-pack)
 - [ember-cli-deploy-yapp-pack](https://github.com/yappbox/ember-cli-deploy-yapp-pack)
 - [ember-cli-deploy-zesty-pack](https://github.com/zestyzesty/ember-cli-deploy-zesty-pack)
 
