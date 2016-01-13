@@ -225,3 +225,31 @@ As mentioned before, this plugin is used to display the available revisions. It 
     - ✔  index.html:383edce606dd8ca8cfc43916c8d6b970 => index.html
 
 And we are good to go!
+
+## Compressing files, and how plugins communicate
+
+Nowadays, it's common for HTTP servers to compress files before sending them down to browsers. This translates into more efficient use of the bandwidth: smaller files that are transferred faster. Well known server software, such as Apache or Ngninx, will do this with minimal configuration.
+
+However, S3 was not designed as a web server, but just as a file store. For this reason, it doesn't automatically compress files on transfer. However, it's still possible to do it with some configuration. Specifically, two things have to happen:
+
+  1. Files must be uploaded already in compressed form
+  2. Each compressed file has to be specifically configured to be served with the correct `Content-Encoding` header
+
+Of course there's a plugin for this: ember-cli-deploy-gzip. This works in tandem with ember-cli-deploy-s3 (which we are already using), as follows:
+
+  * ember-cli-deploy-gzip compresses the files resulting from the build
+  * ember-cli-deploy-s3 notes that files are compressed, and adds the appropriate metadata on S3 as they are uploaded
+
+Best of all, we don't need any additional configuration. The defaults on both plugins should work. Simply ensure they are both installed and deploy again:
+
+    $ ember install ember-cli-deploy-gzip
+    version: 1.13.13
+    Installed packages for tooling via npm.
+    Installed addon package.
+    $ ember deploy production
+
+NOTE: if you try to deploy, but there haven't been any changes since the last time, you'll get an error from ember-cli-deploy-s3-index. It will refuse to re-deploy and overwrite a version that already existed in S3. This is perfectly normal. You can either make a small change in your project (effectively generating a new version of the code) or add `allowOverwrite: true` to the configuration for s3-index (but remember to remove that afterwards unless you know what you are doing).
+
+This is a good moment to reflect on how plugins communicate. When ember-cli-deploy-gzip compresses files, it needs to tell ember-cli-deploy-s3-index. This plugin will then know to, in turn, which files need additional metadata so that S3 serves them correctly. The mechanism for this is the [Deployment Context](../deployment-context).
+
+The Deployment Context is simply a piece of shared state. It's an object that is passed to each plugin in the pipeline, on each invocation. Plugins read and write from it, passing information down to later steps in the chain. In this specific example, ember-cli-deploy-gzip creates a list of files that have been compressed, and stores it on `context.gzippedFiles`. At a later stage, ember-cli-deploy-s3 will read that key in the context. If it finds a list of files, it will know that those are the files that to which add this special metadata on S3.
