@@ -6,7 +6,7 @@ On this example, we'll build an ember-cli-deploy configuration from scratch. Ste
 
 ## Installing ember-cli-deploy
 
-First thing is to install ember-cli-deploy proper. It's an Ember addon, so you install it just like any other:
+First we must install ember-cli-deploy proper. It's an Ember addon, and we install it just like any other addon:
 
     $ ember install ember-cli-deploy
     version: 1.13.13
@@ -18,9 +18,9 @@ First thing is to install ember-cli-deploy proper. It's an Ember addon, so you i
     to learn how to install plugins and see what plugins are available.
     Installed addon package.
 
-There's an important message there: **ember-cli-deploy needs plugins to actually do the deployment work**. Indeed, ember-cli-deploy does nothing by itself. Its job is to provide a framework (the **pipeline**) for other addons to work together, and therefore there are more elements to include.
+There's an important message there: **ember-cli-deploy needs plugins to actually do the deployment work**. Indeed, ember-cli-deploy does nothing by itself. Its job is to provide a framework (the [pipeline](./pipeline-overview)) that other addons (the [plugins](./plugins-overview)) use to communicate while they undertake a number of different tasks.
 
-Still, let's try deploy and see what happens. In ember-cli-deploy, you'd deploy with a command like this:
+We'll have a look at these other addons in a moment, but first let's try deploy and see what happens. In ember-cli-deploy, we'd deploy with a command like this:
 
     $ ember deploy production
     version: 1.13.13
@@ -35,14 +35,14 @@ Still, let's try deploy and see what happens. In ember-cli-deploy, you'd deploy 
 There are several pieces of information above:
 
   1. To deploy, use the `deploy` command to ember-cli.
-  2. The command is followed by a word such as `production`, `staging`, or similar. This is the environment you intend to deploy. You can have different environments deploying with different configurations. For example, production and staging could be deployed to different locations.
+  2. The command is followed by a word such as `production`, `staging`, or similar. This is the environment we intend to deploy. You can have different environments deploying with different configurations. For example, production and staging could be deployed to different locations.
   3. A big warning tells us: **No plugins installed**, followed by additional information. As mentioned before, ember-cli-deploy doesn't do anything. You need more pieces to get a deployment going.
 
 So let's get those plugins installed.
 
 ## Building the project
 
-The first plugin we should install is ember-cli-deploy-build:
+The first plugin we should install is [ember-cli-deploy-build](https://github.com/ember-cli-deploy/ember-cli-deploy-build):
 
     $ ember install ember-cli-deploy-build
     version: 1.13.13
@@ -63,11 +63,11 @@ This time it doesn't complain, but what does it actually do? It simply builds th
     -rw-r--r--  1 example  example  1967  7 Jan 07:07 index.html
     -rw-r--r--  1 example  example    51  7 Jan 06:23 robots.txt
 
-This is the first step of the deployment process. Using ember-cli-deploy-build, you can control the build of the files to be deployed. Once this is complete, other plugins will take it from here.
+This is the first step of the deployment process. Using ember-cli-deploy-build, we can control the build of the files to be deployed. Once this is complete, other plugins will take it from here.
 
 ## Uploading to S3
 
-Install ember-cli-deploy-s3:
+Install [ember-cli-deploy-s3](https://github.com/ember-cli-deploy/ember-cli-deploy-s3):
 
     $ ember install ember-cli-deploy-s3
     version: 1.13.13
@@ -76,7 +76,7 @@ Install ember-cli-deploy-s3:
 
 Of course, we need to add some configuration to get this uploading to the right S3 bucket with appropriate credentials. This configuration is stored on the file `config/deploy.js`, which was added to the project when we first installed the base ember-cli-deploy addon.
 
-If you open that file, you'll find (among other things) a declaration for an object called `ENV`. It should look something like this:
+On that file, we'll find (among other things) a declaration for an object called `ENV`. It should look something like this:
 
     var ENV = {
       build: {}
@@ -96,20 +96,20 @@ We add an entry on `ENV` for each plugin we wish to configure. There's already a
       }
     };
 
-You'll have to fill out your own values for those four keys. How to get them is outside the scope of this example though. The documentation for ember-cli-deploy-s3 has some help at the end, regarding permission policies. There's more documentation on the Internet.
+We'll have to fill out our own values for those four keys. How to get them is outside the scope of this example though. The documentation for ember-cli-deploy-s3 has some help at the end, regarding permission policies. There's more documentation on the Internet.
 
-SECURITY NOTE: the above is a simplification. You don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](http://ember-cli.com/ember-cli-deploy/docs/v0.5.x/dotenv-support/) out of the box. Use that instead.
+SECURITY NOTE: the above is a simplification. We don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](./dotenv-support) out of the box. Use that instead.
 
-Once you have entered the correct configuration values, run the deploy command again:
+After entering the correct configuration values, we can run the deploy command again:
 
     $ ember deploy production
     version: 1.13.13
 
-If all is good, files should have been uploaded to S3. Check what's in the bucket; it should be similar to this:
+If all is good, files should have been uploaded to S3. The contents of the bucket should be similar to this:
 
     ├── assets
-    │   ├── your-app-7f8b9fddc5857d711cc51ed2a3a8594d.js
-    │   ├── your-app-d41d8cd98f00b204e9800998ecf8427e.css
+    │   ├── our-app-7f8b9fddc5857d711cc51ed2a3a8594d.js
+    │   ├── our-app-d41d8cd98f00b204e9800998ecf8427e.css
     │   ├── vendor-b630d3abd77d527def683a18b2165a94.js
     │   └── vendor-d41d8cd98f00b204e9800998ecf8427e.css
     ├── crossdomain.xml
@@ -117,7 +117,7 @@ If all is good, files should have been uploaded to S3. Check what's in the bucke
 
 So that's our app... except that `index.html` is not there. Where did that go?
 
-The file `index.html` is not there because ember-cli-deploy-s3 does not upload it by default. This may sound counterintuitive, but there's a reason for that. For now, let's just tell it to upload that file too. To do this, we can add the following setting to the configuration:
+The file `index.html` is not there because ember-cli-deploy-s3 does not upload it by default. This may sound strange, but there's a reason for that. For now, let's just tell it to upload that file too. To do this, we can add the following setting to the configuration:
 
     var ENV = {
       // ...
@@ -129,7 +129,7 @@ The file `index.html` is not there because ember-cli-deploy-s3 does not upload i
 
 The setting `filePattern` tells ember-cli-deploy-s3 what files should be uploaded. I have just taken the default value and added `html` to the list of extensions. Try deploying again and you'll see that `index.html` is deployed this time.
 
-Finally, your app should be usable at the web address of the S3 bucket, assuming that all configuration on the AWS side is correct (again, outside the scope of this example).
+Finally, our app should be usable at the web address of the S3 bucket, assuming that all configuration on the AWS side is correct (again, outside the scope of this example).
 
 However, there are a few things we could do to improve the above.
 
@@ -139,13 +139,13 @@ At this point, we could just leave it at that and consider the deployment work c
 
 If you have tried other deployment frameworks, they tend to provide means to roll back to an earlier version of your code. When you deploy new code, and something goes unexpectedly wrong, you can undo the changes to minimize damage. Of course you can just `git checkout` a previous version and deploy again, but there are better ways to do that.
 
-Also, S3 doesn't automatically gzip files when serving them over HTTP. It offers a way to do it, but requires a bit of work on your part. How wonderful would it be to have ember-cli-deploy to do it for you?
+Also, S3 doesn't automatically gzip files when serving them over HTTP. It offers a way to do it, but requires a bit of work on our part. How wonderful would it be to have ember-cli-deploy to do it for use?
 
-Finally, when you deploy, all files in the app are uploaded. Sometimes an app includes a lots of assets, such as fonts, images, etc... and that can make for a hefty, slow deployment. What if ember-cli-deploy could tell which files already exist at the destination, and only uploaded those that had actually been changed or added?
+Finally, when we deploy, all files in the app are uploaded. Sometimes an app includes a lots of assets, such as fonts, images, etc... and that can make for a hefty, slow deployment. What if ember-cli-deploy could tell which files already exist at the destination, and only uploaded those that had actually been changed or added?
 
 ## Rolling back to a previous version of the app
 
-So you want to be able to quickly roll back to a previous version of the app. I'll describe a good way to get it done. You are going to need three plugins for this:
+So we want the ability to quickly roll back to a previous version of the app. The following is a good way to get it done. We are going to need three plugins for this:
 
     $ ember install ember-cli-deploy-s3-index ember-cli-deploy-revision-data ember-cli-deploy-display-revisions
     version: 1.13.13
@@ -154,23 +154,45 @@ So you want to be able to quickly roll back to a previous version of the app. I'
 
 Why three plugins? In ember-cli-deploy, plugins try to be very simple, separating concerns as much as possible. This way, it's easier to change how specific parts of the pipeline work, and adapt them to your own needs. This is what these three plugins do:
 
-  * **ember-cli-deploy-revision-data**: generates a revision ID, a unique string that identifies each deployed version of your app. This way, you can refer to each version univocally later. It comes with three different strategies to do this, which you can choose from.
-  * **ember-cli-deploy-s3-index**: it does three things.
+  * [ember-cli-deploy-revision-data](https://github.com/ember-cli-deploy/ember-cli-deploy-revision-data): generates a revision ID, a unique string that identifies each deployed version of your app. This way, you can refer to each version univocally later. It comes with three different strategies to do this, which you can choose from.
+  * [ember-cli-deploy-s3-index](https://github.com/ember-cli-deploy/ember-cli-deploy-s3-index): it does three things.
     1. Upload the `index.html` file to S3, but with the revision ID appended to the name (so it's uploaded as `index.html:[REVISION_ID]`)
     2. "Activate" a deployment by renaming its `index.html:[REVISION_ID]` file to `index.html` on S3
     3. Retrieve from S3 a list of the available files with name `index.html:[REVISION_ID]`
-  * **ember-cli-deploy-display-revisions**: it displays on screen the list of revision IDs available, as retrieved by ember-cli-deploy-s3-index (or any other similar plugin)
+  * [ember-cli-deploy-display-revisions](https://github.com/ember-cli-deploy/ember-cli-deploy-display-revisions): it displays on screen the list of revision IDs available, as retrieved by ember-cli-deploy-s3-index (or any other similar plugin)
+
+Of these three plugins, only s3-index needs additional configuration. For the others, the default settings should do just fine. Same as with the s3 plugin, we need to give it our S3 credentials, set on `config/deploy.js`:
+
+    var ENV = {
+      build: {},
+
+      s3: {
+        accessKeyId: '<your-aws-access-key>',
+        secretAccessKey: '<your-aws-secret>',
+        bucket: '<your-s3-bucket>',
+        region: '<the-region-your-bucket-is-in>'
+      },
+
+      s3-index: {
+        accessKeyId: '<your-aws-access-key>',
+        secretAccessKey: '<your-aws-secret>',
+        bucket: '<your-s3-bucket>',
+        region: '<the-region-your-bucket-is-in>'
+      }
+    };
+
+WARNING: at the time of writing these lines, the s3-index plugin has a slight incompatibility with the s3 plugin. To avoid problems, do not use the same object for both configurations, even if both have the same credentials. Write their configurations separately, as separate entries in `ENV`, just like in the example above.
 
 Let's see an example of how all this works together. Let's say you have:
 
   1. All plugins described so far, all installed and configured, including the last three listed above
-  2. No custom value for `filePattern` in the configuration of the s3 plugin. Let it be s3-index that uploads `index.html`, for it's its specialty
+  2. No custom value for `filePattern` in the configuration of the s3 plugin. Let it be s3-index that uploads `index.html`, for that is its specialty
 
 You deploy your application for the first time, and you get a file hierarchy on S3 similar to the following:
 
     ├── assets
-    │   ├── your-app-7f8b9fddc5857d711cc51ed2a3a8594d.js
-    │   ├── your-app-d41d8cd98f00b204e9800998ecf8427e.css
+    │   ├── our-app-7f8b9fddc5857d711cc51ed2a3a8594d.js
+    │   ├── our-app-d41d8cd98f00b204e9800998ecf8427e.css
     │   ├── vendor-b630d3abd77d527def683a18b2165a94.js
     │   └── vendor-d41d8cd98f00b204e9800998ecf8427e.css
     ├── crossdomain.xml
@@ -183,15 +205,15 @@ You'll notice that there's no `index.html`. Instead we only get the version with
     version: 1.13.13
     - ✔  index.html:edcb7aa1db0e3ec0620eef72841af7c1 => index.html
 
-An `index.html` is generated, copied from the file with the revision ID. Now you can access the app at its normal URL.
+An `index.html` is generated, copied from the file with the revision ID. Now we can access the app at its normal URL.
 
-You continue working on your app, and at some point decide to deploy again. After doing that, you examine the files up on S3, and you find something like this:
+We continue working on our app, and at some point decide to deploy again. After doing that, we examine the files up on S3, and find something like this:
 
     ├── assets
-    │   ├── your-app-7f8b9fddc5857d711cc51ed2a3a8594d.js
-    │   ├── your-app-8d66c8a24bfb2ddd6c51df425bd8e412.css
-    │   ├── your-app-90748f7266852704a32b16d04e4f4489.js
-    │   ├── your-app-d41d8cd98f00b204e9800998ecf8427e.css
+    │   ├── our-app-7f8b9fddc5857d711cc51ed2a3a8594d.js
+    │   ├── our-app-8d66c8a24bfb2ddd6c51df425bd8e412.css
+    │   ├── our-app-90748f7266852704a32b16d04e4f4489.js
+    │   ├── our-app-d41d8cd98f00b204e9800998ecf8427e.css
     │   ├── vendor-b630d3abd77d527def683a18b2165a94.js
     │   └── vendor-d41d8cd98f00b204e9800998ecf8427e.css
     ├── crossdomain.xml
@@ -230,12 +252,12 @@ And we are good to go!
 
 Nowadays, it's common for HTTP servers to compress files before sending them down to browsers. This translates into more efficient use of the bandwidth: smaller files that are transferred faster. Well known server software, such as Apache or Ngninx, will do this with minimal configuration.
 
-However, S3 was not designed as a web server, but just as a file store. For this reason, it doesn't automatically compress files on transfer. However, it's still possible to do it with some configuration. Specifically, two things have to happen:
+But S3 was not designed as a web server, just as a file store. For this reason, it doesn't automatically compress files on transfer. Fortunately, it's still possible to do it with some configuration. Specifically, two things have to happen:
 
   1. Files must be uploaded already in compressed form
   2. Each compressed file has to be specifically configured to be served with the correct `Content-Encoding` header
 
-Of course there's a plugin for this: ember-cli-deploy-gzip. This works in tandem with ember-cli-deploy-s3 (which we are already using), as follows:
+Of course there's a plugin for this: [ember-cli-deploy-gzip](https://github.com/ember-cli-deploy/ember-cli-deploy-gzip). This works in tandem with ember-cli-deploy-s3 (which we are already using), as follows:
 
   * ember-cli-deploy-gzip compresses the files resulting from the build
   * ember-cli-deploy-s3 notes that files are compressed, and adds the appropriate metadata on S3 as they are uploaded
@@ -263,11 +285,11 @@ One last feature before wrapping up. Let's install another plugin:
     Installed packages for tooling via npm.
     Installed addon package.
 
-This new plugin, ember-cli-deploy-manifest, generates a file called `manifest.txt`. This is simply a list of the files that make the compiled app. Once it's done, it writes down the path to this manifest on the context, as `context.manifestPath`. This file (the "manifest") is eventually uploaded with all the others.
+This new plugin, [ember-cli-deploy-manifest](https://github.com/ember-cli-deploy/ember-cli-deploy-manifest), generates a file called `manifest.txt`. This is simply a list of the files that make the compiled app. Once it's done, it writes down the path to this manifest on the context, as `context.manifestPath`. This file (the "manifest") is eventually uploaded with all the others.
 
-Some time later, you make changes to the app and deploy again. Before uploading any files, the s3 plugin notices that there's a manifest available (it knows to find it at `context.manifestPath`), and downloads the previous manifest from S3. It compares the file paths on the old and the new manifests. Since all files have fingerprints based on their contents (eg: `assets/vendor-a1b2c3d4.js`), the plugin is able to tell which files have changed since the last time. With this information, it will upload only the files that have actually changed since the last deployment. In large applications with many assets, this turns out to be significantly more efficient.
+Some time later, we make changes to the app and deploy again. Before uploading any files, the s3 plugin notices that there's a manifest available (it knows to find it at `context.manifestPath`), and downloads the previous manifest from S3. It compares the file paths on the old and the new manifests. Since all files have fingerprints based on their contents (eg: `assets/vendor-a1b2c3d4.js`), the plugin is able to tell which files have changed since the last time. With this information, it will upload only the files that have actually changed since the last deployment. In large applications with many assets, this turns out to be significantly more efficient.
 
-We can see exactly what files are uploaded, as it happens, using a feature of the `deploy` command. Try this:
+We can see exactly what files are uploaded, as it happens, using a feature of the `deploy` command. We use it like this:
 
     $ ember deploy production --verbose
 
