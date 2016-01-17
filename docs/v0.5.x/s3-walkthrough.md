@@ -253,3 +253,54 @@ NOTE: if you try to deploy, but there haven't been any changes since the last ti
 This is a good moment to reflect on how plugins communicate. When ember-cli-deploy-gzip compresses files, it needs to tell ember-cli-deploy-s3-index. This plugin will then know to, in turn, which files need additional metadata so that S3 serves them correctly. The mechanism for this is the [Deployment Context](../deployment-context).
 
 The Deployment Context is simply a piece of shared state. It's an object that is passed to each plugin in the pipeline, on each invocation. Plugins read and write from it, passing information down to later steps in the chain. In this specific example, ember-cli-deploy-gzip creates a list of files that have been compressed, and stores it on `context.gzippedFiles`. At a later stage, ember-cli-deploy-s3 will read that key in the context. If it finds a list of files, it will know that those are the files that to which add this special metadata on S3.
+
+## Uploading only files that have changed, and following the deployment process
+
+One last feature before wrapping up. Let's install another plugin:
+
+    $ ember install ember-cli-deploy-manifest
+    version: 1.13.13
+    Installed packages for tooling via npm.
+    Installed addon package.
+
+This new plugin, ember-cli-deploy-manifest, generates a file called `manifest.txt`. This is simply a list of the files that make the compiled app. Once it's done, it writes down the path to this manifest on the context, as `context.manifestPath`. This file (the "manifest") is eventually uploaded with all the others.
+
+Some time later, you make changes to the app and deploy again. Before uploading any files, the s3 plugin notices that there's a manifest available (it knows to find it at `context.manifestPath`), and downloads the previous manifest from S3. It compares the file paths on the old and the new manifests. Since all files have fingerprints based on their contents (eg: `assets/vendor-a1b2c3d4.js`), the plugin is able to tell which files have changed since the last time. With this information, it will upload only the files that have actually changed since the last deployment. In large applications with many assets, this turns out to be significantly more efficient.
+
+We can see exactly what files are uploaded, as it happens, using a feature of the `deploy` command. Try this:
+
+    $ ember deploy production --verbose
+
+This time the output of the command is... well, verbose! It lists:
+
+  * Which plugins are present
+  * What pipeline hooks they use
+  * A real-time view of each stage of the process
+  * Logs for each plugin on each stage
+
+For example, let's pay attention this subset of the output:
+
+    (...)
+    |
+    +- willUpload
+    |  |
+    |  (...)
+    |  |
+    |  +- manifest
+    |    - generating manifest at `manifest.txt`
+    |    - generated manifest including 6 files ok
+    |
+    +- upload
+    |  |
+    |  +- s3
+    |    - Using AWS access key id and secret access key from config
+    |    - preparing to upload to S3 bucket `ember-cli-deploy-example`
+    |    - Downloading manifest for differential deploy from `manifest.txt`...
+    |    - Manifest found. Differential deploy will be applied.
+    |    - ✔  manifest.txt
+    |    - ✔  assets/ember-cli-deploy-example-001ab321315c2abde5141ea9e46cc488.css
+    |    - uploaded 2 files ok
+    |
+    (...)
+
+This output relates to the interaction between the manifest and the s3 plugins. We can see that a manifest is generated during the `willUpload` stage of the pipeline, and this lists 6 files. Later, on the `upload` stage, the s3 plugin notices that a manifest is available, and knows to upload only two files, instead of all of them.
