@@ -51,7 +51,7 @@ The first plugin we should install is [ember-cli-deploy-build](https://github.co
 
 Now we run the deploy command again to see what happens:
 
-    $ ember deploy build
+    $ ember deploy production
     version: 1.13.13
 
 This time it doesn't complain, but what does it actually do? It simply builds the project in very much the same way `ember build` does. The result is left in `tmp/deploy-dist` by default:
