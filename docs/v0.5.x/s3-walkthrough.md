@@ -2,7 +2,7 @@
 title: S3 walkthrough
 ---
 
-On this example, we'll build an ember-cli-deploy configuration from scratch. Step by step, we'll put the pieces together and get the application deployed to S3.
+On this example, we'll build an ember-cli-deploy configuration from scratch. Step by step, we'll put the pieces together to get our application deployed to S3.
 
 ## Installing ember-cli-deploy
 
@@ -18,7 +18,7 @@ First we must install ember-cli-deploy proper. It's an Ember addon, and we insta
     to learn how to install plugins and see what plugins are available.
     Installed addon package.
 
-There's an important message there: **ember-cli-deploy needs plugins to actually do the deployment work**. Indeed, ember-cli-deploy does nothing by itself. Its job is to provide a framework (the [pipeline](./pipeline-overview)) that other addons (the [plugins](./plugins-overview)) use to communicate while they undertake a number of different tasks.
+There's an important message there: **ember-cli-deploy needs plugins to actually do the deployment work**. Indeed, ember-cli-deploy does nothing by itself. Its job is to provide a framework (the [pipeline](../pipeline-overview)) that other addons (the [plugins](../plugins-overview)) use to communicate while they undertake a number of different tasks.
 
 We'll have a look at these other addons in a moment, but first let's try deploy and see what happens. In ember-cli-deploy, we'd deploy with a command like this:
 
@@ -34,7 +34,7 @@ We'll have a look at these other addons in a moment, but first let's try deploy 
 
 There are several pieces of information above:
 
-  1. To deploy, use the `deploy` command to ember-cli.
+  1. To deploy, use ember-cli and the `deploy` command.
   2. The command is followed by a word such as `production`, `staging`, or similar. This is the environment we intend to deploy. You can have different environments deploying with different configurations. For example, production and staging could be deployed to different locations.
   3. A big warning tells us: **No plugins installed**, followed by additional information. As mentioned before, ember-cli-deploy doesn't do anything. You need more pieces to get a deployment going.
 
@@ -98,7 +98,7 @@ We add an entry on `ENV` for each plugin we wish to configure. There's already a
 
 We'll have to fill out our own values for those four keys. How to get them is outside the scope of this example though. The documentation for ember-cli-deploy-s3 has some help at the end, regarding permission policies. There's more documentation on the Internet.
 
-SECURITY NOTE: the above is a simplification. We don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](./dotenv-support) out of the box. Use that instead.
+SECURITY NOTE: the above is a simplification. We don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](../dotenv-support) out of the box. Use that instead.
 
 After entering the correct configuration values, we can run the deploy command again:
 
