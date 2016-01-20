@@ -1,23 +1,8 @@
-var Promise      = require('ember-cli/lib/ext/promise');
 var ReadConfigTask = require('../../../lib/tasks/read-config');
-var expect       = require('../../helpers/expect');
 var assert       = require('chai').assert;
 var path         = require('path');
 
 describe('ReadConfigTask', function() {
-  var mockProject = {addons: []};
-  var mockPostBuildConfig = {
-    pipeline: {
-      activateOnDeploy: true
-    }
-  };
-  var mockDeployConfig = {
-    build: {
-      buildEnv: 'development'
-    }
-  };
-  var mockUi = { write: function() {},  writeError: function() {} };
-
   describe('#run', function() {
     it('reads from the config file', function(done){
       var project = {
@@ -39,6 +24,12 @@ describe('ReadConfigTask', function() {
     });
 
     it('accepts an absolute deployConfigPath', function() {
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: []
+      };
+
       var fn = function () {
         new ReadConfigTask({
           project: project,
