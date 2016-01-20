@@ -1,4 +1,3 @@
-var Promise  = require('ember-cli/lib/ext/promise');
 var assert  = require('ember-cli/tests/helpers/assert');
 
 describe ('ember-cli-deploy', function() {

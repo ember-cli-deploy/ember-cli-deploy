@@ -24,7 +24,7 @@ describe ('Pipeline', function() {
 
       subject.register('willDeploy', fn);
 
-      expect(subject._pipelineHooks.willDeploy.length).to.eq(1)
+      expect(subject._pipelineHooks.willDeploy.length).to.eq(1);
       expect(subject._pipelineHooks.willDeploy[0].name).to.eq('anonymous function');
       expect(subject._pipelineHooks.willDeploy[0].fn).to.eql(fn);
     });
@@ -37,7 +37,7 @@ describe ('Pipeline', function() {
 
       subject.register('build', fn);
 
-      expect(subject._pipelineHooks.willDeploy.length).to.eq(0)
+      expect(subject._pipelineHooks.willDeploy.length).to.eq(0);
       expect(subject._pipelineHooks.build).to.eq(undefined);
     });
   });
@@ -122,7 +122,7 @@ describe ('Pipeline', function() {
       var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
       var finalContext = null;
 
-      subject.register('hook1', function(context) {
+      subject.register('hook1', function() {
         return {age: 47};
       });
 
@@ -141,7 +141,7 @@ describe ('Pipeline', function() {
       var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
       var finalContext = null;
 
-      subject.register('hook1', function(context) {
+      subject.register('hook1', function() {
         return Promise.resolve({age: 47});
       });
 

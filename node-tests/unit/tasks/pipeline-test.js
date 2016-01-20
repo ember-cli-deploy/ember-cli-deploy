@@ -2,8 +2,6 @@ var Promise      = require('ember-cli/lib/ext/promise');
 var PipelineTask = require('../../../lib/tasks/pipeline');
 var Pipeline     = require('../../../lib/models/pipeline');
 var expect       = require('../../helpers/expect');
-var assert       = require('chai').assert;
-var path         = require('path');
 
 describe('PipelineTask', function() {
   var mockProject   = {addons: [], root: process.cwd()};

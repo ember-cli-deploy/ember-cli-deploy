@@ -1,7 +1,6 @@
 var Promise      = require('ember-cli/lib/ext/promise');
 var DeployTask = require('../../../lib/tasks/deploy');
 var expect       = require('../../helpers/expect');
-var assert       = require('chai').assert;
 
 describe('DeployTask', function() {
   var mockProject = {addons: []};
@@ -68,7 +67,6 @@ describe('DeployTask', function() {
   describe('executing the deployTask', function() {
     it ('executes the pipelineTask', function() {
       var pipelineExecuted = false;
-      var pipelineContext;
 
       var project = {
         name: function() {return 'test-project';},

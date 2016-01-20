@@ -9,8 +9,8 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "node node_modules/mocha/bin/mocha  node-tests/**/*-test.js",
-    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec node-tests/**/*-test.js"
+    "test": "node node_modules/mocha/bin/mocha  'node-tests/**/*-test.js'",
+    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec 'node-tests/**/*-test.js'"
   },
   "repository": "https://github.com/ember-cli/ember-cli-deploy",
   "engines": {
@@ -33,6 +33,7 @@
     "ember-cli-qunit": "^1.0.0",
     "github": "0.2.3",
     "mocha": "^2.0.1",
+    "mocha-jshint": "^2.2.6",
     "sinon": "^1.12.1"
   },
   "keywords": [
