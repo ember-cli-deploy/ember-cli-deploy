@@ -294,6 +294,66 @@ describe('PipelineTask', function() {
         });
       });
 
+      it('registers configured addons only, when using per-plugin disable flags', function () {
+        var project = {
+          name: function() {return 'test-project';},
+          root: process.cwd(),
+          addons: [
+            {
+              name: 'ember-cli-deploy-foo-plugin',
+              pkg: {
+                keywords: [
+                  'ember-cli-deploy-plugin'
+                ]
+              },
+              createDeployPlugin: function() {
+                return {
+                  name: 'foo-plugin',
+                  willDeploy: function() {},
+                  upload: function() {}
+                };
+              }
+            },
+            {
+              name: 'ember-cli-deploy-bar-plugin',
+              pkg: {
+                keywords: [
+                  'ember-cli-deploy-plugin'
+                ]
+              },
+              createDeployPlugin: function() {
+                return {
+                  name: 'bar-plugin',
+                  willDeploy: function() {},
+                  upload: function() {}
+                };
+              }
+            }
+          ]
+        };
+
+        var task = new PipelineTask({
+          project: project,
+          ui: mockUi,
+          deployTarget: 'development',
+          config: {
+            'bar-plugin': {
+              disabled: true
+            }
+          },
+          hooks: ['willDeploy', 'upload']
+        });
+        task.setup();
+        var registeredHooks = task._pipeline._pipelineHooks;
+
+        expect(registeredHooks.willDeploy.length).to.equal(1);
+        expect(registeredHooks.willDeploy[0].name).to.eq('foo-plugin');
+        expect(registeredHooks.willDeploy[0].fn).to.be.a('function');
+        expect(registeredHooks.upload.length).to.equal(1);
+        expect(registeredHooks.upload[0].name).to.eq('foo-plugin');
+        expect(registeredHooks.upload[0].fn).to.be.a('function');
+      });
+
       it('registers dependent plugin addons of a plugin pack addon designated by the ember-cli-deploy-plugin-pack keyword', function() {
         var project = {
           name: function() {return 'test-project';},
@@ -558,5 +618,189 @@ describe('PipelineTask', function() {
         expect(Object.keys(err.unavailablePlugins).length).to.equal(3);
       }
     });
+  });
+
+  describe("plugin ordering constraints", function() {
+
+    function makeProject(addonNames) {
+      return {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: addonNames.map(function(name){
+          return makeAddon(name);
+        })
+      };
+    }
+
+    function makeAddon(name, props) {
+      return {
+        name: 'ember-cli-deploy-' + name,
+        pkg: {
+          keywords: [
+            'ember-cli-deploy-plugin'
+          ]
+        },
+        createDeployPlugin: function() {
+          var plugin = Object.create({
+            name: name,
+            willDeploy: function() {},
+            upload: function() {}
+          });
+          if (props) {
+            Object.keys(props).forEach(function(key) { plugin[key] = props[key]; });
+          }
+          return plugin;
+        }
+      };
+    }
+
+    function testOrder(project, config, expectedNames) {
+      var task = new PipelineTask({
+        project: project,
+        ui: mockUi,
+        deployTarget: 'development',
+        config: config,
+        hooks: ['willDeploy', 'upload']
+      });
+      task.setup();
+      var registeredHooks = task._pipeline._pipelineHooks;
+      expect(registeredHooks.willDeploy.map(function(elt){ return elt.name; })).to.deep.equal(expectedNames);
+    }
+
+    it("respects runBefore", function() {
+      var project = makeProject(['foo-plugin', 'bar-plugin']);
+      testOrder(project, {
+        'bar-plugin': {
+          runBefore: ['foo-plugin']
+        }
+      }, ['bar-plugin', 'foo-plugin']);
+      testOrder(project, {
+        'foo-plugin': {
+          runBefore: ['bar-plugin']
+        }
+      }, ['foo-plugin', 'bar-plugin']);
+    });
+
+    it("respects runAfter", function() {
+      var project = makeProject(['foo-plugin', 'bar-plugin']);
+      testOrder(project, {
+        'bar-plugin': {
+          runAfter: ['foo-plugin']
+        }
+      }, ['foo-plugin', 'bar-plugin']);
+      testOrder(project, {
+        'foo-plugin': {
+          runAfter: ['bar-plugin']
+        }
+      }, ['bar-plugin', 'foo-plugin']);
+    });
+
+    it("respects multiple constraints", function() {
+      var project = makeProject(['foo', 'bar', 'baz']);
+
+      testOrder(project, {
+        foo: {
+          runAfter: ['bar', 'baz']
+        },
+        baz: {
+          runAfter: ['bar']
+        }
+      }, ['bar', 'baz', 'foo']);
+
+      testOrder(project, {
+        bar: {
+          runAfter: ['foo', 'baz']
+        },
+        baz: {
+          runAfter: ['foo']
+        }
+      }, ['foo', 'baz', 'bar']);
+
+    });
+
+    it("respects author-provided constraints", function() {
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: [
+          makeAddon('foo', {}),
+          makeAddon('bar', { runAfter: ['foo'] }),
+          makeAddon('baz', { runBefore: ['foo'] })
+        ]
+      };
+
+      testOrder(project, {}, ['baz', 'foo', 'bar']);
+
+    });
+
+
+    it("merges author-provided and user-provided constraints", function() {
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: [
+          makeAddon('foo', {}),
+          makeAddon('bar', { runAfter: ['foo'] }),
+          makeAddon('baz', { })
+        ]
+      };
+
+      testOrder(project, {
+        baz: {
+          runBefore: ['foo']
+        }
+      }, ['baz', 'foo', 'bar']);
+
+      testOrder(project, {
+        baz: {
+          runAfter: ['foo', 'bar']
+        }
+      }, ['foo', 'bar', 'baz']);
+
+      project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: [
+          makeAddon('foo', {}),
+          makeAddon('bar', { runBefore: ['foo'] }),
+          makeAddon('baz', { })
+        ]
+      };
+
+      testOrder(project, {
+        baz: {
+          runBefore: ['foo', 'bar']
+        }
+      }, ['baz', 'bar', 'foo']);
+
+      testOrder(project, {
+        baz: {
+          runAfter: ['foo']
+        }
+      }, ['bar', 'foo', 'baz']);
+
+
+    });
+
+
+    it("detects cycles", function() {
+      var project = makeProject(['foo', 'bar', 'baz']);
+
+      expect(function() {
+        testOrder(project, {
+          foo: {
+            runAfter: ['bar']
+          },
+          bar: {
+            runAfter: ['baz']
+          },
+          baz: {
+            runAfter: ['foo']
+          }
+        });
+      }).to.throw(/your ember-cli-deploy plugins have a circular dependency.*baz.*foo.*bar.*baz/);
+
+    });
+
   });
 });
