@@ -18,7 +18,7 @@ Do you want to:
 * deploy your whole application to a SaaS platform like Firebase hosting?
 * gzip your assets before uploading them?
 * notify your team members of a successful deploy
-* These things (and more) are the sorts of things that you need to have thought about before being able to successfully deploy your application.
+* These things (and more) are the sorts of things that you need to think about before being able to successfully deploy your application.
 
 Because ember-cli-deploy simply provides you with a deployment pipeline it is up to you to decide what your deployment strategy will look like and therefore which plugins you will need to install to implement that strategy.
 
@@ -43,7 +43,7 @@ If you can't find a suitable plugin in the list of [existing plugins](../plugins
 Often people like to gzip their assets to minimise the payload user's browsers need to download when using an ember application. You probably want to think about doing this when storing your assets on S3. [ember-cli-deploy-gzip](https://github.com/ember-cli-deploy/ember-cli-deploy-gzip) is a good plugin to look at for this functionality.
 
 ### Source maps
-Do you want to upload source maps to a bug reporting service or something other hosted service to make it easier to debug minified JS? This can often be handy when using services like BugSnag, Sentry and Raygun.
+Do you want to upload source maps to a bug reporting service or some other hosted service to make it easier to debug minified JS? This can often be handy when using services like BugSnag, Sentry and Raygun.
 
 ### Using a manifest file
 Manifest files are helpful when uploading assets. Often some assets remain unchanged in which case there is no benefit in uploading them again. A manifest file is used to keep track of which files have been uploaded so that they don't need to be re-uploaded next time you deploy. We have a plugin for this called [ember-cli-deploy-manifest](https://github.com/ember-cli-deploy/ember-cli-deploy-manifest).
