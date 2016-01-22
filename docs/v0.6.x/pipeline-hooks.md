@@ -166,8 +166,8 @@ See [ember-cli-deploy-display-revisions](https://github.com/ember-cli-deploy/emb
 
 ### The `didFail` hook
 
-When an hook invocation rejects, the pipeline aborts execution.
-As soon as that happens a special `didFail` hook that is invoked on all the registered plugins.
+When a hook invocation rejects, the pipeline aborts execution.
+As soon as that happens a special `didFail` hook is invoked on all the registered plugins.
 
 Plugins can optionally implement the `didFail` hook to handle any cleanup that might be needed in this case.
 
