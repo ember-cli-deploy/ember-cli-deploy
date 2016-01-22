@@ -59,3 +59,4 @@ and will grow as we discover new and interesting ways that people are deploying 
 The list of deployment strategies is as follows:
 
 * [The Lightning Strategy](../the-lightning-strategy)
+* _Please help us add more examples to this section_
