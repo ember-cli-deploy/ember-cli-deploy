@@ -2,33 +2,54 @@
 title: Quick start
 ---
 
-If you want to get started with ember-cli-deploy quickly and have a good idea of the deployment setup you would like to use then simply follow these steps:
+Ember CLI Deploy works by executing functions that have been registered with your application's *deploy pipeline*. You add new functionality by installing *plugins* provided by the community - or writing your own. Plugins are special Ember CLI addons that autoregister themselves with your pipeline.
 
-- Install ember-cli-deploy
+Here's what an application's initial setup might look like:
 
-```bash
+```sh
+# Ensure Ember CLI Deploy itself is installed
 ember install ember-cli-deploy
-```
 
-- Install the build plugin to build your project
-
-```bash
+# Install the Build plugin, which builds your app during deployment
 ember install ember-cli-deploy-build
+
+# Gzip our files
+ember install ember-cli-deploy-gzip
+
+# Install the S3 plugin, to upload our app to S3
+ember install ember-cli-deploy-s3
 ```
 
-- Install any other plugins you need to satisfy your desired deployment strategy. You can see find a list of the available plugins on the [Plugin Page](../plugins).
+Sometimes, plugins require configuration. In this example, we need to give the S3 plugin our security credentials, and tell it which region and bucket to upload our app to:
 
-- Deploy your application
+```js
+// config/deploy.js
+ENV.s3 = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  bucket: 'my-ember-app',
+  region: 'us-east-1'
+};
+```
 
-```bash
+Now, we can deploy our application. The default command deploys to the `production` target:
+
+```sh
 ember deploy
+```
+
+You can also specify a specific deploy target:
+
+```sh
+ember deploy staging
 ```
 
 ## Understanding your deployment strategy
 
-While ember-cli-deploy is very good at deploying your Ember application, there are a few things it needs you to setup in order to tell it what to deploy and where.
+Deployment concerns vary across applications and organizations. While Ember CLI Deploy does its best to bring conventions and structure to the deployment process, you'll inevitably need to customize your pipeline to suit your application's specific needs.
 
-A deployment strategy is often very unique to a particular application or company and they are not something that can really be derived automatically by conventions.
+If you already have a good understanding of your deployment strategy and are ready to configure your pipeline, start by looking at the [list of community plugins](../plugins). You should always rely on existing plugins when you can, to save you time and prevent potential security issues. If a plugin doesn't exist for a certain piece of your deployment process, you can always [write your own](../writing-a-plugin), and then compose it with other community plugins.
 
-Head on over to the [Deployment Strategies](../deployment-strategies-overview) section to understand what makes a good deployment strategy and how you can start
-implementing yours with ember-cli-deploy.
+If you'd like some guidance on coming up with a good deployment strategy for your app, [read our guide](../deployment-strategies-overview) on best practices and common issues that arise during a deployment.
+
+Keep reading to learn more about the Ember CLI Deploy pipeline.
