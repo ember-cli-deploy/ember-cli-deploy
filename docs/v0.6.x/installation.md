@@ -2,7 +2,7 @@
 title: Installation
 ---
 
-Ember CLI Deploy is a standard Ember CLI addon, so to install it run
+Ember CLI Deploy is a standard Ember CLI addon, so install it with
 
 ```
 ember install ember-cli-deploy

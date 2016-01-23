@@ -48,8 +48,8 @@ ember deploy staging
 
 Deployment concerns vary across applications and organizations. While Ember CLI Deploy does its best to bring conventions and structure to the deployment process, you'll inevitably need to customize your pipeline to suit your application's specific needs.
 
-If you already have a good understanding of your deployment strategy and are ready to configure your pipeline, start by looking at the [list of community plugins](../plugins). You should always rely on existing plugins when you can, to save you time and prevent potential security issues. If a plugin doesn't exist for a certain piece of your deployment process, you can always [write your own](../writing-a-plugin), and then compose it with other community plugins.
+If you already have a good understanding of your deployment strategy and are ready to configure your pipeline, start by looking at the [list of community plugins](../plugins). You should always rely on existing plugins when you can, to save you time and prevent potential security issues. If a plugin doesn't exist for a certain part of your deployment process, you can always [write your own](../writing-a-plugin), and then compose it with other community plugins.
 
-If you'd like some guidance on coming up with a good deployment strategy for your app, [read our guide](../deployment-strategies-overview) on best practices and common issues that arise during a deployment.
+If you'd like some guidance on coming up with a good deployment strategy for your app, [read our guide](../deployment-strategies-overview) on best practices and common issues that arise during deployment.
 
-Keep reading to learn more about the Ember CLI Deploy pipeline.
+Keep reading to learn more about the deploy pipeline.
