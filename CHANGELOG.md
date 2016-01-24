@@ -1,5 +1,22 @@
 # ember-cli-deploy Changelog
 
+## [0.6.0-beta.1](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.1) (2016-01-23)
+[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.1...0.6.0-beta.1)
+
+This release has no breaking changes from 0.5.1. It introduces a progress bar for deploys run on interactive terminals, improved ability to configure command defaults, and new fetchInitialRevisions & fetchRevisions hooks to the deploy pipeline, which will better enable plugins that want to do changelog/diff notifications.
+
+- display progress notification during deploy [\#280](https://github.com/ember-cli/ember-cli-deploy/pull/280) ([ghedamat](https://github.com/ghedamat))
+- add `fetchRevisions`hook to deploy and activate pipelines [\#323](https://github.com/ember-cli/ember-cli-deploy/pull/323) ([sethpollack](https://github.com/sethpollack))
+- Allow loading .env files + .env.deploy.\<env\> files [\#342](https://github.com/ember-cli/ember-cli-deploy/pull/342) ([blimmer](https://github.com/blimmer))
+- read-config task \(fix issue where dotenv files were not loaded in time for deploy tasks\) [\#319](https://github.com/ember-cli/ember-cli-deploy/pull/319) ([lukemelia](https://github.com/lukemelia))
+- Remove temporary fix for broccoli-asset-rev [\#316](https://github.com/ember-cli/ember-cli-deploy/pull/316) ([backspace](https://github.com/backspace))
+
+We have also introduced new versioned docs for 0.6.x, available now from the version selector on ember-cli-deploy.com in the Docs section.
+
+Huge thanks to the fine work of the ember-cli-deploy core team, particularly @ghedamat who has been very active this cycle, and to our growing set of contributors and community. It is amazing to the see the ember-cli-deploy plugin ecosystem blossom.
+
+Please give this beta a shot and if you notice anything wrong, open an issue or ping us on the Ember Community Slack in #ember-cli-deploy channel.
+
 ## [0.5.1](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.1) (2015-11-09)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.0...0.5.1)
 
