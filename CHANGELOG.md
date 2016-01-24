@@ -21,6 +21,8 @@ Please give this beta a shot and if you notice anything wrong, open an issue or 
 
 The `fetchRevisions` hook will now be called during the "deploy" and "activate" pipelines. It was previously only called during the "list" pipeline. In addition, a new `fetchInitialRevisions` hook will be called during the "deploy" and "activate" pipelines. See the [0.6.x Pipeline Hooks docs](http://ember-cli.com/ember-cli-deploy/docs/v0.6.x/pipeline-hooks/) for details. If you maintain a plugin that uploads new revisions, you will want to update your plugin to implement the new hook. In the coming days, we will be updating ember-cli-deploy-redis as an example.
 
+You should also update your ember-cli-deploy-plugin dependency to 0.2.1, to ensure your plugin's logging plays nicely with the nifty new progress bar in this ember-cli-deploy release.
+
 ## [0.5.1](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.1) (2015-11-09)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.0...0.5.1)
 
