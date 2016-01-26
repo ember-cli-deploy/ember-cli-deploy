@@ -29,6 +29,7 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-notifications](https://github.com/simplabs/ember-cli-deploy-notifications) - notify external services of successful deploys
   - [ember-cli-deploy-notify-firebase](https://github.com/minutebase/ember-cli-deploy-notify-firebase) - update a path in Firebase on activation
   - [ember-cli-deploy-sentry](https://github.com/dschmidt/ember-cli-deploy-sentry) - upload javascript sourcemaps to sentry
+  - [ember-cli-deploy-rollbar](https://github.com/netguru/ember-cli-deploy-rollbar) - include Rollbar snippet and upload javascript sourcemaps to Rollbar
 
 For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
 
