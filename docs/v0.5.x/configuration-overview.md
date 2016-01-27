@@ -72,7 +72,7 @@ module.exports = function(environment){
 };
 ```
 
-If you need to have the original environment that was passed into the `ember build` command, this can be obtained under the process variable of `DEPLOY_TARGET` and referenced with `process.env.DEPLOY_TARGET`
+If you need to have the original environment that was passed into the `ember build` command, this can be obtained under the environment variable of `DEPLOY_TARGET` and referenced in any node.js context with `process.env.DEPLOY_TARGET`. Those contexts include evaluation of your `config/deploy.js` file and your `ember-cli-build.js` file.
 
 ### Advanced Plugin Configuration
 
