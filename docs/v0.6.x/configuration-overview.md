@@ -55,7 +55,7 @@ module.export function(environment){
 
 ### Additional Environments
 
-You may wish to have an environment, such as staging, be built as if it where a different environment, like production. You can accomplish this by setting the `buildEnv` property to the desired environment you wish it to be built as. This will now be the environment that gets passed to the ember asset build, and used in `config/environment.js` for example.
+You may wish to have an environment, such as staging, be built as if it where a different environment, like production. You can accomplish this by setting the `build.environment` property to the desired environment you wish it to be built as. This will now be the environment that gets passed to the ember asset build, and used in `config/environment.js` for example.
 
 ```javascript
 module.exports = function(environment){
@@ -63,10 +63,10 @@ module.exports = function(environment){
   };
 
   if (environment === 'qa') {
-    ENV.buildEnv = 'development';
+    ENV.build.environment = 'development';
   };
   if (environment === 'staging') {
-    ENV.buildEnv = 'production';
+    ENV.build.environment = 'production';
   };
   return ENV;
 };
