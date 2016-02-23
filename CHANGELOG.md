@@ -1,5 +1,13 @@
 # ember-cli-deploy Changelog
 
+## [0.6.0-beta.2](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.2) (2016-02-22)
+[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.6.0-beta.1...0.6.0-beta.2)
+
+Small refactorings and tweak to new progress bar. If this build is stable, it will be released as 0.6.0 final.
+
+- Use our fork of progress so that we can make the rocket part of the progress bar [\#364](https://github.com/ember-cli/ember-cli-deploy/pull/364) ([lukemelia](https://github.com/lukemelia))
+- Remove unused code [\#359](https://github.com/ember-cli/ember-cli-deploy/pull/359) ([achambers](https://github.com/achambers))
+
 ## [0.6.0-beta.1](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.1) (2016-01-23)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.1...0.6.0-beta.1)
 
