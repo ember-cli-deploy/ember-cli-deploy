@@ -1,5 +1,10 @@
 # ember-cli-deploy Changelog
 
+## [0.6.0-beta.3](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.3) (2016-02-24)
+[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.6.0-beta.2...0.6.0-beta.3)
+
+- Move to non-scoped npm package for progress, and newer version. Fixes an issue causing crashes when running at certain narrow terminal widths. [\#366](https://github.com/ember-cli/ember-cli-deploy/pull/366) and [\#367](https://github.com/ember-cli/ember-cli-deploy/pull/367) ([lukemelia](https://github.com/lukemelia))
+
 ## [0.6.0-beta.2](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.2) (2016-02-22)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.6.0-beta.1...0.6.0-beta.2)
 
