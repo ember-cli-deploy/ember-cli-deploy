@@ -1,12 +1,12 @@
 ---
-title: Upgrading an App from 0.4.X to 0.5.0
+title: Upgrading an App to 0.6.x
 ---
 
-## Upgrading an App from 0.4.X to 0.6.x
+## Upgrading an App from 0.5.X to 0.6.x
 
 Verify your plugins are 0.6.x compatible by checking the badge on their README. No other changes should be required.
 
-## Upgrading an App from 0.4.X to 0.5.x
+## Upgrading an App from 0.4.X to 0.6.x
 
 ### Upgrade an app that uses the Lightning strategy
 
