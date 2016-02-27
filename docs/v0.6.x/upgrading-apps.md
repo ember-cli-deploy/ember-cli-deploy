@@ -1,8 +1,8 @@
 ---
-title: Upgrading an App from 0.4.X to 0.5.0
+title: Upgrading Apps
 ---
 
-## Upgrading an App from 0.4.X to 0.6.x
+## Upgrading an App from 0.5.X to 0.6.x
 
 Verify your plugins are 0.6.x compatible by checking the badge on their README. No other changes should be required.
 
@@ -24,6 +24,6 @@ To upgrade an application that used the Lightning Strategy in 0.4.X:
 
 #### Notes:
 
-For the redis plugin the default key is  now `app:index:current` and the key is not stored with the full path just the short commit hash.
+For the redis plugin the default key is now `app:index:current` and the key is not stored with the full path just the short commit hash.
 
 For an example of a full upgrade see [this commit](https://github.com/ghedamat/ember-deploy-demo/commit/ad74274839a30641a5d4612a790eb8ab8007d80f) on the ember-deploy-demo repo.

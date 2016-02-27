@@ -5,8 +5,7 @@ title: Pipeline Hooks
 The build pipeline is composed of a series of hooks that each deploy plugin can optionally implement.
 
 Note:
-If multiple plugins implement the same hook they will all be called, if you need to specify the order
-you can use the `plugins: [...]` option in the [configuration](../configuration-overview).
+If multiple plugins implement the same hook they will all be called, if you need to specify the order you can use the `plugins: [...]` option in the [configuration](../configuration-overview).
 
 ## Hooks by command
 
@@ -166,8 +165,7 @@ See [ember-cli-deploy-display-revisions](https://github.com/ember-cli-deploy/emb
 
 ### The `didFail` hook
 
-When a hook invocation rejects, the pipeline aborts execution.
-As soon as that happens a special `didFail` hook is invoked on all the registered plugins.
+When a hook invocation rejects, the pipeline aborts execution. As soon as that happens a special `didFail` hook is invoked on all the registered plugins.
 
 Plugins can optionally implement the `didFail` hook to handle any cleanup that might be needed in this case.
 
@@ -175,27 +173,17 @@ Plugins can optionally implement the `didFail` hook to handle any cleanup that m
 
 The return value of each hook can be used to add information to the [deployment context](../deployment-context).
 
-Hook functions can return a promise to block the deployment pipeline.
-Since most deployment involves some sort of IO it makes senses that most
-plugins will want an async function to complete before continuing to the
-next step.
+Hook functions can return a promise to block the deployment pipeline. Since most deployment involves some sort of IO it makes senses that most plugins will want an async function to complete before continuing to the next step.
 
 If a plugin does not return a promise, then ember-cli-deploy proceeds immediately.
 
-If a promise from any of the plugins is rejected then the deployment
-pipeline will stop and ember-cli-deploy will exit. Returned promises that are
-rejected are treated as unrecoverable errors.
+If a promise from any of the plugins is rejected then the deployment pipeline will stop and ember-cli-deploy will exit. Returned promises that are rejected are treated as unrecoverable errors.
 
 ### Revision Objects
 
-The `fetchInitialRevisions` and `fetchRevisions` hooks described above
-are expected to be an array of "revision objects". A revision
-object is a Javascript object that conforms to the following:
+The `fetchInitialRevisions` and `fetchRevisions` hooks described above are expected to be an array of "revision objects". A revision object is a Javascript object that conforms to the following:
 
-Each revision object _must_ have a string `revision` key.
-Each revision object _may_ have one or more one additional
-properties. The following properties are considered "common"
-and their types should be consistent across plugins:
+Each revision object _must_ have a string `revision` key. Each revision object _may_ have one or more one additional properties. The following properties are considered "common" and their types should be consistent across plugins:
 
     `version`:     (String) reference of version in SCM
     `timestamp`:   (Date) when the revision was created

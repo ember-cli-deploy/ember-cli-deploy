@@ -24,7 +24,7 @@ exclude:
 github:
   repo:           https://github.com/ember-cli/ember-cli-deploy
 
-default_version: v0.5.x
+default_version: v0.6.x
 defaults:
   -
     scope:

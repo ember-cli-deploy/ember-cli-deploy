@@ -38,8 +38,7 @@ Custom adapters written for ember-cli-deploy 0.4.x **will not work** with 0.5.x 
 
 In order to help users understand if a plugin is compatible with a given version of ember-cli-deploy a badges system is available.
 
-If you're the author of a plugin please open a PR on the
-[ember-cli-deploy-version-badges](https://github.com/ember-cli-deploy/ember-cli-deploy-version-badges) github repo by following the instructions on the README.
+If you're the author of a plugin please open a PR on the [ember-cli-deploy-version-badges](https://github.com/ember-cli-deploy/ember-cli-deploy-version-badges) github repo by following the instructions on the README.
 
 Once your PR is merged you'll be able to put a link to the generated SVG.
 

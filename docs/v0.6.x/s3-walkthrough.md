@@ -14,7 +14,7 @@ First we must install ember-cli-deploy proper. It's an Ember addon, and we insta
     installing deploy-config
       create config/deploy.js
     ember-cli-deploy needs plugins to actually do the deployment work.
-    See http://ember-cli.github.io/ember-cli-deploy/docs/v0.5.x/quick-start/
+    See http://ember-cli.github.io/ember-cli-deploy/docs/v0.6.x/quick-start/
     to learn how to install plugins and see what plugins are available.
     Installed addon package.
 
@@ -30,7 +30,7 @@ We'll have a look at these other addons in a moment, but first let's try deploy 
     ember-cli-deploy works by registering plugins in its pipeline.
     In order to execute a deployment you must install at least one ember-cli-deploy compatible plugin.
 
-    Visit http://ember-cli.github.io/ember-cli-deploy/docs/v0.5.x/plugins/ for a list of supported plugins.
+    Visit http://ember-cli.github.io/ember-cli-deploy/docs/v0.6.x/plugins/ for a list of supported plugins.
 
 There are several pieces of information above:
 
