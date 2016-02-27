@@ -1,40 +1,30 @@
 # ember-cli-deploy Changelog
 
-## [0.6.0-beta.3](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.3) (2016-02-24)
-[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.6.0-beta.2...0.6.0-beta.3)
-
-- Move to non-scoped npm package for progress, and newer version. Fixes an issue causing crashes when running at certain narrow terminal widths. [\#366](https://github.com/ember-cli/ember-cli-deploy/pull/366) and [\#367](https://github.com/ember-cli/ember-cli-deploy/pull/367) ([lukemelia](https://github.com/lukemelia))
-
-## [0.6.0-beta.2](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.2) (2016-02-22)
-[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.6.0-beta.1...0.6.0-beta.2)
-
-Small refactorings and tweak to new progress bar. If this build is stable, it will be released as 0.6.0 final.
-
-- Use our fork of progress so that we can make the rocket part of the progress bar [\#364](https://github.com/ember-cli/ember-cli-deploy/pull/364) ([lukemelia](https://github.com/lukemelia))
-- Remove unused code [\#359](https://github.com/ember-cli/ember-cli-deploy/pull/359) ([achambers](https://github.com/achambers))
-
-## [0.6.0-beta.1](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0-beta.1) (2016-01-23)
-[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.1...0.6.0-beta.1)
+## [0.6.0](https://github.com/ember-cli/ember-cli-deploy/tree/0.6.0) (2016-02-26)
+[Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.1...0.6.0)
 
 This release has no breaking changes from 0.5.1. It introduces a progress bar for deploys run on interactive terminals, improved ability to configure command defaults, and new fetchInitialRevisions & fetchRevisions hooks to the deploy pipeline, which will better enable plugins that want to do changelog/diff notifications.
-
-- display progress notification during deploy [\#280](https://github.com/ember-cli/ember-cli-deploy/pull/280) ([ghedamat](https://github.com/ghedamat))
-- add `fetchRevisions`hook to deploy and activate pipelines [\#323](https://github.com/ember-cli/ember-cli-deploy/pull/323) ([sethpollack](https://github.com/sethpollack))
-- Allow loading .env files + .env.deploy.\<env\> files [\#342](https://github.com/ember-cli/ember-cli-deploy/pull/342) ([blimmer](https://github.com/blimmer))
-- read-config task \(fix issue where dotenv files were not loaded in time for deploy tasks\) [\#319](https://github.com/ember-cli/ember-cli-deploy/pull/319) ([lukemelia](https://github.com/lukemelia))
-- Remove temporary fix for broccoli-asset-rev [\#316](https://github.com/ember-cli/ember-cli-deploy/pull/316) ([backspace](https://github.com/backspace))
 
 We have also introduced new versioned docs for 0.6.x, available now from the version selector on ember-cli-deploy.com in the Docs section.
 
 Huge thanks to the fine work of the ember-cli-deploy core team, particularly @ghedamat who has been very active this cycle, and to our growing set of contributors and community. It is amazing to the see the ember-cli-deploy plugin ecosystem blossom.
 
-Please give this beta a shot and if you notice anything wrong, open an issue or ping us on the Ember Community Slack in #ember-cli-deploy channel.
-
 ### Plugin Authors
 
 The `fetchRevisions` hook will now be called during the "deploy" and "activate" pipelines. It was previously only called during the "list" pipeline. In addition, a new `fetchInitialRevisions` hook will be called during the "deploy" and "activate" pipelines. See the [0.6.x Pipeline Hooks docs](http://ember-cli.com/ember-cli-deploy/docs/v0.6.x/pipeline-hooks/) for details. If you maintain a plugin that uploads new revisions, you will want to update your plugin to implement the new hook. In the coming days, we will be updating ember-cli-deploy-redis as an example.
 
-You should also update your ember-cli-deploy-plugin dependency to 0.2.1, to ensure your plugin's logging plays nicely with the nifty new progress bar in this ember-cli-deploy release.
+You should also update your ember-cli-ddddddddeploy-plugin dependency to 0.2.2, to ensure your plugin's logging plays nicely with the nifty new progress bar in this ember-cli-deploy release.33
+
+Pull Requests:
+
+- Move to non-scoped npm package for progress, and newer version. Fixes an issue causing crashes when running at certain narrow terminal widths. [\#366](https://github.com/ember-cli/ember-cli-deploy/pull/366) and [\#367](https://github.com/ember-cli/ember-cli-deploy/pull/367) ([lukemelia](https://github.com/lukemelia))
+- Use our fork of progress so that we can make the rocket part of the progress bar [\#364](https://github.com/ember-cli/ember-cli-deploy/pull/364) ([lukemelia](https://github.com/lukemelia))
+- Remove unused code [\#359](https://github.com/ember-cli/ember-cli-deploy/pull/359) ([achambers](https://github.com/achambers))
+- display progress notification during deploy [\#280](https://github.com/ember-cli/ember-cli-deploy/pull/280) ([ghedamat](https://github.com/ghedamat))
+- add `fetchRevisions`hook to deploy and activate pipelines [\#323](https://github.com/ember-cli/ember-cli-deploy/pull/323) ([sethpollack](https://github.com/sethpollack))
+- Allow loading .env files + .env.deploy.\<env\> files [\#342](https://github.com/ember-cli/ember-cli-deploy/pull/342) ([blimmer](https://github.com/blimmer))
+- read-config task \(fix issue where dotenv files were not loaded in time for deploy tasks\) [\#319](https://github.com/ember-cli/ember-cli-deploy/pull/319) ([lukemelia](https://github.com/lukemelia))
+- Remove temporary fix for broccoli-asset-rev [\#316](https://github.com/ember-cli/ember-cli-deploy/pull/316) ([backspace](https://github.com/backspace))
 
 ## [0.5.1](https://github.com/ember-cli/ember-cli-deploy/tree/0.5.1) (2015-11-09)
 [Full Changelog](https://github.com/ember-cli/ember-cli-deploy/compare/v0.5.0...0.5.1)
