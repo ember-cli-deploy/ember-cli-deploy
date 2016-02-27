@@ -2,9 +2,9 @@
 title: Upgrading Plugins
 ---
 
-Ember CLI Deploy 0.5.x introduces the concept of a deploy pipeline. Instead of writing *adapters* (like you did in 0.4.x), you write *plugins*, and then compose these plugins to configure your application's deploy pipeline. 
+Ember CLI Deploy 0.5.x introduces the concept of a deploy pipeline. Instead of writing *adapters* (like you did in 0.4.x), you write *plugins*, and then compose these plugins to configure your application's deploy pipeline.
 
-While adapters had specific types (index adapter, asset adapter, etc.), plugins are generic, and are defined only by the [pipeline hooks](./pipelin-hooks) they implement.
+While adapters had specific types (index adapter, asset adapter, etc.), plugins are generic, and are defined only by the [pipeline hooks](./pipeline-hooks) they implement.
 
 The changes you need to make to upgrade your adapter depends on its type.
 
@@ -58,4 +58,4 @@ The changes you need to make to upgrade your adapter depends on its type.
 
 ### Changes for asset adapters
 
-  1. Replace any hard referenes to "tmp/asset-sync" with `context.distDir`
+  1. Replace any hard references to "tmp/asset-sync" with `context.distDir`

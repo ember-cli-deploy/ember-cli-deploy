@@ -4,13 +4,17 @@ title: Upgrading Plugins
 
 ### Upgrading from 0.5.x compatibility to 0.6.x compatibility
 
-TODO: fill this in with info about fetchRevisions hook changes
+The fetchRevisions hook is now called during the "deploy" and "activate" pipelines. It was previously only called during the "list" pipeline. In addition, a new fetchInitialRevisions hook will be called during the "deploy" and "activate" pipelines. See the [0.6.x Pipeline Hooks docs](./pipeline-hooks) for details. If you maintain a plugin that uploads new revisions, you will want to update your plugin to implement the new hook. This will allow plugins which wish to extract diff or changelog information from the context to do so. Here is an example of [updating ember-cli-deploy-redis](https://github.com/ember-cli-deploy/ember-cli-deploy-redis/pull/50).
+
+You should also update your ember-cli-deploy-plugin dependency to 0.2.2, to ensure your plugin's logging plays nicely with the nifty new progress bar in this ember-cli-deploy release.
+
+If you have any questions about updating your plugin, ask in a Github issue or in the *#ember-cli-deploy* channel on Slack. A core team member or other community member will help you out.
 
 ### Upgrading from 0.4.x compatibility to 0.5.x compatibility
 
 Ember CLI Deploy 0.5.x introduced the concept of a deploy pipeline. Instead of writing *adapters* (like you did in 0.4.x), you write *plugins*, and then compose these plugins to configure your application's deploy pipeline.
 
-While adapters had specific types (index adapter, asset adapter, etc.), plugins are generic, and are defined only by the [pipeline hooks](./pipelin-hooks) they implement.
+While adapters had specific types (index adapter, asset adapter, etc.), plugins are generic, and are defined only by the [pipeline hooks](./pipeline-hooks) they implement.
 
 The changes you need to make to upgrade your adapter depends on its type.
 
@@ -64,4 +68,4 @@ The changes you need to make to upgrade your adapter depends on its type.
 
 ### Changes for asset adapters
 
-  1. Replace any hard referenes to "tmp/asset-sync" with `context.distDir`
+  1. Replace any hard references to "tmp/asset-sync" with `context.distDir`
