@@ -17,7 +17,7 @@ module.exports = function(environment){
   };
 
   if (environment === 'production') {
-    Env.redis = {
+    ENV.redis = {
       url: process.env.REDIS_URL
     }
   };
