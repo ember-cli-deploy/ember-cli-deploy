@@ -34,7 +34,7 @@ module.exports = function(deployTarget) {
 
 ## Deploy-Target Specific Variables
 
-For variables that are specific to a particular deployment target, create a file in the root of your project named `.env.deploy.<deploy-target>` where `<deploy-target>` is the target environment you are deploying to. Variables defined in an deploy-target specific file will override those defined in a top-level `.env` file.
+For variables that are specific to a particular deployment target, create a file in the root of your project named `.env.deploy.<deploy-target>` where `<deploy-target>` is the target environment you are deploying to. Make sure you also have created `.env`, even if the file is empty. Variables defined in an deploy-target specific file will override those defined in a top-level `.env` file.
 
 So, for example, if you were deploying to your staging environment like so:
 
