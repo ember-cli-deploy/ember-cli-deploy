@@ -98,7 +98,7 @@ We add an entry on `ENV` for each plugin we wish to configure. There's already a
 
 We'll have to fill out our own values for those four keys. How to get them is outside the scope of this example though. The documentation for ember-cli-deploy-s3 has some help at the end, regarding permission policies. There's more documentation on the Internet.
 
-SECURITY NOTE: the above is a simplification. We don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](./dotenv-support) out of the box. Use that instead.
+SECURITY NOTE: the above is a simplification. We don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](../dotenv-support) out of the box. Use that instead.
 
 After entering the correct configuration values, we can run the deploy command again:
 
