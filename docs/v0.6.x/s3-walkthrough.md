@@ -173,7 +173,7 @@ Of these three plugins, only s3-index needs additional configuration. For the ot
         region: '<the-region-your-bucket-is-in>'
       },
 
-      s3-index: {
+      's3-index': {
         accessKeyId: '<your-aws-access-key>',
         secretAccessKey: '<your-aws-secret>',
         bucket: '<your-s3-bucket>',
