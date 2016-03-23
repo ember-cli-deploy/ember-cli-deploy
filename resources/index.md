@@ -84,7 +84,8 @@ Here are some resources related to this project.
 
 **Videos**
 
-- [EmberCamp London 2015: ember-cli-deploy in Action](https://www.youtube.com/watch?v=fcSL5poJ1gQ&list=PL4eq2DPpyBbnMrndBpPUFFdYiMLdp8__L&index=8). Aaron Chambers and Luke Melia introduce ember-cli-deploy 0.5.x to the world.
+- [Global Ember Meetup - Introduction to ember-cli-deploy](https://vimeo.com/158447249). Mattia Gheda gives an introduction to ember-cli-deploy 0.5.x.
+- [EmberCamp London 2015 - ember-cli-deploy in Action](https://www.youtube.com/watch?v=fcSL5poJ1gQ&list=PL4eq2DPpyBbnMrndBpPUFFdYiMLdp8__L&index=8). Aaron Chambers and Luke Melia introduce ember-cli-deploy 0.5.x to the world.
 - [Ember London - Ember CLI Deploy](https://vimeo.com/139125310). Aaron Chambers gives an overview of ember-cli-deploy 0.5.x.
 - [Codementor Office Hours - Ember CLI Deploy with LevelBossMike](https://www.youtube.com/watch?v=jE8Kc8c107w). Michael Klein (LevelBossMike) discusses using Ember CLI Deploy it to deploy any type of Ember App.
 - [EmberConf 2015 - The Art of Ember Deployment](https://www.youtube.com/watch?v=4EDetv_Rw5U). Luke's talk at EmberConf announcing the merging of the projects.
