@@ -62,3 +62,9 @@ This app is very similar to the *Sinatra app* above but also implements a very s
 
 - C#-based, https://gist.github.com/duizendnegen/85b5c4a7b7eef28f0756
 - Node.js-based, [node-ember-cli-deploy-azure-tables](https://github.com/jamesdixon/node-ember-cli-deploy-azure-tables) courtesy of [jamesdixon](https://github.com/jamesdixon)
+
+## Example Flask app
+
+This app does the same as the *Sinatra app* above, it supports the same index_key query param. It should help you to get up and running in seconds and dont worry about server code. This needs your Ember-CLI app to be deployed with [`ember-cli-deploy-lightning-pack`](https://github.com/ember-cli-deploy/ember-cli-deploy-lightning-pack).  It is heavily influenced by the `ember-lightning` NodeJS server, above; but written in Flask for our python-heavy development team.
+
+[Flask example with one click Heroku deploy!](https://github.com/dellintosh/flask-lightning)
