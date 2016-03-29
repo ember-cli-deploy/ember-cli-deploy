@@ -369,3 +369,84 @@ If you find yourself requiring properties from another plugin in the same hook a
    after: "ember-cli-deploy-funky-plugin"
 }
 ```
+
+### Testing
+
+Because plugins are effectively node code rather than ember code, they aren't tested like regular ember addons. You'll want to install [mocha](https://github.com/mochajs/mocha)
+
+```bash
+npm install mocha --save-dev
+```
+
+ and write your tests in `tests/unit/index-nodetest.js`, using the following as a template. Note the `config.pluginClient` mock, which you should replace with a check that the correct params are being sent to the external api.
+
+```javascript
+var assert  = require('ember-cli/tests/helpers/assert');
+
+var stubProject = {
+  name: function(){
+    return 'my-project';
+  }
+};
+
+describe('my new plugin', function() {
+  var subject, mockUi;
+
+  beforeEach(function() {
+    subject = require('../../index');
+    mockUi = {
+      verbose: true,
+      messages: [],
+      write: function() { },
+      writeLine: function(message) {
+        this.messages.push(message);
+      }
+    };
+  });
+
+  it('has a name', function() {
+    var result = subject.createDeployPlugin({
+      name: 'test-plugin'
+    });
+
+    assert.equal(result.name, 'test-plugin');
+  });
+
+  describe('hook',function() {
+    var plugin;
+    var context;
+
+    it('calls the hook', function() {
+      plugin = subject.createDeployPlugin({name:'my plugin' });
+      context = {
+        ui: mockUi,
+        project: stubProject,
+        config: { "my-plugin": {
+            pluginClient: function(context) {
+              return {
+                upload: function(context) {
+                  return Promise.resolve();
+                }
+              };
+            }
+          }
+        }
+      };
+      return assert.isFulfilled(plugin.upload(context))
+    });
+  });
+});
+
+```
+
+You should then update your `package.json` like this, and run your tests with `npm test`.
+
+```javascript
+// package.json
+
+"scripts": {
+    "build": "ember build",
+    "start": "ember server",
+    "test": "./node_modules/mocha/bin/mocha tests/unit/index-nodetest.js"
+  },
+```
