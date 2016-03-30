@@ -6,7 +6,7 @@ var FakeProgressBar   = require('../../helpers/fake-progress-bar');
 
 describe ('Pipeline', function() {
   describe ('initialization', function() {
-    it ('initializes the given list of hooks plus the `didFail`-hook', function() {
+    it('initializes the given list of hooks plus the `didFail`-hook', function() {
       var subject = new Pipeline(['willDeploy', 'didDeploy']);
 
       expect(Object.keys(subject._pipelineHooks).length).to.eq(3);
@@ -14,10 +14,27 @@ describe ('Pipeline', function() {
       expect(subject._pipelineHooks.didDeploy).to.eql([]);
       expect(subject._pipelineHooks.didFail).to.eql([]);
     });
+
+    it('configures logging colors with defaults', function() {
+      var subject = new Pipeline([]);
+      expect(subject.logInfo._styles).to.eql(['blue']);
+      expect(subject.logError._styles).to.eql(['red']);
+    });
+
+    it('configures logging colors', function() {
+      var subject = new Pipeline([], {
+        ui: {
+          logInfoColor: 'green',
+          logErrorColor: 'yellow'
+        }
+      });
+      expect(subject.logInfo._styles).to.eql(['green']);
+      expect(subject.logError._styles).to.eql(['yellow']);
+    });
   });
 
   describe ('#register', function() {
-    it ('registers functions for defined hooks', function() {
+    it('registers functions for defined hooks', function() {
       var subject = new Pipeline(['willDeploy'], {
         ui: {write: function() {}}
       });
@@ -180,7 +197,7 @@ describe ('Pipeline', function() {
 
       subject.execute();
 
-      expect(ui.progressBar).to.be.ok;
+      expect(subject._ui.progressBar).to.be.ok;
     });
 
     it('is not used in --verbose mode', function() {
@@ -214,7 +231,7 @@ describe ('Pipeline', function() {
       subject.register('hook2', function() {});
       subject.execute();
 
-      expect(ui.progressBar.total).to.equal(3);
+      expect(subject._ui.progressBar.total).to.equal(3);
     });
 
     it('excludes the configure hooks from the total', function() {
@@ -232,7 +249,7 @@ describe ('Pipeline', function() {
       subject.register('configure', function() {});
       subject.execute();
 
-      expect(ui.progressBar.total).to.equal(2);
+      expect(subject._ui.progressBar.total).to.equal(2);
     });
 
     it('ticks during execution', function() {
@@ -259,7 +276,7 @@ describe ('Pipeline', function() {
 
       return expect(subject.execute()).to.be.fulfilled
         .then(function() {
-          expect(ui.progressBar.ticks).to.eql(
+          expect(subject._ui.progressBar.ticks).to.eql(
             [{hook: 'hook1', plugin: 'fn1'},
              {hook: 'hook2', plugin: 'fn2'}
             ]
