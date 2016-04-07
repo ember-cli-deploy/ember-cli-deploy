@@ -14,7 +14,7 @@ If you want to apply changes to just ember-cli-deploy commands, nest the configu
 // .ember-cli
 {
   "ember-cli-deploy": {
-    verbose: true
+    "verbose": true
   }
 }
 ```
