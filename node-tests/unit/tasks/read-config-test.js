@@ -14,7 +14,7 @@ describe('ReadConfigTask', function() {
       var task = new ReadConfigTask({
         project: project,
         deployTarget: 'development',
-        deployConfigPath: 'node-tests/fixtures/config/deploy.js'
+        deployConfigFile: 'node-tests/fixtures/config/deploy.js'
       });
       task.run().then(function(config){
         assert.equal(config.build.environment, 'development');
@@ -23,7 +23,8 @@ describe('ReadConfigTask', function() {
       });
     });
 
-    it('accepts an absolute deployConfigPath', function() {
+    var configFileNotFoundExceptionPattern = /Deploy config does not exist at/;
+    it('throws an exception if deployConfigFile cannot be found', function() {
       var project = {
         name: function() {return 'test-project';},
         root: process.cwd(),
@@ -34,11 +35,29 @@ describe('ReadConfigTask', function() {
         new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: path.join(process.cwd(), 'node-tests/fixtures/config/deploy.js')
+          deployConfigFile: path.join(process.cwd(), 'node-tests/fixtures/config/this-config-does-not-exist.js')
         }).run();
       };
 
-      assert.doesNotThrow(fn, /Cannot find module/, 'config file could not be read');
+      assert.throws(fn, configFileNotFoundExceptionPattern, 'config file does not exist but exception is not thrown');
+    });
+
+    it('accepts an absolute deployConfigFile', function() {
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: []
+      };
+
+      var fn = function () {
+        new ReadConfigTask({
+          project: project,
+          deployTarget: 'development',
+          deployConfigFile: path.join(process.cwd(), 'node-tests/fixtures/config/deploy.js')
+        }).run();
+      };
+
+      assert.doesNotThrow(fn, configFileNotFoundExceptionPattern, 'config file could not be read');
     });
 
     describe('setting environment variables from .env', function() {
@@ -66,7 +85,7 @@ describe('ReadConfigTask', function() {
         var task = new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: 'config/deploy.js'
+          deployConfigFile: 'config/deploy.js'
         });
         task.run();
 
@@ -79,7 +98,7 @@ describe('ReadConfigTask', function() {
         var task = new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: 'config/deploy.js'
+          deployConfigFile: 'config/deploy.js'
         });
         task.run();
 
@@ -92,7 +111,7 @@ describe('ReadConfigTask', function() {
         var task = new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: 'config/deploy.js'
+          deployConfigFile: 'config/deploy.js'
         });
         task.run();
 

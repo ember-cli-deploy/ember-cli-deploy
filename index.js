@@ -27,7 +27,7 @@ module.exports = {
       var readConfig = new ReadConfigTask({
         project: this.project,
         deployTarget: deployTarget,
-        deployConfigPath: options.configFile
+        deployConfigFile: options.configFile
       });
       return readConfig.run().then(function(config){
         var DeployTask = require('./lib/tasks/deploy');
