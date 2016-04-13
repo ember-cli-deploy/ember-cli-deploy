@@ -14,7 +14,7 @@ describe('ReadConfigTask', function() {
       var task = new ReadConfigTask({
         project: project,
         deployTarget: 'development',
-        deployConfigPath: 'node-tests/fixtures/config/deploy.js'
+        deployConfigFile: 'node-tests/fixtures/config/deploy.js'
       });
       task.run().then(function(config){
         assert.equal(config.build.environment, 'development');
@@ -23,7 +23,7 @@ describe('ReadConfigTask', function() {
       });
     });
 
-    it('accepts an absolute deployConfigPath', function() {
+    it('accepts an absolute deployConfigFile', function() {
       var project = {
         name: function() {return 'test-project';},
         root: process.cwd(),
@@ -34,7 +34,7 @@ describe('ReadConfigTask', function() {
         new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: path.join(process.cwd(), 'node-tests/fixtures/config/deploy.js')
+          deployConfigFile: path.join(process.cwd(), 'node-tests/fixtures/config/deploy.js')
         }).run();
       };
 
@@ -66,7 +66,7 @@ describe('ReadConfigTask', function() {
         var task = new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: 'config/deploy.js'
+          deployConfigFile: 'config/deploy.js'
         });
         task.run();
 
@@ -79,7 +79,7 @@ describe('ReadConfigTask', function() {
         var task = new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: 'config/deploy.js'
+          deployConfigFile: 'config/deploy.js'
         });
         task.run();
 
@@ -92,7 +92,7 @@ describe('ReadConfigTask', function() {
         var task = new ReadConfigTask({
           project: project,
           deployTarget: 'development',
-          deployConfigPath: 'config/deploy.js'
+          deployConfigFile: 'config/deploy.js'
         });
         task.run();
 

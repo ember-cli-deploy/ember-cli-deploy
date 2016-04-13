@@ -471,7 +471,7 @@ describe('PipelineTask', function() {
         ui: mockUi,
         deployTarget: 'production',
         config: { plugins: ['foo-plugin', 'foo-plugin:bar-alias', 'foo-plugin:doo-alias'] },
-        deployConfigPath: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
+        deployConfigFile: 'node-tests/fixtures/config/deploy-for-addons-config-test-with-aliases.js',
       });
 
       try {
