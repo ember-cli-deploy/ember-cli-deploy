@@ -23,6 +23,25 @@ describe('ReadConfigTask', function() {
       });
     });
 
+    var configFileNotFoundExceptionPattern = /Deploy config does not exist at/;
+    it('throws an exception if deployConfigFile cannot be found', function() {
+      var project = {
+        name: function() {return 'test-project';},
+        root: process.cwd(),
+        addons: []
+      };
+
+      var fn = function () {
+        new ReadConfigTask({
+          project: project,
+          deployTarget: 'development',
+          deployConfigFile: path.join(process.cwd(), 'node-tests/fixtures/config/this-config-does-not-exist.js')
+        }).run();
+      };
+
+      assert.throws(fn, configFileNotFoundExceptionPattern, 'config file does not exist but exception is not thrown');
+    });
+
     it('accepts an absolute deployConfigFile', function() {
       var project = {
         name: function() {return 'test-project';},
@@ -38,7 +57,7 @@ describe('ReadConfigTask', function() {
         }).run();
       };
 
-      assert.doesNotThrow(fn, /Cannot find module/, 'config file could not be read');
+      assert.doesNotThrow(fn, configFileNotFoundExceptionPattern, 'config file could not be read');
     });
 
     describe('setting environment variables from .env', function() {
