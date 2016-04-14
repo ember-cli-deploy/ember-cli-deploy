@@ -50,4 +50,4 @@ example:
 [![](https://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/plugins/ember-cli-deploy-s3.svg)](http://ember-cli-deploy.github.io/ember-cli-deploy-version-badges/)
 ```
 
-Anyone needing assistance in porting a 0.4.x custom adapter to a 0.5+ plugin can [open an issue on the ember-cli-deploy Github repository](https://github.com/ember-cli/ember-cli-deploy/issues) and we'll be happy to help.
+Anyone needing assistance in porting a 0.4.x custom adapter to a 0.5+ plugin can [open an issue on the ember-cli-deploy Github repository](https://github.com/ember-cli-deploy/ember-cli-deploy/issues) and we'll be happy to help.

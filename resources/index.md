@@ -13,7 +13,7 @@ Once inside Slack, visit the *#ember-cli-deploy* channel. A core team member or 
 
 ## Github
 
-Our main Github repository is [ember-cli/ember-cli-deploy](https://github.com/ember-cli/ember-cli-deploy). Feel free to [open an issue](https://github.com/ember-cli/ember-cli-deploy/issues/new) if you find a bug or have a technical question.
+Our main Github repository is [ember-cli-deploy/ember-cli-deploy](https://github.com/ember-cli-deploy/ember-cli-deploy). Feel free to [open an issue](https://github.com/ember-cli-deploy/ember-cli-deploy/issues/new) if you find a bug or have a technical question.
 
 We have a separate [ember-cli-deploy Github org](https://github.com/ember-cli-deploy) for ember-cli-deploy plugins maintained by the core team.
 
@@ -78,7 +78,7 @@ We have a separate [ember-cli-deploy Github org](https://github.com/ember-cli-de
 
 # Learning
 
-<a class='u-pull-right' href="https://github.com/ember-cli/ember-cli-deploy/edit/gh-pages/{{page.path}}"><small>Add your own!</small></a>
+<a class='u-pull-right' href="https://github.com/ember-cli-deploy/ember-cli-deploy/edit/gh-pages/{{page.path}}"><small>Add your own!</small></a>
 
 Here are some resources related to this project.
 

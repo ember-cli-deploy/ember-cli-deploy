@@ -20,7 +20,7 @@ layout: default
     </ul>
 
     <p class="Docs-page__version">
-      Version 
+      Version
       <select onchange="if (this.value) window.location.href=this.value">
         {% for version in site.data.navs %}
           <option value="{{ site.baseurl}}/docs/{{ version[0] }}" {% if version[0] == page.version %}selected {% endif %}>{{version[0]}}</option>
@@ -40,7 +40,7 @@ layout: default
   <div class="Center-panel">
     <div class="Docs-page">
       <div class='Docs-page__header'>
-        <a class='Docs-page__improve-link' href="https://github.com/ember-cli/ember-cli-deploy/edit/gh-pages/{{page.path}}">
+        <a class='Docs-page__improve-link' href="https://github.com/ember-cli-deploy/ember-cli-deploy/edit/gh-pages/{{page.path}}">
           <img src="{{ site.baseurl}}/public/images/edit.png" alt="">
           Improve this page
         </a>
