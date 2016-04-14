@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-deploy",
   "description": "A deployment pipeline for ember-cli apps",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "directories": {
     "doc": "doc",
     "test": "tests"

@@ -1,5 +1,17 @@
 # ember-cli-deploy Changelog
 
+## [0.6.1](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.1) (2016-04-14)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.0...0.6.1)
+
+This release fixes a regression introduced by 0.6.0 that caused the command line flag for specifying a config file to stop working. Thanks to @dschmidt for the fix.
+
+This release also adds config options for specifying log colors (some users had complaints about lack of contrast against certain terminal backgrounds). Documentation is still forthcoming on this feature, but you can check PR #377 if you're anxious to use this.
+
+Pull Requests:
+
+- Fix config file option [\#385](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/385) ([dschmidt](https://github.com/dschmidt))
+- add config options for log colors [\#377](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/377) ([ghedamat](https://github.com/ghedamat))
+
 ## [0.6.0](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.0) (2016-02-26)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.5.1...0.6.0)
 
