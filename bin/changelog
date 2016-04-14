@@ -45,7 +45,7 @@ compareCommits({
     return a.number > b.number;
   }).map(function(pr) {
     var link   = '[#' + pr.number + ']' +
-                 '(https://github.com/ember-cli/ember-cli-deploy/pull/' + pr.number + ')';
+                 '(https://github.com/ember-cli-deploy/ember-cli-deploy/pull/' + pr.number + ')';
     var title  = pr.title;
     var author = '[@' + pr.author + ']' +
                  '(https://github.com/' + pr.author +')';

@@ -1,6 +1,6 @@
 ##Overview
 
-`achambers/ember-cli-deploy`, `LevelBossMike/ember-deploy` and `tedconf/ember-cli-front-end-builds` are coming together to create the offical Ember CLI deployment tool, `ember-cli/ember-cli-deploy`.
+`achambers/ember-cli-deploy`, `LevelBossMike/ember-deploy` and `tedconf/ember-cli-front-end-builds` are coming together to create the offical Ember CLI deployment tool, `ember-cli-deploy/ember-cli-deploy`.
 
 Users upgrading from the `ember-cli-deploy` npm package `<= v0.0.6` to `>= v0.4.0` will need to follow the migration steps below as the core codebase of the package will be changing completely.
 
