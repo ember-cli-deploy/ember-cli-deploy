@@ -15,7 +15,7 @@ To upgrade an application that used the Lightning Strategy in 0.4.X:
 * replace `ember-deploy-redis` with `ember-cli-deploy-redis`
 * remove store key in config and replace with plugin specific key (`redis`)
 * replace `ember-deploy-s3` with `ember-cli-deploy-s3`
-* upgrade `config/deploy.js` format, see new [blueprint](https://github.com/ember-cli-deploy/ember-cli-deploy/blob/master/blueprints/deploy-config/files/config/deploy.js)
+* upgrade `config/deploy.js` format, see new [blueprint](https://github.com/ember-cli-deploy/ember-cli-deploy/blob/master/blueprints/ember-cli-deploy/files/config/deploy.js)
 * assets renamed to s3
 * install `ember-cli-deploy-build`
 * add new `dotenv` files `.env.build.environment`
