@@ -12,6 +12,7 @@ property | file | info
 `ui` | - | The ember-cli UI object used to write to stdout.
 `project` | - | The ember-cli project object.
 `config` | `config/deploy.js` | The configuration returned by the config file for the active environment.
+`deployTarget` | - | The deploy target
 
 
 In order to pass runtime information about the current operation, plugins can set properties on the `context` object for later use by themselves or for another plugin.
