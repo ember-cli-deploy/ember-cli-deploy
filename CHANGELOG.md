@@ -1,5 +1,11 @@
 # ember-cli-deploy Changelog
 
+## [0.6.2](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.2) (2016-05-12)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.1...0.6.2)
+
+- Bump lodash version to remove warning [#388](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/388) [@orf](https://github.com/orf)
+- Update ember-cli links to ember-cli-deploy [#392](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/392) [@yothomas](https://github.com/yothomas)
+
 ## [0.6.1](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.1) (2016-04-14)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.0...0.6.1)
 
