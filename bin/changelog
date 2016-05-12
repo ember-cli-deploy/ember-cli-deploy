@@ -20,7 +20,7 @@ var compareCommits = Promise.denodeify(github.repos.compareCommits);
 var currentVersion = 'v' + require('../package').version;
 
 compareCommits({
-  user: 'ember-cli',
+  user: 'ember-cli-deploy',
   repo: 'ember-cli-deploy',
   base: currentVersion,
   head: 'master'
