@@ -18,6 +18,7 @@ The following plugins are maintained by the ember-cli-deploy core team:
 
 The following plugins have been developed by community members:
 
+  - [ember-cli-deploy-alioss](https://github.com/he9qi/ember-cli-deploy-alioss) - deploy  assets to  Aliyun [OSS](http://oss.aliyun.com)
   - [ember-cli-deploy-azure-blob](https://github.com/duizendnegen/ember-cli-deploy-azure-blob) - deploy assets to Azure Blob
   - [ember-cli-deploy-azure-tables](https://github.com/duizendnegen/ember-cli-deploy-azure-tables) - deploy index.html to Azure Tables
   - [ember-cli-deploy-cloudfront](https://github.com/kpfefferle/ember-cli-deploy-cloudfront) - create a CloudFront invalidation
