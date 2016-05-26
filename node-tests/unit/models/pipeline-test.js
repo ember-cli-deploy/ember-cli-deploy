@@ -173,6 +173,24 @@ describe ('Pipeline', function() {
           expect(finalContext.age).to.equal(47);
         });
     });
+
+    it('merges the return value of each hook with the context using concatenation', function() {
+      var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
+      var finalContext = null;
+
+      subject.register('hook1', function() {
+        return { paths: ['/tmp/path', '/var/path'] };
+      });
+
+      subject.register('hook1', function(context) {
+        finalContext = context;
+      });
+
+      return expect(subject.execute({paths: ['/opt/path']})).to.be.fulfilled
+        .then(function() {
+          expect(finalContext.paths).to.deep.equal(['/opt/path', '/tmp/path', '/var/path']);
+        });
+    });
   });
 
   describe('#hookNames', function() {
