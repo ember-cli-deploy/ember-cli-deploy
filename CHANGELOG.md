@@ -1,5 +1,10 @@
 # ember-cli-deploy Changelog
 
+## [0.6.3](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.3) (2016-05-26)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.2...0.6.3)
+
+- [#402](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/402) Fix plugin context merging in the pipeline model [@dannyfallon/df](https://github.com/dannyfallon/df)
+
 ## [0.6.2](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.2) (2016-05-12)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.1...0.6.2)
 
