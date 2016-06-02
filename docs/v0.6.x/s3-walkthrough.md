@@ -139,7 +139,7 @@ At this point, we could just leave it at that and consider the deployment work c
 
 If you have tried other deployment frameworks, they tend to provide means to roll back to an earlier version of your code. When you deploy new code, and something goes unexpectedly wrong, you can undo the changes to minimize damage. Of course you can just `git checkout` a previous version and deploy again, but there are better ways to do that.
 
-Also, S3 doesn't automatically gzip files when serving them over HTTP. It offers a way to do it, but requires a bit of work on our part. How wonderful would it be to have ember-cli-deploy to do it for use?
+Also, S3 doesn't automatically gzip files when serving them over HTTP. It offers a way to do it, but requires a bit of work on our part. How wonderful would it be to have ember-cli-deploy to do it for us?
 
 Finally, when we deploy, all files in the app are uploaded. Sometimes an app includes a lots of assets, such as fonts, images, etc... and that can make for a hefty, slow deployment. What if ember-cli-deploy could tell which files already exist at the destination, and only uploaded those that had actually been changed or added?
 
