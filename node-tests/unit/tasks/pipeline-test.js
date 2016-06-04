@@ -217,6 +217,83 @@ describe('PipelineTask', function() {
         expect(registeredHooks.upload[0].name).to.eq('foo-plugin');
         expect(registeredHooks.upload[0].fn).to.be.a('function');
       });
+
+      describe('requiredHooks', function() {
+        it('validates that required hooks are implemented', function () {
+          var project = {
+            name: function() {return 'test-project';},
+            root: process.cwd(),
+            addons: [
+              {
+                name: 'ember-cli-deploy-foo-plugin',
+                pkg: {
+                  keywords: [
+                    'ember-cli-deploy-plugin'
+                  ]
+                },
+                createDeployPlugin: function() {
+                  return {
+                    name: 'foo-plugin',
+                    willDeploy: function() {},
+                    upload: function() {}
+                  };
+                }
+              }
+            ]
+          };
+
+          var task = new PipelineTask({
+            project: project,
+            ui: mockUi,
+            deployTarget: 'development',
+            config: { plugins: ['foo-plugin'] },
+            hooks: ['willDeploy', 'upload'],
+            requiredHooks: ['willDeploy']
+          });
+          var fn = function() {
+            task.setup();
+          };
+          expect(fn).to.not.throw(/not implemented by any registered plugin/);
+        });
+
+        it('throws if required hooks are not implemented', function () {
+          var project = {
+            name: function() {return 'test-project';},
+            root: process.cwd(),
+            addons: [
+              {
+                name: 'ember-cli-deploy-foo-plugin',
+                pkg: {
+                  keywords: [
+                    'ember-cli-deploy-plugin'
+                  ]
+                },
+                createDeployPlugin: function() {
+                  return {
+                    name: 'foo-plugin',
+                    willDeploy: function() {},
+                    upload: function() {}
+                  };
+                }
+              }
+            ]
+          };
+
+          var task = new PipelineTask({
+            project: project,
+            ui: mockUi,
+            deployTarget: 'development',
+            config: { plugins: ['foo-plugin'] },
+            hooks: ['willDeploy', 'upload', 'fetchRevisions'],
+            requiredHooks: ['fetchRevisions']
+          });
+          var fn = function() {
+            task.setup();
+          };
+          expect(fn).to.throw('fetchRevisions not implemented by any registered plugin');
+        });
+      });
+
       it('registers dependent plugin addons of a plugin pack addon designated by the ember-cli-deploy-plugin-pack keyword', function() {
         var project = {
           name: function() {return 'test-project';},
