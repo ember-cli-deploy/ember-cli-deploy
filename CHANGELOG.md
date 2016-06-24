@@ -1,5 +1,12 @@
 # ember-cli-deploy Changelog
 
+## [0.6.4](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.4) (2016-06-24)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.3...0.6.4)
+
+- Fix CoreObject init/super deprecation [\#410](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/410) ([alisdair](https://github.com/alisdair))
+- add support for requiredHooks in pipelines for better error messages [\#406](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/406) ([ghedamat](https://github.com/ghedamat))
+- Validate configured plugins before continue with pipeline [\#405](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/405) ([zzarcon](https://github.com/zzarcon))
+
 ## [0.6.3](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.3) (2016-05-26)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.2...0.6.3)
 
