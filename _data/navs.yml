@@ -24,6 +24,7 @@ v0.6.x:
     path: 'configuration-overview/'
   - label: Aliasing Plugins
   - label: Disabling Plugins
+  - label: Plugin Run Order
   - label: dotEnv Support
   - label: Fingerprinting
   - label: Default CLI Options
