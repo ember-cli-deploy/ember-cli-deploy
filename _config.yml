@@ -11,8 +11,8 @@ permalink:        pretty
 title:            Ember CLI Deploy
 tagline:          'Deploy pipeline for Ember apps'
 description:      'A deployment pipeline for Ember CLI apps'
-url:              https://github.com/ember-cli-deploy/ember-cli-deploy
-baseurl:          /ember-cli-deploy
+url:              https://ember-cli-deploy.com
+baseurl:          /
 destination:      jekyll-tmp/
 exclude:
   - node_modules
