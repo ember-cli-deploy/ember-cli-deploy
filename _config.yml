@@ -53,3 +53,8 @@ defaults:
       path: "docs/v0.6.x"
     values:
       version: "v0.6.x"
+  -
+    scope:
+      path: "docs/v1.0.x-beta.1"
+    values:
+      version: "v1.0.x-beta.1"

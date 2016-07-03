@@ -1,3 +1,35 @@
+v1.0.x-beta.1:
+  - section: Getting started
+  - label: Overview
+    path: ''
+  - label: Installation
+  - label: Quickstart
+  - label: Upgrading
+
+  - section: Setting up your pipeline
+  - label: Determining needs
+  - label: Using Plugins
+  - label: Deploying your app
+  - label: Plugin Packs
+
+  - section: Authoring Plugins
+  - label: Creating a plugin
+  - label: Pipeline hooks
+  - label: The deployment context
+  - label: Creating a plugin pack
+
+  - section: Cookbook
+  - label: Default options
+  - label: Using .env for secrets
+  - label: Including a plugin twice
+  - label: Development workflow
+  - label: The lightning strategy
+
+  - section: Reference
+  - label: Usage
+  - label: Configuration
+  - label: Other API/Classes
+
 v0.6.x:
   - section: Getting started
   - label: Overview

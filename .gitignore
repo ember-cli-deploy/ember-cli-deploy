@@ -42,3 +42,4 @@ node_modules
 bower_components
 .sass-cache
 jekyll-tmp
+Gemfile.lock
