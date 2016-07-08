@@ -2,46 +2,49 @@
 title: Including a plugin twice
 ---
 
-## Aliasing Plugins
+Often it is necessary to invoke an instance of a plugin more than once, for instance using the s3 plugin to push assets to two different buckets.
 
-To include a plugin twice, alias it using a colon.
+We can do this by using the `pipeline.alias` config option, like so:
 
 ```javascript
-plugins: ["s3-assets:foo-assets",
-          "s3-assets:bar-assets",
-          "s3-index",
-          "notify-slack"]
+  var ENV = {
+    pipeline: {
+      alias: {
+        s3: { as: ['s3', 's3-backup'] },
+      },
+    },
+  };
 ```
 
-The name specified after the colon will be passed as the `name` property
-of the `options` argument to the addon's `createDeployPlugin` method. Plugins
-should use their name to retrieve configuration values. In this example,
-the foo-assets instance of the s3-assets plugin could have different configuration
-than the bar-assets instance does.
-
-Example:
+This configuration will then allow you to set different configuration options for the two instances of the s3 plugin, referenced by their alias names, like so:
 
 ```javascript
-module.exports = function(deployTarget) {
   var ENV = {
-    plugins: ['build', 'revision-key', 'redis:prod1-redis', 'redis:prod2-redis'],
-  };
-  if (deployTarget === 'production') {
-    ENV['prod1-redis'] = {
-      keyPrefix: 'app',
-      allowOverwrite: true,
-      host: 'prod1.com',
-      port: 6379
-    };
-    ENV['prod2-redis'] = {
-      keyPrefix: 'app',
-      allowOverwrite: true,
-      host: 'prod2.com',
-      port: 6379
-    };
-    ...
-  }
+    pipeline: {
+      alias: {
+        s3: { as: ['s3-eu', 's3-us'] },
+      },
+    },
 
-  return ENV;
-};
+    s3: {
+      bucket: 'bucket-1',
+    },
+
+    's3-backup': {
+      bucket: 'bucket-2',
+    },
+  };
+```
+
+You can pass either a string or an array of strings in as the alias value like so:
+
+```javascript
+  var ENV = {
+    pipeline: {
+      alias: {
+        s3: { as: ['s3', 's3-backup'] },
+        redis: { as: 'redis-local' },
+      },
+    },
+  };
 ```
