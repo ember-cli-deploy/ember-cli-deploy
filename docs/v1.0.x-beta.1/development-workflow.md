@@ -36,7 +36,8 @@ module.exports = function(defaults) {
 
   switch (env) {
     case 'development':
-      fingerprintOptions.prepend = 'http://localhost:4200/'; // use fingerprinting to prepend your ember server domain path
+      // use fingerprinting to prepend your ember server domain path
+      fingerprintOptions.prepend = 'http://localhost:4200/';
     break;
     ...
   }
@@ -44,9 +45,12 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: fingerprintOptions,
     emberCLIDeploy: {
-      runOnPostBuild: (env === 'development') ? 'development-postbuild' : false, // returns the deployTarget
-      configFile: 'config/deploy.js', // optionally specifiy a different config file
-      shouldActivate: true, // optionally call the activate hook on deploy
+      // returns the deployTarget
+      runOnPostBuild: (env === 'development') ? 'development-postbuild' : false,
+      // optionally specifiy a different config file
+      configFile: 'config/deploy.js',
+      // optionally call the activate hook on deploy
+      shouldActivate: true,
     },
     ...
   });
@@ -59,7 +63,12 @@ in config/deploy.js you can define a custom pipeline for your deploy env.
 
 ```js
   if (deployTarget === 'development-postbuild') {
-    ENV.plugins = ['redis']; // only use the redis pluging
+    ENV.pipeline = {
+      // only use the redis pluging
+      disabled: {
+        allExcept: ['redis']
+      }
+    };
 
     ENV.build = {
       environment: 'development'

@@ -171,7 +171,9 @@ module.exports = {
       name: options.name,
 
       defaultConfig: {
-        filePattern: '**/*.{js,css,png}' // default filePattern if it isn't defined in config/dpeloy.js
+        // default filePattern if it isn't
+        // defined in config/deploy.js
+        filePattern: '**/*.{js,css,png}'
       },
 
       upload: function(context) { }
@@ -197,7 +199,8 @@ module.exports = {
 
       defaultConfig: {
         gzippedFiles: function(context) {
-          // if gzippedFiles has been added to the context by another plugin we can use it
+          // if gzippedFiles has been added
+          // to the context by another plugin we can use it
           return context.gzippedFiles || [];
         }
       },
@@ -412,7 +415,10 @@ module.exports = {
 Then once the pipeline hook has run, the deployment context will look like this:
 
 ```javascript
-{ distFiles: ['index.html', 'assets/app.js' ], uploadedAt: '2015-10-14T22:29:46.313Z' }
+{
+  distFiles: ['index.html', 'assets/app.js' ],
+  uploadedAt: '2015-10-14T22:29:46.313Z'
+}
 ```
 
 And every pipeline hook run thereafter will be able to access the `uploadedAt` property.

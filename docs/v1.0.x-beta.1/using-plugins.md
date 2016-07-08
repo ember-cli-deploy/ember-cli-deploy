@@ -58,7 +58,8 @@ This is a possible configuration for an app that deploys both assets and `index.
 module.exports = function(deployTarget) {
   var ENV = {
     build: {}
-    // include other plugin configuration that applies to all deploy targets here
+    // include other plugin configuration
+    // that applies to all deploy targets here
   };
 
   // configure other plugins for production deploy target here

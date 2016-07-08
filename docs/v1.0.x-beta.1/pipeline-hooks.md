@@ -5,7 +5,7 @@ title: Pipeline Hooks
 The build pipeline is composed of a series of hooks that each deploy plugin can optionally implement.
 
 Note:
-If multiple plugins implement the same hook they will all be called, if you need to specify the order you can use the `plugins: [...]` option in the [configuration](../configuration-overview).
+If multiple plugins implement the same hook they will all be called, if you need to specify the order you can use the `pipeline.runOrder: {...}` option in the [configuration](../configuration/#advanced-plugin-configuration).
 
 ## Hooks by command
 
