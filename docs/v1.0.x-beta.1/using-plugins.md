@@ -23,12 +23,11 @@ The actual execution of the pipeline consists of moving through each hook in seq
 
 ## How to choose a plugin
 
-Now that you [have decided](../determining-needs) how your deploy strategy will look like the best thing to do is to look through the [existing plugins](/plugins) as it's very likely that someone else in the community has implemented what you need.
+After [deciding](../determining-needs) your deploy structure, the best thing to do is look through the [existing plugins](/plugins), odds are that someone else in the community has implemented what you need.
 
 It's also a good idea to ask for advice on the `#ec-deploy` channel of the [ember community slack](https://ember-community-slackin.herokuapp.com/).
 
-If everything else fails then it's time to [write your own](../creating-a-plugin)
-
+If everything else fails then it's time to [write your own](../creating-a-plugin).
 
 ## Adding Plugins
 
