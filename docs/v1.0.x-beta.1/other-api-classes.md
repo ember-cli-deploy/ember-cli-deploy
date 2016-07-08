@@ -21,3 +21,5 @@ Or by setting the configuration in `.ember-cli`
   }
 }
 ```
+
+Default values are `blue` for log messages and `red` for errors.

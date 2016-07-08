@@ -263,6 +263,8 @@ module.exports = {
 };
 ```
 
+Log messages will be displayed using the [`log-info-color`](../other-api-classes#changing-log-colors) config option (default: 'blue')
+
 If you need to log an error or warning message using a different color, simply pass the color in as an option to the `log` function like this:
 
 ```javascript
@@ -277,6 +279,28 @@ module.exports = {
 
       upload: function(context) {
         this.log('Oops. Something went wrong', { color: 'red' });
+      }
+    });
+
+    return new DeployPlugin();
+  }
+};
+```
+
+If you want your message to be only visible when the user passes the `--verbose` option, simply pass `verbose: true` to the `log` function`:
+
+```javascript
+var BasePlugin = require('ember-cli-deploy-plugin');
+
+module.exports = {
+  name: 'ember-cli-deploy-funky-plugin',
+
+  createDeployPlugin: function(options) {
+    var DeployPlugin = BasePlugin.extend({
+      name: options.name,
+
+      upload: function(context) {
+        this.log('Uploading all the things', { verbose: true });
       }
     });
 
