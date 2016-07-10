@@ -11,7 +11,7 @@ Verify your plugins are 1.0.x compatible by checking the badge on their README.
 
 The old `plugins` [config option](/docs/v0.6.x/aliasing-plugins/) is now deprecated.
 
-To deprecated
+Now
 
 ```js
 ENV.plugins = ['build', 'redis'];

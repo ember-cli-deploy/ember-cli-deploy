@@ -2,7 +2,7 @@
 title: Quickstart
 ---
 
-Ember CLI Deploy works by executing functions that have been registered with your application's [deploy pipeline](../deploy-pipeline).
+Ember CLI Deploy works by executing functions that have been registered with [your application's deploy pipeline](../deploying-your-app).
 
 You add new functionality by installing [plugins](/plugins) provided by the community - or writing your own.
 

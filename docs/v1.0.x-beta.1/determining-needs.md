@@ -70,7 +70,7 @@ Over time different deployment strategy patterns emerge as smart ways of deployi
 In this approach the **assets** are deployed to a **CDN** (like S3 or Fastly)
 and the `index.html` that points to those assets is deployed to a persistent storage like **redis** or **Azure**.
 
-The deploy phase uploads the assets to your CDN and the `index.html` to the persistent storage but uses [fingerprinting](./fingerprinting) to ensure that the older versions are not overridden.
+The deploy phase uploads the assets to your CDN and the `index.html` to the persistent storage but uses [fingerprinting](../development-workflow) to ensure that the older versions are not overridden.
 
 A pointer to the the currently used `index` is normally saved in a **separate key** of the persistent storage and when the user loads the app the server value is read to determine which version of the index should be served.
 

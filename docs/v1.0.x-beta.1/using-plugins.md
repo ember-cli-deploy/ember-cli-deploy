@@ -18,7 +18,7 @@ When you run a command like `ember deploy`, `ember deploy:list` or `ember deploy
 
 A pipeline is initialized with a different sequence of [hooks](../pipeline-hooks) depending on which command you are running. Then Ember CLI Deploy finds all the [ember-cli-deploy-plugins](/plugins) that your app has installed and registers them.
 
-The actual execution of the pipeline consists of moving through each hook in sequence, and running the matching hook functions provided by the plugins. As execution proceeds, the [context](../deployment-context) is constantly updated and passed to the subsequent plugin hook functions.
+The actual execution of the pipeline consists of moving through each hook in sequence, and running the matching hook functions provided by the plugins. As execution proceeds, the [context](../the-deployment-context) is constantly updated and passed to the subsequent plugin hook functions.
 
 
 ## How to choose a plugin
