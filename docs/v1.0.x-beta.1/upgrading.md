@@ -7,6 +7,28 @@ Verify your plugins are 1.0.x compatible by checking the badge on their README.
 
 1.0.x brings new [configuration options](../configuration) for your plugin ordering that you can use.
 
+### Upgrade the `plugins` config
+
+The old `plugins` [config option](/docs/v0.6.x/aliasing-plugins/) is now deprecated.
+
+To deprecated
+
+```js
+ENV.plugins = ['build', 'redis'];
+```
+
+becomes
+
+```js
+ENV.pipeline = {
+  disabled: {
+    allExcept: ['build', 'redis']
+  }
+};
+```
+
+The new aliasing configuration is described in [the cookbook](../including-a-plugin-twice/)
+
 ## Upgrading an App from 0.5.X to 0.6.x
 
 Verify your plugins are 0.6.x compatible by checking the badge on their README. No other changes should be required.
