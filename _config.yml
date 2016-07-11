@@ -55,6 +55,6 @@ defaults:
       version: "v0.6.x"
   -
     scope:
-      path: "docs/v1.0.x-beta.1"
+      path: "docs/v1.0.0-beta.1"
     values:
-      version: "v1.0.x-beta.1"
+      version: "v1.0.0-beta.1"

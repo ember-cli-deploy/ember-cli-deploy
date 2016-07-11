@@ -39,7 +39,7 @@ module.exports = function(environment){
 };
 ```
 
-Individual config properties can be pure values or functions that receive the [context](../deployment-context) object and return a value.
+Individual config properties can be pure values or functions that receive the [context](../the-deployment-context) object and return a value.
 
 ```javascript
 module.export function(environment){

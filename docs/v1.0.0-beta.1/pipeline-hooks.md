@@ -171,7 +171,7 @@ Plugins can optionally implement the `didFail` hook to handle any cleanup that m
 
 ### Return values & Async operations in hooks
 
-The return value of each hook can be used to add information to the [deployment context](../deployment-context).
+The return value of each hook can be used to add information to the [deployment context](../the-deployment-context).
 
 Hook functions can return a promise to block the deployment pipeline. Since most deployment involves some sort of IO it makes senses that most plugins will want an async function to complete before continuing to the next step.
 
