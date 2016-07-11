@@ -184,7 +184,7 @@ module.exports = {
 };
 ```
 
-You can also have the defaultConfig options be a function that takes in the [deployment context](../deployment-context) as the first argument. This allows the config value to be decided at runtime based
+You can also have the defaultConfig options be a function that takes in the [deployment context](../the-deployment-context) as the first argument. This allows the config value to be decided at runtime based
 on properties that have been added to the deployment context by other plugins that have run before it.
 
 ```javascript
@@ -315,7 +315,7 @@ module.exports = {
 ### Accessing config properties
 
 When you want to access config properties from inside your pipeline hooks, the base plugin provides the `readConfig` function to do so. It is this function that allows
-you to have config values that are calculated at run time based on data in the [deployment context](../deployment-context).
+you to have config values that are calculated at run time based on data in the [deployment context](../the-deployment-context).
 
 A basic example of using this function is with a static config value, like so:
 
@@ -378,7 +378,7 @@ At the point that `readConfig` is called, the config function is exectuted passi
 
 ### Adding data to the deployment context object
 
-The [deployment context](../deployment-context) is an object that is passed to each pipeline hook as it is executed. It allows plugins to access data from plugin hooks that have run before it  and to
+The [deployment context](../the-deployment-context) is an object that is passed to each pipeline hook as it is executed. It allows plugins to access data from plugin hooks that have run before it  and to
 pass data to plugin hooks that will run after it.
 
 To add something to the deployment context, simply return an object from your pipeline hook. This object will be merged into the current deployment context which will then be passed to every pipeline hook thereafter.
@@ -422,17 +422,6 @@ Then once the pipeline hook has run, the deployment context will look like this:
 ```
 
 And every pipeline hook run thereafter will be able to access the `uploadedAt` property.
-
-#### Custom plugin execution order
-
-`ember-cli-deploy` respects the addon ordering from `ember-cli`.
-If you find yourself requiring properties from another plugin in the same hook as it was set, you can configure `ember-cli` to load the plugins in a certain order, by specifying plugin ordering (and thus property availability) in package.json:
-
-```javascript
-"ember-addon": {
-   after: "ember-cli-deploy-funky-plugin"
-}
-```
 
 ### Testing
 
