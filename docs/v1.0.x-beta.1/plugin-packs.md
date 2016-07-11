@@ -4,9 +4,9 @@ title: Plugin Packs
 
 ## What is a Plugin Pack?
 
-After you have a set of plugin that work for you app, keeping them in sync can be cumbersome, especially if you aim to share the same configuration across multiple applications.
+After you have a set of plugins that work for your app, keeping them in sync can be cumbersome, especially if you aim to share the same configuration across multiple applications.
 
-**Plugin Packs** were created to tackle this problem, they're a way to bundle up your whole configuration pipeline into a single addon.
+**Plugin Packs** were created to tackle this problem. They are a way to bundle up your whole configuration pipeline into a single addon.
 
 They are Ember CLI addons that will auto install a collection of ember-cli-deploy plugins to satisfy a particular deployment strategy, so you don't have to.
 
