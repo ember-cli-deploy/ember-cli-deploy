@@ -2,7 +2,7 @@
 title: S3 walkthrough
 ---
 
-On this example, we'll build an ember-cli-deploy configuration from scratch. Step by step, we'll put the pieces together and get the application deployed to S3.
+On this example, we'll build an Ember CLI Deploy configuration from scratch. Step by step, we'll put the pieces together and get the application deployed to S3.
 
 ## Installing ember-cli-deploy
 
@@ -14,11 +14,11 @@ First we must install ember-cli-deploy proper. It's an Ember addon, and we insta
     installing deploy-config
       create config/deploy.js
     ember-cli-deploy needs plugins to actually do the deployment work.
-    See http://ember-cli.github.io/ember-cli-deploy/docs/v0.6.x/quick-start/
+    See http://ember-cli.github.io/ember-cli-deploy/docs/v0.1.0-beta.1/quick-start/
     to learn how to install plugins and see what plugins are available.
     Installed addon package.
 
-There's an important message there: **ember-cli-deploy needs plugins to actually do the deployment work**. Indeed, ember-cli-deploy does nothing by itself. Its job is to provide a framework (the [pipeline](./pipeline-overview)) that other addons (the [plugins](./plugins-overview)) use to communicate while they undertake a number of different tasks.
+There's an important message there: **Ember CLI Deploy needs plugins to actually do the deployment work**. Indeed, ember-cli-deploy does nothing by itself. Its job is to provide a framework (the [pipeline](../pipeline-hooks)) that other addons (the [plugins](../plugins)) use to communicate while they undertake a number of different tasks.
 
 We'll have a look at these other addons in a moment, but first let's try deploy and see what happens. In ember-cli-deploy, we'd deploy with a command like this:
 
@@ -27,10 +27,13 @@ We'll have a look at these other addons in a moment, but first let's try deploy 
 
     WARNING: No plugins installed.
 
-    ember-cli-deploy works by registering plugins in its pipeline.
-    In order to execute a deployment you must install at least one ember-cli-deploy compatible plugin.
+    ember-cli-deploy works
+    by registering plugins in its pipeline.
+    In order to execute a deployment you must install
+    at least one ember-cli-deploy compatible plugin.
 
-    Visit http://ember-cli.github.io/ember-cli-deploy/docs/v0.6.x/plugins/ for a list of supported plugins.
+    Visit http://ember-cli.github.io/ember-cli-deploy/plugins/
+    for a list of supported plugins.
 
 There are several pieces of information above:
 
@@ -80,7 +83,8 @@ On that file, we'll find (among other things) a declaration for an object called
 
     var ENV = {
       build: {}
-      // include other plugin configuration that applies to all deploy targets here
+      // include other plugin configuration =
+      // that applies to all deploy targets here
     };
 
 We add an entry on `ENV` for each plugin we wish to configure. There's already an empty entry called `build`, which refers to ember-cli-deploy-build. Let's add another one for ember-cli-deploy-s3. From the [documentation of ember-cli-deploy-s3](https://github.com/ember-cli-deploy/ember-cli-deploy-s3), we can tell what the configuration parameters are. You should get something like this:
@@ -98,7 +102,7 @@ We add an entry on `ENV` for each plugin we wish to configure. There's already a
 
 We'll have to fill out our own values for those four keys. How to get them is outside the scope of this example though. The documentation for ember-cli-deploy-s3 has some help at the end, regarding permission policies. There's more documentation on the Internet.
 
-SECURITY NOTE: the above is a simplification. We don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](../dotenv-support) out of the box. Use that instead.
+SECURITY NOTE: the above is a simplification. We don't actually want to put secret credentials in that file. Fortunately, ember-cli-deploy supports [`.env` files](../using-env-for-secrets) out of the box. Use that instead.
 
 After entering the correct configuration values, we can run the deploy command again:
 
@@ -156,7 +160,9 @@ Finally, when we deploy, all files in the app are uploaded. Sometimes an app inc
 
 So we want the ability to quickly roll back to a previous version of the app. The following is a good way to get it done. We are going to need three plugins for this:
 
-    $ ember install ember-cli-deploy-s3-index ember-cli-deploy-revision-data ember-cli-deploy-display-revisions
+    $ ember install ember-cli-deploy-s3-index \
+    ember-cli-deploy-revision-data \
+    ember-cli-deploy-display-revisions
     version: 1.13.13
     Installed packages for tooling via npm.
     Installed addon package.
@@ -251,7 +257,9 @@ One last thing: we haven't yet used ember-cli-deploy-display-revisions. Let's do
 
 As mentioned before, this plugin is used to display the available revisions. It also marks the active one with a `>` character on the left. Using this, we can know what's deployed, what's available, and what revision ID we need to use for activation. Let's activate our new version:
 
-    $ ember deploy:activate production --revision 383edce606dd8ca8cfc43916c8d6b970
+    $ ember deploy:activate production \
+    --revision 383edce606dd8ca8cfc43916c8d6b970
+
     version: 1.13.13
     - ✔  index.html:383edce606dd8ca8cfc43916c8d6b970 => index.html
 
@@ -281,7 +289,7 @@ Best of all, we don't need any additional configuration. The defaults on both pl
 
 NOTE: if you try to deploy, but there haven't been any changes since the last time, you'll get an error from ember-cli-deploy-s3-index. It will refuse to re-deploy and overwrite a version that already existed in S3. This is perfectly normal. You can either make a small change in your project (effectively generating a new version of the code) or add `allowOverwrite: true` to the configuration for s3-index (but remember to remove that afterwards unless you know what you are doing).
 
-This is a good moment to reflect on how plugins communicate. When ember-cli-deploy-gzip compresses files, it needs to tell ember-cli-deploy-s3-index. This plugin will then know to, in turn, which files need additional metadata so that S3 serves them correctly. The mechanism for this is the [Deployment Context](../deployment-context).
+This is a good moment to reflect on how plugins communicate. When ember-cli-deploy-gzip compresses files, it needs to tell ember-cli-deploy-s3-index. This plugin will then know to, in turn, which files need additional metadata so that S3 serves them correctly. The mechanism for this is the [Deployment Context](../the-deployment-context).
 
 The Deployment Context is simply a piece of shared state. It's an object that is passed to each plugin in the pipeline, on each invocation. Plugins read and write from it, passing information down to later steps in the chain. In this specific example, ember-cli-deploy-gzip creates a list of files that have been compressed, and stores it on `context.gzippedFiles`. At a later stage, ember-cli-deploy-s3 will read that key in the context. If it finds a list of files, it will know that those are the files that to which add this special metadata on S3.
 

@@ -24,6 +24,7 @@ v1.0.0-beta.1:
   - label: Including a plugin twice
   - label: Development workflow
   - label: The lightning strategy
+  - label: S3 walkthrough
 
   - section: Reference
   - label: Usage
