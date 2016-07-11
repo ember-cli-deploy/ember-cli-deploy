@@ -11,18 +11,26 @@ Verify your plugins are 1.0.x compatible by checking the badge on their README.
 
 The old `plugins` [config option](/docs/v0.6.x/aliasing-plugins/) is now deprecated.
 
-Now
+
+This property was used to specify 3 things: ordering, disabling, aliasing:
 
 ```js
-ENV.plugins = ['build', 'redis'];
+ENV.plugins = ['build', 'redis', 's3:s3-foo'];
 ```
 
-becomes
+They are now 3 separate configurations, and you can pick only the ones you need:
 
 ```js
 ENV.pipeline = {
+  alias: {
+    s3: ['s3-foo']
+  },
   disabled: {
-    allExcept: ['build', 'redis']
+    allExcept: ['build', 'redis', 's3-foo']
+  },
+  runOrder: {
+    redis: { after: 'build' },
+    's3-foo': { after: 'redis' }
   }
 };
 ```
