@@ -45,3 +45,13 @@ ember deploy:list production
 ### Logging
 
 Each of the commands optionally takes a `--verbose` param that increases the logging level, you'll be able to see the configuration options for each plugin, each hook that is being called and the optional logging that plugins provide.
+
+### Dry Run
+
+EmberCLI Deploy supports the ability to execute a dry run in which the plugin hook functions will essentially be replaced with noop functions. This serves the purpose of allowing you to test and validate the pipeline execution order of your configured plugins for a deploy target.
+
+To run a deploy dry run, simply use the `--dry-run` option like so:
+
+```
+ember deploy production --dry-run
+```
