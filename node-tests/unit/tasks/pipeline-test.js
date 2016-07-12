@@ -229,5 +229,66 @@ describe('PipelineTask', function() {
         expect(logLines[18]).to.eq('\u001b[39m\u001b[34mPipeline complete');
       });
     });
+
+    it('executes the pipeline in dry run mode', function() {
+      var logOutput = '';
+      mockUi = {
+        verbose: true,
+        write: function(s) {
+          logOutput = logOutput + s;
+        },
+        writeError: function(s) {
+          logOutput = logOutput + s + '\n';
+        }
+      };
+
+      var task = new PipelineTask({
+        project: mockProject,
+        ui: mockUi,
+        deployTarget: 'development',
+        config: mockConfig,
+        commandOptions: { dryRun: true },
+        hooks: ['willDeploy', 'upload'],
+        pipeline: new Pipeline(['willDeploy', 'upload'], {
+          ui: mockUi
+        }),
+        _pluginInstances: function() {
+          return [{
+            name: 'test-plugin',
+            willDeploy: function() {
+              throw new Error('willDeploy should not have run');
+            },
+            upload: function() {
+              throw new Error('upload should not have run');
+            }
+          }];
+        },
+      });
+
+      task.setup();
+
+      return expect(task.run()).to.be.fulfilled.then(function() {
+        var logLines = logOutput.split('\n');
+        expect(logLines[ 0]).to.eq('\u001b[34mRegistering hook -> willDeploy[test-plugin]');
+        expect(logLines[ 1]).to.eq('\u001b[39m\u001b[34mRegistering hook -> upload[test-plugin]');
+        expect(logLines[ 2]).to.eq('\u001b[39m\u001b[34mRegistering hook -> willDeploy[test-plugin]');
+        expect(logLines[ 3]).to.eq('\u001b[39m\u001b[34mRegistering hook -> upload[test-plugin]');
+        expect(logLines[ 4]).to.eq('\u001b[39m\u001b[34mExecuting pipeline');
+        expect(logLines[ 5]).to.eq('\u001b[39m\u001b[34m|');
+        expect(logLines[ 6]).to.eq('\u001b[39m\u001b[34m+- willDeploy');
+        expect(logLines[ 7]).to.eq('\u001b[39m\u001b[34m|  |');
+        expect(logLines[ 8]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
+        expect(logLines[ 9]).to.eq('\u001b[39m\u001b[34m|  |');
+        expect(logLines[10]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
+        expect(logLines[11]).to.eq('\u001b[39m\u001b[34m|');
+        expect(logLines[12]).to.eq('\u001b[39m\u001b[34m+- upload');
+        expect(logLines[13]).to.eq('\u001b[39m\u001b[34m|  |');
+        expect(logLines[14]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
+        expect(logLines[15]).to.eq('\u001b[39m\u001b[34m|  |');
+        expect(logLines[16]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
+        expect(logLines[17]).to.eq('\u001b[39m\u001b[34m|');
+        expect(logLines[18]).to.eq('\u001b[39m\u001b[34mPipeline complete');
+      });
+    });
   });
 });
