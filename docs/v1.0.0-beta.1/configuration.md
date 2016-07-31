@@ -81,7 +81,9 @@ ordered based on ember-cli's order of the addons. Developers may have advanced u
 for specifying the order of plugins, disabling plugins, or configuring a single plugin to
 be configured and used twice.
 
-If you want to opt-into this configuration, you can set the `plugins` property in your `config/deploy.js` file at either the top-level (for global configuration), or under an environment (for per-environment configuration).
+If you want to opt-into this configuration, you can set the `pipeline` property in your `config/deploy.js` file at either the top-level (for global configuration), or under an environment (for per-environment configuration).
+
+Note that in pre-1.0 versions of ember-cli-deploy, this advanced plugin control was specified by the now deprecated `ENV.plugins` array. The new options that are documented below allows for independent control of these options and are easier to understand and compose.
 
 ### Aliases
 
