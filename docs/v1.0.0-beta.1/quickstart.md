@@ -46,6 +46,7 @@ module.exports = function(deployTarget) {
     bucket: 'my-ember-app-index',
     region: 'us-east-1'
   };
+  return ENV;
 };
 ```
 
