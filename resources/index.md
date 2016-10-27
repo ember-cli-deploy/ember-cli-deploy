@@ -84,6 +84,7 @@ Here are some resources related to this project.
 
 **Videos**
 
+- [EmberScreencasts - ember-cli-deploy series](https://www.emberscreencasts.com/tags/ember-cli-deploy).  Jeffrey Biles narrates a 6-part series introducing ember-cli-deploy 0.6.x.
 - [Global Ember Meetup - Introduction to ember-cli-deploy](https://vimeo.com/158447249). Mattia Gheda gives an introduction to ember-cli-deploy 0.5.x.
 - [EmberCamp London 2015 - ember-cli-deploy in Action](https://www.youtube.com/watch?v=fcSL5poJ1gQ&list=PL4eq2DPpyBbnMrndBpPUFFdYiMLdp8__L&index=8). Aaron Chambers and Luke Melia introduce ember-cli-deploy 0.5.x to the world.
 - [Ember London - Ember CLI Deploy](https://vimeo.com/139125310). Aaron Chambers gives an overview of ember-cli-deploy 0.5.x.
