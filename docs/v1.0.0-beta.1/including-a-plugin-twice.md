@@ -10,7 +10,7 @@ We can do this by using the `pipeline.alias` config option, like so:
   var ENV = {
     pipeline: {
       alias: {
-        s3: { as: ['s3', 's3-backup'] },
+        s3: { as: ['s3-eu', 's3-us'] },
       },
     },
   };
@@ -26,11 +26,11 @@ This configuration will then allow you to set different configuration options fo
       },
     },
 
-    s3: {
+    's3-eu': {
       bucket: 'bucket-1',
     },
 
-    's3-backup': {
+    's3-us': {
       bucket: 'bucket-2',
     },
   };
@@ -42,7 +42,7 @@ You can pass either a string or an array of strings in as the alias value like s
   var ENV = {
     pipeline: {
       alias: {
-        s3: { as: ['s3', 's3-backup'] },
+        s3: { as: ['s3-eu', 's3-us'] },
         redis: { as: 'redis-local' },
       },
     },
