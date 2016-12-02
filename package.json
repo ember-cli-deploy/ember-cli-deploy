@@ -45,8 +45,8 @@
     "configPath": "tests/dummy/config"
   },
   "dependencies": {
-    "broccoli": "^0.13.2",
-    "broccoli-gzip": "^0.2.0",
+    "broccoli": "^0.16.9",
+    "broccoli-gzip": "^0.2.1",
     "chalk": "^0.5.1",
     "core-object": "2.0.1",
     "dotenv": "^1.1.0",
