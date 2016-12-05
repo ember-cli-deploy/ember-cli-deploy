@@ -1,4 +1,4 @@
-var assert  = require('ember-cli/tests/helpers/assert');
+var assert = require('../helpers/assert');
 
 describe ('ember-cli-deploy', function() {
   var subject;

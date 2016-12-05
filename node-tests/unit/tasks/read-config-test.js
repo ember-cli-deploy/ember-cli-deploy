@@ -1,6 +1,6 @@
 var ReadConfigTask = require('../../../lib/tasks/read-config');
-var assert       = require('chai').assert;
-var path         = require('path');
+var assert         = require('../../helpers/assert');
+var path           = require('path');
 
 describe('ReadConfigTask', function() {
   describe('#run', function() {
