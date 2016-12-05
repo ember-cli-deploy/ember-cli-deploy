@@ -2,6 +2,7 @@ var Promise      = require('ember-cli/lib/ext/promise');
 var PipelineTask = require('../../../lib/tasks/pipeline');
 var Pipeline     = require('../../../lib/models/pipeline');
 var expect       = require('../../helpers/expect');
+var chalk        = require('chalk');
 
 describe('PipelineTask', function() {
   var mockProject   = {addons: [], root: process.cwd()};
@@ -208,25 +209,26 @@ describe('PipelineTask', function() {
 
       return expect(task.run()).to.be.fulfilled.then(function() {
         var logLines = logOutput.split('\n');
-        expect(logLines[ 0]).to.eq('\u001b[34mRegistering hook -> willDeploy[test-plugin]');
-        expect(logLines[ 1]).to.eq('\u001b[39m\u001b[34mRegistering hook -> upload[test-plugin]');
-        expect(logLines[ 2]).to.eq('\u001b[39m\u001b[34mRegistering hook -> willDeploy[test-plugin]');
-        expect(logLines[ 3]).to.eq('\u001b[39m\u001b[34mRegistering hook -> upload[test-plugin]');
-        expect(logLines[ 4]).to.eq('\u001b[39m\u001b[34mExecuting pipeline');
-        expect(logLines[ 5]).to.eq('\u001b[39m\u001b[34m|');
-        expect(logLines[ 6]).to.eq('\u001b[39m\u001b[34m+- willDeploy');
-        expect(logLines[ 7]).to.eq('\u001b[39m\u001b[34m|  |');
-        expect(logLines[ 8]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
-        expect(logLines[ 9]).to.eq('\u001b[39m\u001b[34m|  |');
-        expect(logLines[10]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
-        expect(logLines[11]).to.eq('\u001b[39m\u001b[34m|');
-        expect(logLines[12]).to.eq('\u001b[39m\u001b[34m+- upload');
-        expect(logLines[13]).to.eq('\u001b[39m\u001b[34m|  |');
-        expect(logLines[14]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
-        expect(logLines[15]).to.eq('\u001b[39m\u001b[34m|  |');
-        expect(logLines[16]).to.eq('\u001b[39m\u001b[34m|  +- test-plugin');
-        expect(logLines[17]).to.eq('\u001b[39m\u001b[34m|');
-        expect(logLines[18]).to.eq('\u001b[39m\u001b[34mPipeline complete');
+
+        expect(logLines[ 0]).to.eq(chalk.styles.blue.open + 'Registering hook -> willDeploy[test-plugin]');
+        expect(logLines[ 1]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + 'Registering hook -> upload[test-plugin]');
+        expect(logLines[ 2]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + 'Registering hook -> willDeploy[test-plugin]');
+        expect(logLines[ 3]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + 'Registering hook -> upload[test-plugin]');
+        expect(logLines[ 4]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + 'Executing pipeline');
+        expect(logLines[ 5]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|');
+        expect(logLines[ 6]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '+- willDeploy');
+        expect(logLines[ 7]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  |');
+        expect(logLines[ 8]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  +- test-plugin');
+        expect(logLines[ 9]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  |');
+        expect(logLines[10]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  +- test-plugin');
+        expect(logLines[11]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|');
+        expect(logLines[12]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '+- upload');
+        expect(logLines[13]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  |');
+        expect(logLines[14]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  +- test-plugin');
+        expect(logLines[15]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  |');
+        expect(logLines[16]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|  +- test-plugin');
+        expect(logLines[17]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + '|');
+        expect(logLines[18]).to.eq(chalk.styles.blue.close + chalk.styles.blue.open + 'Pipeline complete');
       });
     });
   });
