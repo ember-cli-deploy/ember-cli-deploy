@@ -1,6 +1,6 @@
 var RSVP       = require('rsvp');
 var DeployTask = require('../../../lib/tasks/deploy');
-var expect       = require('../../helpers/expect');
+var expect     = require('../../helpers/expect');
 
 describe('DeployTask', function() {
   var mockProject = {addons: []};

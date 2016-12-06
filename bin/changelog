@@ -26,7 +26,7 @@ compareCommits({
   head: 'master'
 }).then(function(res) {
   return res.commits.map(function(commitInfo) {
-    return commitInfo.commit.message
+    return commitInfo.commit.message;
 
   }).filter(function(message) {
     return message.indexOf('Merge pull request #') > -1;
@@ -60,7 +60,7 @@ compareCommits({
   console.log(changelog);
 }).catch(function(err) {
   console.error(err);
-})
+});
 
 function generateChangelog(contributions) {
   var header = '#### Community Contributions';
