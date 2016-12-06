@@ -434,7 +434,11 @@ npm install mocha --save-dev
  and write your tests in `tests/unit/index-nodetest.js`, using the following as a template. Note the `config.pluginClient` mock, which you should replace with a check that the correct params are being sent to the external api.
 
 ```javascript
-var assert  = require('ember-cli/tests/helpers/assert');
+var chai  = require('chai');
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
+
+var assert = chai.assert;
 
 var stubProject = {
   name: function(){
