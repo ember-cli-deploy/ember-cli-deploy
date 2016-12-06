@@ -1,4 +1,4 @@
-var Promise  = require('ember-cli/lib/ext/promise');
+var RSVP     = require('rsvp');
 var Pipeline = require('../../../lib/models/pipeline');
 
 var expect   = require('../../helpers/expect');
@@ -89,7 +89,7 @@ describe ('Pipeline', function() {
       });
 
       subject.register('hook2', function() {
-        return Promise.reject();
+        return RSVP.reject();
       });
 
       subject.register('hook3', function() {
@@ -160,7 +160,7 @@ describe ('Pipeline', function() {
       var finalContext = null;
 
       subject.register('hook1', function() {
-        return Promise.resolve({age: 47});
+        return RSVP.resolve({age: 47});
       });
 
       subject.register('hook1', function(context) {

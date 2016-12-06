@@ -1,4 +1,4 @@
-var Promise      = require('ember-cli/lib/ext/promise');
+var RSVP       = require('rsvp');
 var DeployTask = require('../../../lib/tasks/deploy');
 var expect       = require('../../helpers/expect');
 
@@ -82,7 +82,7 @@ describe('DeployTask', function() {
         _pipeline: {
           run: function() {
             pipelineExecuted = true;
-            return Promise.resolve();
+            return RSVP.resolve();
           }
         }
       });

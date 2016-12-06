@@ -1,4 +1,4 @@
-var Promise      = require('ember-cli/lib/ext/promise');
+var RSVP         = require('rsvp');
 var PipelineTask = require('../../../lib/tasks/pipeline');
 var Pipeline     = require('../../../lib/models/pipeline');
 var expect       = require('../../helpers/expect');
@@ -154,7 +154,7 @@ describe('PipelineTask', function() {
           execute: function(context) {
             pipelineExecuted = true;
             pipelineContext = context;
-            return Promise.resolve();
+            return RSVP.resolve();
           }
         },
         _pluginInstances: function() {
