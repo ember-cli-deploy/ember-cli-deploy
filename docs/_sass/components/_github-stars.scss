@@ -1,0 +1,9 @@
+.Github-stars {
+  width: 100px;
+  margin: 0 auto;
+  overflow: hidden;
+  
+  @include above($small-breakpoint) {
+    float: right;
+  }
+}

@@ -1,0 +1,17 @@
+.Main-content {
+  @include above($breakpoint) {
+    @include flexbox;
+  }
+}
+.Side-panel {
+  padding-bottom: 2rem;
+  color: $sidebar-text;
+  text-align: left;
+
+  @include above($breakpoint) {
+    @include flex(0 0 32%);
+    padding-top: 0;
+    padding-right: 50px;
+  }
+
+}

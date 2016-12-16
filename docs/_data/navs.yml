@@ -1,0 +1,156 @@
+v1.0.0-beta:
+  - section: Getting started
+  - label: Overview
+    path: ''
+  - label: Installation
+  - label: Quickstart
+  - label: Upgrading
+
+  - section: Setting up your pipeline
+  - label: Determining needs
+  - label: Using Plugins
+  - label: Deploying your app
+  - label: Plugin Packs
+
+  - section: Authoring Plugins
+  - label: Creating a plugin
+  - label: Pipeline hooks
+  - label: The deployment context
+  - label: Creating a plugin pack
+
+  - section: Cookbook
+  - label: Default options
+  - label: Using .env for secrets
+  - label: Including a plugin twice
+  - label: Development workflow
+  - label: The lightning strategy
+  - label: S3 walkthrough
+
+  - section: Reference
+  - label: Usage
+  - label: Configuration
+  - label: Other API/Classes
+
+v0.6.x:
+  - section: Getting started
+  - label: Overview
+    path: ''
+  - label: Installation
+  - label: Quick start
+
+  - section: The Deploy Pipeline
+  - label: Overview
+    path: 'pipeline-overview/'
+  - label: Pipeline Hooks
+  - label: The Deployment Context
+    path: 'deployment-context/'
+
+  - section: Plugins
+  - label: Overview
+    path: 'plugins-overview/'
+  - label: Plugins
+  - label: Plugin Packs
+  - label: Writing a plugin
+
+  - section: Configuration
+  - label: Overview
+    path: 'configuration-overview/'
+  - label: Aliasing Plugins
+  - label: dotEnv Support
+  - label: Fingerprinting
+  - label: Default CLI Options
+
+  - section: Usage
+  - label: Overview
+    path: 'usage-overview/'
+  - label: Development Workflow
+
+  - section: Deployment Strategies
+  - label: Overview
+    path: 'deployment-strategies-overview/'
+  - label: The Lightning Strategy
+
+  - section: Examples
+  - label: S3 walkthrough
+    path: 's3-walkthrough/'
+  - label: Lightning Strategy
+    path: 'lightning-strategy-examples/'
+
+  - section: Upgrading
+  - label: Apps
+    path: 'upgrading-apps/'
+  - label: Plugins
+    path: 'upgrading-plugins/'
+
+v0.5.x:
+  - section: Getting started
+  - label: Overview
+    path: ''
+  - label: Installation
+  - label: Quick start
+
+  - section: The Deploy Pipeline
+  - label: Overview
+    path: 'pipeline-overview/'
+  - label: Pipeline Hooks
+  - label: The Deployment Context
+    path: 'deployment-context/'
+
+  - section: Plugins
+  - label: Overview
+    path: 'plugins-overview/'
+  - label: Plugins
+  - label: Plugin Packs
+  - label: Writing a plugin
+
+  - section: Configuration
+  - label: Overview
+    path: 'configuration-overview/'
+  - label: Aliasing Plugins
+  - label: dotEnv Support
+  - label: Fingerprinting
+
+  - section: Usage
+  - label: Overview
+    path: 'usage-overview/'
+  - label: Development Workflow
+
+  - section: Deployment Strategies
+  - label: Overview
+    path: 'deployment-strategies-overview/'
+  - label: The Lightning Strategy
+
+  - section: Examples
+  - label: Lightning Strategy
+    path: 'lightning-strategy-examples/'
+
+  - section: Upgrading
+  - label: Apps
+    path: 'upgrading-apps/'
+  - label: Plugins
+    path: 'upgrading-plugins/'
+
+v0.4.x:
+  - section: Getting started
+  - label: Overview
+    path: ''
+  - label: Installation
+  - label: Commands
+  - label: Lightning approach workflow
+  - label: Configuration
+  - label: How to use
+  - label: Fingerprinting options and staging environments
+
+  - section: S3 asset uploads
+  - label: Overview
+    path: 's3-asset-uploads-overview/'
+  - label: Example Sinatra app
+  - label: Example Node app
+
+  - section: Custom adapters
+  - label: Overview
+    path: 'custom-adapters-overview/'
+  - label: Existing custom adapters
+  - label: Index adapters
+  - label: Asset adapters
+  - label: Tagging adapters

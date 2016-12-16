@@ -3,13 +3,14 @@
 # compiled output
 /dist
 /tmp
+/docs/jekyll-tmp
 
 # dependencies
 /node_modules
 /bower_components
 
 # misc
-/.sass-cache
+/docs/.sass-cache
 /connect.lock
 /coverage/*
 /libpeerconnection.log

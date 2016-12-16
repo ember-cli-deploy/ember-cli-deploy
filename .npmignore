@@ -1,6 +1,8 @@
 bower_components/
 tests/
+node-tests/
 tmp/
+docs/
 dist/
 
 .bowerrc

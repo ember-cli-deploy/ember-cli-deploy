@@ -1,0 +1,146 @@
+// $header-height: 50px;
+.Header {
+  background: $orange;
+  color: white;
+  width: 100%;
+  z-index: 100;
+  line-height: 1;
+
+  &__logo {
+    text-indent: -3000em;
+    background-image: url(../images/ember-cli-deploy-logo.png);
+    background-size: (297px/3) (150px/3);
+    width: (297px/3);
+    height: (150px/3);
+    display: block;
+    padding: 0;
+    border: none;
+    @include above($small-breakpoint) {
+      margin-top: 6px;
+      margin-left: 15px;
+      text-align: left;
+      float: left;
+    }
+    @include below($small-breakpoint) {
+      margin: 6px;
+      background-size: (297px/5) (150px/5);
+      width: (297px/5);
+      height: (150px/5);
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+  &__container {
+    @include above($breakpoint) {
+      max-width: 960px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &__logo-minor {
+    font-size: 15px;
+    padding: 1px 2px;
+    font-weight: normal;
+    border: 1px solid;
+    border-radius: 4px;
+    display: inline-block;
+    opacity: 0.8;
+    text-transform: uppercase;
+    font-family: monospace;
+
+    @include above($small-breakpoint) {
+      font-size: 12px;
+      vertical-align: middle;
+      line-height: 16px;
+    }
+  }
+  &__logo-major {
+    display: block;
+    font-size: 28px;
+    margin-top: 4px;
+
+    @include above($small-breakpoint) {
+      display: inline;
+      font-size: 20px;
+    }
+  }
+  &__nav {
+    display: block;
+    @include above($small-breakpoint) {
+      float: right;
+      width: 70%;
+    }
+  }
+  &__nav-list {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    display: table;
+    width: 100%;
+    overflow: hidden;
+
+    @include above($small-breakpoint) {
+      text-align: right;
+      width: auto;
+      margin-bottom: 0;
+      float: right;
+    }
+  }
+  &__nav-item {
+    display: table-cell;
+    width: 25%;
+    text-align: center;
+
+    @include above($small-breakpoint) {
+      display: block;
+      width: auto;
+      float: left;
+    }
+  }
+  &__nav-item-link {
+    background: darken($orange, 20%);
+    border: none;
+    color: rgba(255,255,255,0.80);
+    display: block;
+    float: left;
+    font-size: 14px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    width: 100%;
+    opacity: 0.8;
+
+    @include above($small-breakpoint) {
+      padding: 25px 17px;
+      width: auto;
+      background: inherit;
+      color: inherit;
+      font-weight: 500;
+    }
+    @include above($med-breakpoint) {
+      font-size: 16px;
+    }
+
+    &:focus {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      opacity: 1;
+    }
+    &.active {
+      opacity: 1;
+      background: $orange;
+      color: white;
+
+      @include above($small-breakpoint) {
+        background-color: white;
+        color: $orange;
+      }
+    }
+  }
+}

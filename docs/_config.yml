@@ -1,0 +1,60 @@
+# Dependencies
+markdown:         kramdown
+kramdown:
+  input:          GFM
+highlighter:      rouge
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Ember CLI Deploy
+tagline:          'Deploy pipeline for Ember apps'
+description:      'A deployment pipeline for Ember CLI apps'
+url:              https://ember-cli-deploy.com
+baseurl:          ''
+destination:      jekyll-tmp/
+exclude:
+  - node_modules
+  - bower_components
+  - tmp
+  - vendor
+
+# Custom vars
+github:
+  repo:           https://github.com/ember-cli-deploy/ember-cli-deploy
+
+default_version: v0.6.x
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: "docs"
+    values:
+      layout: "docs"
+      page_header: Documentation
+  -
+    scope:
+      path: "docs/v0.4.x"
+    values:
+      version: "v0.4.x"
+  -
+    scope:
+      path: "docs/v0.5.x"
+    values:
+      version: "v0.5.x"
+  -
+    scope:
+      path: "docs/v0.6.x"
+    values:
+      version: "v0.6.x"
+  -
+    scope:
+      path: "docs/v1.0.0-beta"
+    values:
+      version: "v1.0.0-beta"

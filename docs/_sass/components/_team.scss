@@ -1,0 +1,27 @@
+.core-team {
+  .headshot {
+    width: 110.5px;
+    height: 112.5px;
+  }
+  li {
+    margin: 1em 0;
+    text-align: center;
+    list-style-type: none;
+    display: inline-block;
+    width: 250px;
+    font-size: 0.9em;
+  }
+  .name {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .social {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+  }
+  a {
+    display: block;
+    border-bottom: none;
+  }
+}

@@ -1,0 +1,37 @@
+.Desktop-nav {
+  @extend .u-desktop;
+  list-style-type: none; 
+  padding-left: 0;
+  line-height: 1.4;
+
+  &__section {
+    font-size: 18px;
+    font-weight: 300;
+    color: #777;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba($sidebar-text-subtle, 0.2);
+
+    &:not(:first-child) {
+      margin-top: 25px;
+    }
+  }
+  &__item {
+    color: $sidebar-link;
+    padding: 4px 10px;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    display: block;
+    font-size: 14px;
+
+    &:hover,
+    &:focus,
+    &.active {
+      color: $link-active;
+    }
+    &.active {
+      color: $link-active;
+      border-left-color: $orange;
+      font-weight: bold;
+    }
+  }
+}
