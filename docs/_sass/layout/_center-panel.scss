@@ -1,0 +1,7 @@
+.Center-panel {
+  max-width: 100%;
+
+  @include above($breakpoint) {
+    @include flex(0 1 68%);
+  }
+}

@@ -1,0 +1,3 @@
+---
+title: The Lightning Strategy
+---

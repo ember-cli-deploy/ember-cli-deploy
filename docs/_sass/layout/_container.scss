@@ -1,0 +1,15 @@
+.Container {
+  padding-left:  1rem;
+  padding-right: 1rem;
+  margin-left:  auto;
+  margin-right: auto;
+  max-width: 100%;
+
+  @include above($small-breakpoint) {
+    padding-left:  2rem;
+    padding-right: 2rem;
+  }
+  @include above(960px) {
+    max-width: 960px;
+  }
+}
