@@ -7,8 +7,6 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "ember server",
-    "build": "ember build",
     "test": "node node_modules/mocha/bin/mocha node-tests/**/*-test.js",
     "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec node-tests/**/*-test.js"
   },
@@ -21,8 +19,8 @@
   "devDependencies": {
     "chai": "^1.9.2",
     "chai-as-promised": "^4.1.1",
-    "ember-cli": "^2.0.0",
-    "ember-cli-release": "0.2.8",
+    "ember-cli": "^2.10.0",
+    "ember-cli-release": "0.2.9",
     "github": "0.2.3",
     "mocha": "^2.0.1",
     "mocha-jshint": "^2.2.6"
