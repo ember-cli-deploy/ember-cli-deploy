@@ -1,7 +1,34 @@
-# ember-cli-deploy Changelog
+# Change Log
 
-## [0.6.4](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/0.6.4) (2016-06-24)
-[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.3...0.6.4)
+## [1.0.0-beta.2](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.0-beta.2) (2016-12-16)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.0-beta.1...1.0.0-beta.2)
+
+We anticipate this pre-release being the last beta before 1.0.0. There are *no API changes* in this beta. (Note that beta.1 deprecated the `plugins` config option in favor of a more flexible and expressive approach. See release notes for that version for details).
+
+Changes in this beta consist of updated and trimmed dependencies, including the elimination of dependencies on ember-cli internals. Thanks to @duizendnegen for his work on this front.
+
+## [v1.0.0-beta.1](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/v1.0.0-beta.1) (2016-07-11)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.4...v1.0.0-beta.1)
+
+This pre-release has **no breaking changes** from 0.6.4 but deprecates the old way of specifying the `plugins` config property.
+
+Thanks to the efforts of @ef4 and @achambers the plugin ordering/disable/aliasing strategy has been entirely rewritten:
+
+- the user can disable individual plugins by setting `disabled: {pluginName: true}` on each plugin's config entry.
+- the user can disable all plugins except some using `disable: {allExcept: ['plugin1', 'plugin2']}`
+- the user can influence plugin order by expressing inter-plugin dependencies with `runBefore` and `runAfter` on each plugin's config entry.
+- plugin authors can influence plugin order by expressing inter-plugin dependencies by setting `runBefore` and `runAfter` properties directly on their plugin instance.
+- plugin aliasing is now done by setting `alias: {original: ['alias1', 'alias2']}`
+
+To get more information go visit [the Ember CLI Deploy website](http://www.ember-cli-deploy.com/docs/v1.0.0-beta/configuration/)
+
+Upgrade notes are also available [here](http://ember-cli-deploy.com/docs/v1.0.0-beta/upgrading/)
+
+[Pull Request](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/349)
+
+## [v0.6.4](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/v0.6.4) (2016-06-24)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v0.6.3...v0.6.4)
+
 
 - Fix CoreObject init/super deprecation [\#410](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/410) ([alisdair](https://github.com/alisdair))
 - add support for requiredHooks in pipelines for better error messages [\#406](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/406) ([ghedamat](https://github.com/ghedamat))
