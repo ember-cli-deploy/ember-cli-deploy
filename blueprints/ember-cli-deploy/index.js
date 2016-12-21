@@ -9,6 +9,6 @@ module.exports = {
     // to us
   },
   afterInstall: function(options) {
-    this.ui.write(green('ember-cli-deploy needs plugins to actually do the deployment work.\nSee http://ember-cli-deploy.github.io/ember-cli-deploy/docs/v0.5.x/quick-start/\nto learn how to install plugins and see what plugins are available.\n'));
+    this.ui.write(green('ember-cli-deploy needs plugins to actually do the deployment work.\nSee http://ember-cli-deploy.com/docs/v1.0.0-beta/quickstart/\nto learn how to install plugins and see what plugins are available.\n'));
   }
 };
