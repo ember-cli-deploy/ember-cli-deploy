@@ -21,7 +21,7 @@ ember install ember-cli-deploy-build
 - Deploy your application
 
 ```bash
-ember deploy
+ember deploy production
 ```
 
 ## Understanding your deployment strategy

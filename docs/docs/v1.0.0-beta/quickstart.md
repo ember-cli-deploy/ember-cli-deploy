@@ -50,13 +50,13 @@ module.exports = function(deployTarget) {
 };
 ```
 
-Now, we can deploy our application. The default command deploys to the `production` target:
+Now, we can deploy our application:
 
 ```sh
-ember deploy
+ember deploy production
 ```
 
-You can also specify a specific deploy target:
+You can also specify a different deploy target:
 
 ```sh
 ember deploy staging
