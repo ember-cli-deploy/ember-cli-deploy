@@ -1,5 +1,6 @@
 ---
 title: The Deployment Context
+redirect_from: "docs/v1.0.0-beta/the-deployment-context/"
 ---
 
 For each high-level ember-cli-deploy operation, a `context` object is created.

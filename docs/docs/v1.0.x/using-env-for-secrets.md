@@ -1,5 +1,6 @@
 ---
 title: Using .env for secrets
+redirect_from: "docs/v1.0.0-beta/using-env-for-secrets/"
 ---
 
 It is often common to store sensitive data in environment variables and access them via `process.env` in the likes of `config/deploy.js`.

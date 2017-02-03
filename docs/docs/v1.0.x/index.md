@@ -1,5 +1,6 @@
 ---
 title: Overview
+redirect_from: "docs/v1.0.0-beta/"
 ---
 
 Ember CLI Deploy is an addon that provides a **single interface** for deploying Ember applications.

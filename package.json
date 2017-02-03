@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-deploy",
   "description": "A deployment pipeline for ember-cli apps",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -14,7 +14,7 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "The ember-cli-deploy core team and contributors",
   "license": "MIT",
   "devDependencies": {
     "chai": "^1.9.2",

@@ -10,7 +10,7 @@ ember install ember-cli-deploy
 ```
 ## Quick start
 
-After installation, choose [plugins](http://ember-cli-deploy.github.io/ember-cli-deploy/docs/v0.6.x/plugins/) matching your deployment environment, [configure](http://ember-cli-deploy.github.io/ember-cli-deploy/docs/v0.6.x/configuration-overview/) your deployment script appropriately and you're ready to [start deploying](http://ember-cli-deploy.github.io/ember-cli-deploy/docs/v0.6.x/usage-overview/).
+After installation, choose [plugins](http://ember-cli-deploy.github.io/ember-cli-deploy/docs/v1.0.x/plugins/) matching your deployment environment, [configure](http://ember-cli-deploy.github.io/ember-cli-deploy/docs/v1.0.x/configuration-overview/) your deployment script appropriately and you're ready to [start deploying](http://ember-cli-deploy.github.io/ember-cli-deploy/docs/v1.0.x/usage-overview/).
 
 ## In-depth documentation
 

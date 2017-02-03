@@ -1,5 +1,6 @@
 ---
 title: Upgrading
+redirect_from: "docs/v1.0.0-beta/upgrading/"
 ---
 ## Upgrading an App from 0.6.X to 1.0.x
 

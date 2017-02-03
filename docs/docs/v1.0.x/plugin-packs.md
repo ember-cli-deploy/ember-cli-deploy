@@ -1,5 +1,6 @@
 ---
 title: Plugin Packs
+redirect_from: "docs/v1.0.0-beta/plugin-packs/"
 ---
 
 ## What is a Plugin Pack?
