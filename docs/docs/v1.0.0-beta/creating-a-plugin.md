@@ -333,9 +333,10 @@ module.exports = {
         manifestPath: '/manifest.txt'
       },
 
-      upload: function(context) { }
+      upload: function(context) {
         // will return the static value of '/manifest.txt'
         this.readConfig('manifestPath')
+      }
     });
 
     return new DeployPlugin();
