@@ -1,5 +1,6 @@
 ---
 title: Creating a plugin
+redirect_from: "docs/v1.0.0-beta/creating-a-plugin/"
 ---
 
 So, you want to write a plugin? Great! It's people like you that will help the ember-cli-deploy plugin ecosystem flourish.

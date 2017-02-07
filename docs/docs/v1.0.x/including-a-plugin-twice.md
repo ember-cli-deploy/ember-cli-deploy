@@ -1,5 +1,6 @@
 ---
 title: Including a plugin twice
+redirect_from: "docs/v1.0.0-beta/including-a-plugin-twice/"
 ---
 
 Often it is necessary to invoke an instance of a plugin more than once, for instance using the s3 plugin to push assets to two different buckets.

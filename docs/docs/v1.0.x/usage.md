@@ -1,5 +1,6 @@
 ---
 title: Usage
+redirect_from: "docs/v1.0.0-beta/usage/"
 ---
 
 Once you've installed your plugins and configured your deployment strategy you're ready to **deploy**!

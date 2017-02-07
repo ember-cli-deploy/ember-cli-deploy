@@ -1,5 +1,6 @@
 ---
 title: Installation
+redirect_from: "docs/v1.0.0-beta/installation/"
 ---
 
 Ember CLI Deploy is a standard Ember CLI addon, so install it with

@@ -1,5 +1,6 @@
 ---
 title: Other API/Classes
+redirect_from: "docs/v1.0.0-beta/other-api-classes/"
 ---
 
 ## Changing log colors

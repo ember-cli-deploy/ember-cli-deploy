@@ -1,5 +1,6 @@
 ---
 title: Creating a plugin pack
+redirect_from: "docs/v1.0.0-beta/creating-a-plugin-pack/"
 ---
 
 ## Why would I create a Plugin Pack?

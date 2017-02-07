@@ -1,5 +1,6 @@
 ---
 title: Development Workflow
+redirect_from: "docs/v1.0.0-beta/development-workflow/"
 ---
 
 `ember-cli-deploy` is an addon for deploying apps. It works fine for cases where your ember-cli app and API app are mostly developed in isolation. However, there are some cases where using ember-cli's `--proxy` command line option is inadequate. For example:

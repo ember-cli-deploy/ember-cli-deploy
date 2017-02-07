@@ -1,5 +1,6 @@
 ---
 title: The Lightning Strategy
+redirect_from: "docs/v1.0.0-beta/the-lightning-strategy/"
 ---
 
 The philosphy and approach of this strategy is explained in this video from RailsConf 2014. The Rails back-end is not essential to the overall strategy, so you can get the idea even if your backend is in a different language.
