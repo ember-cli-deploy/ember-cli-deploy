@@ -1,5 +1,6 @@
 ---
 title: S3 walkthrough
+redirect_from: "docs/v1.0.0-beta/s3-walkthrough/"
 ---
 
 On this example, we'll build an Ember CLI Deploy configuration from scratch. Step by step, we'll put the pieces together and get the application deployed to S3.

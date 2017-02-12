@@ -1,5 +1,6 @@
 ---
 title: Quickstart
+redirect_from: "docs/v1.0.0-beta/quickstart/"
 ---
 
 Ember CLI Deploy works by executing functions that have been registered with [your application's deploy pipeline](../deploying-your-app).

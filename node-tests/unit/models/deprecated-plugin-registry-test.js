@@ -38,7 +38,7 @@ describe('Deprecated Plugin Registry', function() {
     expect(logOutput.length).to.eq(3);
     expect(logOutput[0]).to.eq('Use of the `config.plugins` property has been deprecated. Please use the new plugin run controls.');
     expect(logOutput[1]).to.eq('See the following page for information:');
-    expect(logOutput[2]).to.eq('http://ember-cli-deploy.com/docs/v1.0.0-beta/configuration/');
+    expect(logOutput[2]).to.eq('http://ember-cli-deploy.com/docs/v1.0.x/configuration/');
   });
 
   it('throws an error if using old and new plugin controls simultaneously', function() {
@@ -54,7 +54,7 @@ describe('Deprecated Plugin Registry', function() {
 
     expect(function() {
       new DeprecatedPluginRegistry(project, mockUi, config);
-    }).to.throw('Use of the old and new plugin controls simultaneously does not make sense.\nPlease use the new plugin controls\nSee the following page for information:\n\nhttp://ember-cli-deploy.com/docs/v1.0.0-beta/configuration/\n');
+    }).to.throw('Use of the old and new plugin controls simultaneously does not make sense.\nPlease use the new plugin controls\nSee the following page for information:\n\nhttp://ember-cli-deploy.com/docs/v1.0.x/configuration/\n');
   });
 
   it('returns the list of deploy plugins', function() {

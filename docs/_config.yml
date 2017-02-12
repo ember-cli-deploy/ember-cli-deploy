@@ -4,6 +4,9 @@ kramdown:
   input:          GFM
 highlighter:      rouge
 
+gems:
+  - jekyll-redirect-from
+
 # Permalinks
 permalink:        pretty
 
@@ -11,7 +14,7 @@ permalink:        pretty
 title:            Ember CLI Deploy
 tagline:          'Deploy pipeline for Ember apps'
 description:      'A deployment pipeline for Ember CLI apps'
-url:              https://ember-cli-deploy.com
+url:              http://ember-cli-deploy.com
 baseurl:          ''
 destination:      jekyll-tmp/
 exclude:
@@ -24,7 +27,7 @@ exclude:
 github:
   repo:           https://github.com/ember-cli-deploy/ember-cli-deploy
 
-default_version: v0.6.x
+default_version: v1.0.x
 defaults:
   -
     scope:
@@ -55,6 +58,6 @@ defaults:
       version: "v0.6.x"
   -
     scope:
-      path: "docs/v1.0.0-beta"
+      path: "docs/v1.0.x"
     values:
-      version: "v1.0.0-beta"
+      version: "v1.0.x"

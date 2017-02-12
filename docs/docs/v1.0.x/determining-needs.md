@@ -1,5 +1,6 @@
 ---
 title: Determining Needs
+redirect_from: "docs/v1.0.0-beta/determining-needs/"
 ---
 
 Ember CLI Deploy is great at allowing you to compose plugins to implement a quick and maintainable deployment pipeline.

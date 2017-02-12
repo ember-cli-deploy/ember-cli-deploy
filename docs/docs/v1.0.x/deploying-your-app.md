@@ -1,5 +1,6 @@
 ---
 title: Deploying your app
+redirect_from: "docs/v1.0.0-beta/deploying-your-app/"
 ---
 
 Once you have your configuration ready it's time to deploy!
