@@ -1,5 +1,6 @@
 ---
 title: Configuration
+redirect_from: "docs/v1.0.0-beta/configuration/"
 ---
 
 ## Usage:

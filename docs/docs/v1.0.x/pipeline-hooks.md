@@ -1,5 +1,6 @@
 ---
 title: Pipeline Hooks
+redirect_from: "docs/v1.0.0-beta/pipeline-hooks/"
 ---
 
 When you run a command like `ember deploy`, `ember deploy:list` or `ember deploy:activate`, you're executing an Ember CLI Deploy pipeline.

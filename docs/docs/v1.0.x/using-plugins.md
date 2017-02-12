@@ -1,5 +1,6 @@
 ---
 title: Using plugins
+redirect_from: "docs/v1.0.0-beta/using-plugins/"
 ---
 
 Once you've [identified your needs](../determining-needs), the next step is to configure your deploy pipeline with plugins that accomplish these tasks.

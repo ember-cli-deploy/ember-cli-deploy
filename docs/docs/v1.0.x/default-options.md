@@ -1,5 +1,6 @@
 ---
 title: Default Options
+redirect_from: "docs/v1.0.0-beta/default-options/"
 ---
 
 As described in [Overview](../overview/), the commands ember-cli-deploy makes available to Ember CLI accept various flags such as `--verbose`, `--activate`, and `--revision=[revision]`.

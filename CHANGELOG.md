@@ -1,5 +1,24 @@
 # Change Log
 
+## [1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.0) (2017-02-06)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.0-beta.2...1.0.0)
+
+Although ember-cli-deploy has had a fairly stable API since 0.5.x, this 1.0.0 release signifies that we are committed to supporting this API through the 1.x series, in accordance with SemVer.
+
+Since 0.6.x, we have deprecated the `plugins` config option in favor of a more flexible and expressive approach.
+
+Thanks to the efforts of @ef4 and @achambers the plugin ordering/disable/aliasing strategy has been entirely rewritten (originally released in 1.0.0-beta.1):
+
+- the user can disable individual plugins by setting `disabled: {pluginName: true}` on each plugin's config entry.
+- the user can disable all plugins except some using `disable: {allExcept: ['plugin1', 'plugin2']}`
+- the user can influence plugin order by expressing inter-plugin dependencies with `runBefore` and `runAfter` on each plugin's config entry.
+- plugin authors can influence plugin order by expressing inter-plugin dependencies by setting `runBefore` and `runAfter` properties directly on their plugin instance.
+- plugin aliasing is now done by setting `alias: {original: ['alias1', 'alias2']}`
+
+To get more information go visit [the Ember CLI Deploy website](http://www.ember-cli-deploy.com/docs/v1.0.x/configuration/)
+
+Upgrade notes are also available [here](http://ember-cli-deploy.com/docs/v1.0.x/upgrading/)
+
 ## [1.0.0-beta.2](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.0-beta.2) (2016-12-16)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.0-beta.1...1.0.0-beta.2)
 
@@ -20,9 +39,9 @@ Thanks to the efforts of @ef4 and @achambers the plugin ordering/disable/aliasin
 - plugin authors can influence plugin order by expressing inter-plugin dependencies by setting `runBefore` and `runAfter` properties directly on their plugin instance.
 - plugin aliasing is now done by setting `alias: {original: ['alias1', 'alias2']}`
 
-To get more information go visit [the Ember CLI Deploy website](http://www.ember-cli-deploy.com/docs/v1.0.0-beta/configuration/)
+To get more information go visit [the Ember CLI Deploy website](http://www.ember-cli-deploy.com/docs/v1.0.x/configuration/)
 
-Upgrade notes are also available [here](http://ember-cli-deploy.com/docs/v1.0.0-beta/upgrading/)
+Upgrade notes are also available [here](http://ember-cli-deploy.com/docs/v1.0.x/upgrading/)
 
 [Pull Request](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/349)
 
