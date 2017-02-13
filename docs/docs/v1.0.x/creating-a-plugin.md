@@ -402,10 +402,11 @@ module.exports = {
     var DeployPlugin = BasePlugin.extend({
       name: options.name,
 
-      upload: function(context) { }
+      upload: function(context) {
         return {
           uploadedAt: '2015-10-14T22:29:46.313Z'
         };
+      }
     });
 
     return new DeployPlugin();
