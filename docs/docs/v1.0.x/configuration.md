@@ -12,12 +12,12 @@ The config object has properties corresponding to the name of the plugin (e.g. f
 Examples:
 
 ```javascript
-// deploy.js (sync)
-module.exports = function(environment){
+// config/deploy.js (sync)
+module.exports = function(deployTarget){
   var ENV = {
   };
 
-  if (environment === 'production') {
+  if (deployTarget === 'production') {
     ENV.redis = {
       url: process.env.REDIS_URL
     }
@@ -27,13 +27,13 @@ module.exports = function(environment){
 ```
 
 ```javascript
-// deploy.js (async)
-module.exports = function(environment){
+// config/deploy.js (async)
+module.exports = function(deployTarget){
   var ENV = {
     redis: {
     }
   }
-  return someAsyncDataRetrieval(environment).then(function(data){
+  return someAsyncDataRetrieval(deployTarget).then(function(data){
     ENV.redis = data.redisUrl;
     return ENV;
   }
@@ -43,7 +43,8 @@ module.exports = function(environment){
 Individual config properties can be pure values or functions that receive the [context](../the-deployment-context) object and return a value.
 
 ```javascript
-module.export function(environment){
+// config/deploy.js
+module.export = function(deployTarget){
   var ENV = {
     redis: {
       revisionKey: function(context) {
@@ -59,14 +60,15 @@ module.export function(environment){
 You may wish to have an environment, such as staging, be built as if it where a different environment, like production. You can accomplish this by setting the `build.environment` property to the desired environment you wish it to be built as. This will now be the environment that gets passed to the ember asset build, and used in `config/environment.js` for example.
 
 ```javascript
-module.exports = function(environment){
+// config/deploy.js
+module.exports = function(deployTarget){
   var ENV = {
   };
 
-  if (environment === 'qa') {
+  if (deployTarget === 'qa') {
     ENV.build.environment = 'development';
   };
-  if (environment === 'staging') {
+  if (deployTarget === 'staging') {
     ENV.build.environment = 'production';
   };
   return ENV;
@@ -142,6 +144,7 @@ var ENV = {
 Sometimes it's desirable to ensure a particular plugin doesn't run for a particular deploy target. To do this, use the `pipeline.disabled` config property, like this:
 
 ```javascript
+// config/deploy.js
 module.exports = function(deployTarget) {
   var ENV = {
     //config here
@@ -164,6 +167,7 @@ The above example will disable the redis plugin from executing when the deployTa
 You can also disable aliased instances of plugins too:
 
 ```javascript
+// config/deploy.js
 module.exports = function(deployTarget) {
   var ENV = {
     pipeline: {
@@ -191,6 +195,7 @@ Finally if you want to run **only** some plugins you can use the `allExcept` opt
 
 
 ```javascript
+// config/deploy.js
 module.exports = function(deployTarget) {
   var ENV = {
     pipeline: {
