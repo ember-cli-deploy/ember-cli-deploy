@@ -7,8 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha node-tests/**/*-test.js",
-    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec node-tests/**/*-test.js"
+    "test": "node node_modules/mocha/bin/mocha node-tests/unit/*-test.js node-tests/unit/*/*-test.js",
+    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec node-tests/unit/*-test.js node-tests/unit/*/*-test.js"
   },
   "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy",
   "engines": {
@@ -22,7 +22,7 @@
     "ember-cli": "^2.10.0",
     "ember-cli-release": "0.2.9",
     "github": "0.2.3",
-    "mocha": "^2.0.1",
+    "mocha": "^3.2.0",
     "mocha-jshint": "^2.2.6"
   },
   "keywords": [
