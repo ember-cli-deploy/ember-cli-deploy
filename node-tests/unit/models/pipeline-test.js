@@ -191,6 +191,27 @@ describe ('Pipeline', function() {
           expect(finalContext.paths).to.deep.equal(['/opt/path', '/tmp/path', '/var/path']);
         });
     });
+
+    it('merges the return value of each hook with the context without concatenation for properties listed in _keysToDisableConcatenation', function() {
+      var subject = new Pipeline(['hook1'], {ui: {write: function() {}}});
+      var finalContext = null;
+
+      subject.register('hook1', function() {
+        return {
+          _keysToDisableConcatenation: ['paths'],
+          paths: ['/tmp/path', '/var/path']
+        };
+      });
+
+      subject.register('hook1', function(context) {
+        finalContext = context;
+      });
+
+      return expect(subject.execute({paths: ['/opt/path']})).to.be.fulfilled
+        .then(function() {
+          expect(finalContext.paths).to.deep.equal(['/tmp/path', '/var/path']);
+        });
+    });
   });
 
   describe('#hookNames', function() {
