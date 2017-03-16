@@ -31,6 +31,7 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-cloudfront](https://github.com/kpfefferle/ember-cli-deploy-cloudfront) - create a CloudFront invalidation
   - [ember-cli-deploy-couchdb](https://github.com/martinic/ember-cli-deploy-couchdb) - upload to a CouchDB cluster
   - [ember-cli-deploy-cp](https://github.com/dschmidt/ember-cli-deploy-cp) - deploy file(s) on your filesystem
+  - [ember-cli-deploy-git-artefacts](https://github.com/avakarev/ember-cli-deploy-git-artefacts) - generates git artefacts into files
   - [ember-cli-deploy-git-tag](https://github.com/minutebase/ember-cli-deploy-git-tag) - tag deploys in git
   - [ember-cli-deploy-hipchat](https://github.com/blimmer/ember-cli-deploy-hipchat) - send a message to HipChat
   - [ember-cli-deploy-mysql](https://github.com/mwpastore/ember-cli-deploy-mysql) - deploy index.html to MySQL/MariaDB
