@@ -38,7 +38,7 @@ describe('Deprecated Plugin Registry', function() {
     expect(logOutput.length).to.eq(3);
     expect(logOutput[0]).to.eq('Use of the `config.plugins` property has been deprecated. Please use the new plugin run controls.');
     expect(logOutput[1]).to.eq('See the following page for information:');
-    expect(logOutput[2]).to.eq('http://ember-cli-deploy.com/docs/v1.0.x/configuration/');
+    expect(logOutput[2]).to.eq('http://ember-cli-deploy.com/docs/v1.0.x/configuration/#advanced-plugin-configuration');
   });
 
   it('throws an error if using old and new plugin controls simultaneously', function() {
