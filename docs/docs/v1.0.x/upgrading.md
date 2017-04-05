@@ -24,7 +24,7 @@ They are now 3 separate configurations, and you can pick only the ones you need:
 ```js
 ENV.pipeline = {
   alias: {
-    s3: ['s3-foo']
+    s3: { as: ['s3-foo'] }
   },
   disabled: {
     allExcept: ['build', 'redis', 's3-foo']
