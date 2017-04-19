@@ -76,6 +76,35 @@ module.exports = {
 
 That's seriously about as difficult as it gets. However, read on for some more advanced info to get the most out of your ember-cli-deploy plugin.
 
+## Ordering Plugins
+
+To specify that your plugin should run before or after a particular plugin or set of plugins, specify the `runBefore` or `runAfter` properties:
+
+```javascript
+var BasePlugin = require('ember-cli-deploy-plugin');
+
+module.exports = {
+  name: 'ember-cli-deploy-funky-plugin',
+
+  createDeployPlugin: function(options) {
+    var DeployPlugin = BasePlugin.extend({
+      name: options.name,
+
+      runBefore: ['foo', 'bar'],
+      runAfter: 'baz',
+
+      didDeploy: function(context) {
+        //do something here like notify your team on slack
+      }
+    });
+
+    return new DeployPlugin();
+  }
+};
+```
+
+An example use case of this is where we want to upload the project assets with the `s3` plugin before uploading the index.html with the `redis` plugin. This way we can be certain that the assets exist before the bootstrap index.html, that references them, can be loaded by clients.
+
 ## The Base Deploy Plugin
 
 There are some common tasks that the majority of plugins need to do like validate configuration and log messages out to the terminal. So we have created
