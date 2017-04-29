@@ -90,6 +90,26 @@ describe('Plugin Registry', function() {
     expect(logOutput[3]).to.eq('Visit http://ember-cli-deploy.com/plugins/ for a list of supported plugins.');
   });
 
+  it('accepts plugins with names not starting with ember-cli-deploy and renames those starting with', function() {
+    var validPlugin = makePlugin('foo');
+    var otherNamedPlugin = makePlugin('bar');
+    otherNamedPlugin.name = 'my-other-bar';
+
+    var project = {
+      name: function() {return 'test-project';},
+      root: process.cwd(),
+      addons: [validPlugin, otherNamedPlugin],
+    };
+
+    var registry = new PluginRegistry(project, mockUi, {});
+
+    var plugins = registry.pluginInstances();
+
+    expect(plugins.length).to.equal(2);
+    expect(plugins[0].name).to.equal('foo');
+    expect(plugins[1].name).to.equal('my-other-bar');
+  });
+
   it('returns plugins for addons that have the correct keyword and implement the plugin function', function() {
     var validPlugin                = makePlugin('foo');
     var addonMissingKeyword        = makeAddon('bar');
