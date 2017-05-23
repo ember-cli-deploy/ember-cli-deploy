@@ -73,7 +73,8 @@ describe ('Pipeline', function() {
         hooksRun.push('2');
       });
       return expect(subject.execute()).to.be.fulfilled
-        .then(function() {
+        .then(function(returnCode) {
+          expect(returnCode).to.eq(0);
           expect(hooksRun.length).to.eq(2);
           expect(hooksRun[0]).to.eq('1');
           expect(hooksRun[1]).to.eq('2');
@@ -100,8 +101,9 @@ describe ('Pipeline', function() {
         hooksRun.push('didFail');
       });
 
-      return expect(subject.execute()).to.be.rejected
-        .then(function() {
+      return expect(subject.execute()).to.be.fulfilled
+        .then(function(returnCode) {
+          expect(returnCode).to.eq(-1);
           expect(hooksRun.length).to.eq(2);
           expect(hooksRun[0]).to.eq('hook1');
           expect(hooksRun[1]).to.eq('didFail');
