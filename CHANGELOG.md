@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.0.1](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.1) (2017-06-09)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.0...1.0.1)
+
+- Fix syntax for aliasing plugins [#467](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/467) [@calvinlough](https://github.com/calvinlough)
+- Tolerate other names than those starting with ember-cli-deploy [#469](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/469) [@duizendnegen](https://github.com/duizendnegen)
+
 ## [1.0.0](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.0) (2017-02-06)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.0-beta.2...1.0.0)
 
