@@ -7,7 +7,7 @@ redirect_from:
 
 ## Usage:
 
-App developers use `config/deploy.js` to return a function that receives the build environment as a string and returns either a config object or a Promise that fulfills with a config object.
+App developers use `config/deploy.js` to return a function that receives the deploy target as a string and returns either a config object or a Promise that fulfills with a config object.
 
 The config object has properties corresponding to the name of the plugin (e.g. for ember-cli-deploy-redis, the property is “redis”).
 
