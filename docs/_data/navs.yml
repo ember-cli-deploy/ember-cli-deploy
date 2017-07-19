@@ -25,6 +25,7 @@ v1.0.x:
   - label: Development workflow
   - label: The lightning strategy
   - label: S3 walkthrough
+  - label: Deploy non-Ember apps
 
   - section: Reference
   - label: Usage
