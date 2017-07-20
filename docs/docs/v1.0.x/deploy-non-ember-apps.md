@@ -12,7 +12,7 @@ Different deployment scenarios require different plugins. In these examples we h
 
 ## Deploying Angular 1
 
-This example assumes you `grunt` to build your application. If you don't, there's [plugins for alternative build processes](#deploying-angular-2-react-vue-).
+This example assumes you use `grunt` to build your application. If you don't, there's [plugins for alternative build processes](#deploying-angular-2-react-vue-).
 
 The application set up looks like the following:
 
