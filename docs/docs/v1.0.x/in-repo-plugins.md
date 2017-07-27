@@ -13,7 +13,7 @@ Here's how to make an ember-cli-deploy as an in-repo-addon.
 Generate the plugin
 -------------------
 
-First, use the handy ember-cli generator for creating an in-repo-addon. Don't forget to name the plugin starting with `ember-cli-deploy-`.
+First, use the handy ember-cli generator for creating an in-repo-addon.
 
 ```sh
 ember generate in-repo-addon ember-cli-deploy-my-funky-plugin
@@ -27,7 +27,7 @@ This will generate two files:
 Identify the addon as an ember-cli-deploy plugin
 ------------------------------------------------
 
-Given the plugin is named appropriately, all that's left is to identify the plugin as an ember-cli-deploy plugin in `package.json`.
+Now all that's left is to identify the plugin as an ember-cli-deploy plugin in `package.json`.
 
 To do this, add `ember-cli-deploy-plugin` to the `keywords` section:
 
