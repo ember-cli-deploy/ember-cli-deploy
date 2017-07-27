@@ -1,10 +1,14 @@
 ---
-title: Creating a plugin as an in-repo-addon
+title: Creating in-repo plugins
 ---
 
-So, you want to prototype a plugin or write one that is so specific to your app that it's not worth making a new npm package for?
+So, you want to prototype a plugin or write one that is so specific to your app that it should live within the same repository as your app?
 
-Ember CLI allows you to create addons that exist within an existing repository. Here's how to make an ember-cli-deploy as an in-repo-addon.
+Ember CLI allows you to create addons that exist within an existing repository and this can be done with ember-cli-deploy plugins.
+
+If there's any chance a plugin would be useful to the greater community, it is preferred that a plugin be published as an open-source addon. A plugin is a good candidate for an in-repo-addon if it is unlikely to be used by any other project.
+
+Here's how to make an ember-cli-deploy as an in-repo-addon.
 
 Generate the plugin
 -------------------
