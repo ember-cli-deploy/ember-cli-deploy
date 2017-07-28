@@ -17,6 +17,8 @@ v1.0.x:
   - label: Pipeline hooks
   - label: The deployment context
   - label: Creating a plugin pack
+  - label: Creating in-repo plugins
+    path: 'in-repo-plugins'
 
   - section: Cookbook
   - label: Default options
