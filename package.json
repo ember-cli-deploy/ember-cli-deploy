@@ -1,14 +1,14 @@
 {
   "name": "ember-cli-deploy",
   "description": "A deployment pipeline for ember-cli apps",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha 'node-tests/**/*-test.js'",
-    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec 'node-tests/**/*-test.js'"
+    "test": "node node_modules/mocha/bin/mocha \"node-tests/**/*-test.js\"",
+    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec \"node-tests/**/*-test.js\""
   },
   "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy",
   "engines": {
@@ -20,10 +20,11 @@
     "chai": "^1.9.2",
     "chai-as-promised": "^4.1.1",
     "ember-cli": "^2.10.0",
+    "ember-cli-eslint": "^4.2.0",
     "ember-cli-release": "0.2.9",
     "github": "0.2.3",
     "mocha": "^2.0.1",
-    "mocha-jshint": "^2.2.6"
+    "mocha-eslint": "^4.1.0"
   },
   "keywords": [
     "ember-addon",

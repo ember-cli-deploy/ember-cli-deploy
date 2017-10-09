@@ -25,8 +25,6 @@ An ember-cli-deploy plugin is just a standard ember-cli addon. Create it as foll
 ember addon ember-cli-deploy-funky-plugin
 ```
 
-**NB**: Make sure it is named `ember-cli-deploy-<something>`
-
 ### Identify the addon as a plugin
 
 In order for ember-cli-deploy to know your addon is a plugin, we need to identify it as such by updating the `package.json` like so:
