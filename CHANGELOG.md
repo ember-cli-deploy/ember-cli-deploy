@@ -1,4 +1,8 @@
 # Change Log
+## [1.0.2](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.2) (2017-30-10)
+[Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.1...1.0.2)
+
+- Only emit plugin message if none are present [#487](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/487) [@dfreeeman](https://github.com/dfreeman)
 
 ## [1.0.1](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.1) (2017-06-09)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.0...1.0.1)
