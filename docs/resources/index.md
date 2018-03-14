@@ -100,8 +100,8 @@ Here are some resources related to this project.
 - [Deploying Ember CLI Apps](http://blog.firstiwaslike.com/deploying-ember-cli-apps/) by Michael Klein
 - [Deploying an Ember CLI Application to Amazon S3](http://kerrygallagher.co.uk/deploying-an-ember-cli-application-to-amazon-s3/) by Kerry Gallagher
 - [Deploying an Ember CLI Application through SSH](http://treyhunner.com/2015/03/deploying-an-ember-cli-application-via-ssh/) by Trey Hunner
+- [Push state routing for single page apps served from AWS S3/CloudFront](https://medium.com/@deepansubbiah/living-on-the-edge-930d9716374) by Deepan Subbiah
 
 **Examples**
 
 - [Ember deploy demo](https://github.com/ghedamat/ember-deploy-demo)
-
