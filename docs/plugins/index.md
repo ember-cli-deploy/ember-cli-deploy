@@ -28,6 +28,7 @@ The following plugins have been developed by community members:
 
   - [ember-cli-deploy-azure-blob](https://github.com/duizendnegen/ember-cli-deploy-azure-blob) - deploy assets to Azure Blob
   - [ember-cli-deploy-azure-tables](https://github.com/duizendnegen/ember-cli-deploy-azure-tables) - deploy index.html to Azure Tables
+  - [ember-cli-deploy-cloudformation](https://github.com/kaliber5/ember-cli-deploy-cloudformation) - create/update a CloudFormation stack to deploy to
   - [ember-cli-deploy-cloudfront](https://github.com/kpfefferle/ember-cli-deploy-cloudfront) - create a CloudFront invalidation
   - [ember-cli-deploy-couchdb](https://github.com/martinic/ember-cli-deploy-couchdb) - upload to a CouchDB cluster
   - [ember-cli-deploy-cp](https://github.com/dschmidt/ember-cli-deploy-cp) - deploy file(s) on your filesystem
