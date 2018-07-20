@@ -11,7 +11,7 @@ So, let's get started.
 
 ember-cli-deploy plugins are nothing more than standard ember-cli addons with 3 small ember-cli-deploy specific traits:
 
-1. they contain a `package.json` keyword to identify them as plugins
+1. they contain the `ember-cli-deploy-plugin` keyword in their `package.json` to identify them as plugins
 2. they are named `ember-cli-deploy-*`
 3. they return an object that implements one or more of the ember-cli-deploy [pipeline hooks](../pipeline-hooks)
 
