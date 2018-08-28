@@ -35,6 +35,7 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-git-artefacts](https://github.com/scottkidder/ember-cli-deploy-git-artefacts) - creates git artefacts
   - [ember-cli-deploy-git-tag](https://github.com/minutebase/ember-cli-deploy-git-tag) - tag deploys in git
   - [ember-cli-deploy-hipchat](https://github.com/blimmer/ember-cli-deploy-hipchat) - send a message to HipChat
+  - [ember-cli-deploy-minio](https://github.com/trustvox/ember-cli-deploy-minio) - deploy assets to Minio storage
   - [ember-cli-deploy-mysql](https://github.com/mwpastore/ember-cli-deploy-mysql) - deploy index.html to MySQL/MariaDB
   - [ember-cli-deploy-rsync-assets](https://github.com/pixelhandler/ember-cli-deploy-rsync-assets) - deploy app using node-rsync over SSH
   - [ember-cli-deploy-sftp](https://github.com/martinic/ember-cli-deploy-sftp) - deploy app via SFTP
