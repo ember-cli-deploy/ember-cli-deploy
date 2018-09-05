@@ -5,11 +5,11 @@ title: Resources
 
 # Getting help
 
-## Slack
+## Discord
 
-The [Ember Community Slack](https://embercommunity.slack.com/) is the best place to get in touch. [Click here](https://ember-community-slackin.herokuapp.com/) if you need to sign up.
+The [Ember Community Discord](https://discord.gg/zT3asNS/) is the best place to get in touch.
 
-Once inside Slack, visit the *#ember-cli-deploy* channel. A core team member or other community member should be around to help you out.
+Once inside Discord, visit the *#ec-deploy* channel under Ember Addons. A core team member or other community member should be around to help you out.
 
 ## Github
 
