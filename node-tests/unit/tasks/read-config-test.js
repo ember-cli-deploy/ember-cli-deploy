@@ -8,7 +8,8 @@ describe('ReadConfigTask', function() {
       var project = {
         name: function() {return 'test-project';},
         root: process.cwd(),
-        addons: []
+        addons: [],
+        pkg: {}
       };
 
       var task = new ReadConfigTask({
@@ -28,7 +29,8 @@ describe('ReadConfigTask', function() {
       var project = {
         name: function() {return 'test-project';},
         root: process.cwd(),
-        addons: []
+        addons: [],
+        pkg: {}
       };
 
       var fn = function () {
@@ -46,7 +48,8 @@ describe('ReadConfigTask', function() {
       var project = {
         name: function() {return 'test-project';},
         root: process.cwd(),
-        addons: []
+        addons: [],
+        pkg: {}
       };
 
       var fn = function () {
@@ -58,6 +61,66 @@ describe('ReadConfigTask', function() {
       };
 
       assert.doesNotThrow(fn, configFileNotFoundExceptionPattern, 'config file could not be read');
+    });
+
+    describe('addon', function() {
+      it('reads from tests/dummy/config/deploy.js first', function(done){
+        var project = {
+          name: function() {return 'test-project';},
+          root: path.join(process.cwd(), 'node-tests/fixtures/addon'),
+          addons: [],
+          pkg: { 'ember-addon': {} }
+        };
+
+        var task = new ReadConfigTask({
+          project: project,
+          deployTarget: 'development'
+        });
+        task.run().then(function(config){
+          assert.equal(config.build.environment, 'development');
+          assert.equal(config.s3.bucket, 'testsdummyconfig');
+          done();
+        });
+      });
+
+      it('reads from config/deploy.js second', function(done){
+        var project = {
+          name: function() {return 'test-project';},
+          root: path.join(process.cwd(), 'node-tests/fixtures'),
+          addons: [],
+          pkg: { 'ember-addon': {} }
+        };
+
+        var task = new ReadConfigTask({
+          project: project,
+          deployTarget: 'development'
+        });
+        task.run().then(function(config){
+          assert.equal(config.build.environment, 'development');
+          assert.equal(config.s3.bucket, 'shineonyoucrazy');
+          done();
+        });
+      });
+
+      it('still allows override', function(done){
+        var project = {
+          name: function() {return 'test-project';},
+          root: process.cwd(),
+          addons: [],
+          pkg: { 'ember-addon': {} }
+        };
+
+        var task = new ReadConfigTask({
+          project: project,
+          deployTarget: 'development',
+          deployConfigFile: 'node-tests/fixtures/config/deploy.js'
+        });
+        task.run().then(function(config){
+          assert.equal(config.build.environment, 'development');
+          assert.equal(config.s3.bucket, 'shineonyoucrazy');
+          done();
+        });
+      });
     });
 
     describe('setting environment variables from .env', function() {
@@ -76,7 +139,8 @@ describe('ReadConfigTask', function() {
         project = {
           name: function() {return 'test-project';},
           root: path.join(process.cwd(), 'node-tests/fixtures'),
-          addons: []
+          addons: [],
+          pkg: {}
         };
       });
       it('sets the process.env vars if a .env file exists for deploy environment', function() {
@@ -124,7 +188,8 @@ describe('ReadConfigTask', function() {
       var project = {
         name: function() {return 'test-project';},
         root: process.cwd(),
-        addons: []
+        addons: [],
+        pkg: {}
       };
 
       var task = new ReadConfigTask({
