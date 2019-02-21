@@ -26,7 +26,7 @@ The actual execution of the pipeline consists of moving through each hook in seq
 
 After [deciding](../determining-needs) your deploy structure, the best thing to do is look through the [existing plugins](/plugins), odds are that someone else in the community has implemented what you need.
 
-It's also a good idea to ask for advice on the `#ec-deploy` channel of the [ember community slack](https://ember-community-slackin.herokuapp.com/).
+It's also a good idea to ask for advice on the `#ec-deploy` channel of the [ember community discord](https://discordapp.com/invite/zT3asNS).
 
 If everything else fails then it's time to [write your own](../creating-a-plugin).
 
