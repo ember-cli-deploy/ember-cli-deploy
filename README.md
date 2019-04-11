@@ -21,3 +21,11 @@ After installation, choose [plugins](http://ember-cli-deploy.com/plugins/) match
 Clone the repo and run `npm install`. To run tests,
 
     npm test
+
+To run the documentation site locally, see the [Github Pages docs](https://help.github.com/en/articles/setting-up-your-github-pages-site-locally-with-jekyll) or if you know you already have a working modern ruby and bundler setup, this should do it:
+
+```
+cd docs
+bundle install
+bundle exec jekyll serve
+```
