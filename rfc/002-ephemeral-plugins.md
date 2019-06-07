@@ -21,7 +21,9 @@ The thing that makes a plugin, a plugin, is that it is an object that:
 1. Contains a `name` property and;
 2. Contains a function, called `createDeployPlugin`, that itself returns an object that contains one or more implemented deploy hooks.
 
-We should provide a place in the `config/deploy.js` file whereby the user can also define plugins. The property could be something like `pipeline.inlinePlugins`:
+We should provide a place in the `config/deploy.js` file whereby the user can also define plugins. The property could be something like `pipeline.inlinePlugins`.
+
+In it's simplest form, an inline plugin could be defined as an object like so:
 
 ```js
 module.exports = function(deployTarget) {
@@ -55,6 +57,47 @@ module.exports = function(deployTarget) {
   };
 };
 ```
+
+Of course, just like a standalone plugin, it's possible to also use the [base plugin](https://github.com/ember-cli-deploy/ember-cli-deploy-plugin) like so:
+
+```js
+var DeployPluginBase = require('ember-cli-deploy-plugin');
+
+module.exports = function(deployTarget) {
+  return {
+    pipeline: {
+      inlinePlugins: [
+        {
+           name: 'log-to-console',
+
+           createDeployPlugin(options) {
+             var DeployPlugin = DeployPluginBase.extend({
+              name: options.name,
+
+              defaultConfig: {
+                someKey: 'defaultValue'
+              },
+
+              requiredConfig: ['awesomeApiKey'],
+
+              didBuild(context) {
+                console.log(`Project files built in: ${context.distDir}`);
+              }
+             });
+
+             return new DeployPlugin();
+           }
+        }
+      ]
+    },
+
+    redis: {
+      url: process.env.REDIS_URL
+    }
+  };
+};
+```
+
 
 As a part of the plugin discovery that the [plugin-registry.js](https://github.com/ember-cli-deploy/ember-cli-deploy/blob/master/lib/models/plugin-registry.js) does, it could look in the `pipeline.inlinePlugins` property of `config/deploy.js` after discovering the plugins from addons, and merge the resultant plugins in to the list. Everything after that point should work as normal.
 
