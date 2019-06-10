@@ -33,20 +33,22 @@ module.exports = function(deployTarget) {
         {
            name: 'log-to-console',
            createDeployPlugin(options) {
-             name: options.name,
+             return {
+              name: options.name,
 
-             willDeploy() {
-               console.log('About to deploy');
-             },
+              willDeploy() {
+                console.log('About to deploy');
+              },
 
-             didBuild(context) {
-               console.log(`Project files built in: ${context.distDir}`);
-             },
+              didBuild(context) {
+                console.log(`Project files built in: ${context.distDir}`);
+              },
 
-             didDeploy() {
-               console.log('Finished deploying');
-             }
-           }
+              didDeploy() {
+                console.log('Finished deploying');
+              }
+            };
+          }
         }
       ]
     },
