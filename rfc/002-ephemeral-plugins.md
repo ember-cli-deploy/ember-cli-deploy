@@ -122,6 +122,7 @@ Carry on recommending in-repo addons.
 
 # Unresolved questions
 - Should we somehow warn/error if plugins have defined a `pipeline` config property for a plugin?
+- Should we enforce the need for the `ember-cli-deploy` prefix of an inline plugin name? My initial thoughts are no as it adds no value. But my gut then suggests that it introduces a difference between standalone and inline plugins.
 
 # Tradeoffs / Decisions
 - Decided to move the (re)implementing hooks in existing addons to a separate RFC due to lack of clarity around how it should work
