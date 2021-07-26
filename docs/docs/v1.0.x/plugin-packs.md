@@ -55,7 +55,6 @@ The following plugin packs are developed by community members:
 - [ember-cli-deploy-aws-pack](https://github.com/kpfefferle/ember-cli-deploy-aws-pack)
 - [ember-cli-deploy-s3-pack](https://github.com/gaurav0/ember-cli-deploy-s3-pack)
 - [ember-cli-deploy-azure](https://github.com/duizendnegen/ember-cli-deploy-azure)
-- [ember-pagefront](https://github.com/pagefront/ember-pagefront)
 - [ember-cli-deploy-front-end-builds-pack](https://github.com/tedconf/ember-cli-deploy-front-end-builds-pack)
 
 ## Examples of Internal Company Plugin Packs
