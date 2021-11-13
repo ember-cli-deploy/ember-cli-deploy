@@ -12,7 +12,7 @@
   },
   "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": "12.* || 14.* || >= 16"
   },
   "author": "The ember-cli-deploy core team and contributors",
   "license": "MIT",
