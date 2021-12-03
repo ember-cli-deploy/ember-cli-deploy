@@ -1,37 +1,21 @@
 {
   "name": "ember-cli-deploy",
-  "description": "A deployment pipeline for ember-cli apps",
   "version": "1.0.2",
+  "description": "A deployment pipeline for ember-cli apps",
+  "keywords": [
+    "ember-addon",
+    "ember-cli-deploy"
+  ],
+  "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy",
+  "license": "MIT",
+  "author": "The ember-cli-deploy core team and contributors",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha \"node-tests/**/*-test.js\"",
-    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec \"node-tests/**/*-test.js\""
-  },
-  "repository": "https://github.com/ember-cli-deploy/ember-cli-deploy",
-  "engines": {
-    "node": "12.* || 14.* || >= 16"
-  },
-  "author": "The ember-cli-deploy core team and contributors",
-  "license": "MIT",
-  "devDependencies": {
-    "chai": "^1.9.2",
-    "chai-as-promised": "^4.1.1",
-    "ember-cli": "^2.10.0",
-    "ember-cli-eslint": "^4.2.0",
-    "ember-cli-release": "0.2.9",
-    "github": "0.2.3",
-    "mocha": "^2.0.1",
-    "mocha-eslint": "^4.1.0"
-  },
-  "keywords": [
-    "ember-addon",
-    "ember-cli-deploy"
-  ],
-  "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "autotest": "node node_modules/mocha/bin/mocha --watch --reporter spec \"node-tests/**/*-test.js\"",
+    "test": "node node_modules/mocha/bin/mocha \"node-tests/**/*-test.js\""
   },
   "dependencies": {
     "chalk": "^1.1.3",
@@ -42,5 +26,41 @@
     "lodash": "^4.0.0",
     "rsvp": "^3.3.3",
     "silent-error": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "chai-as-promised": "^4.1.1",
+    "ember-cli": "^2.10.0",
+    "ember-cli-eslint": "^4.2.0",
+    "ember-cli-release": "0.2.9",
+    "github": "0.2.3",
+    "mocha": "^2.0.1",
+    "mocha-eslint": "^4.1.0",
+    "release-it": "^14.2.1",
+    "release-it-lerna-changelog": "^3.1.0"
+  },
+  "engines": {
+    "node": "12.* || 14.* || >= 16"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "ember-addon": {
+    "configPath": "tests/dummy/config"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    }
   }
 }
