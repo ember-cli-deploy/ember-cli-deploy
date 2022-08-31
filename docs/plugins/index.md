@@ -48,7 +48,7 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-rollbar](https://github.com/netguru/ember-cli-deploy-rollbar) - include Rollbar snippet and upload javascript sourcemaps to Rollbar
   - [ember-cli-deploy-simply-ssh](https://github.com/AutoCloud/ember-cli-deploy-simply-ssh) - deploy via SSH with support of `-revision-data`, `-gzip`, `deploy:list` and `deploy:activate`
 
-For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
+For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmjs.com/search?q=keywords:ember-cli-deploy-plugin).
 
 **Ember Observer** has also a [special category](https://emberobserver.com/categories/ember-cli-deploy-plugins) dedicated to deploy plugins.
 
@@ -66,7 +66,7 @@ The following plugin packs are developed by community members:
 - [ember-pagefront](https://github.com/pagefront/ember-pagefront)
 - [ember-cli-deploy-front-end-builds-pack](https://github.com/tedconf/ember-cli-deploy-front-end-builds-pack)
 
-For a live list of all current ember-cli-deploy plugin packs this [npm keyword search](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin-pack)
+For a live list of all current ember-cli-deploy plugin packs this [npm keyword search](https://npmjs.com/search?q=keywords:ember-cli-deploy-plugin-pack)
 
 ## Compatibility
 Custom adapters written for ember-cli-deploy 0.4.x **will not work** with 0.5.x or higher.
