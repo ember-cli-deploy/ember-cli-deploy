@@ -32,7 +32,7 @@ The following plugins have been developed by community members:
   - [ember-cli-deploy-sentry](https://github.com/dschmidt/ember-cli-deploy-sentry) - upload javascript sourcemaps to sentry
   - [ember-cli-deploy-rollbar](https://github.com/netguru/ember-cli-deploy-rollbar) - include Rollbar snippet and upload javascript sourcemaps to Rollbar
 
-For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin).
+For a wide view of the plugin ecosystem, check out [a live search of npm packages with the "ember-cli-deploy-plugin" keyword](https://npmjs.com/search?q=keywords:ember-cli-deploy-plugin).
 
 ## Compatibility
 Custom adapters written for ember-cli-deploy 0.4.x **will not work** with 0.5.x.

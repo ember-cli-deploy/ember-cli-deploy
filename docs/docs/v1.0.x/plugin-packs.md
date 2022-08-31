@@ -69,4 +69,4 @@ The following plugins were created by companies that support multiple Ember apps
 
 ## Search for plugin packs
 
-For a live list of all current ember-cli-deploy plugin packs this [npm keyword search](https://npmsearch.com/?q=keywords:ember-cli-deploy-plugin-pack)
+For a live list of all current ember-cli-deploy plugin packs this [npm keyword search](https://npmjs.com/search?q=keywords:ember-cli-deploy-plugin-pack)
