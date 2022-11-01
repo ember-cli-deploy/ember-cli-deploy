@@ -34,7 +34,7 @@
     "ember-cli-eslint": "^4.2.0",
     "ember-cli-release": "0.2.9",
     "github": "0.2.3",
-    "mocha": "^2.0.1",
+    "mocha": "^10.1.0",
     "mocha-eslint": "^4.1.0",
     "release-it": "^14.2.1",
     "release-it-lerna-changelog": "^3.1.0"
