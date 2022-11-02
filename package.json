@@ -30,7 +30,7 @@
   "devDependencies": {
     "chai": "^1.9.2",
     "chai-as-promised": "^4.1.1",
-    "ember-cli": "^2.10.0",
+    "ember-cli": "^4.8.0",
     "ember-cli-eslint": "^4.2.0",
     "ember-cli-release": "0.2.9",
     "github": "0.2.3",
