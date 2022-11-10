@@ -92,22 +92,27 @@ describe('Plugin Registry', function() {
 
   it('accepts plugins with names not starting with ember-cli-deploy and renames those starting with', function() {
     var validPlugin = makePlugin('foo');
+
     var otherNamedPlugin = makePlugin('bar');
     otherNamedPlugin.name = 'my-other-bar';
+
+    var orgScopedPlugin = makePlugin('baz');
+    orgScopedPlugin.name = '@my-org/ember-cli-deploy-baz';
 
     var project = {
       name: function() {return 'test-project';},
       root: process.cwd(),
-      addons: [validPlugin, otherNamedPlugin],
+      addons: [validPlugin, otherNamedPlugin, orgScopedPlugin],
     };
 
     var registry = new PluginRegistry(project, mockUi, {});
 
     var plugins = registry.pluginInstances();
 
-    expect(plugins.length).to.equal(2);
+    expect(plugins.length).to.equal(3);
     expect(plugins[0].name).to.equal('foo');
     expect(plugins[1].name).to.equal('my-other-bar');
+    expect(plugins[2].name).to.equal('baz');
   });
 
   it('returns plugins for addons that have the correct keyword and implement the plugin function', function() {
