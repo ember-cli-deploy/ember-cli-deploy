@@ -1,4 +1,36 @@
 # Change Log
+
+## v2.0.0 (2022-11-11)
+
+#### :boom: Breaking Change
+* [#521](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/521) [Breaking] Switch to Github Actions for CI ([@jrjohnson](https://github.com/jrjohnson)) - The breaking change here is that we have dropped support for Node 12.
+
+#### :bug: Bug Fix
+* [#535](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/535) Fix plugin name extraction for scoped packages ([@astronomersiva](https://github.com/astronomersiva))
+
+#### :memo: Documentation
+* [#530](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/530) Update package search links in docs since npmsearch.com is no longer registered ([@lukemelia](https://github.com/lukemelia))
+
+#### :house: Internal
+* [#529](https://github.com/ember-cli-deploy/ember-cli-deploy/pull/529) Update CI badge in README and use volta in CI ([@lukemelia](https://github.com/lukemelia))
+
+#### Committers: 14
+- Alon Bukai ([@Alonski](https://github.com/Alonski))
+- Andrii Vakarev ([@avakarev](https://github.com/avakarev))
+- Bruno Casali ([@brunoocasali](https://github.com/brunoocasali))
+- Camille TJHOA ([@ctjhoa](https://github.com/ctjhoa))
+- Deepan Subbiah ([@deepan83](https://github.com/deepan83))
+- Jon Johnson ([@jrjohnson](https://github.com/jrjohnson))
+- Karl Becker ([@karlbecker](https://github.com/karlbecker))
+- Kelly Selden ([@kellyselden](https://github.com/kellyselden))
+- Luke Melia ([@lukemelia](https://github.com/lukemelia))
+- Olle Jonsson ([@olleolleolle](https://github.com/olleolleolle))
+- Peter Lejeck ([@NuckChorris](https://github.com/NuckChorris))
+- Simon Ihmig ([@simonihmig](https://github.com/simonihmig))
+- Sivasubramanyam A ([@astronomersiva](https://github.com/astronomersiva))
+- [@akashdsouza](https://github.com/akashdsouza)
+
+
 ## [1.0.2](https://github.com/ember-cli-deploy/ember-cli-deploy/tree/1.0.2) (2017-30-10)
 [Full Changelog](https://github.com/ember-cli-deploy/ember-cli-deploy/compare/v1.0.1...1.0.2)
 
