@@ -49,8 +49,10 @@ Individual config properties can be pure values or functions that receive the [c
 module.export = function(deployTarget){
   var ENV = {
     redis: {
+      customKeySuffix: '_prefix',
       revisionKey: function(context) {
-        return context.deployment.tag;
+        // `this` is the plugin configuration
+        return context.deployment.tag + this.customKeySuffix;
       }
     }
   }
