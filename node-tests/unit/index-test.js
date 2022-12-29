@@ -29,7 +29,8 @@ describe ('ember-cli-deploy', function() {
         project: {
           name: function() {return 'test-project';},
           root: process.cwd(),
-          addons: []
+          addons: [],
+          pkg: {}
         },
         app: {
           options: {
