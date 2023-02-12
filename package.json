@@ -36,8 +36,8 @@
     "github": "0.2.3",
     "mocha": "^10.1.0",
     "mocha-eslint": "^4.1.0",
-    "release-it": "^14.2.1",
-    "release-it-lerna-changelog": "^3.1.0"
+    "release-it": "^15.6.0",
+    "release-it-lerna-changelog": "^5.0.0"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
